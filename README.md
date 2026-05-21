@@ -13,12 +13,6 @@
     <link rel="stylesheet" href="Style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="script.js" defer></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'en,fr,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
         * {
@@ -131,6 +125,88 @@
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .google-translate {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-translate-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .google-translate-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+        }
+
+        .google-logo {
+            width: 22px;
+            height: 22px;
+            display: block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTEyLjMxIDEwLjEwVjE0LjU0SDE4LjkzQzE4LjY1IDE2LjE4IDE3LjY3IDE3LjQyIDE2LjM2IDE4LjE2VjIwLjA3SDE5Ljk1QzIyLjE2IDE4LjAyIDIzLjYyIDE1LjE1IDIzLjYyIDEyLjAzQzIzLjYyIDEwLjg3IDIzLjQ2IDkuNzQgMjMuMTcgOC42N0gxMi4zMVY5LjczQzExLjg3IDkuNzMgMTEuNDkgOS43MyAxMS4wOCA5LjczSDAuODEzOTFWMTEuNDlDMS45MzM5MSAxMy4zNiA0LjM3Nzk0IDE0LjU0IDYuMzEzOTEgMTQuNTRWMTAuMTBIMTIuMzFaIiBmaWxsPSIjNDI4NWY0Ii8+PHBhdGggZD0iTTAgMTJDMCAyMC4zMjc4IDYuNDQzMzUgMjcuNDY4MSAxNC41IDI3LjQ2ODFWMjIuODU3M0M5LjQ2MDkgMjIuODU3MyA1LjAyOTEgMTguMjUwNyA1LjAyOTEgMTIuNDI0NEMxMS4xMDE4IDEyLjk3MDcgMTUuNDIwOSAxNi4xODU4IDE1LjQyMDkgMjAuNjQxMFYyNi43MjQ2QzI0LjcgMjQuMjc0MyAyNy4xMzU0IDE5LjMxNDEgMjcuMTM1NCAxMy40NTk0QzI3LjEzNTQgNi41OTUxMyAyMS4zNDI0IDEuMDkwNTEgMTQuMzgyOSAxLjA5MDUxSDkuNzE3MzVDOS4zMDQ0MiAzLjAzMjMxIDcuNjAyNDcgNC41MTAyNCA1LjUyMTcgNC41MTAyNEMzLjAxMzU3IDQuNTEwMjQgMSAyLjQ0MTYyIDEgMC40Mzc0ODlIMFYxMloiIGZpbGw9IiNlYTQzMzUiLz48L3N2Zz4=');
+            cursor: pointer;
+        }
+
+        .google-translate-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: auto;
+            min-width: 150px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .google-translate:hover .google-translate-menu,
+        .google-translate:focus-within .google-translate-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .google-translate-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .google-translate-menu button {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
+            cursor: pointer;
+           
+        }
+
+        .google-translate-menu button:hover {
+            background: #f3f4f6;
         }
 
         /* RESPONSIVO - TABLETS E CELULARES */
@@ -361,6 +437,8 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
   color: #fff;
 }
+
+
 @media screen and (max-width: 768px) {
   .sidenav {
     max-width: 100%;
@@ -1109,10 +1187,6 @@
                 font-size: 14px;
             }
 
-            #google_translate_element {
-                width: 120px !important;
-                height: 18px !important;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1331,14 +1405,6 @@
                 font-size: 16px;
             }
 
-            #google_translate_element {
-                width: 100px !important;
-                height: 16px !important;
-            }
-
-            .goog-te-gadget {
-                font-size: 8px !important;
-            }
         }
 
         @media (max-width: 360px) {
@@ -1361,29 +1427,6 @@
             .gallery-image {
                 height: 150px;
             }
-        }
-         #google_translate_element {
-            width: 160px !important;
-            height: 20px !important;
-            border-radius: 20% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            overflow: hidden !important;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        }
-        #google_translate_element .skiptranslate {
-            width: 100% !important;
-            height: 100% !important;
-        }
-        #google_translate_element .skiptranslate > div {
-            width: 100% !important;
-        }
-        .goog-te-gadget {
-            font-size: 10px !important;
-        }
-        .goog-te-gadget img {
-            display: none !important;
         }
 
         
@@ -1611,7 +1654,7 @@
             }
         }
 
-        /* Google Translate widget icon styling */
+        /* Google Translate widget com logo do Google */
         #google_translate_element {
             display: inline-flex;
             align-items: center;
@@ -1619,11 +1662,12 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #fbfbfb, #e2e8f0);
+            background: #ffffff;
             border: 1px solid rgba(15, 23, 42, 0.12);
             box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
             overflow: hidden;
             transition: transform 0.18s ease, box-shadow 0.18s ease;
+            position: relative;
         }
 
         #google_translate_element:hover {
@@ -1631,26 +1675,35 @@
             box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
         }
 
-        #google_translate_element .goog-te-gadget-simple {
-            width: 100%;
-            height: 100%;
-            display: inline-flex;
+        #google_translate_element::before {
+            content: "\f1a0";
+            font-family: "Font Awesome 6 Brands";
+            font-size: 20px;
+            color: #4285f4;
+            position: absolute;
+            inset: 0;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 !important;
+            pointer-events: none;
         }
 
-        #google_translate_element .goog-te-gadget-icon {
-            width: 28px !important;
-            height: 28px !important;
-            border-radius: 50% !important;
-            background: #ffffff !important;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
-            margin: 0 !important;
-            padding: 4px !important;
+        #google_translate_element .goog-te-gadget-simple,
+        #google_translate_element .goog-te-gadget {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            opacity: 0 !important;
+            z-index: 1 !important;
+            pointer-events: auto !important;
         }
 
         #google_translate_element .goog-te-combo {
+            display: none !important;
+        }
+
+        #google_translate_element .goog-te-gadget img {
             display: none !important;
         }
 
@@ -1762,6 +1815,17 @@
             }
         }
     </style>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'en,fr,pt',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
     <!-- HEADER COM MENU -->
@@ -1769,13 +1833,19 @@
         <div class="header-container">
             <a href="#galeria" class="logo" ><img src="Image/favicon2.jpg" alt="S.M.S - Escola de Linguas & Habilidades" class="logo-official"></a>
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
+            <div class="google-translate" aria-label="Google Translate">
+                <button type="button" class="google-translate-button" aria-label="Traduzir para inglês ou francês" onclick="toggleGoogleTranslateMenu()">
+                        <span class="google-translate-icon" aria-hidden="true">&#127760;</span>
+                        <span class="google-translate-text">Idioma</span>
+                </button>
+                <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
+                    <div id="google_translate_element">selecione o idioma</div>
+                </div>
+            </div>
             <nav>
                 <ul>
-                    <li><div id="google_translate_element" style="margin: 0 12px; width: 40px; height: 40px;"></div></li>
-                    <li><a href="#cursos">Cursos</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
                         <div class="sidebar3">
-                            <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; Outros</span>
+                            <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; INFORMAÇÕES</span>
                             <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
@@ -1787,36 +1857,54 @@
                                 </div>
                                 <div class="sidenav-content">
                                     <!-- LOCALIZAÇÃO SECTION -->
-                                    <section id="localizacao" class="sidenav-section">
-                                        <h2>Localização</h2>
-                                        <p>Venha visitar-nos ou agendar sua aula online. Nossa escola está localizada em Luanda, com fácil acesso e atendimento personalizado.</p>
-                                        <p><strong>Endereço:</strong> Rua Principal, nº 123, Bairro Central, Luanda.</p>
-                                        <p><strong>Horário:</strong> Segunda a Sexta, 08:00 - 18:00.</p>
-                                        <div style="margin-top: 20px; border-radius: 8px; overflow: hidden;">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.75!2d13.234!3d-8.838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f6e00000000d%3A0x1234567890!2sLuanda!5e0!3m2!1spt!2sao!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <section id="localizacao" class="sidenav-section" style="padding: 20px 0;">
+                                        <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">📍 Localização</h2>
+                                        <p style="color: #475569; line-height: 1.7; margin-bottom: 16px;">Visite-nos ou agende sua aula online. Nossa escola está estrategicamente localizada em Luanda, com acesso facilitado e atendimento personalizado.</p>
+                                        
+                                        <div style="background: linear-gradient(135deg, #eef2ff, #f3f0ff); padding: 16px; border-radius: 12px; margin: 16px 0; border-left: 4px solid #667eea;">
+                                            <p style="margin: 8px 0; color: #111827;"><strong>📮 Endereço:</strong></p>
+                                            <p style="margin: 0 0 12px 0; color: #475569;">Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</p>
+                                            
+                                            <p style="margin: 8px 0; color: #111827;"><strong>🕒 Horário de Funcionamento:</strong></p>
+                                            <p style="margin: 0 0 12px 0; color: #475569;">Segunda a Sexta: 07:30 - 20:00</p>
+                                            
+                                            <p style="margin: 8px 0; color: #111827;"><strong>📞 Contactos:</strong></p>
+                                            <p style="margin: 0 0 4px 0; color: #475569;">Telefone: +244 951 474872</p>
+                                            <p style="margin: 0; color: #475569;">Email: saraswatimaaschool@gmail.com</p>
+                                        </div>
+                                        
+                                        <div style="margin-top: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                            <iframe src="https://maps.google.com/maps?q=-8.838337,13.234373&z=15&output=embed" width="100%" height="300" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
+                                        
+                                        <div style="margin-top: 20px; padding: 18px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 12px; border-left: 4px solid #10b981;">
+                                            <h3 style="margin: 0 0 12px 0; color: #111827; font-size: 1.1rem;">✨ Agende sua Visita</h3>
+                                            <p style="margin: 0 0 12px 0; color: #475569; line-height: 1.6;">Entre em contato conosco para agendar uma visita à nossa escola. Nossa equipe confirmará o horário e detalhes com você.</p>
+                                            <a href="https://wa.me/244951474872" style="display: inline-block; padding: 10px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#059669';" onmouseout="this.style.background='#10b981';">💬 Contacte via WhatsApp</a>
                                         </div>
                                     </section>
                                     <!-- PARCEIROS SECTION -->
-                                   <section id="parceiros-sidenav" class="sidenav-section" style="display:none;">
-                                    <h2>Nossos Parceiros</h2>
-                                    <div class="parceiros-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/parceiro1.jpg " alt="Parceiro 1" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                   <section id="parceiros-sidenav" class="sidenav-section" style="display:none; padding: 20px 0;">
+                                    <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">🤝 Nossos Parceiros</h2>
+                                    <p style="color: #475569; line-height: 1.7; margin-bottom: 20px;">Conheça as instituições que confiam em nosso trabalho e fazem parte da nossa jornada educacional.</p>
+                                    <div class="parceiros-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/parceiro1.jpg" alt="Parceiro 1" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/parceiro2.jpg " alt="Parceiro 2" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/parceiro2.jpg" alt="Parceiro 2" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/favicon1.jpg" alt="Parceiro 3" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/favicon1.jpg" alt="Parceiro 3" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/parceiro4.jpg " alt="Parceiro 4" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/parceiro4.jpg" alt="Parceiro 4" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/parceiro5.jpg " alt="Parceiro 5" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/parceiro5.jpg" alt="Parceiro 5" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
-                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                                            <img src="Image/parceiro6.jpg " alt="Parceiro 6" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
+                                            <img src="Image/parceiro6.jpg" alt="Parceiro 6" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
                                    </section>
                                     <!-- CARREIRA SECTION -->
@@ -1933,6 +2021,10 @@
                                                 <p style="margin: 0; color: #334155; line-height: 1.8;">“A equipe é preparada e acolhedora. Recomendo a S.M.S para quem busca um ensino de idiomas com foco em conversação e resultados rápidos.”</p>
                                             </article>
                                         </div>
+                                        <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
+                                            <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Quer compartilhar sua experiência?</p>
+                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:depoimentos@sms.com.br">depoimentos@sms.com.br</a></p>
+                                        </div>
                                     </section>
                                     <!-- TERMOS E PRIVACIDADE SECTION -->
                                     <section id="termos-privacidade" class="sidenav-section" style="display:none;">
@@ -2019,68 +2111,68 @@
         <h2 class="section-title">Nossos Cursos</h2>
         <div class="products-grid">
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop" alt="Inglês" class="product-image-img">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop" alt="Estágio 1 - Inglês" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">ESTAGÍO 1</div>
-                    <p> Duração: 4 meses, 2 horas de Aulas, </p>
+                    <div class="product-name">Estágio 1</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Duração: 4 meses | ⏱️ 2 horas de aulas semanais</p>
                     <div class="product-price">Kz 25.000,00/mês</div>
-                    <div class="product-description">o portal da eficacia linguistica, introdução,conversação,dialógica,em 4 meses nós garantimos a fala dos nossos Alunos </div>
-                    <button class="buy-button" onclick="bookCourse('ESTAGIO 1', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                    <div class="product-description">Domine os fundamentos da língua inglesa com nossa metodologia comprovada. Introdução à conversação, diálogos práticos e pronúncia. Garantimos fluidez oral em 4 meses.</div>
+                    <button class="buy-button" onclick="bookCourse('Estágio 1', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Francês" class="product-image-img">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Estágio 2 - Conversação" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">ESTAGÍO 2</div>
-                                        <p> Duração: 4,5 meses, 2 horas de Aulas, </p>
+                    <div class="product-name">Estágio 2</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Duração: 4,5 meses | ⏱️ 2 horas de aulas semanais</p>
                     <div class="product-price">Kz 35.000,00/mês</div>
-                    <div class="product-description">O Monge da lingua, Conversação sem bloqueios, audição aperfeiçoada,Super calmo pratico numa conversa. </div>
-                    <button class="buy-button" onclick="bookCourse('ESTAGÍO 2', 35000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                    <div class="product-description">Desenvolva conversação natural e confiante. Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.</div>
+                    <button class="buy-button" onclick="bookCourse('Estágio 2', 35000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Espanhol" class="product-image-img">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Estágio 3 - Profissional" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">ESTAGÍO 3</div>
-                    <p> Duração: por consulta,(Online) 1:30 horas de Aulas</p>
+                    <div class="product-name">Estágio 3</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
                     <div class="product-price">Kz 20.000,00/mês</div>
-                    <div class="product-description">Domine o mercado de trabalho no mundo das Linguas com á S.M.S</div>
-                    <button class="buy-button" onclick="bookCourse('ESTAGÍO 3', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                    <div class="product-description">Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações. Prepare-se para oportunidades globais com a S.M.S.</div>
+                    <button class="buy-button" onclick="bookCourse('Estágio 3', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop" alt="Alemão" class="product-image-img">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop" alt="Preparatório" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">PREPARATÓRIO</div>
-                    <p> Duração: por consulta,(Online) 1:30 horas de Aulas</p>
-                    <div class="product-price">Kz 15.000,00/Aula</div>
-                    <div class="product-description">Curso preparatório para o mercado de trabalho ou Universidade</div>
-                    <button class="buy-button" onclick="bookCourse('PREPARATÓRIO', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                    <div class="product-name">Preparatório</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
+                    <div class="product-price">Kz 15.000,00/aula</div>
+                    <div class="product-description">Preparação intensiva para exames internacionais e oportunidades acadêmicas. Suporte personalizado para alcançar seus objetivos educacionais.</div>
+                    <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" alt="Habilidades de Comunicação" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">HABILIDADES DE COMUNICAÇÃO</div>
-                    <p> Duração: por consulta,(Online) 1:30 horas de Aulas</p>
-                    <div class="product-price">Kz 12.000,00/Aula</div>
-                    <div class="product-description">Desenvolva suas habilidades interpessoais</div>
+                    <div class="product-name">Habilidades de Comunicação</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
+                    <div class="product-price">Kz 12.000,00/aula</div>
+                    <div class="product-description">Desenvolva competências interpessoais essenciais: comunicação eficaz, liderança, inteligência emocional e apresentações profissionais.</div>
                     <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 12000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Programação Básica" class="product-image-img">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Aceleração de Fluência" class="product-image-img">
                 <div class="product-info">
-                    <div class="product-name">ACELERAÇÃO DA FLUÊNCIA NA FALA E AUDIÇÃO</div>
-                    <p> Duração: por consulta,(Online) 1:30 horas de Aulas</p>
+                    <div class="product-name">Aceleração da Fluência</div>
+                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
                     <div class="product-price">Kz 25.000,00/mês</div>
-                    <div class="product-description">Introdução à aceleração da fluência na fala e audição como um nativo</div>
-                    <button class="buy-button" onclick="bookCourse('Aceleração da fluência na Fala e Audição', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                    <div class="product-description">Acelere sua fluência em conversação e audição. Alcance o nível de falante nativo com imersão total e prática intensiva orientada.</div>
+                    <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
                 </div>
             </div>
         </div>
@@ -2238,7 +2330,7 @@
     </section>
     <!-- GALERIA DE FOTOS -->
     <section class="gallery" id="galeria">
-        <h2 class="section-title">Informa-te Aqui!</h2>
+        <h2 class="section-title">Galeria de Fotos</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
                 <img src="Image/Pub1.jpg" alt="Aula de Inglês" class="gallery-image">
@@ -2284,23 +2376,19 @@
         <section id="contato-social">  
             <p>Visite as nossas redes sociais</p>
         <div class="social-media">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
-            <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
-            <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.reddit.com" target="_blank"><i class="fab fa-reddit"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61575589767936" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/saraswati.sms?igsh=eXduNjJvazhrZThl" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/saraswati-maa-school-399831402?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/244951474872" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@saraswatimaaschool?si=Cj7UdMQNY221QcJ6" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://pin.it/7Mj6hXgYW" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.tiktok.com/@saraswati.maa.school?_r=1&_t=ZS-95SXQH2QT5u" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.reddit.com/user/Imaginary-Shock5217/?utm_source=share&utm_medium=mweb3x&utm_name=mweb3xcss&utm_term=1&utm_content=share_button" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="FAQ.html" target="_blank">FAQ</a>
         </div>
         </section>
         <section id="contato-info" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
-            <p><strong>📞 Contato da Recepção:</strong></p>
-            <p style="font-size: 18px; margin: 10px 0;"><a href="tel:+244951474872" style="color: #25D366; text-decoration: none; font-weight: bold;">S.M.S</a></p>
-            <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 08:00 - 18:00</p>
+            <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 07:30 - 18:00</p>
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
         <button id="scrollToTopBtn" style="display: none; position: fixed; bottom: 30px; right: 30px; background-color: #FFD700; color: #000; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 24px; z-index: 99; font-weight: bold;">↑</button>
