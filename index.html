@@ -259,101 +259,215 @@
 
 /* Sidebar */
 .sidebar3 {
-    font-family: "Lato", sans-serif;
-    right: 0;
-    top: 0;
-  }
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+.sidebar3 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #334155;
+  background: rgba(102, 126, 234, 0.12);
+  border: 1px solid rgba(102, 126, 234, 0.25);
+  border-radius: 999px;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+}
+.sidebar3 span:hover {
+  transform: translateY(-1px);
+  background: rgba(102, 126, 234, 0.18);
+  color: #1f2937;
+}
 .sidenav {
-  height: 500%;
-  width: 50%;
+  height: 550%;
+  width: 0;
+  max-width: 420px;
   position: fixed;
-  z-index: 1;
-  top: 105%;
-  right: 1%;
-  background-color: #ffffff;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
   overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+  overflow-y: auto;
+  transition: width 0.4s ease, transform 0.4s ease;
+  padding-top: 70px;
+  box-shadow: -12px 0 36px rgba(0,0,0,0.14);
 }
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 14px 28px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 17px;
+  color: #000000;
   display: block;
-  transition: 0.3s;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: translateX(3px);
 }
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  top: 16px;
+  right: 18px;
+  font-size: 32px;
+  color: #334155;
+  background: rgba(255,255,255,0.85);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.sidenav .closebtn:hover {
+  background: #fff;
 }
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
   }
   .sidenav a {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
-  /* Estilos adicionais para o menu lateral */
-  .terms-privacy {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 40px 20px;
-            margin: 40px 0;
-            height: 800px;
-        }
-        .terms-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .terms-container h2 {
-            color: #667eea;
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-        .terms-content h3 {
-            color: #333;
-            font-size: 18px;
-            margin-top: 25px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-            padding-left: 15px;
-        }
-        .terms-content p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            font-size: 15px;
-        }
-
-        .terms-content ul {
-            margin-left: 25px;
-            margin-bottom: 20px;
-        }
-
-        .terms-content li {
-            color: #666;
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .terms-content strong {
-            color: #667eea;
-            font-weight: 600;
-        }
+.sidenav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 22px 22px;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+}
+.sidenav-menu a {
+  padding: 14px 16px;
+  font-size: 16px;
+  background: #f5f7ff;
+  border-radius: 14px;
+  color: #1f2937;
+  box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
+}
+.sidenav-menu a:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .sidenav {
+    max-width: 100%;
+    width: 0;
+    padding-top: 80px;
+  }
+  .sidenav a {
+    padding: 16px 24px;
+    font-size: 16px;
+  }
+  .sidenav-menu {
+    padding: 0 18px 20px;
+  }
+  .sidenav-menu a {
+    font-size: 15px;
+    padding: 16px 18px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .sidebar3 span {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .sidenav {
+    padding-top: 90px;
+  }
+  .sidenav .closebtn {
+    top: 12px;
+    right: 14px;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+  }
+  .sidenav a {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
+.sidenav-content {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+}
+.sidenav-section {
+  display: none;
+}
+.sidenav-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+ color: #667eea;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border-bottom: 3px solid #667eea;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.sidenav-content p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.terms-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.terms-container h2 {
+  color: #667eea;
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 15px;
+}
+.terms-content h3 {
+  color: #333;
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  border-left: 4px solid #667eea;
+  padding-left: 15px;
+}
+.terms-content p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.terms-content ul {
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+.terms-content li {
+  color: #666;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.terms-content strong {
+  color: #667eea;
+  font-weight: 600;
+}
         /* BANNER */
         .banner {
             position: relative;
@@ -1496,10 +1610,158 @@
                 margin-bottom: 15px !important;
             }
         }
+
+        /* Google Translate widget icon styling */
+        #google_translate_element {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbfbfb, #e2e8f0);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        #google_translate_element:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+        }
+
+        #google_translate_element .goog-te-gadget-simple {
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+        }
+
+        #google_translate_element .goog-te-gadget-icon {
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 50% !important;
+            background: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+            margin: 0 !important;
+            padding: 4px !important;
+        }
+
+        #google_translate_element .goog-te-combo {
+            display: none !important;
+        }
+
+        img,
+        iframe,
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .product-info,
+        .vagas-container,
+        .gallery,
+        .payment-container,
+        .whatsapp-section,
+        .terms-container,
+        .header-container {
+            width: 100%;
+        }
+
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            background-color: #ffd700;
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 999;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollToTopBtn:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            #scrollToTopBtn {
+                right: 16px;
+                bottom: 16px;
+                padding: 12px;
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header-container {
+                justify-content: center;
+            }
+
+            .product-card,
+            .gallery-item,
+            .vaga-card {
+                width: 100%;
+            }
+
+            .gallery-image {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #scrollToTopBtn {
+                right: 12px;
+                bottom: 12px;
+                padding: 10px;
+                width: 44px;
+                height: 44px;
+                font-size: 16px;
+            }
+
+            .buy-button,
+            .whatsapp-button,
+            .order-toggle-btn,
+            .sidenav-menu a,
+            .sidebar3 span {
+                min-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .banner-slide {
+                padding: 18px 12px;
+            }
+
+            .banner-slide > div {
+                padding: 0 10px;
+            }
+        }
     </style>
-</head>
-</head>
-</head>
 </head>
 <body>
     <!-- HEADER COM MENU -->
@@ -1509,59 +1771,211 @@
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
             <nav>
                 <ul>
-                    <li><div id="google_translate_element" style="margin: 0 15px;"></div></li>
+                    <li><div id="google_translate_element" style="margin: 0 12px; width: 40px; height: 40px;"></div></li>
                     <li><a href="#cursos">Cursos</a></li>
                     <li><a href="#galeria">Galeria</a></li>
-                    <li>  <div class="sidebar3">
-                <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <!-- TERMOS E PRIVACIDADE -->
-    <section class="terms-privacy" id="termos-privacidade">
-        <div class="terms-container">
-            <h2>Termos de Serviço e Privacidade</h2>
-            
-            <div class="terms-content">
-                <h3>1. Termos de Serviço</h3>
-                <p>Bem-vindo à S.M.S - Escola de Linguas & Habilidades. Ao usar nosso site, você concorda com os seguintes termos e condições:</p>
-                <ul>
-                    <li>Todas as aulas são agendadas conforme disponibilidade</li>
-                    <li>Os preços estão sujeitos a alterações sem aviso prévio</li>
-                    <li>Os alunos são responsáveis pela precisão das informações fornecidas no agendamento</li>
-                    <li>Reservamos o direito de recusar ou cancelar qualquer agendamento</li>
-                    <li>As imagens dos cursos são apenas ilustrativas</li>
-                </ul>
-
-                <h3>2. Política de Privacidade</h3>
-                <p>A S.M.S - Escola de Linguas & Habilidades respeita sua privacidade. Informamos como coletamos e usamos seus dados:</p>
-                <ul>
-                    <li><strong>Coleta de Dados:</strong> Coletamos informações pessoais como nome, telefone, endereço e email quando você agenda uma aula</li>
-                    <li><strong>Uso de Dados:</strong> Seus dados são usados exclusivamente para processar agendamentos e melhorar nossos serviços</li>
-                    <li><strong>Proteção de Dados:</strong> Mantemos suas informações seguras e confidenciais</li>
-                    <li><strong>Compartilhamento:</strong> Não compartilhamos seus dados com terceiros sem sua autorização</li>
-                    <li><strong>Cookies:</strong> Nosso site pode usar cookies para melhorar sua experiência</li>
-                </ul>
-
-                <h3>3. Direitos do Aluno</h3>
-                <p>Você tem direito a:</p>
-                <ul>
-                    <li>Receber informações claras sobre os cursos</li>
-                    <li>Cancelamento de aulas dentro do prazo estabelecido</li>
-                    <li>Acesso às políticas de aulas e cancelamento</li>
-                    <li>Contato com nosso suporte ao cliente</li>
-                </ul>
-
-                <h3>4. Limitação de Responsabilidade</h3>
-                <p>A S.M.S - Escola de Linguas & Habilidades não se responsabiliza por danos indiretos ou consequentes resultantes do uso de nossos serviços ou aulas.</p>
-
-                <h3>5. Alterações nos Termos</h3>
-                <p>Reservamos o direito de alterar estes termos a qualquer momento. Recomendamos que revise esta página regularmente.</p>
-            </div>
-        </div>
-    </section>
-                </div>
-            </div>
-                <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; Outros</span>
-            </div></li>
+                        <div class="sidebar3">
+                            <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; Outros</span>
+                            <div id="mySidenav" class="sidenav">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <div class="sidenav-menu">
+                                    <a href="javascript:void(0)" onclick="showSideSection('localizacao')">Localização</a>
+                                    <a href="javascript:void(0)" onclick="showSideSection('parceiros-sidenav')">Nossos Parceiros</a>
+                                    <a href="javascript:void(0)" onclick="showSideSection('carreira')">Carreira</a>
+                                    <a href="javascript:void(0)" onclick="showSideSection('louvores')">Louvores</a>
+                                    <a href="javascript:void(0)" onclick="showSideSection('termos-privacidade')">Termos e Privacidade</a>
+                                </div>
+                                <div class="sidenav-content">
+                                    <!-- LOCALIZAÇÃO SECTION -->
+                                    <section id="localizacao" class="sidenav-section">
+                                        <h2>Localização</h2>
+                                        <p>Venha visitar-nos ou agendar sua aula online. Nossa escola está localizada em Luanda, com fácil acesso e atendimento personalizado.</p>
+                                        <p><strong>Endereço:</strong> Rua Principal, nº 123, Bairro Central, Luanda.</p>
+                                        <p><strong>Horário:</strong> Segunda a Sexta, 08:00 - 18:00.</p>
+                                        <div style="margin-top: 20px; border-radius: 8px; overflow: hidden;">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.75!2d13.234!3d-8.838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f6e00000000d%3A0x1234567890!2sLuanda!5e0!3m2!1spt!2sao!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
+                                    </section>
+                                    <!-- PARCEIROS SECTION -->
+                                   <section id="parceiros-sidenav" class="sidenav-section" style="display:none;">
+                                    <h2>Nossos Parceiros</h2>
+                                    <div class="parceiros-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/parceiro1.jpg " alt="Parceiro 1" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/parceiro2.jpg " alt="Parceiro 2" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/favicon1.jpg" alt="Parceiro 3" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/parceiro4.jpg " alt="Parceiro 4" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/parceiro5.jpg " alt="Parceiro 5" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                        <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                                            <img src="Image/parceiro6.jpg " alt="Parceiro 6" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                                        </div>
+                                   </section>
+                                    <!-- CARREIRA SECTION -->
+                                    <section id="carreira" class="sidenav-section" style="display:none;">
+                                        <h2>Carreira</h2> 
+                                        <!-- Application form (hidden by default) -->
+                                        <div id="application-form" style="display:none; margin-top:18px; padding:18px; border-radius:12px; background:#ffffff; border:1px solid #e5e7eb;">
+                                            <h3 style="margin-top:0;">Formulário de Candidatura</h3>
+                                            <form id="careersForm" onsubmit="return submitCareerForm(event)" style="display:grid; gap:10px;">
+                                                <input type="hidden" id="jobPosition" name="jobPosition" value="">
+                                                <label style="font-size:0.95rem; color:#374151;">Nome completo<input required type="text" id="appName" name="name" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
+                                                <label style="font-size:0.95rem; color:#374151;">Email<input required type="email" id="appEmail" name="email" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
+                                                <label style="font-size:0.95rem; color:#374151;">Telemóvel<input required type="tel" id="appPhone" name="phone" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
+                                                <label style="font-size:0.95rem; color:#374151;">Mensagem / Carta de Apresentação<textarea id="appMessage" name="message" rows="4" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></textarea></label>
+                                                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                                    <button type="button" onclick="applyViaWhatsApp()" style="padding:10px 14px; background:#16a34a; color:#fff; border-radius:10px; border:none;">Candidatar via WhatsApp</button>
+                                                    <button type="submit" style="padding:10px 14px; background:#1d4ed8; color:#fff; border-radius:10px; border:none;">Enviar por Email</button>
+                                                    <button type="button" onclick="hideApplicationForm()" style="padding:10px 14px; background:#6b7280; color:#fff; border-radius:10px; border:none;">Fechar</button>
+                                                </div>
+                                                <p style="margin:0; font-size:0.9rem; color:#6b7280;">Também pode enviar o seu CV para <a href="mailto:saraswatimaaschool@gmail.com">saraswatimaaschool@gmail.com</a></p>
+                                            </form>
+                                        </div>
+                                        <p style="font-size: 1.05rem; color: #1f2937; margin-top: 10px;">Junte-se a uma equipa apaixonada por educação e por resultados. Aqui, você encontra oportunidades reais de crescimento, um ambiente inspirador e reconhecimento pelo seu talento.</p>
+                                        <p style="margin-top: 12px; color: #4b5563;">Buscamos profissionais proativos, criativos e comprometidos com a transformação de vidas.</p>
+                                        <div class="vagas-container" style="margin-top: 24px; display: grid; gap: 22px;">
+                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #fff8ec, #fdf1da); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #fbbf24; display: flex; align-items: center; justify-content: center; color: #1f2937; font-weight: 700;">1</div>
+                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Professor de Inglês</h3>
+                                                </div>
+                                                <p style="color: #334155;">Inspire alunos de todas as idades com aulas dinâmicas, conversação prática e uma metodologia que gera confiança e resultados rápidos.</p>
+                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
+                                                    <li>Ambiente colaborativo com formação contínua</li>
+                                                    <li>Carga horária flexível e plano de carreira claro</li>
+                                                    <li><strong>Requisitos:</strong> Experiência em sala de aula, comunicação clara e fluência em inglês</li>
+                                                </ul>
+                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Professor de Inglês','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Professor de Inglês','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
+                                                </div>
+                                            </article>
+                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #6366f1; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">2</div>
+                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Coach de Desenvolvimento Pessoal</h3>
+                                                </div>
+                                                <p style="color: #334155;">Apoie nossos alunos em sua jornada de crescimento, motivando mudanças positivas e ajudando-os a atingir metas pessoais e profissionais.</p>
+                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
+                                                    <li>Trabalho com foco no desenvolvimento humano e resultados reais</li>
+                                                    <li>Ambiente de apoio e feedback contínuo</li>
+                                                    <li><strong>Requisitos:</strong> Experiência em coaching, empatia e metodologia centrada no aluno</li>
+                                                </ul>
+                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Coach de Desenvolvimento Pessoal','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Coach de Desenvolvimento Pessoal','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
+                                                </div>
+                                            </article>
+                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">3</div>
+                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Auxiliar Administrativo</h3>
+                                                </div>
+                                                <p style="color: #334155;">Garanta a organização das nossas operações, apoie a equipe e ofereça uma experiência de atendimento excepcional para alunos e responsáveis.</p>
+                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
+                                                    <li>Equipe acolhedora e foco em desenvolvimento profissional</li>
+                                                    <li>Atuação em ambiente moderno e colaborativo</li>
+                                                    <li><strong>Requisitos:</strong> Organização, proatividade e experiência com atendimento</li>
+                                                </ul>
+                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Auxiliar Administrativo','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
+                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Auxiliar Administrativo','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
+                                                </div>
+                                            </article>
+                                        </div>
+                                        <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
+                                            <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Não encontrou a vaga certa?</p>
+                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu currículo para <a href="mailto:saraswatimaaschool@gmail.com" style="color: #1d4ed8; text-decoration: none;">saraswatimaaschool@gmail.com</a> e seja considerado para futuras oportunidades.</p>
+                                            <a href="mailto:saraswatimaaschool@gmail.com" onclick="window.location.href=this.href; return false;" style="display:inline-block; padding: 12px 20px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar Currículo</a>
+                                        </div>
+                                    </section>
+                                    <!-- LOUVORES SECTION -->
+                                    <section id="louvores" class="sidenav-section" style="display:none;">
+                                        <h2 style="margin-bottom: 12px; color: #111827;">Louvores</h2>
+                                        <p style="max-width: 720px; margin: 0 0 24px; color: #475569; line-height: 1.75;">Veja como nossos alunos e parceiros reconhecem a qualidade pedagógica e o impacto das nossas aulas. Cada depoimento reflete a experiência real com atendimento acolhedor, resultados rápidos e suporte personalizado.</p>
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+                                                    <img src="https://via.placeholder.com/80?text=AL" alt="Aluno satisfeito" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                    <div>
+                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Ana Luiza</strong>
+                                                        <span style="color: #64748b; font-size: 0.95rem;">Estudante de inglês</span>
+                                                    </div>
+                                                </div>
+                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“A S.M.S transformou meu desempenho em conversação. O acompanhamento é atencioso e a metodologia faz com que eu evolua com confiança em cada aula.”</p>
+                                            </article>
+                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+                                                    <img src="https://via.placeholder.com/80?text=JM" alt="Parceria escolar" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                    <div>
+                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">João Marcos</strong>
+                                                        <span style="color: #64748b; font-size: 0.95rem;">Responsável</span>
+                                                    </div>
+                                                </div>
+                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“O suporte humano e dedicado fez a diferença para meu filho. As aulas são personalizadas e o progresso é visível desde o primeiro mês.”</p>
+                                            </article>
+                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
+                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+                                                    <img src="https://via.placeholder.com/80?text=CB" alt="Aluno feliz" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                    <div>
+                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Camila Braga</strong>
+                                                        <span style="color: #64748b; font-size: 0.95rem;">Parceira pedagógica</span>
+                                                    </div>
+                                                </div>
+                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“A equipe é preparada e acolhedora. Recomendo a S.M.S para quem busca um ensino de idiomas com foco em conversação e resultados rápidos.”</p>
+                                            </article>
+                                        </div>
+                                    </section>
+                                    <!-- TERMOS E PRIVACIDADE SECTION -->
+                                    <section id="termos-privacidade" class="sidenav-section" style="display:none;">
+                                        <div class="terms-container">
+                                            <h2>Termos de Serviço e Privacidade</h2>
+                                            <div class="terms-content">
+                                                <h3>1. Termos de Serviço</h3>
+                                                <p>Bem-vindo à S.M.S - Escola de Linguas & Habilidades. Ao usar nosso site, você concorda com os seguintes termos e condições:</p>
+                                                <ul>
+                                                    <li>Todas as aulas são agendadas conforme disponibilidade</li>
+                                                    <li>Os preços estão sujeitos a alterações sem aviso prévio</li>
+                                                    <li>Os alunos são responsáveis pela precisão das informações fornecidas no agendamento</li>
+                                                    <li>Reservamos o direito de recusar ou cancelar qualquer agendamento</li>
+                                                    <li>As imagens dos cursos são apenas ilustrativas</li>
+                                                </ul>
+                                                <h3>2. Política de Privacidade</h3>
+                                                <p>A S.M.S - Escola de Linguas & Habilidades respeita sua privacidade. Informamos como coletamos e usamos seus dados:</p>
+                                                <ul>
+                                                    <li><strong>Coleta de Dados:</strong> Coletamos informações pessoais como nome, telefone, endereço e email quando você agenda uma aula</li>
+                                                    <li><strong>Uso de Dados:</strong> Seus dados são usados exclusivamente para processar agendamentos e melhorar nossos serviços</li>
+                                                    <li><strong>Proteção de Dados:</strong> Mantemos suas informações seguras e confidenciais</li>
+                                                    <li><strong>Compartilhamento:</strong> Não compartilhamos seus dados com terceiros sem sua autorização</li>
+                                                    <li><strong>Cookies:</strong> Nosso site pode usar cookies para melhorar sua experiência</li>
+                                                </ul>
+                                                <h3>3. Direitos do Aluno</h3>
+                                                <p>Você tem direito a:</p>
+                                                <ul>
+                                                    <li>Receber informações claras sobre os cursos</li>
+                                                    <li>Cancelamento de aulas dentro do prazo estabelecido</li>
+                                                    <li>Acesso às políticas de aulas e cancelamento</li>
+                                                    <li>Contato com nosso suporte ao cliente</li>
+                                                </ul>
+                                                <h3>4. Limitação de Responsabilidade</h3>
+                                                <p>A S.M.S - Escola de Linguas & Habilidades não se responsabiliza por danos indiretos ou consequentes resultantes do uso de nossos serviços ou aulas.</p>
+                                                <h3>5. Alterações nos Termos</h3>
+                                                <p>Reservamos o direito de alterar estes termos a qualquer momento. Recomendamos que revise esta página regularmente.</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -1864,30 +2278,6 @@
             </div>
         </div>
     </section>
-    <!-- PARCEIROS SECTION -->
-    <section id="parceiros" class="parceiros-section">
-        <h2 class="section-title">Nossos Parceiros</h2>
-        <div class="parceiros-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/parceiro1.jpg " alt="Parceiro 1" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/parceiro2.jpg " alt="Parceiro 2" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/favicon1.jpg" alt="Parceiro 3" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/parceiro4.jpg " alt="Parceiro 4" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/parceiro5.jpg " alt="Parceiro 5" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="parceiro-item" style="border: 4px solid #FFD700; border-radius: 50%; padding: 15px; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
-                <img src="Image/parceiro6.jpg " alt="Parceiro 6" class="parceiro-logo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-            </div>
-        </div>
-    </section>
 
     <!-- FOOTER -->
     <footer id="contato"> 
@@ -2015,35 +2405,32 @@
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
-        sidenav.style.width = "60%";
-        let closeBtn = document.getElementById("closeNavBtn");
-        if (!closeBtn) {
-            closeBtn = document.createElement("button");
-            closeBtn.id = "closeNavBtn";
-            closeBtn.textContent = "Fechar";
-            closeBtn.style.fontWeight = "bold";
-            closeBtn.style.position = "absolute";
-            closeBtn.style.bottom = "10px";
-            closeBtn.style.left = "10px";
-            closeBtn.style.right = "10px";
-            closeBtn.style.background = "transparent";
-            closeBtn.style.color = "red";
-            closeBtn.style.border = "none";
-            closeBtn.style.fontSize = "24px";
-            closeBtn.style.cursor = "pointer";
-            closeBtn.onclick = closeNav;
-            sidenav.appendChild(closeBtn);
-        }
+        sidenav.style.width = "85%";
+        showSideSection('localizacao');
     } else {
         console.error('Sidenav element not found.');
     }
 }
+
+function showSideSection(sectionId) {
+    const sections = document.querySelectorAll('.sidenav-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.style.display = 'block';
+    }
+}
+
 window.onload = function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.style.width = "0";
     }
+    showSideSection('localizacao');
 };
+
 function closeNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
@@ -2128,6 +2515,61 @@ function closeNav() {
             document.getElementById('agendamento').style.display = 'none';
             document.getElementById('pagamento').style.display = 'none';
             document.getElementById('formulario-section').style.display = 'none';
+        }
+
+        function showApplicationForm(position, method) {
+            const form = document.getElementById('application-form');
+            const jobPosition = document.getElementById('jobPosition');
+            const messageField = document.getElementById('appMessage');
+            if (!form || !jobPosition) return;
+            jobPosition.value = position || '';
+            form.style.display = 'block';
+            if (messageField && !messageField.value.trim()) {
+                messageField.value = `Estou interessado(a) na vaga de ${position}.`;
+            }
+            setTimeout(() => {
+                form.scrollIntoView({ behavior: 'smooth' });
+                const firstInput = document.getElementById('appName');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+
+        function hideApplicationForm() {
+            const form = document.getElementById('application-form');
+            if (form) {
+                form.style.display = 'none';
+            }
+        }
+
+        function applyViaWhatsApp() {
+            const name = document.getElementById('appName').value.trim();
+            const email = document.getElementById('appEmail').value.trim();
+            const phone = document.getElementById('appPhone').value.trim();
+            const position = document.getElementById('jobPosition').value;
+            const message = document.getElementById('appMessage').value.trim();
+            if (!name || !email || !phone) {
+                alert('Por favor, preencha nome, email e telemóvel para continuar.');
+                return;
+            }
+            const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá, desejo candidatar-me à vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function submitCareerForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('appName').value.trim();
+            const email = document.getElementById('appEmail').value.trim();
+            const phone = document.getElementById('appPhone').value.trim();
+            const position = document.getElementById('jobPosition').value;
+            const message = document.getElementById('appMessage').value.trim();
+            if (!name || !email || !phone) {
+                alert('Por favor, preencha nome, email e telemóvel para enviar a candidatura por email.');
+                return false;
+            }
+            const subject = encodeURIComponent(`Candidatura: ${position}`);
+            const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de ${position}.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0AMensagem:%0A${message}`);
+            window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
+            return false;
         }
 
         // Scroll to top button functionality
