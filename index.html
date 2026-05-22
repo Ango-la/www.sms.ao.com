@@ -13,6 +13,33 @@
     <link rel="stylesheet" href="Style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="script.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const texts = [
+                "Somos uma escola de línguas e desenvolvimento de habilidades com ensino presencial e online.",
+                "Professores experientes e metodologia prática, com turmas reduzidas para atenção personalizada.",
+                "Horários flexíveis, apoio contínuo e localização acessível em Luanda para melhor atendimento."
+            ];
+            
+            const tickerContent = document.querySelector('.ticker-content');
+            if (tickerContent) {
+                texts.forEach(function(text, index) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+                
+                // Repetir os textos para efeito contínuo
+                texts.forEach(function(text) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+            }
+        });
+    </script>
 <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
         * {
@@ -62,6 +89,48 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* TICKER - SCROLLING TEXT */
+        .ticker-wrapper {
+            background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: scroll-left 40s linear infinite;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .ticker-item {
+            padding: 0 30px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .ticker-item::before {
+            content: '✦';
+            margin-right: 15px;
+            color: #f093fb;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* HEADER E MENU */
@@ -2386,13 +2455,12 @@
             <a href="https://www.reddit.com/user/Imaginary-Shock5217/?utm_source=share&utm_medium=mweb3x&utm_name=mweb3xcss&utm_term=1&utm_content=share_button" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="FAQ.html" target="_blank">FAQ</a>
         </div>
-        </section>
         <section id="contato-info" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
             <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 07:30 - 18:00</p>
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
-        <button id="scrollToTopBtn" style="display: none; position: fixed; bottom: 30px; right: 30px; background-color: #FFD700; color: #000; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 24px; z-index: 99; font-weight: bold;">↑</button>
-
+        <!-- Botão de rolagem/voltar ao topo -->
+<button id="scrollToTopBtn" title="Voltar ao topo"></button>
     </footer>
 <script>
         let currentSlideIndex = 0;
@@ -2662,13 +2730,41 @@ function closeNav() {
 
         // Scroll to top button functionality
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        let bottomTimeCounter = 0;
+        let bottomTimeInterval = null;
+        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 scrollToTopBtn.style.display = 'block';
             } else {
                 scrollToTopBtn.style.display = 'none';
             }
+            
+            // Detectar se está no fundo da página
+            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
+            
+            if (isAtBottom) {
+                if (bottomTimeInterval === null) {
+                    bottomTimeCounter = 0;
+                    bottomTimeInterval = setInterval(() => {
+                        bottomTimeCounter++;
+                        if (bottomTimeCounter >= 15) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            clearInterval(bottomTimeInterval);
+                            bottomTimeInterval = null;
+                            bottomTimeCounter = 0;
+                        }
+                    }, 1000);
+                }
+            } else {
+                if (bottomTimeInterval !== null) {
+                    clearInterval(bottomTimeInterval);
+                    bottomTimeInterval = null;
+                    bottomTimeCounter = 0;
+                }
+            }
         });
+        
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
