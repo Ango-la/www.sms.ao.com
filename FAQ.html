@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Perguntas Frequentes sobre Cursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .faq-section {
+            margin-bottom: 50px;
+        }
+        
+        .faq-section h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .faq-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .faq-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .faq-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .faq-item p {
+            color: #555;
+            margin-left: 15px;
+        }
+        
+        .contact-section {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .contact-section h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .contact-item strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .contact-item p {
+            color: #555;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s, scale 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            scale: 1.1;
+        }
+        
+        .back-button:active {
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>❓ FAQ</h1>
+            <p>Perguntas Frequentes sobre Cursos</p>
+        </div>
+        
+        <div class="content">
+            <div class="faq-section">
+                <h2>Sobre os Cursos</h2>
+                
+                <div class="faq-item">
+                    <strong>P: Qual é a duração dos cursos?</strong>
+                    <p>A duração varia conforme o curso. Cursos básicos geralmente têm entre 4 a 8 semanas, enquanto cursos avançados podem variar de 8 a 12 semanas. Consulte o programa específico para mais detalhes.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Os cursos são online ou presenciais?</strong>
+                    <p>Oferecemos tanto modalidades online quanto presenciais. Você pode escolher a que melhor se adequa à sua disponibilidade.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Qual é o horário de aulas?</strong>
+                    <p>Os cursos online funcionam 24/7, permitindo que você estude no seu próprio ritmo. Os cursos presenciais ocorrem em horários fixos, normalmente de segunda a sexta, das 19h às 21h.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Há certificado ao final do curso?</strong>
+                    <p>Sim! Todos os participantes que completarem o curso recebem um certificado de conclusão reconhecido pela instituição.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Qual é o valor dos cursos?</strong>
+                    <p>Os preços variam de acordo com o tipo e duração do curso. Consulte nossa tabela de preços ou entre em contato para orçamentos especiais.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Posso fazer mais de um curso ao mesmo tempo?</strong>
+                    <p>Sim, é permitido inscrever-se em múltiplos cursos simultaneamente, desde que você tenha disponibilidade de tempo para acompanhar ambos.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Como faço para me inscrever?</strong>
+                    <p>Você pode se inscrever através do nosso site ou entrando em contato diretamente conosco.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <strong>P: Há desconto para grupos ou empresas?</strong>
+                    <p>Sim, oferecemos descontos especiais para inscrições em grupo e para corporativo. Entre em contato para mais informações.</p>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2>📞 Contato</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <p>contato@cursos.com.br</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Telefone:</strong>
+                        <p>(11) 3000-0000</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>WhatsApp:</strong>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Horário de Atendimento:</strong>
+                        <p>Segunda a sexta, das 9h às 18h</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Endereço:</strong>
+                        <p>Rua das Flores, 123 - São Paulo, SP</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Responsável:</strong>
+                        <p>Departamento de Atendimento ao Cliente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:20px;"> 
+                    <a href="index.html" class="back-button" onclick="event.preventDefault(); if(history.length>1){history.back();} else {window.location.href='index.html';}">← Voltar</a>
+                </div>
+</body>
+</html>
