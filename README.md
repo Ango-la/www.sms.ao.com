@@ -13,6 +13,33 @@
     <link rel="stylesheet" href="Style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="script.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const texts = [
+                "Somos uma escola de línguas e desenvolvimento de habilidades com ensino presencial e online.",
+                "Professores experientes e metodologia prática, com turmas reduzidas para atenção personalizada.",
+                "Horários flexíveis, apoio contínuo e localização acessível em Luanda para melhor atendimento."
+            ];
+            
+            const tickerContent = document.querySelector('.ticker-content');
+            if (tickerContent) {
+                texts.forEach(function(text, index) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+                
+                // Repetir os textos para efeito contínuo
+                texts.forEach(function(text) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+            }
+        });
+    </script>
 <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
         * {
@@ -62,6 +89,48 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* TICKER - SCROLLING TEXT */
+        .ticker-wrapper {
+            background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: scroll-left 40s linear infinite;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .ticker-item {
+            padding: 0 30px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .ticker-item::before {
+            content: '✦';
+            margin-right: 15px;
+            color: #f093fb;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* HEADER E MENU */
@@ -597,16 +666,19 @@
         .banner-slide:nth-child(1) > div {
             display: none;
         }
-
-        .banner-slide:nth-child(2) {
-            background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop');
+        .banner-slide:nth-child(2) > div {
+            display: none;
         }
 
         .banner-slide:nth-child(3) {
-            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=500&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop');
         }
 
         .banner-slide:nth-child(4) {
+            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=500&fit=crop');
+        }
+
+        .banner-slide:nth-child(5) {
             background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=500&fit=crop');
         }
 
@@ -1853,6 +1925,7 @@
                                     <a href="javascript:void(0)" onclick="showSideSection('parceiros-sidenav')">Nossos Parceiros</a>
                                     <a href="javascript:void(0)" onclick="showSideSection('carreira')">Carreira</a>
                                     <a href="javascript:void(0)" onclick="showSideSection('louvores')">Louvores</a>
+                                    <a href="javascript:void(0)" onclick="showSideSection('Bankdetail')">Dados Bancários</a>
                                     <a href="javascript:void(0)" onclick="showSideSection('termos-privacidade')">Termos e Privacidade</a>
                                 </div>
                                 <div class="sidenav-content">
@@ -2026,6 +2099,52 @@
                                             <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:depoimentos@sms.com.br">depoimentos@sms.com.br</a></p>
                                         </div>
                                     </section>
+                                    <!-- Dados-Bancarios SECTION -->
+                                     <section id="Bankdetail" class="sidenav-section" style="display:none;">
+                                         <h2 style="text-align: center; color: #667eea; margin-bottom: 30px;">💳 Dados Bancários & Comprovante</h2>
+            
+            <!-- DADOS BANCÁRIOS -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
+                <h3 style="color: #333; margin-bottom: 15px;">📋 Dados Bancários</h3>
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <label style="font-weight: bold; color: #333;">Titular da Conta:</label>
+                        <p style="margin: 5px 0; color: #666;">Estevão André Lizi</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <label style="font-weight: bold; color: #333;">Banco:</label>
+                            <p style="margin: 5px 0; color: #666;">Banco Milénio Atlântico</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: bold; color: #333;">Número da Conta:</label>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">226182555.10001</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <label style="font-weight: bold; color: #333;">IBAN:</label>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO06.0055.2618.2555.1010.7</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: bold; color: #333;">Referência:</label>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCOLA DE LÍNGUAS-2026</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; color: #856404;">
+                    <strong>⚠️ Importante:</strong> Após efetuar o pagamento, envie o comprovante para confirmar sua inscrição.
+                </div>
+                    <div class="contact-item">
+                        <strong style="color: #333;">Direção: Estevão A. Lizi</strong>
+                        <p>(244) 929452645</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong style="color: #333;">WhatsApp:S.M.S</strong>
+                        <p>(244) 951474872</p>
+                    </div>
+                    </div>  
+                                    </section>
                                     <!-- TERMOS E PRIVACIDADE SECTION -->
                                     <section id="termos-privacidade" class="sidenav-section" style="display:none;">
                                         <div class="terms-container">
@@ -2080,6 +2199,9 @@
                 <img src="Image/bannersms.png " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="banner-slide">
+                <img src="Image/PromoInfo3.jpg " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="banner-slide">
                 <div>
                     <h1 style="font-size: 36px; margin-bottom: 10px;color: rgb(134, 238, 252);">SARASWATI MAA MIND SCHOOL</h1>
                     <p style="font-size: 24px; margin-top: 10px; color: rgb(134, 233, 246);">Eduque a mente conecta o mundo</p>
@@ -2104,6 +2226,7 @@
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
         </div>
     </section>
     <!-- DASHBOARD COM CURSOS -->
@@ -2208,6 +2331,7 @@
                     <option value="14:00">14:00</option>
                     <option value="16:00">16:00</option>
                     <option value="18:00">18:00</option>
+                    <option value="online">Online</option>
                 </select>
             </div>
 
@@ -2230,6 +2354,7 @@
                 <label for="municipality">🏘️ Município (Localização):</label>
                 <select id="municipality" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                     <option value="">Selecione um município...</option>
+                      <option value="Luanda">Online</option>
                     <option value="Luanda">Luanda</option>
                     <option value="Bengo">Rangel</option>
                     <option value="Benguela">Viana</option>
@@ -2272,33 +2397,32 @@
     <section class="payment-section" id="pagamento" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; margin-top: 40px; display: none;">
         <div class="payment-container" style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             <h2 style="text-align: center; color: #333; margin-bottom: 30px;">💳 Dados Bancários & Comprovante de Pagamento</h2>
-            
             <!-- DADOS BANCÁRIOS -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
                 <h3 style="color: #667eea; margin-bottom: 15px;">📋 Dados Bancários</h3>
                 <div style="display: grid; gap: 15px;">
                     <div>
                         <label style="font-weight: bold; color: #333;">Titulare da Conta:</label>
-                        <p style="margin: 5px 0; color: #666;">S.M.S - Escola de Linguas & Habilidades</p>
+                        <p style="margin: 5px 0; color: #666;">Estevão André Lizi</p>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">Banco:</label>
-                            <p style="margin: 5px 0; color: #666;">BAI (Banco Angolano de Investimento )</p>
+                            <p style="margin: 5px 0; color: #666;">Banco Milénio Atlântico</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Número da Conta:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">123456789</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">226182555.10001</p>
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO06.0001.1234.5678.9012.1</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO06.0055.2618.2555.1010.7</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Referência:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCUELA-2025</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCOLA DE LÍNGUAS-2026</p>
                         </div>
                     </div>
                 </div>
@@ -2386,13 +2510,12 @@
             <a href="https://www.reddit.com/user/Imaginary-Shock5217/?utm_source=share&utm_medium=mweb3x&utm_name=mweb3xcss&utm_term=1&utm_content=share_button" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="FAQ.html" target="_blank">FAQ</a>
         </div>
-        </section>
         <section id="contato-info" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
             <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 07:30 - 18:00</p>
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
-        <button id="scrollToTopBtn" style="display: none; position: fixed; bottom: 30px; right: 30px; background-color: #FFD700; color: #000; border: none; padding: 15px 20px; border-radius: 50%; cursor: pointer; font-size: 24px; z-index: 99; font-weight: bold;">↑</button>
-
+        <!-- Botão de rolagem/voltar ao topo -->
+<button id="scrollToTopBtn" title="Voltar ao topo"></button>
     </footer>
 <script>
         let currentSlideIndex = 0;
@@ -2403,7 +2526,7 @@
             const dots = document.querySelectorAll('.dot');
             
             if (n >= slides.length) currentSlideIndex = 0;
-            if (n < 1) currentSlideIndex = slides.length - 3;
+            if (n < 1) currentSlideIndex = slides.length - 6;
             
             const offset = -currentSlideIndex * 100;
             document.getElementById('bannerSlider').style.transform = `translateX(${offset}%)`;
@@ -2431,7 +2554,7 @@
         function startAutoSlide() {
             slideInterval = setInterval(() => {
                 nextSlide();
-            }, 5000);
+            }, 4000);
         }
 
         function bookCourse(courseName, coursePrice) {
@@ -2662,13 +2785,41 @@ function closeNav() {
 
         // Scroll to top button functionality
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        let bottomTimeCounter = 0;
+        let bottomTimeInterval = null;
+        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 scrollToTopBtn.style.display = 'block';
             } else {
                 scrollToTopBtn.style.display = 'none';
             }
+            
+            // Detectar se está no fundo da página
+            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
+            
+            if (isAtBottom) {
+                if (bottomTimeInterval === null) {
+                    bottomTimeCounter = 0;
+                    bottomTimeInterval = setInterval(() => {
+                        bottomTimeCounter++;
+                        if (bottomTimeCounter >= 15) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            clearInterval(bottomTimeInterval);
+                            bottomTimeInterval = null;
+                            bottomTimeCounter = 0;
+                        }
+                    }, 1000);
+                }
+            } else {
+                if (bottomTimeInterval !== null) {
+                    clearInterval(bottomTimeInterval);
+                    bottomTimeInterval = null;
+                    bottomTimeCounter = 0;
+                }
+            }
         });
+        
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
