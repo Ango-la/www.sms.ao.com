@@ -3358,6 +3358,21 @@ document.addEventListener('click', function(event) {
         closeNav();
     }
 });
+// Ensure the mobile INFORMAÇÕES button always triggers the sidenav and is keyboard-accessible
+(function(){
+    const infoBtn = document.querySelector('.sidebar3 span');
+    if (!infoBtn) return;
+    try{
+        infoBtn.setAttribute('role','button');
+        infoBtn.setAttribute('tabindex','0');
+        infoBtn.addEventListener('click', function(e){ e.preventDefault(); openNav(); });
+        infoBtn.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
+                e.preventDefault(); openNav();
+            }
+        });
+    }catch(err){ console.warn('Info button handler attach failed', err); }
+})();
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
