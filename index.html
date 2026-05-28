@@ -1241,25 +1241,28 @@
             margin-top: 0;
             animation: fadeIn 0.25s ease;
             -webkit-overflow-scrolling: touch;
-        }
-        @media (max-width: 600px) {
-            .buy-menu {
-                top: 88px;
-                left: 0;
-                transform: none;
-                width: calc(100% - 10px);
-                max-width: none;
-                max-height: calc(100vh - 94px);
-                height: calc(100vh - 94px);
-                border-radius: 0 0 16px 16px;
-                margin: 0 5px 0 5px;
-            }
+            padding-bottom: 18px;
         }
         .buy-menu.show {
             display: block;
         }
         .buy-menu-content {
             padding: 20px;
+        }
+        .purchase-request-form {
+            display: grid;
+            gap: 14px;
+        }
+        .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+        .buttons-row button {
+            flex: 1 1 160px;
+            min-width: 140px;
         }
         .buy-menu-content h2 {
             color: #667eea;
@@ -2037,7 +2040,7 @@
         }
 
         #scrollToTopBtn {
-            display: none !important;
+            display: none;
             position: fixed;
             bottom: 22px;
             right: 22px;
@@ -2051,10 +2054,10 @@
             z-index: 999;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
             transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0 !important;
+            opacity: 0;
             width: 52px;
             height: 52px;
-            pointer-events: none !important;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -2127,17 +2130,7 @@
         .buy-menu-content ul li button { margin-left: auto; margin-right: auto; max-width: 260px; }
 
         @media (max-width: 600px) {
-            .buy-menu {
-                top: 88px;
-                left: 0;
-                transform: none;
-                width: calc(100% - 10px);
-                max-width: none;
-                max-height: calc(100vh - 94px);
-                height: calc(100vh - 94px);
-                border-radius: 0 0 16px 16px;
-                margin: 0 5px;
-            }
+            .buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
             .buy-menu-content { padding: 12px; }
             .buy-menu-content ul { grid-template-columns: 1fr; gap: 12px; }
             .buy-menu-content ul li { padding: 10px; }
@@ -2171,14 +2164,12 @@
                 .header-container { position: relative; }
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
-                    position: fixed;
-                    top: 84px;
+                    position: absolute;
+                    top: 120%;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: min(96%, 920px);
+                    width: min(180%, 920px);
                     max-width: 620px;
-                    max-height: calc(100vh - 94px);
-                    overflow-y: auto;
                     background: #ffffff;
                     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
                     border-radius: 12px;
@@ -2231,8 +2222,8 @@
                     .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
                     .purchase-submit-button,
                     .purchase-cancel-button { width: 100%; padding: 12px; }
-                    #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
-                    .buy-menu-content { padding: 12px; }
+                    #buy-menu { width: calc(100% - 8px); left: 4px; top: 4px; transform: none; max-height: calc(100vh - 8px); height: calc(100vh - 8px); border-radius: 14px; }
+                    .buy-menu-content { padding: 16px 14px 20px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
                     .buy-menu-content ul li { padding: 10px; gap: 8px; }
                     .buy-menu-content ul li img { width: 100%; height: 180px; }
@@ -2281,7 +2272,6 @@
                 <div class="buy-button-container">
                     <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
-                        <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                         <div class="buy-menu-content">
                             <h2>Manuais</h2>
                             <ul>
