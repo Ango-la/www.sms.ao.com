@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,55 +8,26 @@
     <meta name="description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
     <meta name="keywords" content="Escola de Linguas, Idiomas, Habilidades, Cursos, Aprendizado, Inglês, Francês, Alemão, Espanhol">
     <meta name="robots" content="index, follow">
-    <title>Saraswati Maa Mind School</title>
+    <!-- Título da página, utilizado em navegadores, pesquisas e resultados de mecanismos de busca -->
+    <title>Saraswati MAA Mind School - Aprenda com Profissionais Experientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
-    <script src="script.js" defer></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            const texts = [
-                "Somos uma escola de línguas e desenvolvimento de habilidades com ensino presencial e online.",
-                "Professores experientes e metodologia prática, com turmas reduzidas para atenção personalizada.",
-                "Horários flexíveis, apoio contínuo e localização acessível em Luanda para melhor atendimento."
-            ];
-            
-            const tickerContent = document.querySelector('.ticker-content');
-            if (tickerContent) {
-                texts.forEach(function(text, index) {
-                    const tickerItem = document.createElement('div');
-                    tickerItem.className = 'ticker-item';
-                    tickerItem.textContent = text;
-                    tickerContent.appendChild(tickerItem);
-                });
-                
-                // Repetir os textos para efeito contínuo
-                texts.forEach(function(text) {
-                    const tickerItem = document.createElement('div');
-                    tickerItem.className = 'ticker-item';
-                    tickerItem.textContent = text;
-                    tickerContent.appendChild(tickerItem);
-                });
-            }
-        });
-    </script>
-<style>
+    <script src="Script.js" defer></script>
+
+    <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
+            box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
             animation: fadeIn 1s ease-in, gradientShift 15s ease infinite;
-            position: relative;
-        }
-        
+            position: relative; }
         body::before {
             content: '';
             position: fixed;
@@ -72,25 +43,17 @@
             background-position: 0 0, 40px 60px, 130px 270px;
             animation: slide 20s linear infinite;
             pointer-events: none;
-            z-index: -1;
-        }
-        
+            z-index: -1; }
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
+            100% { background-position: 0% 50%; } }
         @keyframes slide {
             0% { background-position: 0 0, 40px 60px, 130px 270px; }
-            100% { background-position: 300px 300px, 340px 360px, 430px 570px; }
-        }
-
+            100% { background-position: 300px 300px, 340px 360px, 430px 570px; } }
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+            to { opacity: 1; } }
         /* TICKER - SCROLLING TEXT */
         .ticker-wrapper {
             background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
@@ -99,9 +62,7 @@
             overflow: hidden;
             position: relative;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-        }
-
+            width: 100%;}
         .ticker-content {
             display: flex;
             animation: scroll-left 40s linear infinite;
@@ -109,30 +70,21 @@
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 1px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         .ticker-item {
             padding: 0 30px;
             display: inline-flex;
-            align-items: center;
-        }
-
+            align-items: center; }
         .ticker-item::before {
             content: '✦';
             margin-right: 15px;
-            color: #f093fb;
-        }
-
+            color: #f093fb;  }
         @keyframes scroll-left {
             0% {
                 transform: translateX(100%);
             }
             100% {
-                transform: translateX(-100%);
-            }
-        }
-
+                transform: translateX(-100%);  }}
         /* HEADER E MENU */
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -143,7 +95,53 @@
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
-            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2); }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 15px;
+            font-weight: bold;
+            gap: 12px;
+            flex-wrap: nowrap;  }
+        .ticker-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 34px;
+            z-index: 110;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ticker-wrapper {
+            background: linear-gradient(90deg, rgba(118, 75, 162, 0.95) 0%, rgba(102, 126, 234, 0.95) 50%, rgba(79, 172, 254, 0.95) 100%);
+            color: white;
+            padding: 8px 0;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: scroll-left 35s linear infinite;
+            white-space: nowrap;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            align-items: center;
+        }
+
+        .ticker-item {
+            padding: 0 22px;
+            display: inline-flex;
+            align-items: center;
         }
 
         .header-container {
@@ -154,32 +152,177 @@
             align-items: center;
             padding: 0 15px;
             font-weight: bold;
-            gap: 20px;
+            gap: 10px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .sidebar3 span {
+            font-size: 13px !important;
+            padding: 6px 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar3 span:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.03);
+        }
+
+        .header-actions .buy-button {
+            width: auto;
+            padding: 7px 14px;
+            font-size: 13px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .header-actions .buy-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+        }
+
+        .buy-button-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .purchase-form {
+            background: #f8fafc;
+            border: 1px solid rgba(102, 126, 234, 0.18);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 20px;
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.12);
+        }
+
+        .purchase-form.show {
+            display: block;
+        }
+
+        .purchase-form h3 {
+            margin: 0 0 14px 0;
+            font-size: 18px;
+            color: #2d3748;
+        }
+
+        .purchase-request-form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .purchase-request-form label {
+            display: block;
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+
+        .purchase-request-form input,
+        .purchase-request-form select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            margin-bottom: 12px;
+        }
+
+        .purchase-submit-button,
+        .purchase-cancel-button {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .purchase-submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .purchase-cancel-button {
+            background: #cbd5e1;
+            color: #1f2937;
+        }
+
+        .purchase-note {
+            margin: 0;
+            color: #475569;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .manual-documents {
+            margin-top: 16px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .manual-pdf-area {
+            display: none;
+            border: 1px solid rgba(102, 126, 234, 0.18);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        .manual-pdf-area embed {
+            width: 100%;
+            height: 220px;
+            border: none;
+        }
+
+        .manual-pdf-area.visible {
+            display: block;
+        }
+
+        .purchase-form p {
+            margin-top: 10px;
+        }
         .logo-official {
             max-height: 90px;
             width: 100px;
             border-radius: 10%;
             flex-shrink: 0;
         }
-
         .store-name {
             font-size: 24px;
             font-weight: bold;
             color: white;
-            flex-shrink: 0;
-        }
-
+            flex-shrink: 0; }
         nav {
-            margin-left: auto;
-        }
+            margin-left: auto;  }
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
-        }
-
+            gap: 30px; }
         nav a {
             color: white;
             text-decoration: none;
@@ -187,22 +330,16 @@
             transition: all 0.3s ease;
             position: relative;
             padding: 8px 15px;
-            border-radius: 5px;
-        }
-
+            border-radius: 5px; }
         nav a:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-        }
-
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);  }
         .google-translate {
             position: relative;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-        }
-
+            justify-content: center;   }
         .google-translate-button {
             display: inline-flex;
             align-items: center;
@@ -212,14 +349,10 @@
             background: white;
             border-radius: 50%;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
+            transition: all 0.3s ease;}
         .google-translate-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
-        }
-
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18); }
         .google-logo {
             width: 22px;
             height: 22px;
@@ -228,9 +361,7 @@
             background-repeat: no-repeat;
             background-position: center;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTEyLjMxIDEwLjEwVjE0LjU0SDE4LjkzQzE4LjY1IDE2LjE4IDE3LjY3IDE3LjQyIDE2LjM2IDE4LjE2VjIwLjA3SDE5Ljk1QzIyLjE2IDE4LjAyIDIzLjYyIDE1LjE1IDIzLjYyIDEyLjAzQzIzLjYyIDEwLjg3IDIzLjQ2IDkuNzQgMjMuMTcgOC42N0gxMi4zMVY5LjczQzExLjg3IDkuNzMgMTEuNDkgOS43MyAxMS4wOCA5LjczSDAuODEzOTFWMTEuNDlDMS45MzM5MSAxMy4zNiA0LjM3Nzk0IDE0LjU0IDYuMzEzOTEgMTQuNTRWMTAuMTBIMTIuMzFaIiBmaWxsPSIjNDI4NWY0Ii8+PHBhdGggZD0iTTAgMTJDMCAyMC4zMjc4IDYuNDQzMzUgMjcuNDY4MSAxNC41IDI3LjQ2ODFWMjIuODU3M0M5LjQ2MDkgMjIuODU3MyA1LjAyOTEgMTguMjUwNyA1LjAyOTEgMTIuNDI0NEMxMS4xMDE4IDEyLjk3MDcgMTUuNDIwOSAxNi4xODU4IDE1LjQyMDkgMjAuNjQxMFYyNi43MjQ2QzI0LjcgMjQuMjc0MyAyNy4xMzU0IDE5LjMxNDEgMjcuMTM1NCAxMy40NTk0QzI3LjEzNTQgNi41OTUxMyAyMS4zNDI0IDEuMDkwNTEgMTQuMzgyOSAxLjA5MDUxSDkuNzE3MzVDOS4zMDQ0MiAzLjAzMjMxIDcuNjAyNDcgNC41MTAyNCA1LjUyMTcgNC41MTAyNEMzLjAxMzU3IDQuNTEwMjQgMSAyLjQ0MTYyIDEgMC40Mzc0ODlIMFYxMloiIGZpbGw9IiNlYTQzMzUiLz48L3N2Zz4=');
-            cursor: pointer;
-        }
-
+            cursor: pointer;}
         .google-translate-menu {
             position: absolute;
             top: 100%;
@@ -245,22 +376,15 @@
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .google-translate:hover .google-translate-menu,
-        .google-translate:focus-within .google-translate-menu {
+            z-index: 1000;}
+        .google-translate:hover .google-translate-menu,.google-translate:focus-within .google-translate-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
-        }
-
+            transform: translateY(0); }
         .google-translate-menu:hover {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
-        }
-
+            transform: translateY(0); }
         .google-translate-menu button {
             width: 100%;
             padding: 12px 16px;
@@ -270,20 +394,14 @@
             font-size: 14px;
             font-weight: 700;
             color: #111827;
-            cursor: pointer;
-           
-        }
-
+            cursor: pointer; }
         .google-translate-menu button:hover {
-            background: #f3f4f6;
-        }
-
+            background: #f3f4f6; }
         /* RESPONSIVO - TABLETS E CELULARES */
         @media screen and (max-width: 768px) {
             .header-container {
                 flex-wrap: wrap;
-                gap: 10px;
-            }
+                gap: 10px; }
             
             .store-name {
                 font-size: 18px;
@@ -326,14 +444,11 @@
 
             .banner {
                 height: 350px;
-            }
-        }
-
+            }  }
         @media screen and (max-width: 480px) {
             .header-container {
                 padding: 0 10px;
-                gap: 8px;
-            }
+                gap: 8px; }
 
             .logo-official {
                 max-height: 60px;
@@ -399,9 +514,7 @@
 
             .terms-content p {
                 font-size: 14px;
-            }
-        }
-
+            }}
 /* Sidebar */
 .sidebar3 {
   position: relative;
@@ -438,7 +551,7 @@
   max-width: 420px;
   position: fixed;
   z-index: 9999;
-  top: 0;
+  top: 90px;
   right: 0;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
@@ -463,7 +576,7 @@
 }
 .sidenav .closebtn {
   position: absolute;
-  top: 16px;
+  top: 10px;
   right: 18px;
   font-size: 32px;
   color: #334155;
@@ -504,10 +617,7 @@
 }
 .sidenav-menu a:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;
-}
-
-
+  color: #fff;}
 @media screen and (max-width: 768px) {
   .sidenav {
     max-width: 100%;
@@ -524,8 +634,7 @@
   .sidenav-menu a {
     font-size: 15px;
     padding: 16px 18px;
-  }
-}
+  }}
 @media screen and (max-width: 480px) {
   .sidebar3 span {
     padding: 10px 14px;
@@ -544,8 +653,7 @@
   .sidenav a {
     padding: 14px 20px;
     font-size: 15px;
-  }
-}
+  }}
 .sidenav-content {
   padding: 20px;
   overflow-y: auto;
@@ -623,14 +731,12 @@
             overflow: hidden;
             background: #f5f5f5;
         }
-
         .banner-slider {
             display: flex;
             width: 100%;
             height: 100%;
             transition: transform 0.8s ease-in-out;
         }
-
         .banner-slide {
             min-width: 100%;
             height: 100%;
@@ -646,7 +752,6 @@
             background-repeat: no-repeat;
             position: relative;
         }
-
         .banner-slide::before {
             content: '';
             position: absolute;
@@ -657,17 +762,15 @@
             background: none;
             z-index: 1;
         }
-
         .banner-slide > div {
             position: relative;
             z-index: 2;
         }
-
-        .banner-slide:nth-child(1) > div {
-            display: none;
-        }
         .banner-slide:nth-child(2) > div {
-            display: none;
+             display: none;
+        }
+        .banner-slide:nth-child(1) > div {
+           display: none;
         }
 
         .banner-slide:nth-child(3) {
@@ -1083,6 +1186,94 @@
             color: #f093fb;
             transform: scale(1.3);
             transition: all 0.3s ease;
+        }
+
+        /* BUY BUTTON AND MENU */
+        .buy-button-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        /* make the buy menu fixed and centered so it never opens off-screen */
+        .buy-menu {
+            display: none;
+            position: fixed;
+            top: 64px; /* sits just under the header */
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+            z-index: 1200;
+            width: min(92%, 900px);
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            margin-top: 0;
+            animation: fadeIn 0.25s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+        .buy-menu.show {
+            display: block;
+        }
+        .buy-menu-content {
+            padding: 20px;
+        }
+        .buy-menu-content h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .buy-menu-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .buy-menu-content li {
+            background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+        .buy-menu-content li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        .buy-menu-content li h3 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .buy-menu-content li p {
+            color: #666;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .buy-menu-content li img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .buy-menu-content li button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .buy-menu-content li button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         @media (max-width: 1024px) {
@@ -1887,6 +2078,7 @@
             }
         }
     </style>
+    <!-- Google Translate widget com logo do Google -->
     <script>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -1900,25 +2092,262 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+    <div class="ticker-overlay" aria-hidden="true">
+        <div class="ticker-wrapper">
+            <div class="ticker-content" role="marquee" aria-hidden="false"></div>
+        </div>
+    </div>
     <!-- HEADER COM MENU -->
     <header>
         <div class="header-container">
+            <style>
+                .header-container { position: relative; }
+                .buy-button-container { display: inline-block; }
+                #buy-menu {
+                    position: absolute;
+                    top: 130%;
+                    left: 70%;
+                    transform: translateX(-50%);
+                    width: min(210%, 980px);
+                    background: #ffffff;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                    border-radius: 12px;
+                    padding: 18px;
+                    z-index: 999;
+                    display: none;
+                }
+                .buy-menu.show { display: block !important; }
+                .buy-menu-close { position: absolute; top: 8px; right: 10px; background: transparent; border: none; font-size: 20px; line-height: 1; cursor: pointer; }
+                .buy-menu-content h2 { margin-top: 0; }
+                .buy-menu-content ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; list-style: none; padding: 0; margin: 0; }
+                .buy-menu-content ul li { background: transparent; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+                .buy-menu-content ul li img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; }
+                .purchase-form { max-width: 760px; width: 100%; margin: 12px auto; padding: 12px; box-sizing: border-box; }
+                .manual-pdf-area embed { width: 100%; height: 360px; }
+                .purchase-submit-button, .purchase-cancel-button { padding: 10px 14px; border-radius: 8px; }
+
+                /* Purchase form styling (refined) */
+                .purchase-form { width: 100%; max-width: 620px; box-sizing: border-box; background: linear-gradient(180deg,#ffffff 0%,#fbfdff 100%); border-radius: 14px; padding: 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin: 16px auto; }
+                .purchase-form h3 { margin: 0 0 16px 0; font-size: 1.15rem; color: #111827; font-weight: 700; }
+                .purchase-form.hidden { display: none; }
+                .purchase-form.show { display: block; }
+                .purchase-request-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: flex-start; }
+                .purchase-request-form label { display: block; font-size: 0.9rem; color: #374151; font-weight: 500; margin-bottom: 6px; }
+                .purchase-request-form input[type="text"],
+                .purchase-request-form select,
+                .purchase-request-form input[type="file"] { width: 100%; padding: 11px 12px; border: 1.5px solid #d1d5db; border-radius: 8px; background: #fff; box-shadow: inset 0 1px 2px rgba(0,0,0,0.04); font-size: 0.95rem; color: #111827; height: 44px; font-family: inherit; transition: border-color 0.2s; }
+                .purchase-request-form input[type="text"]:focus,
+                .purchase-request-form select:focus,
+                .purchase-request-form input[type="file"]:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.1); }
+                .purchase-request-form input[type="file"] { padding: 10px 12px; height: auto; }
+                .purchase-request-form .full-width { grid-column: 1 / -1; }
+                .purchase-request-form .buttons-row { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end; margin-top: 12px; }
+                .purchase-note { font-size: 0.82rem; color: #6b7280; margin-top: 12px; grid-column: 1 / -1; line-height: 1.5; }
+                .purchase-submit-button { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border: none; font-weight: 600; padding: 11px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 0.95rem; }
+                .purchase-submit-button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+                .purchase-cancel-button { background: #f3f4f6; color: #374151; border: 1.5px solid #d1d5db; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.95rem; transition: all 0.3s; }
+                .purchase-cancel-button:hover { background: #e5e7eb; border-color: #9ca3af; }
+
+                @media (max-width: 900px) {
+                    .purchase-request-form { grid-template-columns: 1fr; gap: 12px; }
+                    .purchase-form { max-width: calc(100% - 24px); padding: 16px; }
+                }
+                @media (max-width: 600px) {
+                    .purchase-form { max-width: calc(100% - 16px); padding: 14px; margin: 12px 8px; }
+                    .purchase-request-form { gap: 10px; }
+                    .purchase-request-form label { font-size: 0.88rem; }
+                    .purchase-request-form input,
+                    .purchase-request-form select { font-size: 16px; height: 42px; }
+                    .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
+                    .purchase-submit-button,
+                    .purchase-cancel-button { width: 100%; padding: 12px; }
+                }
+                @media (max-width: 600px) {
+                    #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+                    .buy-menu-content ul { grid-template-columns: 1fr; }
+                    .buy-menu-content ul li img { width: 100%; height: 200px; }
+                }
+            </style>
+            <script>
+                // Keep only hideBuyMenu and a click-outside handler here to avoid duplicate toggle definitions.
+                (function(){
+                    window.hideBuyMenu = function(){
+                        var menu = document.getElementById('buy-menu');
+                        if(!menu) return;
+                        var button = document.querySelector('.buy-button');
+                        menu.classList.remove('show');
+                        menu.style.display = 'none';
+                        menu.setAttribute('aria-hidden','true');
+                        if (button) button.textContent = 'Comprar';
+                    }
+
+                    document.addEventListener('click', function(e){
+                        var menu = document.getElementById('buy-menu');
+                        if(!menu) return;
+                        if (menu.classList.contains('show')){
+                            if (!menu.contains(e.target) && !e.target.closest('.buy-button')){
+                                hideBuyMenu();
+                            }
+                        }
+                    });
+                })();
+            </script>
             <a href="#galeria" class="logo" ><img src="Image/favicon2.jpg" alt="S.M.S - Escola de Linguas & Habilidades" class="logo-official"></a>
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
-            <div class="google-translate" aria-label="Google Translate">
-                <button type="button" class="google-translate-button" aria-label="Traduzir para inglês ou francês" onclick="toggleGoogleTranslateMenu()">
+            <div class="header-actions">
+                <div class="google-translate" aria-label="Google Translate">
+                    <button type="button" class="google-translate-button" aria-label="Traduzir para inglês ou francês" onclick="toggleGoogleTranslateMenu()">
                         <span class="google-translate-icon" aria-hidden="true">&#127760;</span>
                         <span class="google-translate-text">Idioma</span>
-                </button>
-                <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
-                    <div id="google_translate_element">selecione o idioma</div>
+                    </button>
+                    <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
+                        <div id="google_translate_element">selecione o idioma</div>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <ul>
-                        <div class="sidebar3">
-                            <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; INFORMAÇÕES</span>
-                            <div id="mySidenav" class="sidenav">
+                <div class="buy-button-container">
+                    <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
+                    <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
+                        <div class="buy-menu-content">
+                            <h2>Manuais</h2>
+                            <ul>
+                                <li>
+                                    <img src="Image/Guia S.M.S.jpg" alt="Manual 1">
+                                    <h3>Guia S.M.S</h3>
+                                    <p>Guia Onde todas as informações <br/>estão disponíveis sobre a sua aula.</p>
+                                    <p>Preço: 2.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 1', 1)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/DIALOGUE & MEETING.jpg " alt="Manual 2">
+                                    <h3>DIALOGUE & MEETINGS</h3>
+                                    <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 2', 2)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/GRAMMAR BOOK.jpg " alt="Manual 3">
+                                    <h3>GRAMMAR BOOK</h3>
+                                    <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 3', 3)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/VOCABULÁRIO.jpg" alt="Manual 4">
+                                    <h3>VOCABULÁRIO</h3>
+                                    <p>O livro completo sobre vocabulário inglês, <br/> com fonéticas e explicações detalhadas.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 4', 4)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/TEXT & READING SKILLS.jpg " alt="Manual 5">
+                                    <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
+                                    <p>O livro completo sobre habilidades de leitura <br/> e escrita em inglês, com exercícios práticos<br/>  e explicações detalhadas.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 5', 5)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/OS VERBOS REGULARES & IRREGULARES.jpg" alt="Manual 6">
+                                    <h3>OS VERBOS REGULARES & IRREGULARES</h3>
+                                    <p>O livro completo sobre verbos ingleses, <br/> com exercícios práticos e explicações detalhadas.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 6', 6)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/Flayer1.jpg" alt="Manual 7">
+                                    <h3> SARASWATI KNOWLEDGE</h3>
+                                    <p> A história e vida de Saraswati pela luz e sabedoria, leia!</p>
+                                    <p>Preço: 5.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 7', 7)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/Flayer2.jpg" alt="Manual 8">
+                                    <h3>UM ESTRANGEIRO PERDIDO</h3>
+                                    <p> O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
+                                    <p>Preço: 6.500</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 8', 8)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/Flayer3.jpg" alt="Manual 9">
+                                    <h3>O DICIONÁRIO S.M.S</h3>
+                                    <p>Dicionário completo com mais de 5.000 <br/> palavras e expressões em inglês.</p>
+                                    <p>Preço: 9.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 9', 9)">Comprar</button>
+                                </li>
+                                <li>
+                                    <img src="Image/PromoInfo3.jpg" alt="Manual 10">
+                                    <h3>500 CONVERSAS </h3>
+                                    <p>O livro completo com 500 conversas práticas em inglês, <br/> ideal para melhorar a fala e a compreensão auditiva.</p>
+                                    <p>Preço: 3.000</p>
+                                    <button type="button" onclick="openPurchaseForm('Manual 10', 10)">Comprar</button>
+                                </li>
+                            </ul>
+
+                            <div id="purchase-form" class="purchase-form hidden">
+                                <h3 id="selectedManualTitle">Pedido de compra</h3>
+                                <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
+                                    <label for="buyerName">Nome completo</label>
+                                    <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
+
+                                    <label for="courseType">Tipo de curso</label>
+                                    <select id="courseType" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Inglês">Inglês</option>
+                                        <option value="Francês">Francês</option>
+                                        <option value="Alemão">Alemão</option>
+                                        <option value="Espanhol">Espanhol</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+
+                                    <label for="proofFile" class="full-width">Comprovante de pagamento</label>
+                                    <input type="file" id="proofFile" accept="application/pdf" required>
+
+                                    <input type="hidden" id="purchaseManualId">
+                                    <div class="buttons-row">
+                                        <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Finalizar</button>
+                                        <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
+                                    </div>
+                                    <p class="purchase-note">📋 Após enviar, você será redirecionado para confirmar<br/>  o documento e receber a senha.</p>
+                                </form>
+                            </div>
+
+                            <div class="manual-documents hidden">
+                                <div id="manual-doc-1" class="manual-pdf-area">
+                                    <embed src="documentos/Guia S.M.S_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-2" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S DIALOGUE AND MEETINGS_protected.pdf " type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-3" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S GRAMMAR BOOK_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-4" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S VOCABULARY_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-5" class="manual-pdf-area">
+                                    <embed src="documentos/TEXT & READING SKILLS _protected.pdf " type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-6" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S REGULAR & INRREGULAR VERBS_protected.pdf " type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-7" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S LISTENING SKILLS_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-8" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S SPEAKING SKILLS_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-9" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S MANUAL 9_protected.pdf" type="application/pdf" />
+                                </div>
+                                <div id="manual-doc-10" class="manual-pdf-area">
+                                    <embed src="documentos/S.M.S MANUAL 10_protected.pdf" type="application/pdf" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="sidebar3">
+                    <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; INFORMAÇÕES</span>
+                    <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
                                     <a href="javascript:void(0)" onclick="showSideSection('localizacao')">Localização</a>
@@ -1988,10 +2417,19 @@
                                             <h3 style="margin-top:0;">Formulário de Candidatura</h3>
                                             <form id="careersForm" onsubmit="return submitCareerForm(event)" style="display:grid; gap:10px;">
                                                 <input type="hidden" id="jobPosition" name="jobPosition" value="">
-                                                <label style="font-size:0.95rem; color:#374151;">Nome completo<input required type="text" id="appName" name="name" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
-                                                <label style="font-size:0.95rem; color:#374151;">Email<input required type="email" id="appEmail" name="email" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
-                                                <label style="font-size:0.95rem; color:#374151;">Telemóvel<input required type="tel" id="appPhone" name="phone" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></label>
-                                                <label style="font-size:0.95rem; color:#374151;">Mensagem / Carta de Apresentação<textarea id="appMessage" name="message" rows="4" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></textarea></label>
+
+                                                <label for="appName" style="font-size:0.95rem; color:#374151; display:block;">Nome completo</label>
+                                                <input required type="text" id="appName" name="name" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
+
+                                                <label for="appEmail" style="font-size:0.95rem; color:#374151; display:block;">Email</label>
+                                                <input required type="email" id="appEmail" name="email" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
+
+                                                <label for="appPhone" style="font-size:0.95rem; color:#374151; display:block;">Telemóvel</label>
+                                                <input required type="tel" id="appPhone" name="phone" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
+
+                                                <label for="appMessage" style="font-size:0.95rem; color:#374151; display:block;">Mensagem / Carta de Apresentação</label>
+                                                <textarea id="appMessage" name="message" rows="4" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></textarea>
+
                                                 <div style="display:flex; gap:8px; flex-wrap:wrap;">
                                                     <button type="button" onclick="applyViaWhatsApp()" style="padding:10px 14px; background:#16a34a; color:#fff; border-radius:10px; border:none;">Candidatar via WhatsApp</button>
                                                     <button type="submit" style="padding:10px 14px; background:#1d4ed8; color:#fff; border-radius:10px; border:none;">Enviar por Email</button>
@@ -2186,17 +2624,16 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
-                </ul>
-            </nav>
+                </div>
+            </div>
         </div>
-
     </header>
     <!-- BANNER COM SLIDES -->
     <section class="banner">
         <div class="banner-slider" id="bannerSlider">
             <div class="banner-slide">
-                <img src="Image/bannersms.png " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="Image/Documento3.jpg " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
+                           
             </div>
             <div class="banner-slide">
                 <img src="Image/PromoInfo3.jpg " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
@@ -2227,6 +2664,7 @@
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
             <span class="dot" onclick="currentSlide(5)"></span>
+           
         </div>
     </section>
     <!-- DASHBOARD COM CURSOS -->
@@ -2300,7 +2738,6 @@
             </div>
         </div>
     </section>
-
     <!-- FORMULÁRIO PARA INSCRIÇÃO -->
     <section id="agendamento" style="display: none;">
         <div class="whatsapp-section">
@@ -2392,7 +2829,6 @@
             </div>
         </div>
     </section>
-
     <!-- DADOS BANCÁRIOS E PAGAMENTO -->
     <section class="payment-section" id="pagamento" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; margin-top: 40px; display: none;">
         <div class="payment-container" style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
@@ -2418,7 +2854,8 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO06.0055.2618.2555.1010.7</p>
+                            <span>AO06</span>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">0055.0000.2618.2555.1010.7</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Referência:</label>
@@ -2494,7 +2931,6 @@
             </div>
         </div>
     </section>
-
     <!-- FOOTER -->
     <footer id="contato"> 
         <section id="contato-social">  
@@ -2515,48 +2951,196 @@
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
-<button id="scrollToTopBtn" title="Voltar ao topo"></button>
+<button id="scrollToTopBtn" title="Voltar ao topo">up</button>
     </footer>
 <script>
-        let currentSlideIndex = 0;
-        let slideInterval;
+        // Slides automáticos e controles do site
+        (function(){
+            let currentSlideIndex = 0;
+            let slideInterval = null;
+            const slider = document.getElementById('bannerSlider');
+            const slides = () => document.querySelectorAll('.banner-slide');
+            const dots = () => document.querySelectorAll('.dot');
 
-        function showSlides(n) {
-            const slides = document.querySelectorAll('.banner-slide');
-            const dots = document.querySelectorAll('.dot');
-            
-            if (n >= slides.length) currentSlideIndex = 0;
-            if (n < 1) currentSlideIndex = slides.length - 6;
-            
-            const offset = -currentSlideIndex * 100;
-            document.getElementById('bannerSlider').style.transform = `translateX(${offset}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.classList.remove('active');
-                if (index === currentSlideIndex) {
-                    dot.classList.add('active');
-                }
-            });
-        }
+            function showSlides(index) {
+                const s = slides();
+                const d = dots();
+                if (!s.length || !slider) return;
+                if (index < 0) index = s.length - 1;
+                if (index >= s.length) index = 0;
+                currentSlideIndex = index;
+                const offset = -currentSlideIndex * 100;
+                slider.style.transform = `translateX(${offset}%)`;
+                d.forEach((dot, i) => dot.classList.toggle('active', i === currentSlideIndex));
+            }
 
-        function currentSlide(n) {
-            currentSlideIndex = n;
-            clearInterval(slideInterval);
-            showSlides(currentSlideIndex);
+            function nextSlide() { showSlides(currentSlideIndex + 1); }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+                slideInterval = setInterval(nextSlide, 6500);
+            }
+
+            function stopAutoSlide() {
+                if (slideInterval) clearInterval(slideInterval);
+                slideInterval = null;
+            }
+
+            // Expose for onclick attributes used in HTML
+            window.currentSlide = function(n){
+                // dots in HTML are 1-based (currentSlide(1)), convert to 0-based
+                const idx = (typeof n === 'number') ? (n - 1) : 0;
+                showSlides(idx);
+                startAutoSlide();
+            };
+
+            // Start
+            showSlides(0);
             startAutoSlide();
-        }
 
-        function nextSlide() {
-            currentSlideIndex++;
-            showSlides(currentSlideIndex);
-        }
+            // Make sure dots (if any) are clickable
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.addEventListener('click', () => { window.currentSlide(i+1); });
+            });
 
-        function startAutoSlide() {
-            slideInterval = setInterval(() => {
-                nextSlide();
-            }, 4000);
-        }
+            // Smooth scroll only for in-page anchors
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
 
+            // Toggle buy menu (used by onclick in HTML)
+            window.toggleBuyMenu = function() {
+                const buyMenu = document.getElementById('buy-menu');
+                const button = document.querySelector('.buy-button');
+                if (!buyMenu) return;
+                const opened = !buyMenu.classList.contains('show');
+                buyMenu.classList.toggle('show');
+                if (opened) {
+                    buyMenu.style.display = 'block';
+                    buyMenu.setAttribute('aria-hidden', 'false');
+                    if (button) button.textContent = 'Fechar';
+                } else {
+                    buyMenu.style.display = 'none';
+                    buyMenu.setAttribute('aria-hidden', 'true');
+                    if (button) button.textContent = 'Comprar';
+                }
+            };
+
+            window.updateManualBuyButtons = function() {
+                const buyButtons = document.querySelectorAll('.buy-menu-content li button');
+                buyButtons.forEach((button, index) => {
+                    const manualTitle = button.closest('li')?.querySelector('h3')?.innerText.trim() || `Manual ${index + 1}`;
+                    button.onclick = null;
+                    button.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        openPurchaseForm(manualTitle, index + 1);
+                    });
+                });
+            };
+
+            const apiBaseUrl = 'http://localhost:3000/api';
+
+            window.openPurchaseForm = function(manualTitle, manualId) {
+                const formWrapper = document.getElementById('purchase-form');
+                if (!formWrapper) return;
+                document.getElementById('selectedManualTitle').textContent = `Comprar ${manualTitle}`;
+                document.getElementById('purchaseManualId').value = manualId;
+                formWrapper.classList.remove('hidden');
+                formWrapper.classList.add('show');
+                const nameInput = document.getElementById('buyerName');
+                if (nameInput) nameInput.focus();
+            };
+
+            window.closePurchaseForm = function() {
+                const formWrapper = document.getElementById('purchase-form');
+                if (formWrapper) {
+                    formWrapper.classList.add('hidden');
+                    formWrapper.classList.remove('show');
+                }
+            };
+
+            window.submitPurchaseRequest = async function() {
+                const name = document.getElementById('buyerName').value.trim();
+                const courseType = document.getElementById('courseType').value.trim();
+                const proofFile = document.getElementById('proofFile').files[0];
+                const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
+
+                if (!name || !courseType || !proofFile) {
+                    alert('Preencha o nome, tipo de curso e anexe o comprovante em PDF.');
+                    return;
+                }
+                if (proofFile.type !== 'application/pdf') {
+                    alert('O comprovante deve ser um arquivo PDF.');
+                    return;
+                }
+                if (proofFile.size > 8 * 1024 * 1024) {
+                    alert('O comprovante não pode ter mais de 8 MB.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('buyerName', name);
+                formData.append('courseType', courseType);
+                formData.append('manualTitle', manualTitle);
+                formData.append('proofFile', proofFile);
+
+                try {
+                    const response = await fetch(`${apiBaseUrl}/purchase`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    const result = await response.json();
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Falha ao enviar o pedido.');
+                    }
+
+                    alert('Pedido de compra enviado com sucesso. O comprovante foi anexado no servidor.');
+                    closePurchaseForm();
+                } catch (error) {
+                    console.error(error);
+                    alert(`Erro ao enviar pedido: ${error.message}`);
+                }
+            };
+
+            // Toggle Google translate menu
+            window.toggleGoogleTranslateMenu = function(){
+                const menu = document.getElementById('google-translate-menu');
+                if (!menu) return;
+                const hidden = menu.getAttribute('aria-hidden') === 'true';
+                menu.setAttribute('aria-hidden', hidden ? 'false' : 'true');
+                menu.style.opacity = hidden ? '1' : '';
+                menu.style.visibility = hidden ? 'visible' : '';
+                menu.style.transform = hidden ? 'translateY(0)' : '';
+            };
+
+            // Safe handlers for scrollToTop button
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        scrollToTopBtn.style.display = 'flex';
+                        scrollToTopBtn.style.opacity = '1';
+                    } else {
+                        scrollToTopBtn.style.display = 'none';
+                        scrollToTopBtn.style.opacity = '0';
+                    }
+                });
+                scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            }
+
+            // Prevent errors when hiding sections
+            window.hideAllSections = function() {
+                const ag = document.getElementById('agendamento'); if (ag) ag.style.display = 'none';
+                const pg = document.getElementById('pagamento'); if (pg) pg.style.display = 'none';
+                const fs = document.getElementById('formulario-section'); if (fs) fs.style.display = 'none';
+            };
+        })();
+        // Inscrição e automatização
         function bookCourse(courseName, coursePrice) {
             document.getElementById('courseName').value = courseName;
             document.getElementById('coursePrice').value = 'Kz ' + coursePrice.toFixed(2).replace('.', ',');
@@ -2565,8 +3149,7 @@
             setTimeout(() => {
                 document.getElementById('scheduleDate').focus();
                 section.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
+            }, 100);        }
 
         function toggleOrderSection() {
             const section = document.getElementById('agendamento');
@@ -2597,20 +3180,6 @@
 
             window.open(whatsappUrl, '_blank');
         }
-
-        // Iniciar slides automáticos
-        startAutoSlide();
-
-        // Scroll suave para menu
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'fast' });
-                }
-            });
-        });
 
         // Function to handle navigation functionality
 function openNav() {
@@ -2648,14 +3217,12 @@ function closeNav() {
         sidenav.style.width = "0";
     } else {
         console.error('Sidenav element not found.');
-    }
-};
-
+    }};
+         // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
         }
-        
         function proceedToPayment() {
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
@@ -2673,7 +3240,7 @@ function closeNav() {
             document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
         }
         
-        function submitAllDataVia(method) {
+        async function submitAllDataVia(method) {
             const courseName = document.getElementById('courseName').value;
             const coursePrice = document.getElementById('coursePrice').value;
             const scheduleDate = document.getElementById('scheduleDate').value;
@@ -2708,18 +3275,30 @@ function closeNav() {
             formData.append('proofAttachment', proofFile);
             formData.append('method', method);
             
-            if (method === 'whatsapp') {
-                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA*\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n✅ Comprovante de pagamento anexado`);
-                window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
-            } else if (method === 'email') {
-                const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n✅ Comprovante de pagamento em anexo`);
-                window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
+            try {
+                const response = await fetch(`${apiBaseUrl}/registration`, {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.json();
+                if (!response.ok) {
+                    throw new Error(result.error || 'Falha ao enviar a inscrição.');
+                }
+
+                if (method === 'whatsapp') {
+                    const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento enviado ao servidor\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.\n\nEstamos prontos para ajudá-lo(a) a alcançar um novo nível.\nSeja bem-vindo(a) à S.M.S! 🚀✨\n\n📞 Receção S.M.S`);
+                    window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
+                } else {
+                    alert('Inscrição enviada com sucesso. O comprovante foi anexado no servidor e será enviado por email.');
+                }
+
+                setTimeout(() => {
+                    hideAllSections();
+                }, 2000);
+            } catch (error) {
+                console.error(error);
+                alert(`Erro ao enviar inscrição: ${error.message}`);
             }
-            
-            setTimeout(() => {
-                hideAllSections();
-            }, 2000);
         }
         
         function hideAllSections() {
@@ -2727,7 +3306,7 @@ function closeNav() {
             document.getElementById('pagamento').style.display = 'none';
             document.getElementById('formulario-section').style.display = 'none';
         }
-
+ // Candidaturas & Formas da Aplicação
         function showApplicationForm(position, method) {
             const form = document.getElementById('application-form');
             const jobPosition = document.getElementById('jobPosition');
@@ -2823,6 +3402,39 @@ function closeNav() {
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+         //-- ticker - texto rolando -->
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const texts = [
+                "Somos uma escola de línguas e desenvolvimento de habilidades com ensino presencial e online.",
+                "Professores experientes e metodologia prática, com turmas reduzidas para atenção personalizada.",
+                "Horários flexíveis, apoio contínuo e localização acessível em Luanda para melhor atendimento.",
+            ];
+            
+            const tickerContent = document.querySelector('.ticker-content');
+            if (tickerContent) {
+                texts.forEach(function(text, index) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+                
+                // Repetir os textos para efeito contínuo
+                texts.forEach(function(text) {
+                    const tickerItem = document.createElement('div');
+                    tickerItem.className = 'ticker-item';
+                    tickerItem.textContent = text;
+                    tickerContent.appendChild(tickerItem);
+                });
+            }
+            if (typeof updateManualBuyButtons === 'function') {
+                updateManualBuyButtons();
+            }
+        });
+
+        // Removed invalid buyBtn listener; buy menu managed by toggleBuyMenu()
         </script>
 </body>
 </html>
