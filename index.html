@@ -576,20 +576,25 @@
   color: #1f2937;
 }
 .sidenav {
-  height: 550%;
+  height: 100vh;
   width: 0;
   max-width: 420px;
   position: fixed;
   z-index: 9999;
-  top: 90px;
+  top: 0;
   right: 0;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
   overflow-x: hidden;
-  overflow-y: auto;
-  transition: width 0.4s ease, transform 0.4s ease;
+  overflow-y: hidden;
+  transform: translateX(100%);
+  transition: width 0.35s ease, transform 0.35s ease, top 0.25s ease;
   padding-top: 70px;
   box-shadow: -12px 0 36px rgba(0,0,0,0.14);
+}
+.sidenav.open {
+  transform: translateX(0);
+  overflow-y: auto;
 }
 .sidenav a {
   padding: 14px 28px;
@@ -636,6 +641,7 @@
   gap: 12px;
   padding: 0 22px 22px;
   border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  align-items: stretch;
 }
 .sidenav-menu a {
   padding: 14px 16px;
@@ -644,15 +650,23 @@
   border-radius: 14px;
   color: #1f2937;
   box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .sidenav-menu a:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;}
+  color: #fff;
+}
 @media screen and (max-width: 768px) {
   .sidenav {
     max-width: 100%;
     width: 0;
     padding-top: 80px;
+  }
+  .sidenav.open {
+    width: 100%;
   }
   .sidenav a {
     padding: 16px 24px;
@@ -664,7 +678,8 @@
   .sidenav-menu a {
     font-size: 15px;
     padding: 16px 18px;
-  }}
+  }
+}
 @media screen and (max-width: 480px) {
   .sidebar3 span {
     padding: 10px 14px;
@@ -683,11 +698,15 @@
   .sidenav a {
     padding: 14px 20px;
     font-size: 15px;
-  }}
+  }
+}
 .sidenav-content {
   padding: 20px;
   overflow-y: auto;
   max-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 .sidenav-section {
   display: none;
@@ -695,7 +714,7 @@
 .sidenav-section h2 {
   font-size: 22px;
   margin-bottom: 15px;
- color: #667eea;
+  color: #667eea;
   max-width: 900px;
   margin: 0 auto;
   background: white;
@@ -3230,8 +3249,14 @@
         // Function to handle navigation functionality
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 90;
     if (sidenav) {
-        sidenav.style.width = "85%";
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        sidenav.style.top = `${headerHeight}px`;
+        sidenav.style.height = `calc(100vh - ${headerHeight}px)`;
+        sidenav.style.width = isMobile ? '100%' : '85%';
+        sidenav.classList.add('open');
         showSideSection('localizacao');
     } else {
         console.error('Sidenav element not found.');
@@ -3253,6 +3278,9 @@ window.onload = function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.style.width = "0";
+        sidenav.classList.remove('open');
+        sidenav.style.top = '0';
+        sidenav.style.height = '100vh';
     }
     showSideSection('localizacao');
 };
@@ -3261,9 +3289,11 @@ function closeNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.style.width = "0";
+        sidenav.classList.remove('open');
     } else {
         console.error('Sidenav element not found.');
-    }};
+    }
+};
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
