@@ -208,21 +208,33 @@
             gap: 8px;
         }
 
-        /* compact info button (mobile) and pulse animation */
+        /* compact info button that matches header buy button style */
         .sidebar3 .info-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            border-radius: 50%;
+            gap: 6px;
+            min-width: auto;
+            padding: 8px 10px;
+            border-radius: 999px;
             border: none;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: #fff;
-            font-size: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            line-height: 1;
             box-shadow: 0 6px 18px rgba(102,126,234,0.22);
             cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .sidebar3 .info-button i {
+            font-size: 14px;
+            line-height: 1;
+        }
+        .sidebar3 .info-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(102,126,234,0.26);
         }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 6px 18px rgba(102,126,234,0.22); }
@@ -720,25 +732,19 @@
     box-shadow: none;
     padding: 0;
   }
-  .sidebar3 span {
-    padding: 8px 12px;
-    font-size: 13px;
+  .sidebar3 .info-button {
+    min-width: auto;
+    padding: 8px 10px;
+    font-size: 12px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     color: #fff;
     font-weight: 700;
     letter-spacing: 0.2px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     border-radius: 999px;
     box-shadow: 0 8px 18px rgba(102, 126, 234, 0.22);
-    cursor: pointer;
   }
-  .sidebar3 span::before {
-    content: 'ℹ️';
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 1;
+  .sidebar3 .info-button i {
+    font-size: 14px;
   }
   .sidenav {
     top: 94px;
@@ -2471,7 +2477,7 @@
                     </div>
 
                 <div class="sidebar3">
-                    <button type="button" class="info-button" aria-label="Informações" title="Informações" onclick="openNav()"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                    <button type="button" class="info-button" aria-label="Informações" title="Informações" onclick="openNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
                     <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
