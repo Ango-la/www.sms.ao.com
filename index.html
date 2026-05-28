@@ -2121,10 +2121,11 @@
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
                     position: absolute;
-                    top: 130%;
-                    left: 70%;
+                    top: 120%;
+                    left: 50%;
                     transform: translateX(-50%);
-                    width: min(210%, 980px);
+                    width: min(180%, 920px);
+                    max-width: 620px;
                     background: #ffffff;
                     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
                     border-radius: 12px;
@@ -2177,16 +2178,18 @@
                     .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
                     .purchase-submit-button,
                     .purchase-cancel-button { width: 100%; padding: 12px; }
-                }
-                
-                @media (max-width: 600px) {
                     #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+                    .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
-                    .buy-menu-content ul li img { width: 100%; height: 200px; }
+                    .buy-menu-content ul li { padding: 10px; gap: 8px; }
+                    .buy-menu-content ul li img { width: 100%; height: 180px; }
+                    .buy-menu-content ul li button { width: 100%; max-width: none; padding: 10px 12px; font-size: 0.95rem; }
+                    .buy-button-container { width: 100%; text-align: right; }
+                    .header-actions { width: 100%; justify-content: space-between; gap: 10px; }
+                    .header-actions .buy-button { padding: 8px 10px; font-size: 12px; min-width: auto; }
                 }
             </style>
             <script>
-                // Keep only hideBuyMenu and a click-outside handler here to avoid duplicate toggle definitions.
                 (function(){
                     window.hideBuyMenu = function(){
                         var menu = document.getElementById('buy-menu');
@@ -2213,14 +2216,44 @@
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
             <div class="header-actions">
                 <div class="google-translate" aria-label="Google Translate">
-                    <button type="button" class="google-translate-button" aria-label="Traduzir para inglês ou francês" onclick="toggleGoogleTranslateMenu()">
-                        <span class="google-translate-icon" aria-hidden="true">&#127760;</span>
+                    <button type="button" class="google-translate-button" aria-haspopup="true" aria-expanded="false" onclick="toggleGoogleTranslateMenu()">
+                        <img class="google-logo" src="https://www.gstatic.com/images/branding/product/1x/google_translate_24dp.png" alt="Google Translate logo" aria-hidden="true">
                         <span class="google-translate-text">Idioma</span>
+                        <i class="fa fa-chevron-down google-chevron" aria-hidden="true"></i>
                     </button>
                     <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
-                        <div id="google_translate_element">selecione o idioma</div>
+                        <div class="google-menu-inner">
+                            <div class="google-menu-header">
+                                <img class="google-menu-logo" src="https://www.gstatic.com/images/branding/product/1x/google_translate_48dp.png" alt="Google"/>
+                                <div>
+                                    <strong>Google Translate</strong>
+                                    <div class="google-menu-sub">Escolha o idioma</div>
+                                </div>
+                            </div>
+                            <div id="google_translate_element">selecione o idioma</div>
+                            <div class="google-menu-footer">Idiomas disponíveis: Português, English, Français</div>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .google-translate-button{ display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid rgba(255,255,255,0.12); color:white; padding:6px 10px; border-radius:10px; cursor:pointer; backdrop-filter: blur(6px); }
+                    .google-translate-button:hover{ transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,0.12); }
+                    .google-logo{ width:20px; height:20px; display:inline-block; }
+                    .google-chevron{ font-size:12px; opacity:0.9; }
+                    .google-translate-text{ font-weight:600; font-size:13px; }
+                    .google-translate-menu{ position:absolute; right:14px; top:120%; min-width:220px; max-width:420px; background:linear-gradient(180deg, #ffffff, #f7fbff); color:#111827; border-radius:12px; box-shadow:0 20px 50px rgba(16,24,40,0.15); padding:12px; display:none; z-index:1200; border:1px solid rgba(16,24,40,0.06); }
+                    .google-translate-menu[aria-hidden="false"]{ display:block; }
+                    .google-menu-inner{ display:flex; flex-direction:column; gap:10px; }
+                    .google-menu-header{ display:flex; gap:10px; align-items:center; padding-bottom:6px; border-bottom:1px solid rgba(16,24,40,0.06); }
+                    .google-menu-logo{ width:36px; height:36px; }
+                    .google-menu-sub{ font-size:12px; color:#6b7280; }
+                    .google-menu-footer{ font-size:12px; color:#6b7280; text-align:right; }
+                    /* small screens adjustments */
+                    @media (max-width:600px){
+                        .google-translate-menu{ right:8px; left:8px; top:120%; min-width:auto; max-width:calc(100% - 16px); }
+                        .google-translate-button{ padding:6px 8px; font-size:12px; }
+                    }
+                </style>
                 <div class="buy-button-container">
                     <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
@@ -2231,71 +2264,71 @@
                                     <img src="Image/Guia S.M.S.jpg" alt="Guia S.M.S">
                                     <h3>Guia S.M.S</h3>
                                     <p>Guia Onde todas as informações <br/>estão disponíveis sobre a sua aula.</p>
-                                    <p id="manualPrice1" >Preço: 2.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000')">Comprar</button>
+                                    <p id="manualPrice1" >Preço: 2.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/DIALOGUE & MEETING.jpg " alt="Dialogue & Meetings">
                                     <h3>DIALOGUE & MEETINGS</h3>
                                     <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
-                                    <p id="manualPrice2" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000')">Comprar</button>
+                                    <p id="manualPrice2" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/GRAMMAR BOOK.jpg " alt="Grammar Book">
                                     <h3>GRAMMAR BOOK</h3>
                                     <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p id="manualPrice3" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000')">Comprar</button>
+                                    <p id="manualPrice3" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/VOCABULÁRIO.jpg" alt="Vocabulário">
                                     <h3>VOCABULÁRIO</h3>
                                     <p>O livro completo sobre vocabulário inglês, <br/> com fonéticas e explicações detalhadas.</p>
-                                    <p id="manualPrice4" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000')">Comprar</button>
+                                    <p id="manualPrice4" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/TEXT & READING SKILLS.jpg " alt="Textos & Habilidades de Leitura">
                                     <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
                                     <p>O livro completo sobre habilidades de leitura <br/> e escrita em inglês, com exercícios práticos<br/>  e explicações detalhadas.</p>
-                                    <p id="manualPrice5" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000')">Comprar</button>
+                                    <p id="manualPrice5" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/OS VERBOS REGULARES & IRREGULARES.jpg" alt="Verbos Regulares & Irregulares">
                                     <h3>OS VERBOS REGULARES & IRREGULARES</h3>
                                     <p>O livro completo sobre verbos ingleses, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p id="manualPrice6" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000')">Comprar</button>
+                                    <p id="manualPrice6" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/Flayer1.jpg" alt="Saraswati Knowledge">
                                     <h3>SARASWATI KNOWLEDGE</h3>
                                     <p>A história e vida de Saraswati pela luz e sabedoria, leia!</p>
-                                    <p id="manualPrice7" >Preço: 5.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Saraswati Knowledge', 7, '5.000')">Comprar</button>
+                                    <p id="manualPrice7" >Preço: 5.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Saraswati Knowledge', 7, '5.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/Flayer2.jpg" alt="Um Estrangeiro Perdido">
                                     <h3>UM ESTRANGEIRO PERDIDO</h3>
                                     <p>O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
-                                    <p id="manualPrice8" >Preço: 6.500</p>
-                                    <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500')">Comprar</button>
+                                    <p id="manualPrice8" >Preço: 6.500 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/Flayer3.jpg" alt="O Dicionário S.M.S">
                                     <h3>O DICIONÁRIO S.M.S</h3>
                                     <p>Dicionário completo com mais de 5.000 <br/> palavras e expressões em inglês.</p>
-                                    <p id="manualPrice9" >Preço: 9.000</p>
-                                    <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000')">Comprar</button>
+                                    <p id="manualPrice9" >Preço: 9.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
                                     <img src="Image/PromoInfo3.jpg" alt="500 Conversas">
                                     <h3>500 CONVERSAS</h3>
                                     <p>O livro completo com 500 conversas práticas em inglês, <br/> ideal para melhorar a fala e a compreensão auditiva.</p>
-                                    <p id="manualPrice10" >Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000')">Comprar</button>
+                                    <p id="manualPrice10" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000 Kz')">Comprar</button>
                                 </li>
                             </ul>
 
@@ -3001,6 +3034,24 @@
                 startAutoSlide();
             };
 
+            // Fecha o menu de idioma ao clicar fora
+            document.addEventListener('click', function(e){
+                const menu = document.getElementById('google-translate-menu');
+                const btn = document.querySelector('.google-translate-button');
+                if (!menu) return;
+                const open = menu.getAttribute('aria-hidden') === 'false';
+                if (open) {
+                    if (!menu.contains(e.target) && !e.target.closest('.google-translate-button')){
+                        menu.setAttribute('aria-hidden', 'true');
+                        if (btn) btn.setAttribute('aria-expanded','false');
+                        menu.style.transition = 'opacity 140ms ease, transform 140ms ease';
+                        menu.style.opacity = '0';
+                        menu.style.transform = 'translateY(-6px)';
+                        setTimeout(()=>{ menu.style.display = 'none'; }, 150);
+                    }
+                }
+            });
+
             // Start
             showSlides(0);
             startAutoSlide();
@@ -3104,12 +3155,28 @@
             // Toggle Google translate menu
             window.toggleGoogleTranslateMenu = function(){
                 const menu = document.getElementById('google-translate-menu');
+                const button = document.querySelector('.google-translate-button');
                 if (!menu) return;
                 const hidden = menu.getAttribute('aria-hidden') === 'true';
+                // update ARIA
                 menu.setAttribute('aria-hidden', hidden ? 'false' : 'true');
-                menu.style.opacity = hidden ? '1' : '';
-                menu.style.visibility = hidden ? 'visible' : '';
-                menu.style.transform = hidden ? 'translateY(0)' : '';
+                if (button) button.setAttribute('aria-expanded', hidden ? 'true' : 'false');
+                // visual toggle with smooth transition
+                if (hidden) {
+                    menu.style.display = 'block';
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateY(-6px)';
+                    requestAnimationFrame(() => {
+                        menu.style.transition = 'opacity 220ms ease, transform 220ms ease';
+                        menu.style.opacity = '1';
+                        menu.style.transform = 'translateY(0)';
+                    });
+                } else {
+                    menu.style.transition = 'opacity 160ms ease, transform 160ms ease';
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateY(-6px)';
+                    setTimeout(() => { menu.style.display = 'none'; }, 180);
+                }
             };
 
             // Safe handlers for scrollToTop button
