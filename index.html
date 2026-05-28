@@ -576,20 +576,26 @@
   color: #1f2937;
 }
 .sidenav {
-  height: 550%;
-  width: 0;
-  max-width: 420px;
+  display: none;
   position: fixed;
-  z-index: 9999;
-  top: 90px;
+  z-index: 1200;
+  top: 0;
   right: 0;
+  width: min(92%, 420px);
+  max-width: 420px;
+  height: calc(100vh - 90px);
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
-  overflow-x: hidden;
-  overflow-y: auto;
-  transition: width 0.4s ease, transform 0.4s ease;
-  padding-top: 70px;
+  overflow: hidden;
   box-shadow: -12px 0 36px rgba(0,0,0,0.14);
+  border-radius: 0 0 0 18px;
+  transition: transform 0.35s ease, width 0.35s ease, top 0.25s ease;
+  transform: translateX(100%);
+}
+.sidenav.show {
+  display: block;
+  transform: translateX(0);
+  overflow-y: auto;
 }
 .sidenav a {
   padding: 14px 28px;
@@ -644,15 +650,27 @@
   border-radius: 14px;
   color: #1f2937;
   box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .sidenav-menu a:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;}
+  color: #fff;
+}
 @media screen and (max-width: 768px) {
   .sidenav {
-    max-width: 100%;
-    width: 0;
-    padding-top: 80px;
+    width: calc(100% - 10px);
+    max-width: none;
+    left: 5px;
+    right: 5px;
+    top: 88px;
+    height: calc(100vh - 94px);
+    border-radius: 0 0 16px 16px;
+  }
+  .sidenav.show {
+    width: calc(100% - 10px);
   }
   .sidenav a {
     padding: 16px 24px;
@@ -664,14 +682,41 @@
   .sidenav-menu a {
     font-size: 15px;
     padding: 16px 18px;
-  }}
+  }
+}
 @media screen and (max-width: 480px) {
+  .sidebar3 {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    left: auto;
+    z-index: 1300;
+    margin: 0;
+    background: rgba(255,255,255,0.96);
+    border-radius: 999px;
+    box-shadow: 0 14px 30px rgba(15,23,42,0.18);
+    padding: 4px;
+  }
   .sidebar3 span {
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-size: 14px;
+    background: rgba(102, 126, 234, 0.16);
+    color: #1f2937;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar3 span::before {
+    content: 'ℹ️';
+    display: inline-block;
+    font-size: 1.05rem;
+    line-height: 1;
   }
   .sidenav {
-    padding-top: 90px;
+    top: 94px;
+    height: calc(100vh - 94px);
   }
   .sidenav .closebtn {
     top: 12px;
@@ -683,7 +728,8 @@
   .sidenav a {
     padding: 14px 20px;
     font-size: 15px;
-  }}
+  }
+}
 .sidenav-content {
   padding: 20px;
   overflow-y: auto;
@@ -3240,8 +3286,24 @@
         // Function to handle navigation functionality
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 90;
     if (sidenav) {
-        sidenav.style.width = "85%";
+        sidenav.style.top = `${headerHeight}px`;
+        sidenav.style.height = `calc(100vh - ${headerHeight}px)`;
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            sidenav.style.width = 'calc(100% - 10px)';
+            sidenav.style.left = '5px';
+            sidenav.style.right = '5px';
+            sidenav.style.borderRadius = '0 0 16px 16px';
+        } else {
+            sidenav.style.width = '85%';
+            sidenav.style.left = '';
+            sidenav.style.right = '0';
+            sidenav.style.borderRadius = '0 0 0 18px';
+        }
+        sidenav.classList.add('show');
+        sidenav.setAttribute('aria-hidden', 'false');
         showSideSection('localizacao');
     } else {
         console.error('Sidenav element not found.');
@@ -3262,7 +3324,12 @@ function showSideSection(sectionId) {
 window.onload = function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
-        sidenav.style.width = "0";
+        sidenav.classList.remove('show');
+        sidenav.style.display = 'none';
+        sidenav.style.width = '0';
+        sidenav.style.top = '0';
+        sidenav.style.height = '100vh';
+        sidenav.setAttribute('aria-hidden', 'true');
     }
     showSideSection('localizacao');
 };
@@ -3270,10 +3337,23 @@ window.onload = function() {
 function closeNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
-        sidenav.style.width = "0";
+        sidenav.classList.remove('show');
+        sidenav.style.display = 'none';
+        sidenav.style.width = '0';
+        sidenav.setAttribute('aria-hidden', 'true');
     } else {
         console.error('Sidenav element not found.');
-    }};
+    }
+};
+
+document.addEventListener('click', function(event) {
+    const sidenav = document.getElementById('mySidenav');
+    if (!sidenav || !sidenav.classList.contains('show')) return;
+    const sidebarToggle = event.target.closest('.sidebar3 span');
+    if (!sidenav.contains(event.target) && !sidebarToggle) {
+        closeNav();
+    }
+});
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
