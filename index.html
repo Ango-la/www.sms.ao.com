@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="Script.js" defer></script>
-
-    <style>
+<style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
         * {
             margin: 0;
@@ -63,6 +62,7 @@
             position: relative;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             width: 100%;}
+            t
         .ticker-content {
             display: flex;
             animation: scroll-left 40s linear infinite;
@@ -3030,6 +3030,8 @@
                 }
             };
 
+            const apiBaseUrl = 'http://localhost:3000/api';
+
             window.updateManualBuyButtons = function() {
                 const buyButtons = document.querySelectorAll('.buy-menu-content li button');
                 buyButtons.forEach((button, index) => {
@@ -3041,8 +3043,6 @@
                     });
                 });
             };
-
-            const apiBaseUrl = 'http://localhost:3000/api';
 
             window.openPurchaseForm = function(manualTitle, manualId) {
                 const formWrapper = document.getElementById('purchase-form');
@@ -3068,6 +3068,7 @@
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
                 const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
+                const manualId = document.getElementById('purchaseManualId').value;
 
                 if (!name || !courseType || !proofFile) {
                     alert('Preencha o nome, tipo de curso e anexe o comprovante em PDF.');
@@ -3086,6 +3087,7 @@
                 formData.append('buyerName', name);
                 formData.append('courseType', courseType);
                 formData.append('manualTitle', manualTitle);
+                formData.append('manualId', manualId);
                 formData.append('proofFile', proofFile);
 
                 try {
@@ -3093,13 +3095,12 @@
                         method: 'POST',
                         body: formData,
                     });
-
                     const result = await response.json();
                     if (!response.ok) {
                         throw new Error(result.error || 'Falha ao enviar o pedido.');
                     }
 
-                    alert('Pedido de compra enviado com sucesso. O comprovante foi anexado no servidor.');
+                    alert('Pedido de compra enviado com sucesso. O manual em PDF também será anexado pelo servidor.');
                     closePurchaseForm();
                 } catch (error) {
                     console.error(error);
@@ -3240,7 +3241,7 @@ function closeNav() {
             document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
         }
         
-        async function submitAllDataVia(method) {
+        function submitAllDataVia(method) {
             const courseName = document.getElementById('courseName').value;
             const coursePrice = document.getElementById('coursePrice').value;
             const scheduleDate = document.getElementById('scheduleDate').value;
@@ -3275,30 +3276,60 @@ function closeNav() {
             formData.append('proofAttachment', proofFile);
             formData.append('method', method);
             
-            try {
-                const response = await fetch(`${apiBaseUrl}/registration`, {
-                    method: 'POST',
-                    body: formData,
-                });
-                const result = await response.json();
-                if (!response.ok) {
-                    throw new Error(result.error || 'Falha ao enviar a inscrição.');
-                }
+            if (method === 'whatsapp') {
+                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento anexado\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!
+É um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.
+🌍📚 Antes de iniciar, pedimos que certique a sua escolha:
 
-                if (method === 'whatsapp') {
-                    const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento enviado ao servidor\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.\n\nEstamos prontos para ajudá-lo(a) a alcançar um novo nível.\nSeja bem-vindo(a) à S.M.S! 🚀✨\n\n📞 Receção S.M.S`);
-                    window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
-                } else {
-                    alert('Inscrição enviada com sucesso. O comprovante foi anexado no servidor e será enviado por email.');
-                }
+🔹 *Estágio 1 – Iniciantes*
+Indicado para alunos que ainda não conseguem falar inglês ou possuem dificuldades básicas de comunicação. Aqui você aprenderá desde a base até ganhar confiança para conversar.
 
-                setTimeout(() => {
-                    hideAllSections();
-                }, 2000);
-            } catch (error) {
-                console.error(error);
-                alert(`Erro ao enviar inscrição: ${error.message}`);
+🔹 *Estágio 2 – B2*
+Indicado para alunos que passaram do basico e que já conseguem falar.  Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.
+
+🔹 *Estágio 3 – Profissional*
+Indicado para alunos, empresas, Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações.
+
+🔹 *Aceleração da Fluência*
+Categoria recomendada para alunos que já falam inglês, mas desejam melhorar a comunicação, pronúncia, vocabulário e fluência no dia a dia e no ambiente profissional.
+
+Em caso de erro na inscrição nós podemos ajudar...
+
+Estamos preparados para ajudá-lo(a) a alcançar um novo nível.
+Seja bem-vindo(a) à S.M.S! 🚀✨
+
+📞 Receção S.M.S` );
+                window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
+            } else if (method === 'email') {
+                const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
+                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento em anexo \n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!
+É um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.
+🌍📚 Antes de iniciar, pedimos que certique a sua escolha:
+
+🔹 Estágio 1 – Iniciantes
+Indicado para alunos que ainda não conseguem falar inglês ou possuem dificuldades básicas de comunicação. Aqui você aprenderá desde a base até ganhar confiança para conversar.
+
+🔹 Estágio 2 – B2
+Indicado para alunos que passaram do basico e que já conseguem falar.  Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.
+
+🔹 Estágio 3 – Profissional
+Indicado para alunos, empresas, Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações.
+
+🔹 Aceleração da Fluência
+Categoria recomendada para alunos que já falam inglês, mas desejam melhorar a comunicação, pronúncia, vocabulário e fluência no dia a dia e no ambiente profissional.
+
+Em caso de erro na inscrição nós podemos ajudar...
+
+Estamos preparados para ajudá-lo(a) a alcançar um novo nível.
+Seja bem-vindo(a) à S.M.S! 🚀✨
+
+📞 Receção S.M.S` );
+                window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
             }
+            
+            setTimeout(() => {
+                hideAllSections();
+            }, 2000);
         }
         
         function hideAllSections() {
