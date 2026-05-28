@@ -3358,21 +3358,34 @@ document.addEventListener('click', function(event) {
         closeNav();
     }
 });
-// Ensure the mobile INFORMAÇÕES button always triggers the sidenav and is keyboard-accessible
-(function(){
+// Robust: attach handlers after DOM ready and use delegation so it works when site is served online
+document.addEventListener('DOMContentLoaded', function() {
+    // set ARIA and tabindex for accessibility
     const infoBtn = document.querySelector('.sidebar3 span');
-    if (!infoBtn) return;
-    try{
-        infoBtn.setAttribute('role','button');
-        infoBtn.setAttribute('tabindex','0');
-        infoBtn.addEventListener('click', function(e){ e.preventDefault(); openNav(); });
-        infoBtn.addEventListener('keydown', function(e){
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
-                e.preventDefault(); openNav();
-            }
-        });
-    }catch(err){ console.warn('Info button handler attach failed', err); }
-})();
+    if (infoBtn) {
+        try { infoBtn.setAttribute('role', 'button'); infoBtn.setAttribute('tabindex', '0'); } catch(e){}
+    }
+
+    // Click delegation: opens sidenav when the info button is clicked (works even if element added later)
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest && e.target.closest('.sidebar3 span');
+        if (btn) {
+            e.preventDefault();
+            if (typeof openNav === 'function') openNav();
+        }
+    }, { passive: false });
+
+    // Keyboard handling for Enter / Space when focused on the info element
+    document.addEventListener('keydown', function(e) {
+        const active = document.activeElement;
+        if (!active) return;
+        const isInfo = active.closest && active.closest('.sidebar3 span');
+        if (isInfo && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) {
+            e.preventDefault();
+            if (typeof openNav === 'function') openNav();
+        }
+    });
+});
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
