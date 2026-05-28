@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script src="Script.js" defer></script>
 <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
@@ -53,6 +55,7 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; } }
+
         /* TICKER - SCROLLING TEXT */
         .ticker-wrapper {
             background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
@@ -2162,6 +2165,7 @@
                     .purchase-submit-button,
                     .purchase-cancel-button { width: 100%; padding: 12px; }
                 }
+                }
                 @media (max-width: 600px) {
                     #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
@@ -2288,6 +2292,9 @@
                                     <label for="buyerName">Nome completo</label>
                                     <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
 
+                                    <label for="buyerEmail">Email</label>
+                                    <input type="email" id="buyerEmail" placeholder="seu@email.com" required>
+
                                     <label for="courseType">Tipo de curso</label>
                                     <select id="courseType" required>
                                         <option value="">Selecione...</option>
@@ -2307,9 +2314,28 @@
                                         <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
                                     </div>
                                     <p class="purchase-note">📋 Após enviar, você será redirecionado para confirmar<br/>  o documento e receber a senha.</p>
+                                    <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
                                 </form>
                             </div>
 
+                                    <!-- Area adicionada: seleção de documento, embed e botão de fatura -->
+                                    <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none;">
+                                        <label for="docSelect" style="display:block; margin-bottom:8px; font-weight:700; color:#334155;">Documento para download</label>
+                                        <select id="docSelect" style="width:100%; padding:10px; border-radius:8px; border:1px solid #d1d5db; margin-bottom:12px;">
+                                            <option value="documentos/Guia S.M.S_protected.pdf">Guia S.M.S (PDF)</option>
+                                            <option value="documentos/S.M.S DIALOGUE AND MEETINGS_protected.pdf">Dialogue & Meetings (PDF)</option>
+                                            <option value="documentos/S.M.S GRAMMAR BOOK_protected.pdf">Grammar Book (PDF)</option>
+                                        </select>
+
+                                        <div id="docEmbedWrapper" class="manual-pdf-area" style="display:none;">
+                                            <embed id="docEmbed" src="" type="application/pdf" />
+                                        </div>
+
+                                        <div style="display:flex; gap:10px; margin-top:10px;">
+                                            <button id="downloadChosenBtn" class="purchase-submit-button" style="flex:1;" onclick="downloadChosenDocument()">Baixar documento (automático)</button>
+                                            <button id="invoiceBtn" class="purchase-submit-button" style="flex:1; display:none; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);" onclick="generateInvoice()">Receber Fatura</button>
+                                        </div>
+                                    </div>
                             <div class="manual-documents hidden">
                                 <div id="manual-doc-1" class="manual-pdf-area">
                                     <embed src="documentos/Guia S.M.S_protected.pdf" type="application/pdf" />
@@ -3030,8 +3056,6 @@
                 }
             };
 
-            const apiBaseUrl = 'http://localhost:3000/api';
-
             window.updateManualBuyButtons = function() {
                 const buyButtons = document.querySelectorAll('.buy-menu-content li button');
                 buyButtons.forEach((button, index) => {
@@ -3063,12 +3087,11 @@
                 }
             };
 
-            window.submitPurchaseRequest = async function() {
+            window.submitPurchaseRequest = function() {
                 const name = document.getElementById('buyerName').value.trim();
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
                 const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
-                const manualId = document.getElementById('purchaseManualId').value;
 
                 if (!name || !courseType || !proofFile) {
                     alert('Preencha o nome, tipo de curso e anexe o comprovante em PDF.');
@@ -3083,29 +3106,18 @@
                     return;
                 }
 
-                const formData = new FormData();
-                formData.append('buyerName', name);
-                formData.append('courseType', courseType);
-                formData.append('manualTitle', manualTitle);
-                formData.append('manualId', manualId);
-                formData.append('proofFile', proofFile);
+                const email = 'saraswatimaaschool@gmail.com';
+                const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
+                const body = encodeURIComponent(
+                    `Pedido de compra de ${manualTitle}\n` +
+                    `Nome: ${name}\n` +
+                    `Tipo de curso: ${courseType}\n` +
+                    `Comprovante: ${proofFile.name}\n\n` +
+                    `Por favor, anexe o PDF manualmente no cliente de email antes de enviar.`
+                );
 
-                try {
-                    const response = await fetch(`${apiBaseUrl}/purchase`, {
-                        method: 'POST',
-                        body: formData,
-                    });
-                    const result = await response.json();
-                    if (!response.ok) {
-                        throw new Error(result.error || 'Falha ao enviar o pedido.');
-                    }
-
-                    alert('Pedido de compra enviado com sucesso. O manual em PDF também será anexado pelo servidor.');
-                    closePurchaseForm();
-                } catch (error) {
-                    console.error(error);
-                    alert(`Erro ao enviar pedido: ${error.message}`);
-                }
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                closePurchaseForm();
             };
 
             // Toggle Google translate menu
