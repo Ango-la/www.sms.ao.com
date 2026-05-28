@@ -576,25 +576,20 @@
   color: #1f2937;
 }
 .sidenav {
-  height: 100vh;
+  height: 550%;
   width: 0;
   max-width: 420px;
   position: fixed;
   z-index: 9999;
-  top: 0;
+  top: 90px;
   right: 0;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
   overflow-x: hidden;
-  overflow-y: hidden;
-  transform: translateX(100%);
-  transition: width 0.35s ease, transform 0.35s ease, top 0.25s ease;
+  overflow-y: auto;
+  transition: width 0.4s ease, transform 0.4s ease;
   padding-top: 70px;
   box-shadow: -12px 0 36px rgba(0,0,0,0.14);
-}
-.sidenav.open {
-  transform: translateX(0);
-  overflow-y: auto;
 }
 .sidenav a {
   padding: 14px 28px;
@@ -641,7 +636,6 @@
   gap: 12px;
   padding: 0 22px 22px;
   border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-  align-items: stretch;
 }
 .sidenav-menu a {
   padding: 14px 16px;
@@ -650,23 +644,15 @@
   border-radius: 14px;
   color: #1f2937;
   box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .sidenav-menu a:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;
-}
+  color: #fff;}
 @media screen and (max-width: 768px) {
   .sidenav {
     max-width: 100%;
     width: 0;
     padding-top: 80px;
-  }
-  .sidenav.open {
-    width: 100%;
   }
   .sidenav a {
     padding: 16px 24px;
@@ -678,8 +664,7 @@
   .sidenav-menu a {
     font-size: 15px;
     padding: 16px 18px;
-  }
-}
+  }}
 @media screen and (max-width: 480px) {
   .sidebar3 span {
     padding: 10px 14px;
@@ -698,15 +683,11 @@
   .sidenav a {
     padding: 14px 20px;
     font-size: 15px;
-  }
-}
+  }}
 .sidenav-content {
   padding: 20px;
   overflow-y: auto;
   max-height: calc(100vh - 140px);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
 }
 .sidenav-section {
   display: none;
@@ -714,7 +695,7 @@
 .sidenav-section h2 {
   font-size: 22px;
   margin-bottom: 15px;
-  color: #667eea;
+ color: #667eea;
   max-width: 900px;
   margin: 0 auto;
   background: white;
@@ -1260,28 +1241,25 @@
             margin-top: 0;
             animation: fadeIn 0.25s ease;
             -webkit-overflow-scrolling: touch;
-            padding-bottom: 18px;
+        }
+        @media (max-width: 600px) {
+            .buy-menu {
+                top: 88px;
+                left: 0;
+                transform: none;
+                width: calc(100% - 10px);
+                max-width: none;
+                max-height: calc(100vh - 94px);
+                height: calc(100vh - 94px);
+                border-radius: 0 0 16px 16px;
+                margin: 0 5px 0 5px;
+            }
         }
         .buy-menu.show {
             display: block;
         }
         .buy-menu-content {
             padding: 20px;
-        }
-        .purchase-request-form {
-            display: grid;
-            gap: 14px;
-        }
-        .buttons-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 12px;
-        }
-        .buttons-row button {
-            flex: 1 1 160px;
-            min-width: 140px;
         }
         .buy-menu-content h2 {
             color: #667eea;
@@ -2059,7 +2037,7 @@
         }
 
         #scrollToTopBtn {
-            display: none;
+            display: none !important;
             position: fixed;
             bottom: 22px;
             right: 22px;
@@ -2073,10 +2051,10 @@
             z-index: 999;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
             transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0;
+            opacity: 0 !important;
             width: 52px;
             height: 52px;
-            display: flex;
+            pointer-events: none !important;
             align-items: center;
             justify-content: center;
         }
@@ -2149,7 +2127,17 @@
         .buy-menu-content ul li button { margin-left: auto; margin-right: auto; max-width: 260px; }
 
         @media (max-width: 600px) {
-            .buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+            .buy-menu {
+                top: 88px;
+                left: 0;
+                transform: none;
+                width: calc(100% - 10px);
+                max-width: none;
+                max-height: calc(100vh - 94px);
+                height: calc(100vh - 94px);
+                border-radius: 0 0 16px 16px;
+                margin: 0 5px;
+            }
             .buy-menu-content { padding: 12px; }
             .buy-menu-content ul { grid-template-columns: 1fr; gap: 12px; }
             .buy-menu-content ul li { padding: 10px; }
@@ -2183,12 +2171,14 @@
                 .header-container { position: relative; }
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
-                    position: absolute;
-                    top: 120%;
+                    position: fixed;
+                    top: 84px;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: min(180%, 920px);
+                    width: min(96%, 920px);
                     max-width: 620px;
+                    max-height: calc(100vh - 94px);
+                    overflow-y: auto;
                     background: #ffffff;
                     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
                     border-radius: 12px;
@@ -2241,8 +2231,8 @@
                     .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
                     .purchase-submit-button,
                     .purchase-cancel-button { width: 100%; padding: 12px; }
-                    #buy-menu { width: calc(100% - 8px); left: 4px; top: 4px; transform: none; max-height: calc(100vh - 8px); height: calc(100vh - 8px); border-radius: 14px; }
-                    .buy-menu-content { padding: 16px 14px 20px; }
+                    #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+                    .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
                     .buy-menu-content ul li { padding: 10px; gap: 8px; }
                     .buy-menu-content ul li img { width: 100%; height: 180px; }
@@ -2291,6 +2281,7 @@
                 <div class="buy-button-container">
                     <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
+                        <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                         <div class="buy-menu-content">
                             <h2>Manuais</h2>
                             <ul>
@@ -3249,14 +3240,8 @@
         // Function to handle navigation functionality
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 90;
     if (sidenav) {
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        sidenav.style.top = `${headerHeight}px`;
-        sidenav.style.height = `calc(100vh - ${headerHeight}px)`;
-        sidenav.style.width = isMobile ? '100%' : '85%';
-        sidenav.classList.add('open');
+        sidenav.style.width = "85%";
         showSideSection('localizacao');
     } else {
         console.error('Sidenav element not found.');
@@ -3278,9 +3263,6 @@ window.onload = function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.style.width = "0";
-        sidenav.classList.remove('open');
-        sidenav.style.top = '0';
-        sidenav.style.height = '100vh';
     }
     showSideSection('localizacao');
 };
@@ -3289,11 +3271,9 @@ function closeNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.style.width = "0";
-        sidenav.classList.remove('open');
     } else {
         console.error('Sidenav element not found.');
-    }
-};
+    }};
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
