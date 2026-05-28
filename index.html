@@ -341,64 +341,92 @@
             position: relative;
             display: inline-flex;
             align-items: center;
-            justify-content: center;   }
+            justify-content: center;
+            margin-right: 10px; }
         .google-translate-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;}
+            gap: 8px;
+            min-width: 120px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.95);
+            color: #111827;
+            border-radius: 999px;
+            border: 1px solid rgba(15,23,42,0.12);
+            box-shadow: 0 16px 40px rgba(15,23,42,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            font-weight: 600;
+        }
         .google-translate-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18); }
-        .google-logo {
-            width: 22px;
-            height: 22px;
-            display: block;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTEyLjMxIDEwLjEwVjE0LjU0SDE4LjkzQzE4LjY1IDE2LjE4IDE3LjY3IDE3LjQyIDE2LjM2IDE4LjE2VjIwLjA3SDE5Ljk1QzIyLjE2IDE4LjAyIDIzLjYyIDE1LjE1IDIzLjYyIDEyLjAzQzIzLjYyIDEwLjg3IDIzLjQ2IDkuNzQgMjMuMTcgOC42N0gxMi4zMVY5LjczQzExLjg3IDkuNzMgMTEuNDkgOS43MyAxMS4wOCA5LjczSDAuODEzOTFWMTEuNDlDMS45MzM5MSAxMy4zNiA0LjM3Nzk0IDE0LjU0IDYuMzEzOTEgMTQuNTRWMTAuMTBIMTIuMzFaIiBmaWxsPSIjNDI4NWY0Ii8+PHBhdGggZD0iTTAgMTJDMCAyMC4zMjc4IDYuNDQzMzUgMjcuNDY4MSAxNC41IDI3LjQ2ODFWMjIuODU3M0M5LjQ2MDkgMjIuODU3MyA1LjAyOTEgMTguMjUwNyA1LjAyOTEgMTIuNDI0NEMxMS4xMDE4IDEyLjk3MDcgMTUuNDIwOSAxNi4xODU4IDE1LjQyMDkgMjAuNjQxMFYyNi43MjQ2QzI0LjcgMjQuMjc0MyAyNy4xMzU0IDE5LjMxNDEgMjcuMTM1NCAxMy40NTk0QzI3LjEzNTQgNi41OTUxMyAyMS4zNDI0IDEuMDkwNTEgMTQuMzgyOSAxLjA5MDUxSDkuNzE3MzVDOS4zMDQ0MiAzLjAzMjMxIDcuNjAyNDcgNC41MTAyNCA1LjUyMTcgNC41MTAyNEMzLjAxMzU3IDQuNTEwMjQgMSAyLjQ0MTYyIDEgMC40Mzc0ODlIMFYxMloiIGZpbGw9IiNlYTQzMzUiLz48L3N2Zz4=');
-            cursor: pointer;}
+            transform: translateY(-1px);
+            background: #ffffff;
+            box-shadow: 0 18px 44px rgba(15,23,42,0.16);
+        }
+        .google-translate-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f3f4f6;
+            color: #111827;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+        }
         .google-translate-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             right: 0;
-            width: auto;
-            min-width: 150px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+            width: 280px;
+            background: #ffffff;
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 18px;
+            box-shadow: 0 24px 60px rgba(15,23,42,0.14);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;}
-        .google-translate:hover .google-translate-menu,.google-translate:focus-within .google-translate-menu {
+            transform: translateY(-12px);
+            transition: opacity 0.26s ease, transform 0.26s ease;
+            z-index: 1200;
+            overflow: hidden;
+        }
+        .google-translate:hover .google-translate-menu,
+        .google-translate:focus-within .google-translate-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0); }
+            transform: translateY(0);
+        }
         .google-translate-menu:hover {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0); }
+            transform: translateY(0);
+        }
         .google-translate-menu button {
             width: 100%;
             padding: 12px 16px;
             border: none;
-            
+            background: none;
             text-align: left;
             font-size: 14px;
             font-weight: 700;
             color: #111827;
-            cursor: pointer; }
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
         .google-translate-menu button:hover {
-            background: #f3f4f6; }
+            background: #f8fafc;
+        }
+        @media screen and (max-width: 768px) {
+            .google-translate-menu {
+                right: 0;
+                left: auto;
+                width: 100%;
+                min-width: auto;
+                max-width: 300px;
+            }
+        }
         /* RESPONSIVO - TABLETS E CELULARES */
         @media screen and (max-width: 768px) {
             .header-container {
@@ -2217,36 +2245,14 @@
             <div class="header-actions">
                 <div class="google-translate" aria-label="Google Translate">
                     <button type="button" class="google-translate-button" aria-haspopup="true" aria-expanded="false" onclick="toggleGoogleTranslateMenu()">
-                        <img class="google-logo" src="https://www.gstatic.com/images/branding/product/1x/google_translate_24dp.png" alt="Google Translate logo" aria-hidden="true">
+                        <span class="google-translate-icon" aria-hidden="true">G</span>
                         <span class="google-translate-text">Idioma</span>
                         <i class="fa fa-chevron-down google-chevron" aria-hidden="true"></i>
                     </button>
                     <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
-                        <div class="google-menu-inner">
-                            <div class="google-menu-header">
-                                <img class="google-menu-logo" src="https://www.gstatic.com/images/branding/product/1x/google_translate_48dp.png" alt="Google"/>
+                        <div id="google_translate_element">selecione o idioma</div>
                     </div>
-                        </div>
                 </div>
-                <style>
-                    .google-translate-button{ display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid rgba(255,255,255,0.12); color:white; padding:6px 10px; border-radius:10px; cursor:pointer; backdrop-filter: blur(6px); }
-                    .google-translate-button:hover{ transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,0.12); }
-                    .google-logo{ width:20px; height:20px; display:inline-block; }
-                    .google-chevron{ font-size:12px; opacity:0.9; }
-                    .google-translate-text{ font-weight:600; font-size:13px; }
-                    .google-translate-menu{ position:absolute; right:14px; top:120%; min-width:220px; max-width:420px; background:linear-gradient(180deg, #ffffff, #f7fbff); color:#111827; border-radius:12px; box-shadow:0 20px 50px rgba(16,24,40,0.15); padding:12px; display:none; z-index:1200; border:1px solid rgba(16,24,40,0.06); }
-                    .google-translate-menu[aria-hidden="false"]{ display:block; }
-                    .google-menu-inner{ display:flex; flex-direction:column; gap:10px; }
-                    .google-menu-header{ display:flex; gap:10px; align-items:center; padding-bottom:6px; border-bottom:1px solid rgba(16,24,40,0.06); }
-                    .google-menu-logo{ width:36px; height:36px; }
-                    .google-menu-sub{ font-size:12px; color:#6b7280; }
-                    .google-menu-footer{ font-size:12px; color:#6b7280; text-align:right; }
-                    /* small screens adjustments */
-                    @media (max-width:600px){
-                        .google-translate-menu{ right:8px; left:8px; top:120%; min-width:auto; max-width:calc(100% - 16px); }
-                        .google-translate-button{ padding:6px 8px; font-size:12px; }
-                    }
-                </style>
                 <div class="buy-button-container">
                     <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
@@ -2984,7 +2990,7 @@
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
-<button id="scrollToTopBtn" title="Voltar ao topo">up</button>
+<button id="scrollToTopBtn" title="Voltar ao topo"  style="display: hidden;">up</button>
     </footer>
 <script>
         // Slides automáticos e controles do site
@@ -3026,24 +3032,6 @@
                 showSlides(idx);
                 startAutoSlide();
             };
-
-            // Fecha o menu de idioma ao clicar fora
-            document.addEventListener('click', function(e){
-                const menu = document.getElementById('google-translate-menu');
-                const btn = document.querySelector('.google-translate-button');
-                if (!menu) return;
-                const open = menu.getAttribute('aria-hidden') === 'false';
-                if (open) {
-                    if (!menu.contains(e.target) && !e.target.closest('.google-translate-button')){
-                        menu.setAttribute('aria-hidden', 'true');
-                        if (btn) btn.setAttribute('aria-expanded','false');
-                        menu.style.transition = 'opacity 140ms ease, transform 140ms ease';
-                        menu.style.opacity = '0';
-                        menu.style.transform = 'translateY(-6px)';
-                        setTimeout(()=>{ menu.style.display = 'none'; }, 150);
-                    }
-                }
-            });
 
             // Start
             showSlides(0);
@@ -3148,28 +3136,12 @@
             // Toggle Google translate menu
             window.toggleGoogleTranslateMenu = function(){
                 const menu = document.getElementById('google-translate-menu');
-                const button = document.querySelector('.google-translate-button');
                 if (!menu) return;
                 const hidden = menu.getAttribute('aria-hidden') === 'true';
-                // update ARIA
                 menu.setAttribute('aria-hidden', hidden ? 'false' : 'true');
-                if (button) button.setAttribute('aria-expanded', hidden ? 'true' : 'false');
-                // visual toggle with smooth transition
-                if (hidden) {
-                    menu.style.display = 'block';
-                    menu.style.opacity = '0';
-                    menu.style.transform = 'translateY(-6px)';
-                    requestAnimationFrame(() => {
-                        menu.style.transition = 'opacity 220ms ease, transform 220ms ease';
-                        menu.style.opacity = '1';
-                        menu.style.transform = 'translateY(0)';
-                    });
-                } else {
-                    menu.style.transition = 'opacity 160ms ease, transform 160ms ease';
-                    menu.style.opacity = '0';
-                    menu.style.transform = 'translateY(-6px)';
-                    setTimeout(() => { menu.style.display = 'none'; }, 180);
-                }
+                menu.style.opacity = hidden ? '1' : '';
+                menu.style.visibility = hidden ? 'visible' : '';
+                menu.style.transform = hidden ? 'translateY(0)' : '';
             };
 
             // Safe handlers for scrollToTop button
