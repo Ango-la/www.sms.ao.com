@@ -201,26 +201,42 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-// Navegação do sidebar
+// Navegação do sidebar - CORRIGIDO
 function openNav() {
     const sidenav = document.getElementById('mySidenav');
     if (sidenav) {
-        sidenav.style.width = '60%';
+        sidenav.classList.add('show');
     }
 }
 
 function closeNav() {
     const sidenav = document.getElementById('mySidenav');
     if (sidenav) {
-        sidenav.style.width = '0';
+        sidenav.classList.remove('show');
     }
 }
+
+// Vincular clique do botão de menu ao openNav
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.querySelector('.sidebar3 span, .sidebar3 .info-button');
+    if (menuButton) {
+        menuButton.addEventListener('click', openNav);
+    }
+});
 
 // Links do sidebar
 document.querySelectorAll('.sidenav-menu a').forEach(link => {
     link.addEventListener('click', () => {
         closeNav();
     });
+});
+
+// Fechar sidenav ao clicar no botão de fechar
+document.addEventListener('DOMContentLoaded', function() {
+    const closeBtn = document.querySelector('.sidenav .closebtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeNav);
+    }
 });
 
 // Responsividade do sidebar
