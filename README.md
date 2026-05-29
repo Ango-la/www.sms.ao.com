@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="Script.js" defer></script>
 <style>
     /* RESET E ESTILIZAÇÃO GLOBAL */
@@ -53,6 +54,7 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; } }
+
         /* TICKER - SCROLLING TEXT */
         .ticker-wrapper {
             background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
@@ -206,6 +208,41 @@
             gap: 8px;
         }
 
+        /* compact info button that matches header buy button style */
+        .sidebar3 .info-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: auto;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            line-height: 1;
+            box-shadow: 0 6px 18px rgba(102,126,234,0.22);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .sidebar3 .info-button i {
+            font-size: 14px;
+            line-height: 1;
+        }
+        .sidebar3 .info-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(102,126,234,0.26);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 6px 18px rgba(102,126,234,0.22); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 26px rgba(102,126,234,0.18); }
+            100% { transform: scale(1); box-shadow: 0 6px 18px rgba(102,126,234,0.22); }
+        }
+        .sidebar3 .info-button.pulse { animation: pulse 2.5s infinite ease-in-out; }
+
         .hidden {
             display: none !important;
         }
@@ -339,64 +376,92 @@
             position: relative;
             display: inline-flex;
             align-items: center;
-            justify-content: center;   }
+            justify-content: center;
+            margin-right: 10px; }
         .google-translate-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;}
+            gap: 8px;
+            min-width: 120px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.95);
+            color: #111827;
+            border-radius: 999px;
+            border: 1px solid rgba(15,23,42,0.12);
+            box-shadow: 0 16px 40px rgba(15,23,42,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            font-weight: 600;
+        }
         .google-translate-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18); }
-        .google-logo {
-            width: 22px;
-            height: 22px;
-            display: block;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTEyLjMxIDEwLjEwVjE0LjU0SDE4LjkzQzE4LjY1IDE2LjE4IDE3LjY3IDE3LjQyIDE2LjM2IDE4LjE2VjIwLjA3SDE5Ljk1QzIyLjE2IDE4LjAyIDIzLjYyIDE1LjE1IDIzLjYyIDEyLjAzQzIzLjYyIDEwLjg3IDIzLjQ2IDkuNzQgMjMuMTcgOC42N0gxMi4zMVY5LjczQzExLjg3IDkuNzMgMTEuNDkgOS43MyAxMS4wOCA5LjczSDAuODEzOTFWMTEuNDlDMS45MzM5MSAxMy4zNiA0LjM3Nzk0IDE0LjU0IDYuMzEzOTEgMTQuNTRWMTAuMTBIMTIuMzFaIiBmaWxsPSIjNDI4NWY0Ii8+PHBhdGggZD0iTTAgMTJDMCAyMC4zMjc4IDYuNDQzMzUgMjcuNDY4MSAxNC41IDI3LjQ2ODFWMjIuODU3M0M5LjQ2MDkgMjIuODU3MyA1LjAyOTEgMTguMjUwNyA1LjAyOTEgMTIuNDI0NEMxMS4xMDE4IDEyLjk3MDcgMTUuNDIwOSAxNi4xODU4IDE1LjQyMDkgMjAuNjQxMFYyNi43MjQ2QzI0LjcgMjQuMjc0MyAyNy4xMzU0IDE5LjMxNDEgMjcuMTM1NCAxMy40NTk0QzI3LjEzNTQgNi41OTUxMyAyMS4zNDI0IDEuMDkwNTEgMTQuMzgyOSAxLjA5MDUxSDkuNzE3MzVDOS4zMDQ0MiAzLjAzMjMxIDcuNjAyNDcgNC41MTAyNCA1LjUyMTcgNC41MTAyNEMzLjAxMzU3IDQuNTEwMjQgMSAyLjQ0MTYyIDEgMC40Mzc0ODlIMFYxMloiIGZpbGw9IiNlYTQzMzUiLz48L3N2Zz4=');
-            cursor: pointer;}
+            transform: translateY(-1px);
+            background: #ffffff;
+            box-shadow: 0 18px 44px rgba(15,23,42,0.16);
+        }
+        .google-translate-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f3f4f6;
+            color: #111827;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+        }
         .google-translate-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             right: 0;
-            width: auto;
-            min-width: 150px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+            width: 280px;
+            background: #ffffff;
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 18px;
+            box-shadow: 0 24px 60px rgba(15,23,42,0.14);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;}
-        .google-translate:hover .google-translate-menu,.google-translate:focus-within .google-translate-menu {
+            transform: translateY(-12px);
+            transition: opacity 0.26s ease, transform 0.26s ease;
+            z-index: 1200;
+            overflow: hidden;
+        }
+        .google-translate:hover .google-translate-menu,
+        .google-translate:focus-within .google-translate-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0); }
+            transform: translateY(0);
+        }
         .google-translate-menu:hover {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0); }
+            transform: translateY(0);
+        }
         .google-translate-menu button {
             width: 100%;
             padding: 12px 16px;
             border: none;
-            
+            background: none;
             text-align: left;
             font-size: 14px;
             font-weight: 700;
             color: #111827;
-            cursor: pointer; }
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
         .google-translate-menu button:hover {
-            background: #f3f4f6; }
+            background: #f8fafc;
+        }
+        @media screen and (max-width: 768px) {
+            .google-translate-menu {
+                right: 0;
+                left: auto;
+                width: 100%;
+                min-width: auto;
+                max-width: 300px;
+            }
+        }
         /* RESPONSIVO - TABLETS E CELULARES */
         @media screen and (max-width: 768px) {
             .header-container {
@@ -546,20 +611,26 @@
   color: #1f2937;
 }
 .sidenav {
-  height: 550%;
-  width: 0;
-  max-width: 420px;
+  display: none;
   position: fixed;
-  z-index: 9999;
-  top: 90px;
+  z-index: 1200;
+  top: 0;
   right: 0;
+  width: min(92%, 420px);
+  max-width: 420px;
+  height: calc(100vh - 90px);
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(14px);
-  overflow-x: hidden;
-  overflow-y: auto;
-  transition: width 0.4s ease, transform 0.4s ease;
-  padding-top: 70px;
+  overflow: hidden;
   box-shadow: -12px 0 36px rgba(0,0,0,0.14);
+  border-radius: 0 0 0 18px;
+  transition: transform 0.35s ease, width 0.35s ease, top 0.25s ease;
+  transform: translateX(100%);
+}
+.sidenav.show {
+  display: block;
+  transform: translateX(0);
+  overflow-y: auto;
 }
 .sidenav a {
   padding: 14px 28px;
@@ -614,15 +685,27 @@
   border-radius: 14px;
   color: #1f2937;
   box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .sidenav-menu a:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;}
+  color: #fff;
+}
 @media screen and (max-width: 768px) {
   .sidenav {
-    max-width: 100%;
-    width: 0;
-    padding-top: 80px;
+    width: calc(100% - 10px);
+    max-width: none;
+    left: 5px;
+    right: 5px;
+    top: 88px;
+    height: calc(100vh - 94px);
+    border-radius: 0 0 16px 16px;
+  }
+  .sidenav.show {
+    width: calc(100% - 10px);
   }
   .sidenav a {
     padding: 16px 24px;
@@ -634,14 +717,38 @@
   .sidenav-menu a {
     font-size: 15px;
     padding: 16px 18px;
-  }}
+  }
+}
 @media screen and (max-width: 480px) {
-  .sidebar3 span {
-    padding: 10px 14px;
+  .sidebar3 {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    left: auto;
+    z-index: 1300;
+    margin: 0;
+    background: transparent;
+    border-radius: 999px;
+    box-shadow: none;
+    padding: 0;
+  }
+  .sidebar3 .info-button {
+    min-width: auto;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(102, 126, 234, 0.22);
+  }
+  .sidebar3 .info-button i {
     font-size: 14px;
   }
   .sidenav {
-    padding-top: 90px;
+    top: 94px;
+    height: calc(100vh - 94px);
   }
   .sidenav .closebtn {
     top: 12px;
@@ -653,7 +760,8 @@
   .sidenav a {
     padding: 14px 20px;
     font-size: 15px;
-  }}
+  }
+}
 .sidenav-content {
   padding: 20px;
   overflow-y: auto;
@@ -1212,6 +1320,19 @@
             animation: fadeIn 0.25s ease;
             -webkit-overflow-scrolling: touch;
         }
+        @media (max-width: 600px) {
+            .buy-menu {
+                top: 88px;
+                left: 0;
+                transform: none;
+                width: calc(100% - 10px);
+                max-width: none;
+                max-height: calc(100vh - 94px);
+                height: calc(100vh - 94px);
+                border-radius: 0 0 16px 16px;
+                margin: 0 5px 0 5px;
+            }
+        }
         .buy-menu.show {
             display: block;
         }
@@ -1597,19 +1718,7 @@
                 font-size: 14px;
             }
 
-            .sidenav {
-                width: 70%;
-            }
-
-            .sidenav a {
-                padding: 8px 8px 8px 20px;
-                font-size: 16px;
-            }
-
-            .sidenav .closebtn {
-                font-size: 28px;
-                right: 15px;
-            }
+            /* Removed duplicate/legacy .sidenav rules to avoid conflicts with the main responsive styles. */
 
             .terms-privacy {
                 padding: 20px 10px;
@@ -1994,7 +2103,7 @@
         }
 
         #scrollToTopBtn {
-            display: none;
+            display: none !important;
             position: fixed;
             bottom: 22px;
             right: 22px;
@@ -2008,10 +2117,10 @@
             z-index: 999;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
             transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0;
+            opacity: 0 !important;
             width: 52px;
             height: 52px;
-            display: flex;
+            pointer-events: none !important;
             align-items: center;
             justify-content: center;
         }
@@ -2054,10 +2163,10 @@
             #scrollToTopBtn {
                 right: 12px;
                 bottom: 12px;
-                padding: 10px;
-                width: 44px;
-                height: 44px;
-                font-size: 16px;
+                padding: 8px;
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
             }
 
             .buy-button,
@@ -2076,6 +2185,30 @@
             .banner-slide > div {
                 padding: 0 10px;
             }
+        }
+
+        /* Center buy menu content on small screens and improve responsiveness */
+        .buy-menu-content { text-align: center; }
+        .buy-menu-content ul li { align-items: center; justify-content: center; text-align: center; }
+        .buy-menu-content ul li button { margin-left: auto; margin-right: auto; max-width: 260px; }
+
+        @media (max-width: 600px) {
+            .buy-menu {
+                top: 88px;
+                left: 0;
+                transform: none;
+                width: calc(100% - 10px);
+                max-width: none;
+                max-height: calc(100vh - 94px);
+                height: calc(100vh - 94px);
+                border-radius: 0 0 16px 16px;
+                margin: 0 5px;
+            }
+            .buy-menu-content { padding: 12px; }
+            .buy-menu-content ul { grid-template-columns: 1fr; gap: 12px; }
+            .buy-menu-content ul li { padding: 10px; }
+            .buy-menu-content ul li img { width: 100%; height: 160px; }
+            .buy-menu-content ul li button { width: 100%; max-width: none; }
         }
     </style>
     <!-- Google Translate widget com logo do Google -->
@@ -2104,11 +2237,14 @@
                 .header-container { position: relative; }
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
-                    position: absolute;
-                    top: 130%;
-                    left: 70%;
+                    position: fixed;
+                    top: 84px;
+                    left: 50%;
                     transform: translateX(-50%);
-                    width: min(210%, 980px);
+                    width: min(96%, 920px);
+                    max-width: 620px;
+                    max-height: calc(100vh - 94px);
+                    overflow-y: auto;
                     background: #ffffff;
                     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
                     border-radius: 12px;
@@ -2161,15 +2297,18 @@
                     .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
                     .purchase-submit-button,
                     .purchase-cancel-button { width: 100%; padding: 12px; }
-                }
-                @media (max-width: 600px) {
                     #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+                    .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
-                    .buy-menu-content ul li img { width: 100%; height: 200px; }
+                    .buy-menu-content ul li { padding: 10px; gap: 8px; }
+                    .buy-menu-content ul li img { width: 100%; height: 180px; }
+                    .buy-menu-content ul li button { width: 100%; max-width: none; padding: 10px 12px; font-size: 0.95rem; }
+                    .buy-button-container { width: 100%; text-align: right; }
+                    .header-actions { width: 100%; justify-content: space-between; gap: 10px; }
+                    .header-actions .buy-button { padding: 8px 10px; font-size: 12px; min-width: auto; }
                 }
             </style>
             <script>
-                // Keep only hideBuyMenu and a click-outside handler here to avoid duplicate toggle definitions.
                 (function(){
                     window.hideBuyMenu = function(){
                         var menu = document.getElementById('buy-menu');
@@ -2196,9 +2335,10 @@
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
             <div class="header-actions">
                 <div class="google-translate" aria-label="Google Translate">
-                    <button type="button" class="google-translate-button" aria-label="Traduzir para inglês ou francês" onclick="toggleGoogleTranslateMenu()">
-                        <span class="google-translate-icon" aria-hidden="true">&#127760;</span>
+                    <button type="button" class="google-translate-button" aria-haspopup="true" aria-expanded="false" onclick="toggleGoogleTranslateMenu()">
+                        <span class="google-translate-icon" aria-hidden="true">G</span>
                         <span class="google-translate-text">Idioma</span>
+                        <i class="fa fa-chevron-down google-chevron" aria-hidden="true"></i>
                     </button>
                     <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
                         <div id="google_translate_element">selecione o idioma</div>
@@ -2207,86 +2347,91 @@
                 <div class="buy-button-container">
                     <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
+                        <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                         <div class="buy-menu-content">
                             <h2>Manuais</h2>
                             <ul>
-                                <li>
-                                    <img src="Image/Guia S.M.S.jpg" alt="Manual 1">
+                                <li id="summeryprice">
+                                    <img src="Image/Guia S.M.S.jpg" alt="Guia S.M.S">
                                     <h3>Guia S.M.S</h3>
                                     <p>Guia Onde todas as informações <br/>estão disponíveis sobre a sua aula.</p>
-                                    <p>Preço: 2.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 1', 1)">Comprar</button>
+                                    <p id="manualPrice1" >Preço: 2.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/DIALOGUE & MEETING.jpg " alt="Manual 2">
+                                    <img src="Image/DIALOGUE & MEETING.jpg " alt="Dialogue & Meetings">
                                     <h3>DIALOGUE & MEETINGS</h3>
                                     <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 2', 2)">Comprar</button>
+                                    <p id="manualPrice2" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/GRAMMAR BOOK.jpg " alt="Manual 3">
+                                    <img src="Image/GRAMMAR BOOK.jpg " alt="Grammar Book">
                                     <h3>GRAMMAR BOOK</h3>
                                     <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 3', 3)">Comprar</button>
+                                    <p id="manualPrice3" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/VOCABULÁRIO.jpg" alt="Manual 4">
+                                    <img src="Image/VOCABULÁRIO.jpg" alt="Vocabulário">
                                     <h3>VOCABULÁRIO</h3>
                                     <p>O livro completo sobre vocabulário inglês, <br/> com fonéticas e explicações detalhadas.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 4', 4)">Comprar</button>
+                                    <p id="manualPrice4" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/TEXT & READING SKILLS.jpg " alt="Manual 5">
+                                    <img src="Image/TEXT & READING SKILLS.jpg " alt="Textos & Habilidades de Leitura">
                                     <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
                                     <p>O livro completo sobre habilidades de leitura <br/> e escrita em inglês, com exercícios práticos<br/>  e explicações detalhadas.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 5', 5)">Comprar</button>
+                                    <p id="manualPrice5" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/OS VERBOS REGULARES & IRREGULARES.jpg" alt="Manual 6">
+                                    <img src="Image/OS VERBOS REGULARES & IRREGULARES.jpg" alt="Verbos Regulares & Irregulares">
                                     <h3>OS VERBOS REGULARES & IRREGULARES</h3>
                                     <p>O livro completo sobre verbos ingleses, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 6', 6)">Comprar</button>
+                                    <p id="manualPrice6" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer1.jpg" alt="Manual 7">
-                                    <h3> SARASWATI KNOWLEDGE</h3>
-                                    <p> A história e vida de Saraswati pela luz e sabedoria, leia!</p>
-                                    <p>Preço: 5.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 7', 7)">Comprar</button>
+                                    <img src="Image/Flayer1.jpg" alt="Saraswati Knowledge">
+                                    <h3>SARASWATI KNOWLEDGE</h3>
+                                    <p>A história e vida de Saraswati pela luz e sabedoria, leia!</p>
+                                    <p id="manualPrice7" >Preço: 5.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Saraswati Knowledge', 7, '5.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer2.jpg" alt="Manual 8">
+                                    <img src="Image/Flayer2.jpg" alt="Um Estrangeiro Perdido">
                                     <h3>UM ESTRANGEIRO PERDIDO</h3>
-                                    <p> O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
-                                    <p>Preço: 6.500</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 8', 8)">Comprar</button>
+                                    <p>O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
+                                    <p id="manualPrice8" >Preço: 6.500 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer3.jpg" alt="Manual 9">
+                                    <img src="Image/Flayer3.jpg" alt="O Dicionário S.M.S">
                                     <h3>O DICIONÁRIO S.M.S</h3>
                                     <p>Dicionário completo com mais de 5.000 <br/> palavras e expressões em inglês.</p>
-                                    <p>Preço: 9.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 9', 9)">Comprar</button>
+                                    <p id="manualPrice9" >Preço: 9.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/PromoInfo3.jpg" alt="Manual 10">
-                                    <h3>500 CONVERSAS </h3>
+                                    <img src="Image/PromoInfo3.jpg" alt="500 Conversas">
+                                    <h3>500 CONVERSAS</h3>
                                     <p>O livro completo com 500 conversas práticas em inglês, <br/> ideal para melhorar a fala e a compreensão auditiva.</p>
-                                    <p>Preço: 3.000</p>
-                                    <button type="button" onclick="openPurchaseForm('Manual 10', 10)">Comprar</button>
+                                    <p id="manualPrice10" >Preço: 3.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000 Kz')">Comprar</button>
                                 </li>
                             </ul>
 
                             <div id="purchase-form" class="purchase-form hidden">
                                 <h3 id="selectedManualTitle">Pedido de compra</h3>
+                                    <p id="selectedManualPrice" style="margin:6px 0 16px; color:#334155; font-weight:600;">Preço: —</p>
                                 <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
                                     <label for="buyerName">Nome completo</label>
                                     <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
+
+                                    <label for="buyerEmail">Email</label>
+                                    <input type="email" id="buyerEmail" placeholder="seu@email.com" required>
 
                                     <label for="courseType">Tipo de curso</label>
                                     <select id="courseType" required>
@@ -2302,51 +2447,37 @@
                                     <input type="file" id="proofFile" accept="application/pdf" required>
 
                                     <input type="hidden" id="purchaseManualId">
+                                    <input type="hidden" id="purchaseManualPrice">
                                     <div class="buttons-row">
                                         <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Finalizar</button>
                                         <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
                                     </div>
                                     <p class="purchase-note">📋 Após enviar, você será redirecionado para confirmar<br/>  o documento e receber a senha.</p>
+                                    <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
                                 </form>
                             </div>
 
-                            <div class="manual-documents hidden">
-                                <div id="manual-doc-1" class="manual-pdf-area">
-                                    <embed src="documentos/Guia S.M.S_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-2" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S DIALOGUE AND MEETINGS_protected.pdf " type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-3" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S GRAMMAR BOOK_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-4" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S VOCABULARY_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-5" class="manual-pdf-area">
-                                    <embed src="documentos/TEXT & READING SKILLS _protected.pdf " type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-6" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S REGULAR & INRREGULAR VERBS_protected.pdf " type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-7" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S LISTENING SKILLS_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-8" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S SPEAKING SKILLS_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-9" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S MANUAL 9_protected.pdf" type="application/pdf" />
-                                </div>
-                                <div id="manual-doc-10" class="manual-pdf-area">
-                                    <embed src="documentos/S.M.S MANUAL 10_protected.pdf" type="application/pdf" />
-                                </div>
-                            </div>
+                                    <!-- Area adicionada: documento solicitado e botão de fatura -->
+                                    <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none; padding:16px; border:1px solid rgba(102,126,234,0.18); border-radius:12px; background:#f8fbff;">
+                                        <p id="downloadDocumentName" style="margin:0 0 12px; font-weight:700; color:#334155;">Documento solicitado: <span>—</span></p>
+                                        <div id="purchaseSummary" style="margin-top:12px; padding:12px 14px; background:#eef2ff; border-radius:10px; display:none;">
+                                        <p style="margin:6px 0;"><strong>Nome:</strong> <span id="summaryName">—</span></p>
+                                        <p style="margin:6px 0;"><strong>Email:</strong> <span id="summaryEmail">—</span></p>
+                                        <p style="margin:6px 0;"><strong>Curso:</strong> <span id="summaryCourseType">—</span></p>
+                                        <p style="margin:6px 0;"><strong>Comprovativo:</strong> <span id="summaryProof">—</span></p>
+                                        <p style="margin:6px 0;"><strong>Preço:</strong> <span id="summaryPrice"></span></p>
+                                    </div>
+                                    <div style="display:flex; gap:10px; margin-top:10px;">
+                                            <button id="downloadChosenBtn" class="purchase-submit-button" style="flex:1;" onclick="downloadRequestedDocument()">Baixar documento</button>
+                                            <button id="invoiceBtn" class="purchase-submit-button" style="flex:1; display:none; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);" onclick="generateInvoice()">Receber Fatura</button>
+                                        </div>
+                                    </div>
+                            <!-- Embeds removidos: documentos não são mais servidos embutidos. Pedidos são enviados por email com a fatura no corpo da mensagem. -->
                         </div>
                     </div>
 
                 <div class="sidebar3">
-                    <span style="font-size: 15px; cursor: pointer;" onclick="openNav()">&#9776; INFORMAÇÕES</span>
+                    <button type="button" class="info-button" aria-label="Informações" title="Informações" onclick="openNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
                     <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
@@ -2951,7 +3082,7 @@
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
-<button id="scrollToTopBtn" title="Voltar ao topo">up</button>
+<button id="scrollToTopBtn" title="Voltar ao topo"  style="display: hidden;">up</button>
     </footer>
 <script>
         // Slides automáticos e controles do site
@@ -3030,8 +3161,6 @@
                 }
             };
 
-            const apiBaseUrl = 'http://localhost:3000/api';
-
             window.updateManualBuyButtons = function() {
                 const buyButtons = document.querySelectorAll('.buy-menu-content li button');
                 buyButtons.forEach((button, index) => {
@@ -3063,12 +3192,11 @@
                 }
             };
 
-            window.submitPurchaseRequest = async function() {
+            window.submitPurchaseRequest = function() {
                 const name = document.getElementById('buyerName').value.trim();
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
                 const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
-                const manualId = document.getElementById('purchaseManualId').value;
 
                 if (!name || !courseType || !proofFile) {
                     alert('Preencha o nome, tipo de curso e anexe o comprovante em PDF.');
@@ -3083,29 +3211,18 @@
                     return;
                 }
 
-                const formData = new FormData();
-                formData.append('buyerName', name);
-                formData.append('courseType', courseType);
-                formData.append('manualTitle', manualTitle);
-                formData.append('manualId', manualId);
-                formData.append('proofFile', proofFile);
+                const email = 'saraswatimaaschool@gmail.com';
+                const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
+                const body = encodeURIComponent(
+                    `Pedido de compra de ${manualTitle}\n` +
+                    `Nome: ${name}\n` +
+                    `Tipo de curso: ${courseType}\n` +
+                    `Comprovante: ${proofFile.name}\n\n` +
+                    `Por favor, anexe o PDF manualmente no cliente de email antes de enviar.`
+                );
 
-                try {
-                    const response = await fetch(`${apiBaseUrl}/purchase`, {
-                        method: 'POST',
-                        body: formData,
-                    });
-                    const result = await response.json();
-                    if (!response.ok) {
-                        throw new Error(result.error || 'Falha ao enviar o pedido.');
-                    }
-
-                    alert('Pedido de compra enviado com sucesso. O manual em PDF também será anexado pelo servidor.');
-                    closePurchaseForm();
-                } catch (error) {
-                    console.error(error);
-                    alert(`Erro ao enviar pedido: ${error.message}`);
-                }
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                closePurchaseForm();
             };
 
             // Toggle Google translate menu
@@ -3123,7 +3240,11 @@
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             if (scrollToTopBtn) {
                 window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
+                    const w = window.innerWidth || document.documentElement.clientWidth;
+                    let threshold = 300;
+                    if (w <= 480) threshold = 80;
+                    else if (w <= 768) threshold = 150;
+                    if (window.scrollY > threshold) {
                         scrollToTopBtn.style.display = 'flex';
                         scrollToTopBtn.style.opacity = '1';
                     } else {
@@ -3185,8 +3306,25 @@
         // Function to handle navigation functionality
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 90;
     if (sidenav) {
-        sidenav.style.width = "85%";
+        sidenav.style.display = 'block';
+        sidenav.style.top = `${headerHeight}px`;
+        sidenav.style.height = `calc(100vh - ${headerHeight}px)`;
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            sidenav.style.width = 'calc(100% - 10px)';
+            sidenav.style.left = '5px';
+            sidenav.style.right = '5px';
+            sidenav.style.borderRadius = '0 0 16px 16px';
+        } else {
+            sidenav.style.width = '85%';
+            sidenav.style.left = '';
+            sidenav.style.right = '0';
+            sidenav.style.borderRadius = '0 0 0 18px';
+        }
+        sidenav.classList.add('show');
+        sidenav.setAttribute('aria-hidden', 'false');
         showSideSection('localizacao');
     } else {
         console.error('Sidenav element not found.');
@@ -3207,7 +3345,12 @@ function showSideSection(sectionId) {
 window.onload = function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
-        sidenav.style.width = "0";
+        sidenav.classList.remove('show');
+        sidenav.style.display = 'none';
+        sidenav.style.width = '0';
+        sidenav.style.top = '0';
+        sidenav.style.height = '100vh';
+        sidenav.setAttribute('aria-hidden', 'true');
     }
     showSideSection('localizacao');
 };
@@ -3215,10 +3358,57 @@ window.onload = function() {
 function closeNav() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
-        sidenav.style.width = "0";
+        sidenav.classList.remove('show');
+        sidenav.style.display = 'none';
+        sidenav.style.width = '0';
+        sidenav.setAttribute('aria-hidden', 'true');
     } else {
         console.error('Sidenav element not found.');
-    }};
+    }
+};
+
+document.addEventListener('click', function(event) {
+    const sidenav = document.getElementById('mySidenav');
+    if (!sidenav || !sidenav.classList.contains('show')) return;
+    const sidebarToggle = event.target.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
+    if (!sidenav.contains(event.target) && !sidebarToggle) {
+        closeNav();
+    }
+});
+// Robust: attach handlers after DOM ready and use delegation so it works when site is served online
+document.addEventListener('DOMContentLoaded', function() {
+    // set ARIA and tabindex for accessibility
+    const infoBtn = document.querySelector('.sidebar3 .info-button, .sidebar3 span, .sidebar3 button');
+    if (infoBtn) {
+        try { infoBtn.setAttribute('role', 'button'); infoBtn.setAttribute('tabindex', '0'); } catch(e){}
+    }
+    // add subtle pulse on small screens to draw attention
+    try {
+        if (infoBtn && window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+            infoBtn.classList.add('pulse');
+        }
+    } catch (e) {}
+
+    // Click delegation: opens sidenav when the info button is clicked (works even if element added later)
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest && e.target.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
+        if (btn) {
+            e.preventDefault();
+            if (typeof openNav === 'function') openNav();
+        }
+    }, { passive: false });
+
+    // Keyboard handling for Enter / Space when focused on the info element
+    document.addEventListener('keydown', function(e) {
+        const active = document.activeElement;
+        if (!active) return;
+        const isInfo = active.closest && active.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
+        if (isInfo && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) {
+            e.preventDefault();
+            if (typeof openNav === 'function') openNav();
+        }
+    });
+});
          // Registros & Pagamento
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
