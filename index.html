@@ -2475,7 +2475,6 @@
                             <!-- Embeds removidos: documentos não são mais servidos embutidos. Pedidos são enviados por email com a fatura no corpo da mensagem. -->
                         </div>
                     </div>
-
                 <div class="sidebar3">
                     <button type="button" class="info-button" aria-label="Informações" title="Informações" onclick="openNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
                     <div id="mySidenav" class="sidenav">
@@ -2492,11 +2491,11 @@
                                     <!-- LOCALIZAÇÃO SECTION -->
                                     <section id="localizacao" class="sidenav-section" style="padding: 20px 0;">
                                         <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">📍 Localização</h2>
-                                        <p style="color: #475569; line-height: 1.7; margin-bottom: 16px;">Visite-nos ou agende sua aula online. Nossa escola está estrategicamente localizada em Luanda, com acesso facilitado e atendimento personalizado.</p>
+                                        <p style="color: #475569; line-height: 1.7; margin-bottom: 16px;">Visite-nos ou agende sua aula online. <br/>Nossa escola está estrategicamente localizada<br/> em Luanda,com acesso facilitado e <br/>atendimento personalizado.</p>
                                         
                                         <div style="background: linear-gradient(135deg, #eef2ff, #f3f0ff); padding: 16px; border-radius: 12px; margin: 16px 0; border-left: 4px solid #667eea;">
                                             <p style="margin: 8px 0; color: #111827;"><strong>📮 Endereço:</strong></p>
-                                            <p style="margin: 0 0 12px 0; color: #475569;">Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</p>
+                                            <p style="margin: 0 0 12px 0; color: #475569;">Av. Deolinda Rodrigues, nº 475, Rangel, <br/>Luanda, Angola</p>
                                             
                                             <p style="margin: 8px 0; color: #111827;"><strong>🕒 Horário de Funcionamento:</strong></p>
                                             <p style="margin: 0 0 12px 0; color: #475569;">Segunda a Sexta: 07:30 - 20:00</p>
@@ -2512,14 +2511,14 @@
                                         
                                         <div style="margin-top: 20px; padding: 18px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 12px; border-left: 4px solid #10b981;">
                                             <h3 style="margin: 0 0 12px 0; color: #111827; font-size: 1.1rem;">✨ Agende sua Visita</h3>
-                                            <p style="margin: 0 0 12px 0; color: #475569; line-height: 1.6;">Entre em contato conosco para agendar uma visita à nossa escola. Nossa equipe confirmará o horário e detalhes com você.</p>
+                                            <p style="margin: 0 0 12px 0; color: #475569; line-height: 1.6;">Entre em contato conosco para agendar uma <br/>visita à nossa escola.Nossa equipe confirmará <br/>o horário e detalhes com você.</p>
                                             <a href="https://wa.me/244951474872" style="display: inline-block; padding: 10px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#059669';" onmouseout="this.style.background='#10b981';">💬 Contacte via WhatsApp</a>
                                         </div>
                                     </section>
                                     <!-- PARCEIROS SECTION -->
                                    <section id="parceiros-sidenav" class="sidenav-section" style="display:none; padding: 20px 0;">
                                     <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">🤝 Nossos Parceiros</h2>
-                                    <p style="color: #475569; line-height: 1.7; margin-bottom: 20px;">Conheça as instituições que confiam em nosso trabalho e fazem parte da nossa jornada educacional.</p>
+                                    <p style="color: #475569; line-height: 1.7; margin-bottom: 20px;">Conheça as instituições que confiam <br/>em nosso trabalho e fazem parte da<br/> nossa jornada educacional.</p>
                                     <div class="parceiros-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px;">
                                         <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
                                             <img src="Image/parceiro1.jpg" alt="Parceiro 1" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
