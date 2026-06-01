@@ -590,6 +590,7 @@
   right: 0;
   top: 0;
   width: auto;
+    z-index: 1301;
 }
 .sidebar3 span {
   display: inline-flex;
@@ -2476,7 +2477,7 @@
                         </div>
                     </div>
                 <div class="sidebar3">
-                    <button type="button" class="info-button" id="infoToggleBtn" aria-label="Informações" title="Informações"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
+                    <button type="button" class="info-button" id="infoToggleBtn" aria-label="Informações" title="Informações" onclick="toggleNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
                     <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
