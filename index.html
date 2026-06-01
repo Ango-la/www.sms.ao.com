@@ -2476,7 +2476,7 @@
                         </div>
                     </div>
                 <div class="sidebar3">
-                    <button type="button" class="info-button" aria-label="Informações" title="Informações" onclick="openNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
+                    <button type="button" class="info-button" id="infoToggleBtn" aria-label="Informações" title="Informações"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
                     <div id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                 <div class="sidenav-menu">
@@ -3302,7 +3302,12 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // Function to handle navigation functionality
+        // Centralized sidebar state and control
+const sidebarState = {
+    isOpen: false
+};
+
+// Function to handle navigation functionality
 function openNav() {
     const sidenav = document.getElementById("mySidenav");
     const header = document.querySelector('header');
@@ -3324,9 +3329,27 @@ function openNav() {
         }
         sidenav.classList.add('show');
         sidenav.setAttribute('aria-hidden', 'false');
+        sidebarState.isOpen = true;
         showSideSection('localizacao');
+    }
+}
+
+function closeNav() {
+    const sidenav = document.getElementById("mySidenav");
+    if (sidenav) {
+        sidenav.classList.remove('show');
+        sidenav.style.display = 'none';
+        sidenav.style.width = '0';
+        sidenav.setAttribute('aria-hidden', 'true');
+        sidebarState.isOpen = false;
+    }
+}
+
+function toggleNav() {
+    if (sidebarState.isOpen) {
+        closeNav();
     } else {
-        console.error('Sidenav element not found.');
+        openNav();
     }
 }
 
@@ -3341,7 +3364,8 @@ function showSideSection(sectionId) {
     }
 }
 
-window.onload = function() {
+// Initialize on page load
+window.addEventListener('load', function() {
     const sidenav = document.getElementById("mySidenav");
     if (sidenav) {
         sidenav.classList.remove('show');
@@ -3350,61 +3374,63 @@ window.onload = function() {
         sidenav.style.top = '0';
         sidenav.style.height = '100vh';
         sidenav.setAttribute('aria-hidden', 'true');
+        sidebarState.isOpen = false;
     }
     showSideSection('localizacao');
-};
-
-function closeNav() {
-    const sidenav = document.getElementById("mySidenav");
-    if (sidenav) {
-        sidenav.classList.remove('show');
-        sidenav.style.display = 'none';
-        sidenav.style.width = '0';
-        sidenav.setAttribute('aria-hidden', 'true');
-    } else {
-        console.error('Sidenav element not found.');
-    }
-};
-
-document.addEventListener('click', function(event) {
-    const sidenav = document.getElementById('mySidenav');
-    if (!sidenav || !sidenav.classList.contains('show')) return;
-    const sidebarToggle = event.target.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
-    if (!sidenav.contains(event.target) && !sidebarToggle) {
-        closeNav();
-    }
 });
-// Robust: attach handlers after DOM ready and use delegation so it works when site is served online
+
+// Set up event listeners after DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // set ARIA and tabindex for accessibility
-    const infoBtn = document.querySelector('.sidebar3 .info-button, .sidebar3 span, .sidebar3 button');
+    const infoBtn = document.getElementById('infoToggleBtn');
+    
     if (infoBtn) {
-        try { infoBtn.setAttribute('role', 'button'); infoBtn.setAttribute('tabindex', '0'); } catch(e){}
-    }
-    // add subtle pulse on small screens to draw attention
-    try {
-        if (infoBtn && window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+        // Set accessibility attributes
+        infoBtn.setAttribute('role', 'button');
+        infoBtn.setAttribute('tabindex', '0');
+        
+        // Add pulse animation on small screens
+        if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
             infoBtn.classList.add('pulse');
         }
-    } catch (e) {}
-
-    // Click delegation: opens sidenav when the info button is clicked (works even if element added later)
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest && e.target.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
-        if (btn) {
+        
+        // Click handler for toggle button
+        infoBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            if (typeof openNav === 'function') openNav();
-        }
-    }, { passive: false });
-
-    // Keyboard handling for Enter / Space when focused on the info element
-    document.addEventListener('keydown', function(e) {
-        const active = document.activeElement;
-        if (!active) return;
-        const isInfo = active.closest && active.closest('.sidebar3 span, .sidebar3 button, .sidebar3 .info-button');
-        if (isInfo && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) {
-            e.preventDefault();
-            if (typeof openNav === 'function') openNav();
+            e.stopPropagation();
+            toggleNav();
+        });
+        
+        // Keyboard handler for toggle button
+        infoBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleNav();
+            }
+        });
+    }
+    
+    // Prevent sidebar from closing when clicking inside it
+    const sidenav = document.getElementById('mySidenav');
+    if (sidenav) {
+        sidenav.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+        const sidenav = document.getElementById('mySidenav');
+        const infoBtn = document.getElementById('infoToggleBtn');
+        
+        if (!sidebarState.isOpen || !sidenav) return;
+        
+        // Check if click is on the toggle button
+        if (infoBtn && infoBtn.contains(event.target)) return;
+        
+        // Check if click is outside the sidenav
+        if (!sidenav.contains(event.target)) {
+            closeNav();
         }
     });
 });
