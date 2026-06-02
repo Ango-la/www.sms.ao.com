@@ -710,6 +710,32 @@
   backdrop-filter: blur(10px);
 }
 
+.info-system .info-system-close-wrap {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1001;
+}
+
+.info-system-close-button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  color: #334155;
+  font-size: 18px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.info-system-close-button:hover {
+  transform: translateY(-1px);
+}
+
 .info-system.collapsed {
   display: none;
 }
@@ -720,6 +746,42 @@
   margin: 0;
   max-height: calc(88vh - 56px);
   overflow-y: auto;
+}
+
+.buy-menu-content ul li {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.buy-menu-content ul li img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.buy-menu-content ul li h3,
+.buy-menu-content ul li p,
+.buy-menu-content ul li #manualPrice1,
+.buy-menu-content ul li #manualPrice2,
+.buy-menu-content ul li #manualPrice3,
+.buy-menu-content ul li #manualPrice4,
+.buy-menu-content ul li #manualPrice5,
+.buy-menu-content ul li #manualPrice6,
+.buy-menu-content ul li #manualPrice7,
+.buy-menu-content ul li #manualPrice8,
+.buy-menu-content ul li #manualPrice9,
+.buy-menu-content ul li #manualPrice10 {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.buy-menu-content ul li button {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
 }
 
 .info-system-toggle-container {
@@ -2680,6 +2742,9 @@
         </header>
 
     <div class="info-system collapsed">
+                    <div class="info-system-close-wrap">
+                        <button type="button" class="info-system-close-button" onclick="toggleAllInfoSections()" aria-label="Fechar informações">×</button>
+                    </div>
                     <div class="info-system-content">
                        
                                     <!-- LOCALIZAÇÃO SECTION -->
