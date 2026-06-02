@@ -3507,7 +3507,7 @@
                     `Nome: ${name}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
-                    `O seu pedido será validado, assim que confirmarmos a receção dos Pagamento. Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas cliente.`
+                    `O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento. Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente.      Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem!  em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
                 );
 
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
