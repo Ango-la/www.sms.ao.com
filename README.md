@@ -102,12 +102,109 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             padding: 0 15px;
             font-weight: bold;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .header-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
             gap: 12px;
-            flex-wrap: nowrap;  }
+            margin-left: 0;
+            flex-shrink: 0;
+        }
+
+        .header-actions > * {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .header-actions .buy-button,
+        .header-actions .info-toggle-button {
+            width: auto;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+        }
+
+        .header-actions .info-toggle-button {
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.32);
+        }
+
+        .header-actions .buy-button:hover,
+        .header-actions .info-toggle-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+        }
+
+        .buy-button-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .header-container {
+                justify-content: center;
+            }
+            .store-name {
+                flex: 1 1 100%;
+                text-align: center;
+                font-size: 18px;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            .header-actions > * {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+            .header-actions .google-translate {
+                width: 100%;
+                justify-content: center;
+            }
+            .header-actions .google-translate-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .header-actions {
+                gap: 10px;
+            }
+            .header-actions .buy-button,
+            .header-actions .info-toggle-button {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .store-name {
+                font-size: 16px;
+            }
+        }
+
         .ticker-overlay {
             position: fixed;
             top: 0;
@@ -154,32 +251,31 @@
             align-items: center;
             padding: 0 15px;
             font-weight: bold;
-            gap: 10px;
+            gap: 0;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .header-actions {
             display: flex;
+            flex-wrap: nowrap;
             align-items: center;
-            gap: 8px;
-            margin-left: auto;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-left: 0;
+            flex-shrink: 0;
         }
 
-        .sidebar3 span {
-            font-size: 13px !important;
-            padding: 6px 12px;
+        .header-actions > * {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .sidebar3 span:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.03);
+                justify-content: center;
+                gap: 8px;
+                padding: 10px 14px;
+                border-radius: 999px;
+                font-size: 13px;
+                font-weight: 600;
+                transition: all 0.25s ease;
         }
 
         .header-actions .buy-button {
@@ -207,41 +303,6 @@
             align-items: center;
             gap: 8px;
         }
-
-        /* compact info button that matches header buy button style */
-        .sidebar3 .info-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-width: auto;
-            padding: 8px 10px;
-            border-radius: 999px;
-            border: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-            line-height: 1;
-            box-shadow: 0 6px 18px rgba(102,126,234,0.22);
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .sidebar3 .info-button i {
-            font-size: 14px;
-            line-height: 1;
-        }
-        .sidebar3 .info-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 22px rgba(102,126,234,0.26);
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 6px 18px rgba(102,126,234,0.22); }
-            50% { transform: scale(1.05); box-shadow: 0 10px 26px rgba(102,126,234,0.18); }
-            100% { transform: scale(1); box-shadow: 0 6px 18px rgba(102,126,234,0.22); }
-        }
-        .sidebar3 .info-button.pulse { animation: pulse 2.5s infinite ease-in-out; }
 
         .hidden {
             display: none !important;
@@ -350,10 +411,16 @@
             flex-shrink: 0;
         }
         .store-name {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
-            flex-shrink: 0; }
+            flex: 1 1 auto;
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         nav {
             margin-left: auto;  }
         nav ul {
@@ -460,6 +527,14 @@
                 width: 100%;
                 min-width: auto;
                 max-width: 300px;
+            }
+            .google-translate-button {
+                min-width: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            .google-translate {
+                width: 100%;
             }
         }
         /* RESPONSIVO - TABLETS E CELULARES */
@@ -580,213 +655,178 @@
             .terms-content p {
                 font-size: 14px;
             }}
-/* Sidebar */
-.sidebar3 {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Lato", sans-serif;
-  right: 0;
-  top: 0;
-  width: auto;
-    z-index: 1301;
-}
-.sidebar3 span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  color: #334155;
-  background: rgba(102, 126, 234, 0.12);
-  border: 1px solid rgba(102, 126, 234, 0.25);
-  border-radius: 999px;
-  padding: 10px 16px;
-  transition: all 0.3s ease;
-}
-.sidebar3 span:hover {
-  transform: translateY(-1px);
-  background: rgba(102, 126, 234, 0.18);
-  color: #1f2937;
-}
-.sidenav {
-  display: none;
+
+.info-system {
   position: fixed;
-  z-index: 1200;
-  top: 0;
-  right: 0;
-  width: min(92%, 420px);
-  max-width: 420px;
-  height: calc(100vh - 90px);
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(14px);
+  top: 100px;
+  right: 20px;
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100vh - 120px);
   overflow: hidden;
-  box-shadow: -12px 0 36px rgba(0,0,0,0.14);
-  border-radius: 0 0 0 18px;
-  transition: transform 0.35s ease, width 0.35s ease, top 0.25s ease;
-  transform: translateX(100%);
+  margin: 0;
+  background: rgba(248, 251, 255, 0.98);
+  border-radius: 22px;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.18);
+  padding: 14px;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
 }
-.sidenav.show {
-  display: block;
-  transform: translateX(0);
+
+.info-system.collapsed {
+  display: none;
+}
+
+.info-system-content {
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+  max-height: calc(88vh - 56px);
   overflow-y: auto;
 }
-.sidenav a {
-  padding: 14px 28px;
-  text-decoration: none;
-  font-size: 17px;
-  color: #000000;
-  display: block;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-.sidenav a:hover {
-  color: #fff;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transform: translateX(3px);
-}
-.sidenav .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 18px;
-  font-size: 32px;
-  color: #334155;
-  background: rgba(255,255,255,0.85);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+
+.info-system-toggle-container {
   display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.info-toggle-button {
+  width: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-width: 130px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
 }
-.sidenav .closebtn:hover {
-  background: #fff;
+
+.info-toggle-button:hover {
+  transform: translateY(-3px);
 }
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 16px;
-  }
+
+.info-system.collapsed .info-section {
+  display: none;
 }
-.sidenav-menu {
+
+.info-system .info-section > *:not(h2) {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.info-system.collapsed .info-section > *:not(h2) {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.info-section.opened > *:not(h2) {
+  max-height: 9999px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-section {
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(102, 126, 234, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.05);
+  padding: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.info-section.opened {
+  box-shadow: 0 18px 36px rgba(102, 126, 234, 0.12);
+  transform: translateY(-1px);
+}
+
+.info-section h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #1f2937;
+  background: #f7f9ff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  border: 1px solid rgba(102, 126, 234, 0.12);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.info-section h2::after {
+  content: '⯈';
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.info-section.opened h2::after {
+  transform: rotate(90deg);
+}
+
+.info-section h2:hover {
+  background: #eef4ff;
+}
+
+.info-section-body {
+  display: grid;
+  gap: 14px;
+}
+
+.info-section-body p,
+.info-section-body li,
+.info-section-body label,
+.info-section-body h3,
+.info-section-body strong,
+.info-section-body .contact-item {
+  color: #475569;
+  line-height: 1.75;
+}
+
+.info-section-body > div,
+.info-section-body > .parceiros-gallery,
+.info-section-body > .vagas-container,
+.info-section-body > div[class*="contact-item"] {
+  width: 100%;
+}
+
+.info-section-body .parceiros-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+}
+
+.info-section-body .parceiro-item,
+.info-section-body .vaga-card,
+.info-section-body .contact-item,
+.info-section-body .info-card {
+  background: #f8fbff;
+  border: 1px solid rgba(102, 126, 234, 0.14);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.info-section-body .vaga-card {
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.08);
+}
+
+.info-section-body .contact-item {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 22px 22px;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  gap: 6px;
 }
-.sidenav-menu a {
-  padding: 14px 16px;
-  font-size: 16px;
-  background: #f5f7ff;
-  border-radius: 14px;
-  color: #1f2937;
-  box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.12);
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.sidenav-menu a:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
-  color: #fff;
-}
-@media screen and (max-width: 768px) {
-  .sidenav {
-    width: calc(100% - 10px);
-    max-width: none;
-    left: 5px;
-    right: 5px;
-    top: 88px;
-    height: calc(100vh - 94px);
-    border-radius: 0 0 16px 16px;
-  }
-  .sidenav.show {
-    width: calc(100% - 10px);
-  }
-  .sidenav a {
-    padding: 16px 24px;
-    font-size: 16px;
-  }
-  .sidenav-menu {
-    padding: 0 18px 20px;
-  }
-  .sidenav-menu a {
-    font-size: 15px;
-    padding: 16px 18px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .sidebar3 {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    left: auto;
-    z-index: 1300;
-    margin: 0;
-    background: transparent;
-    border-radius: 999px;
-    box-shadow: none;
-    padding: 0;
-  }
-  .sidebar3 .info-button {
-    min-width: auto;
-    padding: 8px 10px;
-    font-size: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-    border-radius: 999px;
-    box-shadow: 0 8px 18px rgba(102, 126, 234, 0.22);
-  }
-  .sidebar3 .info-button i {
-    font-size: 14px;
-  }
-  .sidenav {
-    top: 94px;
-    height: calc(100vh - 94px);
-  }
-  .sidenav .closebtn {
-    top: 12px;
-    right: 14px;
-    font-size: 28px;
-    width: 40px;
-    height: 40px;
-  }
-  .sidenav a {
-    padding: 14px 20px;
-    font-size: 15px;
-  }
-}
-.sidenav-content {
-  padding: 20px;
-  overflow-y: auto;
-  max-height: calc(100vh - 140px);
-}
-.sidenav-section {
-  display: none;
-}
-.sidenav-section h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
- color: #667eea;
-  max-width: 900px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  border-bottom: 3px solid #667eea;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.sidenav-content p {
-  color: #555;
+
+.info-system-content p {
+  color: #475569;
   line-height: 1.8;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   font-size: 15px;
 }
 .terms-container {
@@ -901,19 +941,57 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
+            z-index: 5;
         }
 
         .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.55);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .dot:hover,
+        .dot:focus {
+            transform: scale(1.1);
         }
 
         .dot.active {
             background: white;
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                height: 320px;
+            }
+
+            .banner-dots {
+                bottom: 16px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                height: 260px;
+            }
+
+            .banner-dots {
+                bottom: 14px;
+            }
+
+            .dot {
+                width: 16px;
+                height: 16px;
+            }
         }
 
         /* DASHBOARD */
@@ -1474,7 +1552,7 @@
             }
 
             .banner {
-                height: 250px;
+                height: 320px;
             }
 
             .banner-slide {
@@ -1603,7 +1681,7 @@
             }
 
             .banner {
-                height: 180px;
+                height: 260px;
             }
 
             .banner-slide {
@@ -2025,6 +2103,66 @@
             .form-group {
                 margin-bottom: 15px !important;
             }
+
+            .info-system {
+                top: 82px;
+                right: 10px;
+                left: 10px;
+                width: calc(100vw - 20px);
+                max-width: none;
+                max-height: calc(100vh - 94px);
+                border-radius: 18px;
+            }
+
+            .info-system-content {
+                max-height: calc(100vh - 120px);
+                padding: 0 8px 12px;
+            }
+
+            .info-section {
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+
+            .info-section h2 {
+                font-size: 15px;
+                padding: 10px 12px;
+            }
+
+            .info-section-body {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-system {
+                top: 70px;
+                right: 0;
+                left: 0;
+                width: 100%;
+                border-radius: 0;
+                max-height: calc(100vh - 70px);
+            }
+
+            .info-system-content {
+                max-height: calc(100vh - 100px);
+                padding: 0 10px 12px;
+            }
+
+            .info-section h2 {
+                font-size: 14px;
+            }
+
+            .info-section-body {
+                gap: 10px;
+            }
+
+            .info-section-body .parceiro-item,
+            .info-section-body .vaga-card,
+            .info-section-body .contact-item,
+            .info-section-body .info-card {
+                padding: 12px;
+            }
         }
 
         /* Google Translate widget com logo do Google */
@@ -2089,8 +2227,9 @@
 
         .banner-slide img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .product-info,
@@ -2172,9 +2311,7 @@
 
             .buy-button,
             .whatsapp-button,
-            .order-toggle-btn,
-            .sidenav-menu a,
-            .sidebar3 span {
+            .order-toggle-btn {
                 min-width: 100%;
                 box-sizing: border-box;
             }
@@ -2313,8 +2450,8 @@
                 (function(){
                     window.hideBuyMenu = function(){
                         var menu = document.getElementById('buy-menu');
+                        var button = document.getElementById('buyMenuToggleBtn');
                         if(!menu) return;
-                        var button = document.querySelector('.buy-button');
                         menu.classList.remove('show');
                         menu.style.display = 'none';
                         menu.setAttribute('aria-hidden','true');
@@ -2325,7 +2462,7 @@
                         var menu = document.getElementById('buy-menu');
                         if(!menu) return;
                         if (menu.classList.contains('show')){
-                            if (!menu.contains(e.target) && !e.target.closest('.buy-button')){
+                            if (!menu.contains(e.target) && !e.target.closest('#buyMenuToggleBtn')){
                                 hideBuyMenu();
                             }
                         }
@@ -2345,8 +2482,12 @@
                         <div id="google_translate_element">selecione o idioma</div>
                     </div>
                 </div>
+                <div>  
+                    <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
+                </div>
                 <div class="buy-button-container">
-                    <button type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
+                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
+                </div>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
                         <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                         <div class="buy-menu-content">
@@ -2476,23 +2617,18 @@
                             <!-- Embeds removidos: documentos não são mais servidos embutidos. Pedidos são enviados por email com a fatura no corpo da mensagem. -->
                         </div>
                     </div>
-                <div class="sidebar3">
-                    <button type="button" class="info-button" id="infoToggleBtn" aria-label="Informações" title="Informações" onclick="toggleNav()"><i class="fa fa-info-circle" aria-hidden="true"></i> Informações</button>
-                    <div id="mySidenav" class="sidenav">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <div class="sidenav-menu">
-                                    <a href="javascript:void(0)" onclick="showSideSection('localizacao')">Localização</a>
-                                    <a href="javascript:void(0)" onclick="showSideSection('parceiros-sidenav')">Nossos Parceiros</a>
-                                    <a href="javascript:void(0)" onclick="showSideSection('carreira')">Carreira</a>
-                                    <a href="javascript:void(0)" onclick="showSideSection('louvores')">Louvores</a>
-                                    <a href="javascript:void(0)" onclick="showSideSection('Bankdetail')">Dados Bancários</a>
-                                    <a href="javascript:void(0)" onclick="showSideSection('termos-privacidade')">Termos e Privacidade</a>
-                                </div>
-                                <div class="sidenav-content">
+                </div>
+            </div>
+        </header>
+
+    <div class="info-system collapsed">
+                    <div class="info-system-content">
+                       
                                     <!-- LOCALIZAÇÃO SECTION -->
-                                    <section id="localizacao" class="sidenav-section" style="padding: 20px 0;">
-                                        <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">📍 Localização</h2>
-                                        <p style="color: #475569; line-height: 1.7; margin-bottom: 16px;">Visite-nos ou agende sua aula online. <br/>Nossa escola está estrategicamente localizada<br/> em Luanda,com acesso facilitado e <br/>atendimento personalizado.</p>
+                                    <section id="localizacao" class="info-section">
+                                        <h2 style="color: #667eea;">📍 Localização</h2>
+                                        <div class="info-section-body">
+                                        <p style="color: #475569; line-height: 1.7;">Visite-nos ou agende sua aula online. <br/>Nossa escola está estrategicamente localizada<br/> em Luanda,com acesso facilitado e <br/>atendimento personalizado.</p>
                                         
                                         <div style="background: linear-gradient(135deg, #eef2ff, #f3f0ff); padding: 16px; border-radius: 12px; margin: 16px 0; border-left: 4px solid #667eea;">
                                             <p style="margin: 8px 0; color: #111827;"><strong>📮 Endereço:</strong></p>
@@ -2515,11 +2651,13 @@
                                             <p style="margin: 0 0 12px 0; color: #475569; line-height: 1.6;">Entre em contato conosco para agendar uma <br/>visita à nossa escola.Nossa equipe confirmará <br/>o horário e detalhes com você.</p>
                                             <a href="https://wa.me/244951474872" style="display: inline-block; padding: 10px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#059669';" onmouseout="this.style.background='#10b981';">💬 Contacte via WhatsApp</a>
                                         </div>
+                                        </div>
                                     </section>
                                     <!-- PARCEIROS SECTION -->
-                                   <section id="parceiros-sidenav" class="sidenav-section" style="display:none; padding: 20px 0;">
-                                    <h2 style="color: #667eea; margin-bottom: 16px; font-size: 1.5rem;">🤝 Nossos Parceiros</h2>
-                                    <p style="color: #475569; line-height: 1.7; margin-bottom: 20px;">Conheça as instituições que confiam <br/>em nosso trabalho e fazem parte da<br/> nossa jornada educacional.</p>
+                                   <section id="parceiros-sidenav" class="info-section">
+                                    <h2 style="color: #667eea;">🤝 Nossos Parceiros</h2>
+                                    <div class="info-section-body">
+                                    <p style="color: #475569; line-height: 1.7;">Conheça as instituições que confiam <br/>em nosso trabalho e fazem parte da<br/> nossa jornada educacional.</p>
                                     <div class="parceiros-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px;">
                                         <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
                                             <img src="Image/parceiro1.jpg" alt="Parceiro 1" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
@@ -2539,10 +2677,12 @@
                                         <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
                                             <img src="Image/parceiro6.jpg" alt="Parceiro 6" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
                                         </div>
+                                        </div>
                                    </section>
                                     <!-- CARREIRA SECTION -->
-                                    <section id="carreira" class="sidenav-section" style="display:none;">
-                                        <h2>Carreira</h2> 
+                                    <section id="carreira" class="info-section">
+                                        <h2 style="color: #667eea;">Carreira</h2> 
+                                        <div class="info-section-body">
                                         <!-- Application form (hidden by default) -->
                                         <div id="application-form" style="display:none; margin-top:18px; padding:18px; border-radius:12px; background:#ffffff; border:1px solid #e5e7eb;">
                                             <h3 style="margin-top:0;">Formulário de Candidatura</h3>
@@ -2626,11 +2766,13 @@
                                             <p style="margin: 0 0 14px; color: #475569;">Envie seu currículo para <a href="mailto:saraswatimaaschool@gmail.com" style="color: #1d4ed8; text-decoration: none;">saraswatimaaschool@gmail.com</a> e seja considerado para futuras oportunidades.</p>
                                             <a href="mailto:saraswatimaaschool@gmail.com" onclick="window.location.href=this.href; return false;" style="display:inline-block; padding: 12px 20px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar Currículo</a>
                                         </div>
+                                        </div>
                                     </section>
                                     <!-- LOUVORES SECTION -->
-                                    <section id="louvores" class="sidenav-section" style="display:none;">
-                                        <h2 style="margin-bottom: 12px; color: #111827;">Louvores</h2>
-                                        <p style="max-width: 720px; margin: 0 0 24px; color: #475569; line-height: 1.75;">Veja como nossos alunos e parceiros reconhecem a qualidade pedagógica e o impacto das nossas aulas. Cada depoimento reflete a experiência real com atendimento acolhedor, resultados rápidos e suporte personalizado.</p>
+                                    <section id="louvores" class="info-section">
+                                        <h2 style="color: #667eea;">Louvores</h2>
+                                        <div class="info-section-body">
+                                        <p style="max-width: 720px; color: #475569; line-height: 1.75;">Veja como nossos alunos e parceiros reconhecem a qualidade pedagógica e o impacto das nossas aulas. Cada depoimento reflete a experiência real com atendimento acolhedor, resultados rápidos e suporte personalizado.</p>
                                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
                                             <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
                                                 <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
@@ -2667,10 +2809,12 @@
                                             <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Quer compartilhar sua experiência?</p>
                                             <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:depoimentos@sms.com.br">depoimentos@sms.com.br</a></p>
                                         </div>
+                                        </div>
                                     </section>
                                     <!-- Dados-Bancarios SECTION -->
-                                     <section id="Bankdetail" class="sidenav-section" style="display:none;">
+                                     <section id="Bankdetail" class="info-section">
                                          <h2 style="text-align: center; color: #667eea; margin-bottom: 30px;">💳 Dados Bancários & Comprovante</h2>
+                                         <div class="info-section-body">
             
             <!-- DADOS BANCÁRIOS -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
@@ -2715,9 +2859,9 @@
                     </div>  
                                     </section>
                                     <!-- TERMOS E PRIVACIDADE SECTION -->
-                                    <section id="termos-privacidade" class="sidenav-section" style="display:none;">
+                                    <section id="termos-privacidade" class="info-section">
+                                        <h2 style="color: #667eea;">Termos de Serviço e Privacidade</h2>
                                         <div class="terms-container">
-                                            <h2>Termos de Serviço e Privacidade</h2>
                                             <div class="terms-content">
                                                 <h3>1. Termos de Serviço</h3>
                                                 <p>Bem-vindo à S.M.S - Escola de Linguas & Habilidades. Ao usar nosso site, você concorda com os seguintes termos e condições:</p>
@@ -2758,7 +2902,6 @@
                 </div>
             </div>
         </div>
-    </header>
     <!-- BANNER COM SLIDES -->
     <section class="banner">
         <div class="banner-slider" id="bannerSlider">
@@ -3082,7 +3225,7 @@
         </section>
         <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
-<button id="scrollToTopBtn" title="Voltar ao topo"  style="display: hidden;">up</button>
+<button id="scrollToTopBtn" title="Voltar ao topo" style="display: none;">up</button>
     </footer>
 <script>
         // Slides automáticos e controles do site
@@ -3146,7 +3289,7 @@
             // Toggle buy menu (used by onclick in HTML)
             window.toggleBuyMenu = function() {
                 const buyMenu = document.getElementById('buy-menu');
-                const button = document.querySelector('.buy-button');
+                const button = document.getElementById('buyMenuToggleBtn');
                 if (!buyMenu) return;
                 const opened = !buyMenu.classList.contains('show');
                 buyMenu.classList.toggle('show');
@@ -3218,7 +3361,7 @@
                     `Nome: ${name}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
-                    `Por favor, anexe o PDF manualmente no cliente de email antes de enviar.`
+                    `O seu pedido será validado, assim que confirmarmos a receção dos Pagamento. Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas cliente.`
                 );
 
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
@@ -3303,139 +3446,50 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // Centralized sidebar state and control
-const sidebarState = {
-    isOpen: false
-};
+        // Registros & Pagamento
+        function toggleAllInfoSections() {
+            const infoSystem = document.querySelector('.info-system');
+            const button = document.getElementById('infoToggleAllBtn');
+            if (!infoSystem || !button) return;
 
-// Function to handle navigation functionality
-function openNav() {
-    const sidenav = document.getElementById("mySidenav");
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 90;
-    if (sidenav) {
-        sidenav.style.display = 'block';
-        sidenav.style.top = `${headerHeight}px`;
-        sidenav.style.height = `calc(100vh - ${headerHeight}px)`;
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            sidenav.style.width = 'calc(100% - 10px)';
-            sidenav.style.left = '5px';
-            sidenav.style.right = '5px';
-            sidenav.style.borderRadius = '0 0 16px 16px';
-        } else {
-            sidenav.style.width = '85%';
-            sidenav.style.left = '';
-            sidenav.style.right = '0';
-            sidenav.style.borderRadius = '0 0 0 18px';
-        }
-        sidenav.classList.add('show');
-        sidenav.setAttribute('aria-hidden', 'false');
-        sidebarState.isOpen = true;
-        showSideSection('localizacao');
-    }
-}
+            const isCollapsed = infoSystem.classList.toggle('collapsed');
+            button.textContent = isCollapsed ? 'Ver informações' : 'Ocultar informações';
+            sectionsCloseAll();
 
-function closeNav() {
-    const sidenav = document.getElementById("mySidenav");
-    if (sidenav) {
-        sidenav.classList.remove('show');
-        sidenav.style.display = 'none';
-        sidenav.style.width = '0';
-        sidenav.setAttribute('aria-hidden', 'true');
-        sidebarState.isOpen = false;
-    }
-}
-
-function toggleNav() {
-    if (sidebarState.isOpen) {
-        closeNav();
-    } else {
-        openNav();
-    }
-}
-
-function showSideSection(sectionId) {
-    const sections = document.querySelectorAll('.sidenav-section');
-    sections.forEach(section => {
-        section.style.display = 'none';
-    });
-    const target = document.getElementById(sectionId);
-    if (target) {
-        target.style.display = 'block';
-    }
-}
-
-// Initialize on page load
-window.addEventListener('load', function() {
-    const sidenav = document.getElementById("mySidenav");
-    if (sidenav) {
-        sidenav.classList.remove('show');
-        sidenav.style.display = 'none';
-        sidenav.style.width = '0';
-        sidenav.style.top = '0';
-        sidenav.style.height = '100vh';
-        sidenav.setAttribute('aria-hidden', 'true');
-        sidebarState.isOpen = false;
-    }
-    showSideSection('localizacao');
-});
-
-// Set up event listeners after DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    const infoBtn = document.getElementById('infoToggleBtn');
-    
-    if (infoBtn) {
-        // Set accessibility attributes
-        infoBtn.setAttribute('role', 'button');
-        infoBtn.setAttribute('tabindex', '0');
-        
-        // Add pulse animation on small screens
-        if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
-            infoBtn.classList.add('pulse');
-        }
-        
-        // Click handler for toggle button
-        infoBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleNav();
-        });
-        
-        // Keyboard handler for toggle button
-        infoBtn.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleNav();
+            if (!isCollapsed) {
+                infoSystem.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        });
-    }
-    
-    // Prevent sidebar from closing when clicking inside it
-    const sidenav = document.getElementById('mySidenav');
-    if (sidenav) {
-        sidenav.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
-    
-    // Close sidebar when clicking outside
-    document.addEventListener('click', function(event) {
-        const sidenav = document.getElementById('mySidenav');
-        const infoBtn = document.getElementById('infoToggleBtn');
-        
-        if (!sidebarState.isOpen || !sidenav) return;
-        
-        // Check if click is on the toggle button
-        if (infoBtn && infoBtn.contains(event.target)) return;
-        
-        // Check if click is outside the sidenav
-        if (!sidenav.contains(event.target)) {
-            closeNav();
         }
-    });
-});
-         // Registros & Pagamento
+
+        function sectionsCloseAll() {
+            document.querySelectorAll('.info-section').forEach(section => {
+                section.classList.remove('opened');
+            });
+        }
+
+        function setupInfoAccordion() {
+            const infoSystem = document.querySelector('.info-system');
+            if (!infoSystem) return;
+
+            const sections = Array.from(infoSystem.querySelectorAll('.info-section'));
+            sections.forEach(section => {
+                const heading = section.querySelector('h2');
+                if (!heading) return;
+
+                heading.addEventListener('click', () => {
+                    const isOpen = section.classList.toggle('opened');
+                    infoSystem.classList.remove('collapsed');
+                    const button = document.getElementById('infoToggleAllBtn');
+                    if (button) button.textContent = 'Ocultar informações';
+                    if (isOpen) {
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupInfoAccordion);
+
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
