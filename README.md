@@ -2442,7 +2442,15 @@
 
         /* Center buy menu content on small screens and improve responsiveness */
         .buy-menu-content { text-align: center; }
-        .buy-menu-content ul li { align-items: center; justify-content: center; text-align: center; }
+        .buy-menu-content ul li { align-items: center; justify-content: center; text-align: center; max-width: 100%; overflow: hidden; }
+        .buy-menu-content ul li h3,
+        .buy-menu-content ul li p,
+        .buy-menu-content ul li span,
+        .buy-menu-content ul li strong {
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
         .buy-menu-content ul li button { margin-left: auto; margin-right: auto; max-width: 260px; }
 
         @media (max-width: 600px) {
@@ -2459,9 +2467,11 @@
             }
             .buy-menu-content { padding: 12px; }
             .buy-menu-content ul { grid-template-columns: 1fr; gap: 12px; }
-            .buy-menu-content ul li { padding: 10px; }
-            .buy-menu-content ul li img { width: 100%; height: 160px; }
-            .buy-menu-content ul li button { width: 100%; max-width: none; }
+            .buy-menu-content ul li { padding: 10px 10px 12px; }
+            .buy-menu-content ul li img { width: 100%; height: 140px; object-fit: cover; }
+            .buy-menu-content ul li h3 { font-size: 0.98rem; margin-bottom: 6px; }
+            .buy-menu-content ul li p { font-size: 0.92rem; line-height: 1.4; margin: 0 0 10px; }
+            .buy-menu-content ul li button { width: 100%; max-width: 100%; padding: 10px 12px; font-size: 0.95rem; }
         }
     </style>
     <!-- Google Translate widget com logo do Google -->
