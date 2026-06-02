@@ -2477,12 +2477,24 @@
     <!-- Google Translate widget com logo do Google -->
     <script>
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'pt',
-                includedLanguages: 'en,fr,pt',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
+            const initTranslation = () => {
+                const container = document.getElementById('google_translate_element');
+                if (!container) {
+                    return window.setTimeout(initTranslation, 50);
+                }
+
+                new google.translate.TranslateElement({
+                    pageLanguage: 'pt',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTranslation);
+            } else {
+                initTranslation();
+            }
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
