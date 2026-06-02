@@ -193,12 +193,24 @@
 
         @media (max-width: 650px) {
             .header-actions {
-                gap: 10px;
+                gap: 8px;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+            }
+            .header-actions > * {
+                flex: 1 1 100%;
+                min-width: 0;
+                font-size: 12px;
+                padding: 8px 10px;
             }
             .header-actions .buy-button,
-            .header-actions .info-toggle-button {
-                flex: 1 1 100%;
-                max-width: 100%;
+            .header-actions .info-toggle-button,
+            .header-actions .google-translate {
+                width: 100%;
+            }
+            .buy-button-container {
+                width: 100%;
             }
             .store-name {
                 font-size: 16px;
@@ -2105,18 +2117,23 @@
             }
 
             .info-system {
-                top: 82px;
-                right: 10px;
-                left: 10px;
-                width: calc(100vw - 20px);
-                max-width: none;
-                max-height: calc(100vh - 94px);
-                border-radius: 18px;
+                position: static !important;
+                top: auto !important;
+                right: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                max-height: calc(100vh - 100px);
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                background: rgba(255,255,255,0.98) !important;
+                margin-top: 14px !important;
             }
 
             .info-system-content {
                 max-height: calc(100vh - 120px);
-                padding: 0 8px 12px;
+                padding: 0 10px 12px;
+                overflow-y: auto;
             }
 
             .info-section {
@@ -2135,18 +2152,31 @@
         }
 
         @media (max-width: 480px) {
+            .header {
+                padding: 12px 0;
+            }
+
+            .header-container {
+                padding: 0 10px;
+            }
+
             .info-system {
-                top: 70px;
-                right: 0;
-                left: 0;
-                width: 100%;
-                border-radius: 0;
-                max-height: calc(100vh - 70px);
+                position: static !important;
+                top: auto !important;
+                right: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                max-height: calc(100vh - 90px);
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin-top: 10px !important;
             }
 
             .info-system-content {
-                max-height: calc(100vh - 100px);
-                padding: 0 10px 12px;
+                max-height: calc(100vh - 108px);
+                padding: 0 10px 10px;
+                overflow-y: auto;
             }
 
             .info-section h2 {
