@@ -2485,6 +2485,7 @@
 
                 new google.translate.TranslateElement({
                     pageLanguage: 'pt',
+                    includedLanguages: 'en,fr,es',
                     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                     autoDisplay: false
                 }, 'google_translate_element');
