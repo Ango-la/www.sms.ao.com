@@ -4137,7 +4137,7 @@
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button class="whatsapp-button" onclick="proceedToPayment()">
-                    💬 Finalizar a Inscrição
+                    💬 Ir para pagamento
                 </button>
             </div>
         </div>
@@ -4771,6 +4771,10 @@
             };
             try { localStorage.setItem('sms_enrollment', JSON.stringify(enrollment)); } catch (e) { console.warn('localStorage disabled', e); }
 
+            if (typeof closeProptinaModal === 'function') {
+                closeProptinaModal();
+            }
+            document.getElementById('agendamento').style.display = 'none';
             document.getElementById('pagamento').style.display = 'block';
             document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
         }
