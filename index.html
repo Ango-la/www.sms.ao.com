@@ -27,6 +27,9 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box; }
+        html, body {
+            overflow-x: hidden;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
@@ -61,38 +64,6 @@
             from { opacity: 0; }
             to { opacity: 1; } }
 
-        /* TICKER - SCROLLING TEXT */
-        .ticker-wrapper {
-            background: linear-gradient(90deg, #764ba2 0%, #667eea 50%, #4facfe 100%);
-            color: white;
-            padding: 12px 0;
-            overflow: hidden;
-            position: relative;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            width: 100%;}
-            t
-        .ticker-content {
-            display: flex;
-            animation: scroll-left 40s linear infinite;
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .ticker-item {
-            padding: 0 30px;
-            display: inline-flex;
-            align-items: center; }
-        .ticker-item::before {
-            content: '✦';
-            margin-right: 15px;
-            color: #f093fb;  }
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);  }}
         /* HEADER E MENU */
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -153,9 +124,10 @@
         }
 
         .header-actions .info-toggle-button {
-            background: rgba(255,255,255,0.18);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.32);
+            border: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .header-actions .buy-button:hover,
@@ -287,67 +259,6 @@
             align-items: center;
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 0 15px;
-            font-weight: bold;
-            gap: 0;
-            flex-wrap: nowrap;
-            white-space: nowrap;
-        }
-
-        .header-actions {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 16px;
-            margin-left: 0;
-            flex-shrink: 0;
-        }
-
-        .header-actions > * {
-            display: inline-flex;
-            align-items: center;
-                justify-content: center;
-                gap: 8px;
-                padding: 10px 14px;
-                border-radius: 999px;
-                font-size: 13px;
-                font-weight: 600;
-                transition: all 0.25s ease;
-        }
-
-        .header-actions .buy-button {
-            width: auto;
-            padding: 7px 14px;
-            font-size: 13px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-
-        .header-actions .buy-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
-        }
-
-        .buy-button-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .hidden {
             display: none !important;
         }
@@ -359,6 +270,8 @@
             padding: 18px;
             margin-top: 20px;
             box-shadow: 0 12px 32px rgba(102, 126, 234, 0.12);
+            overflow-x: hidden;
+            word-break: break-word;
         }
 
         .purchase-form.show {
@@ -454,6 +367,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 40px 20px;
             margin-top: 40px;
+            overflow-x: hidden;
+            word-break: break-word;
         }
 
         .payment-info-block {
@@ -461,6 +376,9 @@
             padding: 24px;
             border-radius: 12px;
             margin-bottom: 20px;
+            overflow-x: hidden;
+            word-break: break-word;
+            word-wrap: break-word;
         }
 
         .payment-info-block h3 {
@@ -480,12 +398,15 @@
             .payment-section {
                 padding: 24px 16px;
                 margin-top: 24px;
+                overflow-x: hidden;
             }
 
             .payment-info-block {
                 padding: 18px;
                 border-radius: 10px;
                 margin-bottom: 16px;
+                overflow-x: hidden;
+                word-break: break-word;
             }
 
             .payment-info-block h3 {
@@ -524,12 +445,15 @@
             .payment-section {
                 padding: 16px 12px;
                 margin-top: 16px;
+                overflow-x: hidden;
             }
 
             .payment-info-block {
                 padding: 14px;
                 border-radius: 8px;
                 margin-bottom: 12px;
+                overflow-x: hidden;
+                word-break: break-word;
             }
 
             .payment-info-block h2 {
@@ -873,30 +797,34 @@
   z-index: 9999;
   backdrop-filter: blur(10px);
 }
-
 .info-system .info-system-close-wrap {
   position: absolute;
   top: 14px;
   right: 14px;
   z-index: 1001;
 }
-
-.info-system-close-button {
-  width: 34px;
-  height: 34px;
+.info-system-close-button,
+.site-close-button {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,0.92);
-  color: #334155;
-  font-size: 18px;
+  background: transparent;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: none;
 }
 
-.info-system-close-button:hover {
+.info-system-close-button:hover,
+.site-close-button:hover {
   transform: translateY(-1px);
 }
 
@@ -910,12 +838,9 @@
   margin: 0;
   max-height: calc(88vh - 56px);
   overflow-y: auto;
-}
-
-.buy-menu-content ul li {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  word-break: break-word;
+  touch-action: pan-y;
 }
 
 .buy-menu-content ul li img {
@@ -960,18 +885,41 @@
   align-items: center;
   justify-content: center;
   min-width: 130px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-}
+   padding: 8px 16px;
+   border-radius: 8px;
+   font-size: 14px;
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+   color: white;
+   border: none;
+   cursor: pointer;
+   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+   transition: all 0.4s ease;
+   position: relative;
+   overflow: hidden;
+   white-space: nowrap;
+   line-height: 1.2;
+ }
 
-.info-toggle-button:hover {
-  transform: translateY(-3px);
-}
+ .info-toggle-button::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.2);
+   transition: left 0.4s ease;
+ }
 
-.info-system.collapsed .info-section {
-  display: none;
-}
+ .info-toggle-button:hover::before {
+   left: 100%;
+ }
+
+ .info-toggle-button:hover {
+   transform: translateY(-3px);
+   background-position: 100% 0;
+   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+ }
 
 .info-system .info-section > *:not(h2) {
   max-height: 0;
@@ -1087,6 +1035,27 @@
   gap: 6px;
 }
 
+.info-section-body .testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.info-section-body .testimonial-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2ff;
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
 .info-system-content p {
   color: #475569;
   line-height: 1.8;
@@ -1164,6 +1133,7 @@
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
+            overflow: hidden;
         }
         .banner-slide::before {
             content: '';
@@ -1186,17 +1156,6 @@
            display: none;
         }
 
-        .banner-slide:nth-child(3) {
-            background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=500&fit=crop');
-        }
-
-        .banner-slide:nth-child(4) {
-            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=500&fit=crop');
-        }
-
-        .banner-slide:nth-child(5) {
-            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=500&fit=crop');
-        }
 
         .banner-dots {
             position: absolute;
@@ -1315,15 +1274,13 @@
         }
 
         .product-card:hover {
-            transform: translateY(-15px) rotate(2deg);
+            transform: none;
             box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
             border-color: rgba(102, 126, 234, 0.3);
         }
         
         .product-card:hover::before {
-            top: 0;
-            right: 0;
-            opacity: 0.1;
+            opacity: 0.08;
         }
 
         .product-image-img {
@@ -1413,6 +1370,7 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
             position: relative;
             overflow: hidden;
+            text-decoration: none;
         }
 
         .course-buttons-container {
@@ -1465,11 +1423,12 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.5);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             z-index: 2000;
-            padding: 20px;
+            padding: 100px 20px 20px;
             overflow-y: auto;
+            overflow-x: hidden;
             backdrop-filter: blur(4px);
         }
 
@@ -1480,6 +1439,7 @@
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
+            overflow-x: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             position: relative;
             animation: slideUp 0.3s ease-out;
@@ -1496,28 +1456,95 @@
             }
         }
 
+        /* Use same layout/appearance as site-close-button so X is consistent across desktop and mobile */
         .propina-modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: #f3f4f6;
+            width: 44px;
+            height: 44px;
+            border: 0;
             border-radius: 50%;
+            background: transparent;
+            color: #000;
             font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #111827;
-            transition: all 0.3s ease;
-            z-index: 2001;
+            box-shadow: none;
+            transition: transform 0.18s ease;
         }
 
         .propina-modal-close:hover {
-            background: #e5e7eb;
-            transform: rotate(90deg);
+            transform: translateY(-1px);
+        }
+
+        .buy-menu-header,
+        .propina-modal-title-row,
+        .info-system-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 18px;
+        }
+
+        .buy-menu-header h2,
+        .propina-modal-title-row h2,
+        .info-system-header h2 {
+            margin: 0;
+            flex: 1;
+            color: #000;
+            font-size: 1.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .buy-menu-header button,
+        .propina-modal-title-row button,
+        .info-system-header button {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .propina-modal-content,
+            .info-system {
+                position: relative !important;
+            }
+
+            #buy-menu {
+                position: fixed !important;
+                top: 84px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: min(96%, 920px) !important;
+                max-width: 620px !important;
+                max-height: calc(100vh - 94px) !important;
+                z-index: 9999 !important;
+            }
+
+            .site-close-button,
+            .propina-modal-close,
+            .buy-menu-close,
+            .info-system-close-button {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+                border-radius: 50% !important;
+                background: transparent !important;
+                color: #000 !important;
+                font-size: 24px !important;
+                font-weight: 700 !important;
+                line-height: 1 !important;
+                box-shadow: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
         }
 
         .propina-modal-header {
@@ -1543,6 +1570,22 @@
         .iban-display p {
             margin: 8px 0;
             font-size: 14px;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .iban-display .iban-code {
+            font-family: monospace;
+            font-size: 18px;
+            background: #080808;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            overflow-x: hidden;
+            word-break: break-all;
+            white-space: normal;
         }
 
         .propina-form {
@@ -1789,10 +1832,19 @@
                 margin-bottom: 8px;
             }
 
-            .propina-modal-close {
-                width: 32px;
-                height: 32px;
-                font-size: 20px;
+            /* Keep close button size consistent across breakpoints (fixed overlay) */
+
+            .propina-modal {
+                padding: 80px 12px 12px;
+            }
+
+            .propina-modal-content {
+                max-width: 100%;
+            }
+
+            .iban-display .iban-code {
+                font-size: 15px;
+                padding: 10px;
             }
 
             .iban-display {
@@ -1914,21 +1966,36 @@
 
         #agendamento {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 100px 20px 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            touch-action: pan-y;
         }
 
         #agendamento.show {
-            display: block;
+            display: flex;
         }
 
         /* FORMULÁRIO WHATSAPP */
         .whatsapp-section {
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            margin: 40px auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            text-align: left;
+            overflow-x: hidden;
+            word-break: break-word;
         }
 
         .whatsapp-section h2 {
@@ -2092,8 +2159,9 @@
             -webkit-overflow-scrolling: touch;
         }
         @media (max-width: 600px) {
+            #buy-menu,
             .buy-menu {
-                top: 88px;
+                top: 88px !important;
                 left: 0;
                 transform: none;
                 width: calc(100% - 10px);
@@ -2102,6 +2170,21 @@
                 height: calc(100vh - 94px);
                 border-radius: 0 0 16px 16px;
                 margin: 0 5px 0 5px;
+                z-index: 90 !important; /* put below header (header z-index:100) */
+            }
+        }
+        @media (max-width: 480px) {
+            .buy-menu {
+                top: 110px;
+                max-height: calc(100vh - 116px);
+                height: calc(100vh - 116px);
+            }
+        }
+        @media (max-width: 360px) {
+            .buy-menu {
+                top: 130px;
+                max-height: calc(100vh - 136px);
+                height: calc(100vh - 136px);
             }
         }
         .buy-menu.show {
@@ -2207,6 +2290,15 @@
         }
 
         @media (max-width: 768px) {
+            #agendamento {
+                padding: 80px 16px 16px;
+            }
+
+            .whatsapp-section {
+                padding: 18px;
+                max-width: 100%;
+            }
+
             header {
                 padding: 15px 0;
             }
@@ -2345,6 +2437,38 @@
         }
 
         @media (max-width: 480px) {
+            #agendamento {
+                padding: 70px 12px 12px;
+            }
+
+            .whatsapp-section {
+                padding: 14px;
+                border-radius: 10px;
+            }
+
+            .whatsapp-section h2 {
+                font-size: 18px;
+            }
+
+            .form-group {
+                margin-bottom: 14px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-group input,
+            .form-group select {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .whatsapp-button {
+                padding: 12px;
+                font-size: 16px;
+            }
+
             header {
                 padding: 10px 0;
             }
@@ -2935,6 +3059,8 @@
         .banner-slide img {
             width: 100%;
             height: 100%;
+            min-width: 100%;
+            min-height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -3047,13 +3173,13 @@
 
         @media (max-width: 600px) {
             .buy-menu {
-                top: 88px;
+                top: 130px;
                 left: 0;
                 transform: none;
                 width: calc(100% - 10px);
                 max-width: none;
-                max-height: calc(100vh - 94px);
-                height: calc(100vh - 94px);
+                max-height: calc(100vh - 140px);
+                height: calc(100vh - 140px);
                 border-radius: 0 0 16px 16px;
                 margin: 0 5px;
             }
@@ -3106,22 +3232,41 @@
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
                     position: fixed;
-                    top: 84px;
+                    top: 96px;
                     left: 50%;
                     transform: translateX(-50%);
                     width: min(96%, 920px);
                     max-width: 620px;
-                    max-height: calc(100vh - 94px);
+                    max-height: calc(100vh - 116px);
                     overflow-y: auto;
+                    overflow-x: hidden;
                     background: #ffffff;
                     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
                     border-radius: 12px;
                     padding: 18px;
-                    z-index: 999;
+                    z-index: 9999;
                     display: none;
+                    touch-action: pan-y;
                 }
                 .buy-menu.show { display: block !important; }
-                .buy-menu-close { position: absolute; top: 8px; right: 10px; background: transparent; border: none; font-size: 20px; line-height: 1; cursor: pointer; }
+                .buy-menu-close {
+                    width: 44px;
+                    height: 44px;
+                    min-width: 44px;
+                    min-height: 44px;
+                    border: none;
+                    border-radius: 50%;
+                    background: transparent;
+                    color: #000;
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1;
+                    cursor: pointer;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+                }
                 .buy-menu-content h2 { margin-top: 0; }
                 .buy-menu-content ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; list-style: none; padding: 0; margin: 0; }
                 .buy-menu-content ul li { background: transparent; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
@@ -3164,16 +3309,28 @@
                     .purchase-form { max-width: calc(100% - 24px); padding: 16px; }
                 }
                 @media (max-width: 600px) {
-                    .purchase-form { max-width: calc(100% - 16px); padding: 14px; margin: 12px 8px; }
-                    .purchase-request-form { gap: 10px; }
-                    .purchase-request-form label { font-size: 0.88rem; }
+                    .purchase-form { max-width: calc(100% - 16px); padding: 12px; margin: 10px 8px; overflow-x: hidden; }
+                    .purchase-request-form { gap: 10px; grid-template-columns: 1fr; }
+                    .purchase-request-form label { font-size: 0.86rem; }
                     .purchase-request-form input,
-                    .purchase-request-form select { font-size: 16px; height: 42px; }
-                    .purchase-request-form .buttons-row { flex-direction: row !important; gap: 10px; }
-                    .purchase-request-form .buttons-row button { width: auto !important; }
+                    .purchase-request-form select { font-size: 15px; height: 40px; }
+                    .purchase-request-form input[type="file"] { padding: 10px 12px; }
+                    .purchase-request-form .buttons-row { flex-direction: column !important; gap: 8px !important; align-items: stretch !important; }
+                    .purchase-request-form .buttons-row button { width: 100% !important; min-width: 0 !important; max-width: none !important; padding: 8px 12px !important; font-size: 0.82rem !important; }
                     .purchase-submit-button,
-                    .purchase-cancel-button { padding: 10px 12px; }
-                    #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
+                    .purchase-cancel-button { padding: 8px 12px; font-size: 0.82rem; min-width: 0; }
+                    .purchase-note { font-size: 0.82rem; padding: 12px 14px; }
+                    #buy-menu {
+                        position: fixed !important;
+                        top: 0 !important;
+                        left: 12px !important;
+                        right: 12px !important;
+                        width: calc(100% - 24px) !important;
+                        max-width: none !important;
+                        transform: none !important;
+                        overflow-x: hidden;
+                        z-index: 9999 !important;
+                    }
                     .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
                     .buy-menu-content ul li { padding: 10px; gap: 8px; }
@@ -3184,7 +3341,7 @@
                     .header-actions > * { flex: 1 1 0; min-width: 0; max-width: 140px; }
                     .header-actions .google-translate { width: auto; min-width: 40px; }
                     .header-actions .buy-button,
-                    .header-actions .info-toggle-button { padding: 8px 10px; font-size: 11px; min-width: 0; }
+                    .header-actions .info-toggle-button { padding: 8px 10px; font-size: 0.8rem; min-width: 0; }
                     .google-translate-text { display: none; }
                     .google-chevron { margin-left: 0; font-size: 0.9rem; }
                 }
@@ -3233,9 +3390,11 @@
                     <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
                 </div>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
-                        <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
-                        <div class="buy-menu-content">
+                        <div class="buy-menu-header">
                             <h2>Manuais</h2>
+                            <button type="button" class="buy-menu-close site-close-button" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
+                        </div>
+                        <div class="buy-menu-content">
                             <ul>
                                 <li id="summeryprice">
                                     <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
@@ -3312,7 +3471,8 @@
                             <div id="purchase-form" class="purchase-form hidden">
                                 <div class="purchase-form-header">
                                     <h3 id="selectedManualTitle">Pedido de compra</h3>
-                                    <p>Preencha os dados abaixo para receber <br/>o manual rapidamente ou receber de forma física.</p>
+                                    <p>Preencha os dados abaixo para <br/>receber o manual rapidamente <br/>
+                                        ou receber de forma física.</p>
                                 </div>
                                 <p id="selectedManualPrice" style="margin:0 0 18px; color:#334155; font-weight:600;">Preço: —</p>
                                 <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
@@ -3349,7 +3509,6 @@
                                     <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
                                 </form>
                             </div>
-
                                     <!-- Area adicionada: documento solicitado e botão de fatura -->
                                     <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none; padding:16px; border:1px solid rgba(102,126,234,0.18); border-radius:12px; background:#f8fbff;">
                                         <p id="downloadDocumentName" style="margin:0 0 12px; font-weight:700; color:#334155;">Documento solicitado: <span>—</span></p>
@@ -3373,8 +3532,9 @@
         </header>
 
     <div class="info-system collapsed">
-                    <div class="info-system-close-wrap">
-                        <button type="button" class="info-system-close-button" onclick="toggleAllInfoSections()" aria-label="Fechar informações">×</button>
+                    <div class="info-system-header">
+                        <h2>Informações</h2>
+                        <button type="button" class="info-system-close-button site-close-button" onclick="toggleAllInfoSections()" aria-label="Fechar informações">×</button>
                     </div>
                     <div class="info-system-content">
                        
@@ -3529,8 +3689,8 @@
                                         <p style="max-width: 720px; color: #475569; line-height: 1.75;">Veja como nossos alunos e parceiros reconhecem a qualidade pedagógica e o impacto das nossas aulas. Cada depoimento reflete a experiência real com atendimento acolhedor, resultados rápidos e suporte personalizado.</p>
                                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
                                             <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
-                                                    <img src="https://via.placeholder.com/80?text=AL" alt="Aluno satisfeito" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                <div class="testimonial-header">
+                                                    <div class="testimonial-avatar">AL</div>
                                                     <div>
                                                         <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Ana Luiza</strong>
                                                         <span style="color: #64748b; font-size: 0.95rem;">Estudante de inglês</span>
@@ -3539,8 +3699,8 @@
                                                 <p style="margin: 0; color: #334155; line-height: 1.8;">“A S.M.S transformou meu desempenho em conversação. O acompanhamento é atencioso e a metodologia faz com que eu evolua com confiança em cada aula.”</p>
                                             </article>
                                             <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
-                                                    <img src="https://via.placeholder.com/80?text=JM" alt="Parceria escolar" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                <div class="testimonial-header">
+                                                    <div class="testimonial-avatar">JM</div>
                                                     <div>
                                                         <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">João Marcos</strong>
                                                         <span style="color: #64748b; font-size: 0.95rem;">Responsável</span>
@@ -3549,8 +3709,8 @@
                                                 <p style="margin: 0; color: #334155; line-height: 1.8;">“O suporte humano e dedicado fez a diferença para meu filho. As aulas são personalizadas e o progresso é visível desde o primeiro mês.”</p>
                                             </article>
                                             <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
-                                                    <img src="https://via.placeholder.com/80?text=CB" alt="Aluno feliz" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
+                                                <div class="testimonial-header">
+                                                    <div class="testimonial-avatar">CB</div>
                                                     <div>
                                                         <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Camila Braga</strong>
                                                         <span style="color: #64748b; font-size: 0.95rem;">Parceira pedagógica</span>
@@ -3780,7 +3940,7 @@
                 </div>
 
                 <div class="product-card">
-                    <img src="DashBoard/Aulas ao domicilio.jpg" alt="Aulas ao Domicílio" class="product-image-img">
+                    <img src="Image/Aulas ao domicilio2.jpg" alt="Aulas ao Domicílio" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Aulas ao Domicílio</div>
                         <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
@@ -3985,13 +4145,14 @@
     <!-- MODAL DE PAGAMENTO DE PROPINAS -->
     <div id="propina-modal" class="propina-modal" style="display: none;">
         <div class="propina-modal-content">
-            <button class="propina-modal-close" onclick="closeProptinaModal()" aria-label="Fechar modal">×</button>
-            
             <div class="propina-modal-header">
-                <h2>💳 Formulário de Propina</h2>
+                <div class="propina-modal-title-row">
+                    <h2>💳 Formulário de Propina</h2>
+                    <button class="propina-modal-close site-close-button" onclick="closeProptinaModal()" aria-label="Fechar modal">×</button>
+                </div>
                 <div class="iban-display">
                     <p><strong >IBAN para Pagamento:</strong></p>
-                    <p style="font-family: monospace; font-size: 18px; background: #080808; padding: 12px; border-radius: 8px; margin: 8px 0;">AO6.0066.0000.0789.9088.1013.0</p>
+                    <p class="iban-code">AO6.0066.0000.0789.9088.1013.0</p>
                     <p style="font-size: 14px; color: #000000; margin-top: 10px;">
                         <strong>⚠️ Instruções:</strong> Efetue o pagamento para o IBAN acima, preencha os dados abaixo e anexe o comprovante antes de clicar em "Eu paguei".
                     </p>
@@ -4301,12 +4462,37 @@
                 const opened = !buyMenu.classList.contains('show');
                 buyMenu.classList.toggle('show');
                 if (opened) {
+                    // If on small screens, compute the header bottom and position the menu below it
+                    try {
+                        const header = document.querySelector('header');
+                        if (header && window.innerWidth <= 600) {
+                                const rect = header.getBoundingClientRect();
+                                const topPx = Math.ceil(rect.bottom) + 6; // small gap
+                                buyMenu.style.setProperty('top', topPx + 'px', 'important');
+                                buyMenu.style.setProperty('left', '0', 'important');
+                                buyMenu.style.setProperty('transform', 'none', 'important');
+                                buyMenu.style.setProperty('z-index', '90', 'important');
+                            } else {
+                                // revert to CSS default for larger screens
+                                buyMenu.style.removeProperty('top');
+                                buyMenu.style.removeProperty('left');
+                                buyMenu.style.removeProperty('transform');
+                                buyMenu.style.removeProperty('z-index');
+                            }
+                    } catch (e) {
+                        buyMenu.style.top = '';
+                    }
                     buyMenu.style.display = 'block';
                     buyMenu.setAttribute('aria-hidden', 'false');
                     if (button) button.textContent = 'Fechar';
                 } else {
+                    // hide and reset any inline positioning
                     buyMenu.style.display = 'none';
                     buyMenu.setAttribute('aria-hidden', 'true');
+                    buyMenu.style.removeProperty('top');
+                    buyMenu.style.removeProperty('left');
+                    buyMenu.style.removeProperty('transform');
+                    buyMenu.style.removeProperty('z-index');
                     if (button) button.textContent = 'Comprar';
                 }
             };
