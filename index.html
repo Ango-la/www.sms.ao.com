@@ -4282,6 +4282,13 @@
                 <p style="margin:6px 0; color:#475569;"><strong>Taxa de inscrição:</strong> <span id="summary_fee">—</span></p>
                 <p style="margin:6px 0; color:#111827;"><strong>Total final:</strong> <span id="summary_total" style="color:#d4a024; font-weight:800; font-size:1.1rem;">—</span></p>
                 <p style="margin:6px 0; color:#475569;"><strong>Referência:</strong> <span id="summary_reference">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Nome:</strong> <span id="summary_name">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Telefone:</strong> <span id="summary_phone">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Email:</strong> <span id="summary_email">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>BI/Passaporte:</strong> <span id="summary_idNumber">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Município:</strong> <span id="summary_municipality">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Data / Hora:</strong> <span id="summary_schedule">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Observações:</strong> <span id="summary_notes">—</span></p>
             </div>
             <!-- DADOS BANCÁRIOS -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
@@ -4714,6 +4721,7 @@
             const municipality = document.getElementById('municipality').value.trim();
             const scheduleDate = document.getElementById('scheduleDate').value;
             const scheduleTime = document.getElementById('scheduleTime').value;
+            const notes = document.getElementById('notes').value.trim();
             const modalityEl = document.querySelector('input[name="enrollModality"]:checked');
             
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
@@ -4751,6 +4759,13 @@
             document.getElementById('summary_fee').textContent = 'Kz ' + fee.toLocaleString('pt-PT');
             document.getElementById('summary_total').textContent = 'Kz ' + total.toLocaleString('pt-PT');
             document.getElementById('summary_reference').textContent = reference;
+            document.getElementById('summary_name').textContent = name || '—';
+            document.getElementById('summary_phone').textContent = phone || '—';
+            document.getElementById('summary_email').textContent = email || '—';
+            document.getElementById('summary_idNumber').textContent = idNumber || '—';
+            document.getElementById('summary_municipality').textContent = municipality || '—';
+            document.getElementById('summary_schedule').textContent = `${scheduleDate} ${scheduleTime}`;
+            document.getElementById('summary_notes').textContent = notes || '—';
 
             // guardar reserva local por 10 minutos
             const enrollment = {
@@ -4842,6 +4857,7 @@
             const email = document.getElementById('email').value;
             const municipality = document.getElementById('municipality').value;
             const notes = document.getElementById('notes').value;
+            const idNumber = (document.getElementById('idNumber')?.value || '').trim();
             const proofFile = document.getElementById('proofAttachment').files[0];
 
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
