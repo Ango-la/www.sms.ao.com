@@ -4018,9 +4018,7 @@
                     <div class="course-video" style="position:relative;width:100%;height:300px;overflow:hidden;">
                             <div id="joyPlayerContainer" style="position:absolute;inset:0;width:100%;height:100%;padding-bottom:0;">
                                 <div id="joyPlayer" style="position:absolute;left:0;top:0;width:100%;height:100%;"></div>
-                                <button id="joyPlayBtn" aria-label="Reproduzir" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(0,0,0,0.5);color:#fff;border:0;font-size:28px;display:flex;align-items:center;justify-content:center;z-index:12;">▶</button>
                                 <button id="joySoundBtn" aria-label="Ativar som" style="position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:6px;background:rgba(0,0,0,0.45);color:#fff;border:0;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:12">🔈</button>
-                                <label id="joyAutoplayLabel" style="position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,0.9);padding:4px 6px;border-radius:6px;font-size:12px;z-index:12;color:#0f172a"><input id="joyAutoplayToggle" type="checkbox" style="margin-right:6px">Iniciar só ao clicar</label>
                             </div>
                         </div>
                     <div class="product-info">
