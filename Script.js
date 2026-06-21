@@ -41,15 +41,61 @@ function openPurchaseForm(manualTitle, manualId, manualPrice) {
   manualIdInput.value = manualId;
   if (manualPriceInput) manualPriceInput.value = manualPrice;
   status.textContent = '';
-  form.classList.remove('hidden');
-  form.scrollIntoView({ behavior: 'smooth' });
+
+  // Create modal overlay that reuses propina modal styles
+  let overlay = document.getElementById('purchaseModalOverlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'purchaseModalOverlay';
+    overlay.className = 'propina-modal';
+
+    const content = document.createElement('div');
+    content.className = 'propina-modal-content purchase-modal-content';
+
+    // close button (styled like propina)
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'propina-modal-close site-close-button';
+    closeBtn.setAttribute('aria-label', 'Fechar pedido de compra');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', closePurchaseForm);
+
+    content.appendChild(closeBtn);
+    overlay.appendChild(content);
+    document.body.appendChild(overlay);
+  }
+
+  // move form into modal content
+  const modalContent = overlay.querySelector('.propina-modal-content');
+  if (form && modalContent) {
+    modalContent.appendChild(form);
+    form.classList.remove('hidden');
+    overlay.style.display = 'flex';
+    overlay.setAttribute('aria-hidden', 'false');
+    // ensure vertical scroll and focus
+    setTimeout(() => { form.scrollIntoView({ behavior: 'smooth' }); }, 50);
+  }
 }
 
 function closePurchaseForm() {
   const form = document.getElementById('purchase-form');
-  form.classList.add('hidden');
-  document.getElementById('purchaseRequestForm').reset();
-  document.getElementById('purchaseStatus').textContent = '';
+  const purchaseRequest = document.getElementById('purchaseRequestForm');
+  const status = document.getElementById('purchaseStatus');
+  const overlay = document.getElementById('purchaseModalOverlay');
+
+  if (form) {
+    form.classList.add('hidden');
+    if (purchaseRequest) purchaseRequest.reset();
+    if (status) status.textContent = '';
+
+    // move form back into buy-menu content if overlay exists
+    if (overlay) {
+      const buyMenuContent = document.querySelector('.buy-menu-content');
+      if (buyMenuContent) buyMenuContent.appendChild(form);
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+  }
 }
 
 function showPurchaseStatus(message, isError = false) {
@@ -346,19 +392,24 @@ function generateInvoice() {
 (function(){
   // CSS for floating button and modal
   const css = `
-  .floating-report-btn{position:fixed;top:38px;right:18px;width:44px;height:44px;border-radius:50%;background:#ef4444;color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);z-index:1400;cursor:pointer;font-weight:700;font-size:12px;animation:report-shake 18s linear infinite}
-  .floating-report-btn.small{width:40px;height:40px;font-size:11px}
+  .floating-report-btn{position:absolute;top:50%;right:18px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#ef4444;color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);z-index:1400;cursor:pointer;font-weight:700;font-size:12px;animation:report-slide 16s ease-in-out infinite alternate, report-shake 18s linear infinite;min-width:44px;min-height:44px;max-width:44px;max-height:44px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0;line-height:1}
+  .floating-report-btn.small{width:44px;height:44px;font-size:12px}
   .report-modal{position:fixed;top:70px;right:18px;z-index:1410;display:none}
   .report-modal .report-panel{width:320px;max-width:92vw;background:white;border-radius:12px;padding:12px 12px 10px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 12px 30px rgba(2,6,23,0.12);font-family:inherit}
+  @media (max-width: 768px){.floating-report-btn{right:16px;top:50%;transform:translateY(-50%);}}
+  @media (max-width: 480px){.floating-report-btn{right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;min-width:40px;min-height:40px;max-width:40px;max-height:40px;font-size:11px;}}
+  @media (max-width: 420px){.floating-report-btn{width:36px;height:36px;min-width:36px;min-height:36px;max-width:36px;max-height:36px;font-size:10px;}}
+  @keyframes report-slide{0%{right:18px;left:auto;}50%{right:auto;left:18px;}100%{right:18px;left:auto;}}
   .report-modal .report-panel h4{margin:0 0 6px;font-size:15px;color:#0f172a}
   .report-modal .report-panel textarea{width:100%;height:120px;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);resize:vertical;font-size:13px}
   .report-row{display:flex;gap:8px;align-items:center;margin-top:8px}
   .report-row input[type=text]{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);font-size:13px}
   .report-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
   .report-count{font-size:12px;color:#475569}
-  .report-send-btn{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+  .report-send-btn{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700;white-space:nowrap}
   .report-close{position:absolute;top:6px;right:8px;background:transparent;border:none;font-size:18px;cursor:pointer;color:#475569}
-  @media (max-width:420px){.report-modal .report-panel{right:10px;left:10px;width:auto;max-width:calc(100% - 20px)}}
+  @media (max-width:520px){.report-footer{flex-direction:column;align-items:stretch;gap:8px}.report-send-btn{width:100%;padding:10px 12px;font-size:13px}.report-count{font-size:11px;text-align:right}} 
+  @media (max-width:420px){.report-modal .report-panel{right:10px;left:10px;width:auto;max-width:calc(100% - 20px)}.report-row{flex-direction:column;align-items:stretch}.report-row input[type=text]{width:100%}.report-send-btn{font-size:12px;padding:8px 10px}.report-count{text-align:left}}
   @keyframes report-shake{
     0%{transform:translateX(0)}
     40%{transform:translateX(0)}
@@ -408,7 +459,8 @@ function generateInvoice() {
       </div>
     </div>
   `;
-  document.body.appendChild(container);
+  const headerContainer = document.querySelector('.header-container') || document.body;
+  headerContainer.appendChild(container);
 
   // elements
   const reportBtn = document.getElementById('reportBtn');
