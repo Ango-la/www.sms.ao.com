@@ -244,32 +244,54 @@
         }
 
         .ticker-content {
-            display: flex;
-            animation: scroll-left 35s linear infinite;
-            white-space: nowrap;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.6px;
+            position: relative;
+            white-space: normal;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.4px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            align-items: center;
-            will-change: transform;
+            min-height: 18px;
         }
 
         .ticker-item {
-            padding: 0 22px;
-            display: inline-flex;
+            position: absolute;
+            inset: 0;
+            padding: 0 18px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            white-space: normal;
+            line-height: 1.4;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            font-weight: 300;
         }
 
-        /* animação do ticker: movendo o conteúdo para a esquerda
-           com pausa ao passar o mouse para melhor acessibilidade */
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .ticker-item.active {
+            opacity: 1;
         }
 
         /* pause-on-hover intentionally omitted because the ticker overlay
            uses pointer-events:none to avoid blocking header interactions */
+
+        @media (max-width: 768px) {
+            .ticker-wrapper {
+                min-height: 52px;
+                padding: 10px 0;
+            }
+
+            .ticker-content {
+                min-height: 32px;
+            }
+
+            .ticker-item {
+                padding: 0 14px;
+                font-size: 11px;
+            }
+        }
 
         .hidden {
             display: none !important;
@@ -4993,27 +5015,37 @@
 
         window.addEventListener('DOMContentLoaded', function() {
             const texts = [
-                "Somos uma escola de línguas e desenvolvimento de habilidades com ensino presencial e online.",
-                "Professores experientes e metodologia prática, com turmas reduzidas para atenção personalizada.",
-                "Horários flexíveis, apoio contínuo e localização acessível em Luanda para melhor atendimento.",
-            ];
-            
+                    "🌍 Bem-vindo à S.M.S: cursos de inglês sem limites com método prático e resultados rápidos, Aqui tem tudo!.",
+                    "📚 Aulas presenciais e online, turmas reduzidas e apoio individual para seu progresso diário.",
+                    "🎓 Pagamento fácil e seguro aqui no nosso site, Todos os nossos manuais e as Propinas também estão disponíveis.",
+                    "📅 Horários flexíveis em Luanda e atendimento personalizado na Av. Deolinda Rodrigues, nº 475.",
+                    "💡 Aprenda com professores experientes também temos o apoio de nosso amigo Joy Dunkin, Veja mais abaixo,o nosso YOUTUBE.",
+                    "📞 Entre em contato pelo site, desça abaixo e veja nossas redes sociais inicie já sua jornada de idiomas e desenvolvimento."
+                ];
+
             const tickerContent = document.querySelector('.ticker-content');
             if (tickerContent) {
+                const tickerItems = [];
+
                 texts.forEach(function(text, index) {
                     const tickerItem = document.createElement('div');
                     tickerItem.className = 'ticker-item';
                     tickerItem.textContent = text;
+                    if (index === 0) {
+                        tickerItem.classList.add('active');
+                    }
                     tickerContent.appendChild(tickerItem);
+                    tickerItems.push(tickerItem);
                 });
-                
-                // Repetir os textos para efeito contínuo
-                texts.forEach(function(text) {
-                    const tickerItem = document.createElement('div');
-                    tickerItem.className = 'ticker-item';
-                    tickerItem.textContent = text;
-                    tickerContent.appendChild(tickerItem);
-                });
+
+                let currentIndex = 0;
+                const intervalMs = 3800;
+
+                setInterval(function() {
+                    tickerItems[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % tickerItems.length;
+                    tickerItems[currentIndex].classList.add('active');
+                }, intervalMs);
             }
             if (typeof updateManualBuyButtons === 'function') {
                 updateManualBuyButtons();
