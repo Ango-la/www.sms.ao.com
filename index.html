@@ -442,11 +442,169 @@
         .purchase-form p {
             margin-top: 10px;
         }
-        .logo-official {
-            max-height: 90px;
-            width: 100px;
-            border-radius: 10%;
-            flex-shrink: 0;
+
+        /* Responsive Payment & Purchase Forms for today's updates */
+        .payment-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .payment-info-block {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .payment-info-block h3 {
+            font-size: 16px;
+            color: #764ba2;
+            margin-bottom: 12px;
+        }
+
+        .payment-info-block p {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .payment-section {
+                padding: 24px 16px;
+                margin-top: 24px;
+            }
+
+            .payment-info-block {
+                padding: 18px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            }
+
+            .payment-info-block h3 {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .payment-info-block p {
+                font-size: 13px;
+            }
+
+            .whatsapp-section {
+                max-width: 100%;
+                padding: 24px 16px;
+                margin: 20px auto;
+            }
+
+            .whatsapp-button {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .form-group input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .form-group input[readonly] {
+                background: #f0f4ff;
+                color: #374151;
+                cursor: not-allowed;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-section {
+                padding: 16px 12px;
+                margin-top: 16px;
+            }
+
+            .payment-info-block {
+                padding: 14px;
+                border-radius: 8px;
+                margin-bottom: 12px;
+            }
+
+            .payment-info-block h2 {
+                font-size: 18px;
+            }
+
+            .payment-info-block h3 {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .payment-info-block p {
+                font-size: 12px;
+                margin: 6px 0;
+            }
+
+            .whatsapp-section {
+                max-width: 100%;
+                padding: 16px 12px;
+                margin: 16px auto;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .whatsapp-section h2 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .form-group input {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            .form-group input[readonly] {
+                background: #f0f4ff;
+                color: #374151;
+                cursor: not-allowed;
+                word-break: break-word;
+            }
+
+            .whatsapp-button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .purchase-form {
+                padding: 12px;
+                border-radius: 10px;
+            }
+
+            .purchase-form h3 {
+                font-size: 14px;
+                margin: 0 0 12px 0;
+            }
+
+            .purchase-request-form input,
+            .purchase-request-form select {
+                padding: 8px;
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            .purchase-submit-button,
+            .purchase-cancel-button {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .purchase-note {
+                font-size: 12px;
+                margin: 8px 0;
+            }
         }
         .store-name {
             font-size: 20px;
@@ -1235,7 +1393,7 @@
         }
 
         .buy-button {
-            width: 100%;
+            flex: 1;
             padding: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             background-size: 200% 200%;
@@ -1249,6 +1407,25 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
             position: relative;
             overflow: hidden;
+        }
+
+        .course-buttons-container {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .course-buttons-container .buy-button {
+            flex: 1;
+        }
+
+        .propina-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%) !important;
+        }
+
+        .propina-btn:hover {
+            background-position: 100% 0 !important;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5) !important;
         }
         
         .buy-button::before {
@@ -1273,10 +1450,419 @@
             animation: buttonPulse 0.6s;
         }
 
+        /* PROPINA MODAL STYLES */
+        .propina-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(4px);
+        }
+
+        .propina-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .propina-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: #f3f4f6;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111827;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+
+        .propina-modal-close:hover {
+            background: #e5e7eb;
+            transform: rotate(90deg);
+        }
+
+        .propina-modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 28px 24px;
+            border-radius: 16px 16px 0 0;
+            margin-bottom: 24px;
+        }
+
+        .propina-modal-header h2 {
+            margin: 0 0 16px 0;
+            font-size: 24px;
+        }
+
+        .iban-display {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .iban-display p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .propina-form {
+            padding: 24px;
+        }
+
+        .propina-fieldset {
+            border: none;
+            padding: 0 0 24px 0;
+            margin: 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .propina-fieldset:last-of-type {
+            border-bottom: none;
+        }
+
+        .propina-fieldset legend {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 16px;
+            padding: 0;
+            display: block;
+        }
+
+        .propina-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .propina-form .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .propina-form input,
+        .propina-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+
+        .propina-form input:focus,
+        .propina-form select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .monthly-fields {
+            padding: 12px;
+            background: #f8fbff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .monthly-fields label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .monthly-fields select {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .propina-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .propina-submit-btn,
+        .propina-cancel-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .propina-submit-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .propina-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .propina-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .propina-cancel-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .propina-cancel-btn:hover {
+            background: #e5e7eb;
+            border-color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .propina-modal-content {
+                max-height: 95vh;
+                border-radius: 12px;
+            }
+
+            .propina-form {
+                padding: 16px;
+            }
+
+            .propina-modal-header {
+                padding: 16px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .propina-modal-header h2 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .iban-display {
+                padding: 12px;
+            }
+
+            .iban-display p {
+                font-size: 13px;
+            }
+
+            .propina-fieldset {
+                padding: 0 0 16px 0;
+                margin-bottom: 8px;
+            }
+
+            .propina-fieldset legend {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .propina-form .form-group {
+                margin-bottom: 12px;
+            }
+
+            .propina-form .form-group label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .propina-form input,
+            .propina-form select {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .propina-form input[readonly] {
+                background: #f0f4ff;
+                color: #374151;
+            }
+
+            .monthly-fields {
+                padding: 10px;
+                margin-top: 8px;
+            }
+
+            .monthly-fields label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .monthly-fields select {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .propina-buttons {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 16px;
+                padding-top: 16px;
+            }
+
+            .propina-submit-btn,
+            .propina-cancel-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .course-buttons-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .course-buttons-container .buy-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .propina-modal {
+                padding: 12px;
+            }
+
+            .propina-modal-content {
+                border-radius: 10px;
+                max-height: 98vh;
+            }
+
+            .propina-form {
+                padding: 12px;
+            }
+
+            .propina-modal-header {
+                padding: 12px;
+                margin-bottom: 16px;
+            }
+
+            .propina-modal-header h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .propina-modal-close {
+                width: 32px;
+                height: 32px;
+                font-size: 20px;
+            }
+
+            .iban-display {
+                padding: 10px;
+            }
+
+            .iban-display p {
+                font-size: 12px;
+                margin: 6px 0;
+            }
+
+            .propina-fieldset {
+                padding: 0 0 12px 0;
+                margin-bottom: 6px;
+            }
+
+            .propina-fieldset legend {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .propina-form .form-group {
+                margin-bottom: 10px;
+            }
+
+            .propina-form .form-group label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .propina-form input,
+            .propina-form select {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            .propina-form input[readonly] {
+                background: #f0f4ff;
+                color: #374151;
+                word-break: break-word;
+            }
+
+            .monthly-fields {
+                padding: 8px;
+                margin-top: 6px;
+            }
+
+            .monthly-fields label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .monthly-fields select {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            .propina-buttons {
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+
+            .propina-submit-btn,
+            .propina-cancel-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
         @keyframes buttonPulse {
             0%, 100% { transform: translateY(-3px); }
             50% { transform: translateY(-8px); }
         }
+
 
         .order-toggle-btn {
             display: block;
@@ -2539,23 +3125,30 @@
                 .purchase-submit-button, .purchase-cancel-button { padding: 10px 14px; border-radius: 8px; }
 
                 /* Purchase form styling (refined) */
-                .purchase-form { width: 100%; max-width: 620px; box-sizing: border-box; background: linear-gradient(180deg,#ffffff 0%,#fbfdff 100%); border-radius: 14px; padding: 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin: 16px auto; }
-                .purchase-form h3 { margin: 0 0 16px 0; font-size: 1.15rem; color: #111827; font-weight: 700; }
+                .purchase-form { width: 100%; max-width: 720px; box-sizing: border-box; background: rgba(255,255,255,0.98); border: 1px solid rgba(79,70,229,0.12); backdrop-filter: blur(12px); border-radius: 22px; padding: 24px; box-shadow: 0 20px 50px rgba(15,23,42,0.08); margin: 16px auto; }
+                .purchase-form h3 { margin: 0 0 12px 0; font-size: 1.45rem; color: #111827; font-weight: 800; letter-spacing: 0.01em; }
                 .purchase-form.hidden { display: none; }
                 .purchase-form.show { display: block; }
-                .purchase-request-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: flex-start; }
-                .purchase-request-form label { display: block; font-size: 0.9rem; color: #374151; font-weight: 500; margin-bottom: 6px; }
+                .purchase-form .purchase-form-header { margin-bottom: 18px; padding: 18px 20px; background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(59,130,246,0.08)); border-radius: 18px; border: 1px solid rgba(79,70,229,0.14); }
+                .purchase-form .purchase-form-header p { margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.7; }
+                .purchase-request-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+                .purchase-request-form label { display: block; font-size: 0.94rem; color: #334155; font-weight: 700; margin-bottom: 8px; }
                 .purchase-request-form input[type="text"],
+                .purchase-request-form input[type="email"],
                 .purchase-request-form select,
-                .purchase-request-form input[type="file"] { width: 100%; padding: 11px 12px; border: 1.5px solid #d1d5db; border-radius: 8px; background: #fff; box-shadow: inset 0 1px 2px rgba(0,0,0,0.04); font-size: 0.95rem; color: #111827; height: 44px; font-family: inherit; transition: border-color 0.2s; }
+                .purchase-request-form input[type="file"] { width: 100%; padding: 14px 16px; border: 1px solid rgba(148,163,184,0.35); border-radius: 16px; background: #f8fbff; box-shadow: inset 0 1px 2px rgba(15,23,42,0.04); font-size: 0.95rem; color: #0f172a; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
                 .purchase-request-form input[type="text"]:focus,
+                .purchase-request-form input[type="email"]:focus,
                 .purchase-request-form select:focus,
-                .purchase-request-form input[type="file"]:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.1); }
-                .purchase-request-form input[type="file"] { padding: 10px 12px; height: auto; }
+                .purchase-request-form input[type="file"]:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 4px rgba(79,70,229,0.12); }
+                .purchase-request-form input[type="file"] { padding: 12px 14px; height: auto; }
                 .purchase-request-form .full-width { grid-column: 1 / -1; }
-                .purchase-request-form .buttons-row { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end; margin-top: 12px; }
-                .purchase-note { font-size: 0.82rem; color: #6b7280; margin-top: 12px; grid-column: 1 / -1; line-height: 1.5; }
-                .purchase-submit-button { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border: none; font-weight: 600; padding: 11px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 0.95rem; }
+                #purchase-form .purchase-request-form .buttons-row { display: flex !important; flex-direction: row !important; gap: 12px !important; justify-content: flex-end !important; align-items: center !important; flex-wrap: wrap !important; margin-top: 16px !important; }
+                .purchase-request-form .buttons-row { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; flex-direction: row; margin-top: 16px; }
+                #purchase-form .purchase-request-form .buttons-row button { display: inline-flex !important; white-space: nowrap; min-width: 90px; width: auto !important; flex: 0 1 auto !important; padding: 10px 14px; font-size: 0.92rem; }
+                .purchase-request-form .buttons-row .purchase-cancel-button { flex: 0 1 auto; }
+                .purchase-note { font-size: 0.88rem; color: #475569; margin-top: 16px; grid-column: 1 / -1; line-height: 1.75; background: #eef2ff; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(79,70,229,0.14); }
+                .purchase-submit-button { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border: none; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
                 .purchase-submit-button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
                 .purchase-cancel-button { background: #f3f4f6; color: #374151; border: 1.5px solid #d1d5db; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.95rem; transition: all 0.3s; }
                 .purchase-cancel-button:hover { background: #e5e7eb; border-color: #9ca3af; }
@@ -2570,9 +3163,10 @@
                     .purchase-request-form label { font-size: 0.88rem; }
                     .purchase-request-form input,
                     .purchase-request-form select { font-size: 16px; height: 42px; }
-                    .purchase-request-form .buttons-row { flex-direction: column; gap: 10px; }
+                    .purchase-request-form .buttons-row { flex-direction: row !important; gap: 10px; }
+                    .purchase-request-form .buttons-row button { width: auto !important; }
                     .purchase-submit-button,
-                    .purchase-cancel-button { width: 100%; padding: 12px; }
+                    .purchase-cancel-button { padding: 10px 12px; }
                     #buy-menu { width: calc(100% - 24px); left: 12px; transform: none; }
                     .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
@@ -2628,8 +3222,9 @@
                 <div>  
                     <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
                 </div>
-                <div class="buy-button-container">
-                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Comprar</button>
+                <!-- Catálogo (removido conforme solicitação) -->
+                    <div class="buy-button-container">
+                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
                 </div>
                     <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
                         <button type="button" class="buy-menu-close" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
@@ -2637,70 +3232,70 @@
                             <h2>Manuais</h2>
                             <ul>
                                 <li id="summeryprice">
-                                    <img src="Image/Guia S.M.S.jpg" alt="Guia S.M.S">
+                                    <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
                                     <h3>Guia S.M.S</h3>
                                     <p>Guia Onde todas as informações <br/>estão disponíveis sobre a sua aula.</p>
                                     <p id="manualPrice1" >Preço: 2.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/DIALOGUE & MEETING.jpg " alt="Dialogue & Meetings">
+                                    <img src="ManuaisFT/Dialogue and meetings.jpg  " alt="Dialogue & Meetings">
                                     <h3>DIALOGUE & MEETINGS</h3>
                                     <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
                                     <p id="manualPrice2" >Preço: 3.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/GRAMMAR BOOK.jpg " alt="Grammar Book">
+                                    <img src="ManuaisFT/Grammar Book.jpg" alt="Grammar Book">
                                     <h3>GRAMMAR BOOK</h3>
                                     <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
                                     <p id="manualPrice3" >Preço: 3.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/VOCABULÁRIO.jpg" alt="Vocabulário">
+                                    <img src="ManuaisFT/Vocabulary.jpg" alt="Vocabulário">
                                     <h3>VOCABULÁRIO</h3>
                                     <p>O livro completo sobre vocabulário inglês, <br/> com fonéticas e explicações detalhadas.</p>
                                     <p id="manualPrice4" >Preço: 3.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/TEXT & READING SKILLS.jpg " alt="Textos & Habilidades de Leitura">
+                                    <img src="ManuaisFT/Text and reading Skills.jpg" alt="Textos & Habilidades de Leitura">
                                     <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
                                     <p>O livro completo sobre habilidades de leitura <br/> e escrita em inglês, com exercícios práticos<br/>  e explicações detalhadas.</p>
                                     <p id="manualPrice5" >Preço: 3.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/OS VERBOS REGULARES & IRREGULARES.jpg" alt="Verbos Regulares & Irregulares">
+                                    <img src="ManuaisFT/Verbs Regular and Irregular.jpg" alt="Verbos Regulares & Irregulares">
                                     <h3>OS VERBOS REGULARES & IRREGULARES</h3>
                                     <p>O livro completo sobre verbos ingleses, <br/> com exercícios práticos e explicações detalhadas.</p>
                                     <p id="manualPrice6" >Preço: 3.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer1.jpg" alt="Saraswati Knowledge">
-                                    <h3>SARASWATI KNOWLEDGE</h3>
-                                    <p>A história e vida de Saraswati pela luz e sabedoria, leia!</p>
-                                    <p id="manualPrice7" >Preço: 5.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Saraswati Knowledge', 7, '5.000 Kz')">Comprar</button>
+                                    <img src="ManuaisFT/Fluency.jpg" alt="Aceleração da Fluência">
+                                    <h3>Aceleração da Fluência</h3>
+                                    <p> O método revolucionário para dominar <br/> o inglês com rapidez e eficácia.</p>
+                                    <p id="manualPrice7" >Preço: 6.000 Kz</p>
+                                    <button type="button" onclick="openPurchaseForm('Aceleração da Fluência', 7, '6.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer2.jpg" alt="Um Estrangeiro Perdido">
+                                    <img src="ManuaisFT/Not Available.png " alt="Um Estrangeiro Perdido">
                                     <h3>UM ESTRANGEIRO PERDIDO</h3>
                                     <p>O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
                                     <p id="manualPrice8" >Preço: 6.500 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/Flayer3.jpg" alt="O Dicionário S.M.S">
+                                    <img src="ManuaisFT/Not Available.png " alt="O Dicionário S.M.S">
                                     <h3>O DICIONÁRIO S.M.S</h3>
                                     <p>Dicionário completo com mais de 5.000 <br/> palavras e expressões em inglês.</p>
                                     <p id="manualPrice9" >Preço: 9.000 Kz</p>
                                     <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="Image/PromoInfo3.jpg" alt="500 Conversas">
+                                    <img src="ManuaisFT/Not Available.png " alt="500 Conversas">
                                     <h3>500 CONVERSAS</h3>
                                     <p>O livro completo com 500 conversas práticas em inglês, <br/> ideal para melhorar a fala e a compreensão auditiva.</p>
                                     <p id="manualPrice10" >Preço: 3.000 Kz</p>
@@ -2709,8 +3304,11 @@
                             </ul>
 
                             <div id="purchase-form" class="purchase-form hidden">
-                                <h3 id="selectedManualTitle">Pedido de compra</h3>
-                                    <p id="selectedManualPrice" style="margin:6px 0 16px; color:#334155; font-weight:600;">Preço: —</p>
+                                <div class="purchase-form-header">
+                                    <h3 id="selectedManualTitle">Pedido de compra</h3>
+                                    <p>Preencha os dados abaixo para receber <br/>o manual rapidamente ou receber de forma física.</p>
+                                </div>
+                                <p id="selectedManualPrice" style="margin:0 0 18px; color:#334155; font-weight:600;">Preço: —</p>
                                 <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
                                     <label for="buyerName">Nome completo</label>
                                     <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
@@ -2722,10 +3320,13 @@
                                     <select id="courseType" required>
                                         <option value="">Selecione...</option>
                                         <option value="Inglês">Inglês</option>
-                                        <option value="Francês">Francês</option>
-                                        <option value="Alemão">Alemão</option>
-                                        <option value="Espanhol">Espanhol</option>
+                                        <option value="Francês">Excel Avançado</option>
+                                        <option value="Alemão">Gestão de Projetos</option>
+                                        <option value="Espanhol">Higiene & Segurança No Trabalho</option>
+                                        <option value="Italiano">Informática Na Óptica do Utilizador</option>
+                                        <option value="Português">Logística Internacional</option>
                                         <option value="Outro">Outro</option>
+
                                     </select>
 
                                     <label for="proofFile" class="full-width">Comprovante de pagamento</label>
@@ -2734,10 +3335,11 @@
                                     <input type="hidden" id="purchaseManualId">
                                     <input type="hidden" id="purchaseManualPrice">
                                     <div class="buttons-row">
-                                        <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Finalizar</button>
+                                        <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Virtual</button>
+                                        <button type="button" class="purchase-submit-button" onclick="submitPhysicalPurchaseRequest()" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Físico</button>
                                         <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
                                     </div>
-                                    <p class="purchase-note">📋 Após enviar, você será redirecionado para confirmar<br/>  o documento e receber a senha.</p>
+                                    <p class="purchase-note">📋 Use Virtual para finalizar por email <br/> Físico para abrir o WhatsApp com <br/>instruções de entrega impressa.</p>
                                     <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
                                 </form>
                             </div>
@@ -2968,22 +3570,22 @@
                 <div style="display: grid; gap: 15px;">
                     <div>
                         <label style="font-weight: bold; color: #333;">Titular da Conta:</label>
-                        <p style="margin: 5px 0; color: #666;">Estevão André Lizi</p>
+                        <p style="margin: 5px 0; color: #666;">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">Banco:</label>
-                            <p style="margin: 5px 0; color: #666;">Banco Milénio Atlântico</p>
+                            <p style="margin: 5px 0; color: #666;">Banco Yetu.</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Número da Conta:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">226182555.10001</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">7899088.10001</p>
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO06.0055.2618.2555.1010.7</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO6.0066.0000.0789.9088.1013.0</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Referência:</label>
@@ -3052,30 +3654,19 @@
     <section class="banner">
         <div class="banner-slider" id="bannerSlider">
             <div class="banner-slide">
-                <img src="Image/Documento3.jpg " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
-                           
+                <img src="DashBoard/BannerPro.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="banner-slide">
-                <img src="Image/PromoInfo3.jpg " alt="S.M.S Escola de Linguas" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="DashBoard/BannerPro2.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="banner-slide">
-                <div>
-                    <h1 style="font-size: 36px; margin-bottom: 10px;color: rgb(134, 238, 252);">SARASWATI MAA MIND SCHOOL</h1>
-                    <p style="font-size: 24px; margin-top: 10px; color: rgb(134, 233, 246);">Eduque a mente conecta o mundo</p>
-                     <p style="font-size: 20px; margin-top: 10px; color: rgb(134, 240, 254);">Seja bem vindo á S.M.S</p>
-                </div>
+                <img src="DashBoard/BannerPro3.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="banner-slide">
-                <div>
-                    <h1>Cursos Intensivos</h1>
-                    <p style="font-size: 24px; margin-top: 10px;">Inglês por Estagío e muito Mais</p>
-                </div>
+                <img src="DashBoard/BannerPro4.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="banner-slide">
-                <div>
-                    <h1>Agende Sua Aula</h1>
-                    <p style="font-size: 24px; margin-top: 10px;">WhatsApp para Contacto</p>
-                </div>
+                <img src="DashBoard/BannerPro5.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
         <div class="banner-dots">
@@ -3084,76 +3675,196 @@
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
             <span class="dot" onclick="currentSlide(5)"></span>
-           
         </div>
     </section>
     <!-- DASHBOARD COM CURSOS -->
     <section class="dashboard" id="cursos">   
-        <h2 class="section-title">Nossos Cursos</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop" alt="Estágio 1 - Inglês" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Estágio 1</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Duração: 4 meses | ⏱️ 2 horas de aulas semanais</p>
-                    <div class="product-price">Kz 25.000,00/mês</div>
-                    <div class="product-description">Domine os fundamentos da língua inglesa com nossa metodologia comprovada. Introdução à conversação, diálogos práticos e pronúncia. Garantimos fluidez oral em 4 meses.</div>
-                    <button class="buy-button" onclick="bookCourse('Estágio 1', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+        <h2 class="section-title">Catálogo de Cursos</h2>
+
+        <div class="course-group">
+            <h3 class="course-group-title">Programas Principais</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Foundation English</div>
+                        <p class="product-meta">25.000 KZ / mês · 4 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
+                        <div class="product-price">25.000 KZ / mês</div>
+                        <div class="product-description">Ideal para iniciantes que buscam construir a base do inglês. Foco em comunicação básica, compreensão e vocabulário inicial.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Foundation English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 25000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Intermediate English</div>
+                        <p class="product-meta">30.000 KZ / mês · 5 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
+                        <div class="product-price">30.000 KZ / mês</div>
+                        <div class="product-description">Para alunos com base em inglês que desejam desenvolver comunicação prática e ganhar confiança no uso cotidiano da língua.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Intermediate English', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 30000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Profissional english.jpg" alt="Professional English" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Professional English</div>
+                        <p class="product-meta">De 25.000 KZ até 99.000 KZ · 1h30 ou 3h por aula · Duração variável · Modalidade: Online / Presencial</p>
+                        <div class="product-price">25.000 KZ - 99.000 KZ</div>
+                        <div class="product-description">Programa avançado com categorias como Business, Academic, Technical, Travel e Specialized English. Estrutura personalizada conforme seu objetivo profissional.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Professional English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Professional English', 25000.00);">Propina</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Estágio 2 - Conversação" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Estágio 2</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Duração: 4,5 meses | ⏱️ 2 horas de aulas semanais</p>
-                    <div class="product-price">Kz 35.000,00/mês</div>
-                    <div class="product-description">Desenvolva conversação natural e confiante. Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.</div>
-                    <button class="buy-button" onclick="bookCourse('Estágio 2', 35000.00); showRegistrationAndPayment();">Inscrever-se</button>
+        <div class="course-group">
+            <h3 class="course-group-title">Outros Programas</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="DashBoard/Aceleração da fluencia.jpg " alt="Aceleração da Fluência" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Aceleração da Fluência</div>
+                        <p class="product-meta">25.000 KZ · 3 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
+                        <div class="product-price">25.000 KZ</div>
+                        <div class="product-description">Para quem já fala inglês e quer acelerar o domínio completo da língua com prática intensiva e foco em fluência.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aceleração da Fluência', 25000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Habilidades de Comunicação.jpg" alt="Habilidades de Comunicação" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Habilidades de Comunicação</div>
+                        <p class="product-meta">18.000 KZ / aula · 6 horas · Intervalo de 30 minutos · Modalidade: Online / Presencial</p>
+                        <div class="product-price">18.000 KZ / aula</div>
+                        <div class="product-description">Diversifique entre inglês americano, britânico e nigeriano, aumentando sua capacidade de diálogo, pronúncia e versatilidade.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 18000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Habilidades de Comunicação', 18000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Preparatorio.jpg" alt="Preparatório" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Preparatório</div>
+                        <p class="product-meta">15.000 KZ / aula · 4 horas · Intervalo de 10 minutos · Modalidade: Online / Presencial</p>
+                        <div class="product-price">15.000 KZ / aula</div>
+                        <div class="product-description">Preparação para entrevistas de emprego, escolar, universitário, emigração, logística e outros objetivos com foco em desempenho.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Preparatório', 15000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Aulas ao Domicilio.jpg" alt="Aulas ao Domicílio" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Aulas ao Domicílio</div>
+                        <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
+                        <div class="product-price">30.000 KZ / mês (base)</div>
+                        <div class="product-description">Aulas no domicílio com valor sujeito a alteração conforme horário e localização. Ideal para quem busca conforto e flexibilidade.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Aulas ao Domicílio', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas ao Domicílio', 30000.00);">Propina</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="DashBoard/Club Meetings.png " alt="Club Meetings" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Club Meetings</div>
+                        <p class="product-meta">Presencial: 08:00–12:00 · Online: 19:00–21:00 · Modalidade: Híbrida · Gratuito</p>
+                        <div class="product-price">Entrar no grupo (grátis)</div>
+                        <div class="product-description">Encontros de prática em grupo para conversação e troca cultural. Participação aberta sem pagamento — entre no grupo via convite WhatsApp.</div>
+                        <a class="buy-button free" role="button" href="https://chat.whatsapp.com/H2eDhya4kXm4hmZ5G95BXL?s=sw&p=a&ilr=4&amv=3" target="_blank" rel="noopener noreferrer">Entrar no grupo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="DashBoard/Pacote Autodidata.png " alt="Pacote Autodidata - 25 aulas" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Pacote Autodidata (YouTube + WhatsApp)</div>
+                        <p class="product-meta">Pacote único · 25 aulas liberadas · Modalidade: Online (YouTube / WhatsApp)</p>
+                        <div class="product-price">10.000 KZ (pacote único)</div>
+                        <div class="product-description">Aulas gravadas liberadas no nosso canal do YouTube com suporte via grupo WhatsApp. Ideal para estudo autónomo sem professor presente.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Pacote Autodidata (25 aulas)', 10000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Pacote Autodidata (YouTube + WhatsApp)', 10000.00);">Propina</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Estágio 3 - Profissional" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Estágio 3</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
-                    <div class="product-price">Kz 20.000,00/mês</div>
-                    <div class="product-description">Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações. Prepare-se para oportunidades globais com a S.M.S.</div>
-                    <button class="buy-button" onclick="bookCourse('Estágio 3', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+        <div class="course-group">
+            <h3 class="course-group-title">Cursos Infantis</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="DashBoard/Kindergarten presencial.png " alt="Aulas Infantis Kindergarten Presencial" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Aulas Infantis Kindergarten – Presencial</div>
+                        <p class="product-meta">26.500 KZ mensalidade · 5 meses · 1h30/aula (3 primeiros meses), 2h/aula (últimos 2 meses) · Modalidade: Presencial</p>
+                        <div class="product-price">26.500 KZ / mês</div>
+                        <div class="product-description">Curso infantil presencial com foco em comunicação e conversação progressiva, desenvolvido para o crescimento do aprendizado desde cedo.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Aulas Infantis Kindergarten – Presencial', 26500.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas Infantis Kindergarten – Presencial', 26500.00);">Propina</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop" alt="Preparatório" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Preparatório</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
-                    <div class="product-price">Kz 15.000,00/aula</div>
-                    <div class="product-description">Preparação intensiva para exames internacionais e oportunidades acadêmicas. Suporte personalizado para alcançar seus objetivos educacionais.</div>
-                    <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                <div class="product-card">
+                    <img src=" DashBoard/Kindergarten online.png" alt="Aulas Infantis Kindergarten Online" class="product-image-img">
+                    <div class="product-info">
+                        <div class="product-name">Aulas Infantis Kindergarten – Online</div>
+                        <p class="product-meta">20.000 KZ mensal · 6 meses · 1h/aula (3 primeiros meses), 1h30/aula (últimos 3 meses) · Modalidade: Online</p>
+                        <div class="product-price">20.000 KZ / mês</div>
+                        <div class="product-description">Acompanhamento contínuo com aulas em tempo real, videoaulas, flashcards, áudios Playcast e brincadeiras com Joy Dunkin Kid.</div>
+                        <div class="course-buttons-container">
+                            <button class="buy-button" onclick="bookCourse('Aulas Infantis Kindergarten – Online', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas Infantis Kindergarten – Online', 20000.00);">Propina</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" alt="Habilidades de Comunicação" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Habilidades de Comunicação</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
-                    <div class="product-price">Kz 12.000,00/aula</div>
-                    <div class="product-description">Desenvolva competências interpessoais essenciais: comunicação eficaz, liderança, inteligência emocional e apresentações profissionais.</div>
-                    <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 12000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Aceleração de Fluência" class="product-image-img">
-                <div class="product-info">
-                    <div class="product-name">Aceleração da Fluência</div>
-                    <p style="color: #666; font-size: 0.95rem;">📅 Sob consulta | ⏱️ 1h30 de aulas (Online)</p>
-                    <div class="product-price">Kz 25.000,00/mês</div>
-                    <div class="product-description">Acelere sua fluência em conversação e audição. Alcance o nível de falante nativo com imersão total e prática intensiva orientada.</div>
-                    <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                
+                <div class="product-card">
+                    <div class="course-video" style="position:relative;width:100%;height:300px;overflow:hidden;">
+                            <div id="joyPlayerContainer" style="position:absolute;inset:0;width:100%;height:100%;padding-bottom:0;">
+                                <div id="joyPlayer" style="position:absolute;left:0;top:0;width:100%;height:100%;"></div>
+                                <button id="joyPlayBtn" aria-label="Reproduzir" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(0,0,0,0.5);color:#fff;border:0;font-size:28px;display:flex;align-items:center;justify-content:center;z-index:12;">▶</button>
+                                <button id="joySoundBtn" aria-label="Ativar som" style="position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:6px;background:rgba(0,0,0,0.45);color:#fff;border:0;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:12">🔈</button>
+                                <label id="joyAutoplayLabel" style="position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,0.9);padding:4px 6px;border-radius:6px;font-size:12px;z-index:12;color:#0f172a"><input id="joyAutoplayToggle" type="checkbox" style="margin-right:6px">Iniciar só ao clicar</label>
+                            </div>
+                        </div>
+                    <div class="product-info">
+                        <div class="name-row">
+                            <img src="ManuaisFT/Joy dunkin avatar.png " alt="Joy Dunkin Avatar" class="joy-avatar">
+                            <div class="product-name">Escrever para Joy Dunkin Kid</div>
+                        </div>
+                        <p class="product-meta">Atendimento via avatar Joy Dunkin Kid · Modalidade: Online · Gratuito</p>
+                        <div class="product-price">Custo: 0 KZ</div>
+                        <div class="product-description">As crianças podem escrever e interagir com nosso avatar Joy Dunkin Kid para atividades, dúvidas e brincadeiras educativas — sem teacher e sem custo.</div>
+                    
+                        <a class="buy-button free" role="button" href="https://wa.me/244951474872?text=Olá%20Joy%20Dunkin%20Kid%20%e2%9c%8c%20Quero%20interagir" target="_blank" rel="noopener noreferrer">Escrever para Joy</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3170,8 +3881,17 @@
             </div>
 
             <div class="form-group">
-                <label for="coursePrice">💵 Preço Mensal:</label>
+                <label for="coursePrice">💵 Preço:</label>
                 <input type="text" id="coursePrice" placeholder="Preço do curso" readonly style="background-color: #f0f0f0;">
+                <input type="hidden" id="courseBasePrice" value="0">
+            </div>
+
+            <div class="form-group">
+                <label>🧭 Como deseja estudar? <span style="font-size:0.9rem; color:#6b7280;">(Escolha uma opção)</span></label>
+                <div style="display:flex; gap:12px; align-items:center; margin-top:6px;">
+                    <label style="display:inline-flex; gap:8px; align-items:center;"><input type="radio" name="enrollModality" value="online"> Online (+8.500 Kz)</label>
+                    <label style="display:inline-flex; gap:8px; align-items:center;"><input type="radio" name="enrollModality" value="presencial"> Presencial (+10.000 Kz)</label>
+                </div>
             </div>
 
             <div class="form-group">
@@ -3208,7 +3928,7 @@
             </div>
 
             <div class="form-group">
-                <label for="municipality">🏘️ Município (Localização):</label>
+                <label for="municipality">🏘️ Localização:</label>
                 <select id="municipality" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
                     <option value="">Selecione um município...</option>
                       <option value="Luanda">Online</option>
@@ -3249,33 +3969,169 @@
             </div>
         </div>
     </section>
+    
+    <!-- MODAL DE PAGAMENTO DE PROPINAS -->
+    <div id="propina-modal" class="propina-modal" style="display: none;">
+        <div class="propina-modal-content">
+            <button class="propina-modal-close" onclick="closeProptinaModal()" aria-label="Fechar modal">×</button>
+            
+            <div class="propina-modal-header">
+                <h2>💳 Formulário de Propina</h2>
+                <div class="iban-display">
+                    <p><strong >IBAN para Pagamento:</strong></p>
+                    <p style="font-family: monospace; font-size: 18px; background: #080808; padding: 12px; border-radius: 8px; margin: 8px 0;">AO6.0066.0000.0789.9088.1013.0</p>
+                    <p style="font-size: 14px; color: #000000; margin-top: 10px;">
+                        <strong>⚠️ Instruções:</strong> Efetue o pagamento para o IBAN acima, preencha os dados abaixo e anexe o comprovante antes de clicar em "Eu paguei".
+                    </p>
+                </div>
+            </div>
+
+            <form id="propina-form" class="propina-form" onsubmit="submitProptinaForm(event);">
+                <!-- Dados do Cliente -->
+                <fieldset class="propina-fieldset">
+                    <legend>📋 Dados do Cliente</legend>
+                    <div class="form-group">
+                        <label for="propina-name">Nome Completo:</label>
+                        <input type="text" id="propina-name" name="name" placeholder="Ex: João Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propina-email">E-mail:</label>
+                        <input type="email" id="propina-email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propina-phone">Telefone / WhatsApp:</label>
+                        <input type="tel" id="propina-phone" name="phone" placeholder="+244 9XX XXX XXX" required>
+                    </div>
+                </fieldset>
+
+                <!-- Objetivo do Pagamento -->
+                <fieldset class="propina-fieldset">
+                    <legend>🎯 Objetivo do Pagamento</legend>
+                    <div class="form-group">
+                        <label for="propina-course">Curso:</label>
+                        <input type="text" id="propina-course" name="course" readonly placeholder="Curso será preenchido automaticamente" style="background: #f5f5f5; cursor: not-allowed;">
+                    </div>
+                </fieldset>
+
+                <!-- Tipo de Pagamento -->
+                <fieldset class="propina-fieldset">
+                    <legend>💰 Tipo de Pagamento</legend>
+                    <div class="form-group">
+                        <label for="propina-type">Selecione o Tipo de Pagamento:</label>
+                        <select id="propina-type" name="payment_type" required onchange="updatePaymentTypeFields();">
+                            <option value="">-- Selecione --</option>
+                            <option value="monthly">Dívida de Mensalidade</option>
+                            <option value="package">Dívida de Pacote Único</option>
+                            <option value="corporate">Pacote Empresas</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos para Mensalidade -->
+                    <div id="monthly-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                        <label for="propina-month">Referência da Mensalidade:</label>
+                        <select id="propina-month" name="month_ref">
+                            <option value="">-- Selecione --</option>
+                            <option value="2º mês">2º mês</option>
+                            <option value="3º mês">3º mês</option>
+                            <option value="4º mês">4º mês</option>
+                            <option value="5º mês">5º mês</option>
+                            <option value="6º mês">6º mês</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos para Pacote Único -->
+                    <div id="package-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                        <label for="propina-package">Referência de Pacote Único:</label>
+                        <select id="propina-package" name="package_ref">
+                            <option value="">-- Selecione --</option>
+                            <option value="Reforço">Reforço</option>
+                            <option value="Segunda etapa">Segunda etapa</option>
+                            <option value="Sessão de Avaliação">Sessão de Avaliação</option>
+                            <option value="Plano de Continuidade">Plano de Continuidade</option>
+                            <option value="Sessão Extra">Sessão Extra</option>
+                            <option value="Apoio Intensivo">Apoio Intensivo</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos para Pacote Empresas -->
+                    <div id="corporate-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                        <label for="propina-corporate">Categoria de Pacote Empresas:</label>
+                        <select id="propina-corporate" name="corporate_category" onchange="updateCorporateAmount();">
+                            <option value="">-- Selecione --</option>
+                            <option value="Business English">Business English — 35.000</option>
+                            <option value="Academic English">Academic English — 30.000</option>
+                            <option value="Travel English">Travel English — 25.000</option>
+                            <option value="Professional English">Professional English — 50.000</option>
+                            <option value="Technical English">Technical English — 60.000</option>
+                            <option value="Specialized English">Specialized English — 75.000</option>
+                            <option value="Team/Company 3 Member">Team/Company 3 Member — 100.000</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <!-- Montante a Pagar -->
+                <fieldset class="propina-fieldset">
+                    <legend>💵 Montante a Pagar</legend>
+                    <div class="form-group">
+                        <label for="propina-amount">Valor (KZ):</label>
+                        <input type="number" id="propina-amount" name="amount" placeholder="Ex: 25000" step="0.01" readonly style="background: #f5f5f5; cursor: not-allowed;" required>
+                    </div>
+                </fieldset>
+
+                <!-- Anexar Comprovante -->
+                <fieldset class="propina-fieldset">
+                    <legend>📎 Comprovante de Pagamento</legend>
+                    <div class="form-group">
+                        <label for="propina-proof">Anexar Comprovante (Imagem/PDF):</label>
+                        <input type="file" id="propina-proof" name="proof" accept="image/*,.pdf" required>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">Formatos aceitos: JPG, PNG, PDF (máx. 10 MB)</p>
+                    </div>
+                </fieldset>
+
+                <!-- Botões -->
+                <div class="propina-buttons">
+                    <button type="submit" class="propina-submit-btn">Eu paguei ✓</button>
+                    <button type="button" class="propina-cancel-btn" onclick="closeProptinaModal();">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <!-- DADOS BANCÁRIOS E PAGAMENTO -->
     <section class="payment-section" id="pagamento" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; margin-top: 40px; display: none;">
         <div class="payment-container" style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             <h2 style="text-align: center; color: #333; margin-bottom: 30px;">💳 Dados Bancários & Comprovante de Pagamento</h2>
+            <div id="paymentSummaryBox" style="background:#fff8eb; padding:16px; border-radius:10px; margin-bottom:18px; border:1px solid rgba(212,160,36,0.12);">
+                <h3 style="margin:0 0 8px 0; color:#333;">Resumo da Inscrição</h3>
+                <p style="margin:6px 0; color:#475569;"><strong>Curso:</strong> <span id="summary_course">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Valor do curso:</strong> <span id="summary_base">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Taxa de inscrição:</strong> <span id="summary_fee">—</span></p>
+                <p style="margin:6px 0; color:#111827;"><strong>Total final:</strong> <span id="summary_total" style="color:#d4a024; font-weight:800; font-size:1.1rem;">—</span></p>
+                <p style="margin:6px 0; color:#475569;"><strong>Referência:</strong> <span id="summary_reference">—</span></p>
+            </div>
             <!-- DADOS BANCÁRIOS -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
                 <h3 style="color: #667eea; margin-bottom: 15px;">📋 Dados Bancários</h3>
                 <div style="display: grid; gap: 15px;">
                     <div>
                         <label style="font-weight: bold; color: #333;">Titulare da Conta:</label>
-                        <p style="margin: 5px 0; color: #666;">Estevão André Lizi</p>
+                        <p style="margin: 5px 0; color: #666;">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">Banco:</label>
-                            <p style="margin: 5px 0; color: #666;">Banco Milénio Atlântico</p>
+                            <p style="margin: 5px 0; color: #666;">Banco Yetu.</p>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Número da Conta:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">226182555.10001</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace;">7899088.10001</p>
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <span>AO06</span>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">0055.0000.2618.2555.1010.7</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace; display:inline-block;">AO6.0066.0000.0789.9088.1013.0</p>
+                            <button type="button" onclick="copyIBAN()" style="margin-left:12px; padding:6px 10px; border-radius:8px; border:none; background:#d4a024; color:#072040; font-weight:700; cursor:pointer;">Copiar IBAN</button>
                         </div>
                         <div>
                             <label style="font-weight: bold; color: #333;">Referência:</label>
@@ -3290,6 +4146,10 @@
             <!-- FORMULÁRIO DE ENVIO DE COMPROVANTE -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
                 <h3 style="color: #764ba2; margin-bottom: 20px;">📤 Enviar Comprovante de Pagamento</h3>
+                <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+                    <button type="button" onclick="generateEnrollmentInvoice()" style="padding:8px 12px; border-radius:8px; border:none; background:#667eea; color:white; font-weight:700; cursor:pointer;">Gerar Fatura</button>
+                    <button type="button" onclick="openWhatsAppEnrollment()" style="padding:8px 12px; border-radius:8px; border:none; background:#25D366; color:white; font-weight:700; cursor:pointer;">Abrir WhatsApp</button>
+                </div>
                 <div class="form-group" style="margin-top: 15px;">
                     <label for="proofAttachment">📎 Anexar Comprovante (Imagem/PDF):</label>
                     <input type="file" id="proofAttachment" accept="image/*,.pdf" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
@@ -3311,42 +4171,42 @@
     </section>
     <!-- GALERIA DE FOTOS -->
     <section class="gallery" id="galeria">
-        <h2 class="section-title">Galeria de Fotos</h2>
+        <h2 class="section-title">Jornal SMS</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="Image/Pub1.jpg" alt="Aula de Inglês" class="gallery-image">
+                <img src="Image/Modelo 1.jpg" alt="Aula de Inglês" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Estamos abertos para Inscrições Online</h3>
+                    <h3>Curso de Excel Avançado Já estará disponível e todos poderão se inscrever</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Sala de aulas.jpg " alt="Sala de Aula" class="gallery-image">
+                <img src="Image/Modelo 2.jpg" alt="Sala de Aula" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Sala de Aula Moderna</h3>
+                    <h3>Curso de Gestão de Projetos Vem aí!</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Pub2.jpg" alt="Estudantes" class="gallery-image">
+                <img src="Image/Modelo 3.jpg" alt="Estudantes" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Somos a sua família de aprendizagem</h3>
+                    <h3>Higiene e Segurança no Trabalho - quem dirige a segurança agora é você!</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Flayer1.jpg " alt="Materiais" class="gallery-image">
+                <img src="Image/Modelo 4.jpg" alt="Materiais" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Temos uma equipe qualificada</h3>
+                    <h3>Informática está chegando até você traga seu computador na SMS</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Flayer3.jpg " alt="Programação" class="gallery-image">
+                <img src="Image/Modelo 5.jpg " alt="Programação" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Aula de Programação</h3>
+                    <h3>Como assim ainda não se inscreveu?</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Anuncio1.jpg " alt="Grupo de Estudo" class="gallery-image">
+                <img src="Image/Modelo 6.jpg " alt="Grupo de Estudo" class="gallery-image">
                 <div class="gallery-overlay">
-                    <h3>Estamos Contratando!</h3>
+                    <h3>Já tens o Passaporte? Essa viagem é internacional venha fazer a logística </h3>
                 </div>
             </div>
         </div>
@@ -3507,6 +4367,7 @@
                     `Nome: ${name}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
+                    `Envie o seu comprovante manualmente para acelerar a sua validação.\n\n` +
                     `O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento. Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente.      Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem!  em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
                 );
 
@@ -3554,13 +4415,17 @@
         // Inscrição e automatização
         function bookCourse(courseName, coursePrice) {
             document.getElementById('courseName').value = courseName;
+            // preencher preço formatado e guardar preço base num campo oculto (valor numérico)
             document.getElementById('coursePrice').value = 'Kz ' + coursePrice.toFixed(2).replace('.', ',');
+            const baseInput = document.getElementById('courseBasePrice');
+            if (baseInput) baseInput.value = Number(coursePrice || 0);
             const section = document.getElementById('agendamento');
             section.classList.add('show');
             setTimeout(() => {
                 document.getElementById('scheduleDate').focus();
                 section.scrollIntoView({ behavior: 'smooth' });
-            }, 100);        }
+            }, 100);
+        }
 
         function toggleOrderSection() {
             const section = document.getElementById('agendamento');
@@ -3586,7 +4451,7 @@
                 return;
             }
 
-            const message = `Olá! Gostaria de agendar uma aula.%0A%0A📚 Curso: ${course}%0A💵 Preço Mensal: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
+            const message = `Olá! Gostaria de agendar uma aula.%0A%0A📚 Curso: ${course}%0A💵 Preço: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
             const whatsappUrl = `https://wa.me/244951474872?text=${message}`;
 
             window.open(whatsappUrl, '_blank');
@@ -3647,12 +4512,54 @@
             const municipality = document.getElementById('municipality').value.trim();
             const scheduleDate = document.getElementById('scheduleDate').value;
             const scheduleTime = document.getElementById('scheduleTime').value;
+            const modalityEl = document.querySelector('input[name="enrollModality"]:checked');
             
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
                 alert('Por favor, preencha todos os campos obrigatórios!');
                 return;
             }
-            
+            if (!modalityEl) {
+                alert('Por favor, selecione a modalidade de inscrição: Online ou Presencial.');
+                return;
+            }
+
+            // cálculo de taxa automática
+            const modality = modalityEl.value; // 'online' | 'presencial'
+            const basePrice = Number(document.getElementById('courseBasePrice')?.value || 0);
+            const FEE_PRESENTIAL = 10000;
+            const FEE_ONLINE = 8500;
+            const fee = (modality === 'presencial') ? FEE_PRESENTIAL : FEE_ONLINE;
+            const total = Number(basePrice) + Number(fee);
+
+            // gerar referência aleatória
+            const reference = generateReference();
+
+            // preencher resumo na UI
+            const courseName = document.getElementById('courseName').value;
+            document.getElementById('summary_course').textContent = courseName || '—';
+            document.getElementById('summary_base').textContent = basePrice ? ('Kz ' + basePrice.toLocaleString('pt-PT')) : '—';
+            document.getElementById('summary_fee').textContent = 'Kz ' + fee.toLocaleString('pt-PT');
+            document.getElementById('summary_total').textContent = 'Kz ' + total.toLocaleString('pt-PT');
+            document.getElementById('summary_reference').textContent = reference;
+
+            // guardar reserva local por 10 minutos
+            const enrollment = {
+                course: courseName,
+                basePrice: basePrice,
+                fee: fee,
+                total: total,
+                reference: reference,
+                name: name,
+                phone: phone,
+                email: email,
+                municipality: municipality,
+                scheduleDate: scheduleDate,
+                scheduleTime: scheduleTime,
+                modality: modality,
+                expiresAt: Date.now() + (10 * 60 * 1000)
+            };
+            try { localStorage.setItem('sms_enrollment', JSON.stringify(enrollment)); } catch (e) { console.warn('localStorage disabled', e); }
+
             document.getElementById('pagamento').style.display = 'block';
             document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
         }
@@ -3694,52 +4601,12 @@
             
             if (method === 'whatsapp') {
                 const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento anexado\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!
-É um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.
-🌍📚 Antes de iniciar, pedimos que certique a sua escolha:
-
-🔹 *Estágio 1 – Iniciantes*
-Indicado para alunos que ainda não conseguem falar inglês ou possuem dificuldades básicas de comunicação. Aqui você aprenderá desde a base até ganhar confiança para conversar.
-
-🔹 *Estágio 2 – B2*
-Indicado para alunos que passaram do basico e que já conseguem falar.  Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.
-
-🔹 *Estágio 3 – Profissional*
-Indicado para alunos, empresas, Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações.
-
-🔹 *Aceleração da Fluência*
-Categoria recomendada para alunos que já falam inglês, mas desejam melhorar a comunicação, pronúncia, vocabulário e fluência no dia a dia e no ambiente profissional.
-
-Em caso de erro na inscrição nós podemos ajudar...
-
-Estamos preparados para ajudá-lo(a) a alcançar um novo nível.
-Seja bem-vindo(a) à S.M.S! 🚀✨
-
-📞 Receção S.M.S` );
+É um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.
+\n🌍📚 Cursos disponíveis para inscrição:\n\n🔹 Foundation English\n🔹 Intermediate English\n🔹 Professional English\n🔹 Aceleração da Fluência\n🔹 Habilidades de Comunicação\n🔹 Preparatório\n🔹 Aulas ao Domicílio\n🔹 Aulas Infantis Kindergarten – Presencial\n🔹 Aulas Infantis Kindergarten – Online\n\nSe precisar de ajuda para escolher o melhor curso, nossa equipe está pronta para orientar você.\n\n📞 Receção S.M.S` );
                 window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
             } else if (method === 'email') {
                 const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento em anexo \n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!
-É um grande prazer ter você connosco nesta jornada de crescimento e desenvolvimento da língua inglesa.
-🌍📚 Antes de iniciar, pedimos que certique a sua escolha:
-
-🔹 Estágio 1 – Iniciantes
-Indicado para alunos que ainda não conseguem falar inglês ou possuem dificuldades básicas de comunicação. Aqui você aprenderá desde a base até ganhar confiança para conversar.
-
-🔹 Estágio 2 – B2
-Indicado para alunos que passaram do basico e que já conseguem falar.  Audição aperfeiçoada, vocabulário avançado e expressão fluida. Ideal para profissionais que buscam maior segurança linguística.
-
-🔹 Estágio 3 – Profissional
-Indicado para alunos, empresas, Capacitação avançada para o mercado de trabalho. Inglês profissional, negociações internacionais e apresentações.
-
-🔹 Aceleração da Fluência
-Categoria recomendada para alunos que já falam inglês, mas desejam melhorar a comunicação, pronúncia, vocabulário e fluência no dia a dia e no ambiente profissional.
-
-Em caso de erro na inscrição nós podemos ajudar...
-
-Estamos preparados para ajudá-lo(a) a alcançar um novo nível.
-Seja bem-vindo(a) à S.M.S! 🚀✨
-
-📞 Receção S.M.S` );
+                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento em anexo \n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.\n\n🌍📚 Cursos disponíveis para inscrição:\n\n🔹 Foundation English\n🔹 Intermediate English\n🔹 Professional English\n🔹 Aceleração da Fluência\n🔹 Habilidades de Comunicação\n🔹 Preparatório\n🔹 Aulas ao Domicílio\n🔹 Aulas Infantis Kindergarten – Presencial\n🔹 Aulas Infantis Kindergarten – Online\n\nSe precisar de ajuda para escolher o melhor curso, nossa equipe está pronta para orientar você.\n\n📞 Receção S.M.S` );
                 window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
             }
             
@@ -3748,6 +4615,46 @@ Seja bem-vindo(a) à S.M.S! 🚀✨
             }, 2000);
         }
         
+        // Overriding submitAllDataVia to include manual-send instruction and proof filename
+        function submitAllDataVia(method) {
+            const courseName = document.getElementById('courseName').value;
+            const coursePrice = document.getElementById('coursePrice').value;
+            const scheduleDate = document.getElementById('scheduleDate').value;
+            const scheduleTime = document.getElementById('scheduleTime').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const municipality = document.getElementById('municipality').value;
+            const notes = document.getElementById('notes').value;
+            const proofFile = document.getElementById('proofAttachment').files[0];
+
+            if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
+                alert('Por favor, preencha todos os campos obrigatórios!');
+                return;
+            }
+
+            if (!proofFile) {
+                alert('Por favor, anexe o comprovante de pagamento!');
+                return;
+            }
+
+            const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
+            const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
+
+            if (method === 'whatsapp') {
+                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
+            } else if (method === 'email') {
+                const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
+                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
+            }
+
+            setTimeout(() => {
+                hideAllSections();
+            }, 2000);
+        }
+
         function hideAllSections() {
             document.getElementById('agendamento').style.display = 'none';
             document.getElementById('pagamento').style.display = 'none';
@@ -3882,6 +4789,60 @@ Seja bem-vindo(a) à S.M.S! 🚀✨
         });
 
         // Removed invalid buyBtn listener; buy menu managed by toggleBuyMenu()
+        
+            /* --- Funções auxiliares para inscrição e pagamento --- */
+            function generateReference(){
+                const rnd = Math.floor(1000 + Math.random()*9000);
+                const d = new Date();
+                const date = `${d.getFullYear()}${(d.getMonth()+1).toString().padStart(2,'0')}${d.getDate().toString().padStart(2,'0')}`;
+                return `SMS-INV-${date}-${rnd}`;
+            }
+
+            function copyIBAN(){
+                const iban = 'AO6.0066.0000.0789.9088.1013.0';
+                if (navigator.clipboard && navigator.clipboard.writeText){
+                    navigator.clipboard.writeText(iban).then(()=> alert('IBAN copiado para a área de transferência.')).catch(()=> alert('Não foi possível copiar o IBAN automaticamente.'));
+                } else {
+                    // fallback
+                    const tmp = document.createElement('textarea'); tmp.value = iban; document.body.appendChild(tmp); tmp.select(); try { document.execCommand('copy'); alert('IBAN copiado'); } catch(e){ alert('Copie manualmente: ' + iban);} tmp.remove();
+                }
+            }
+
+            function generateEnrollmentInvoice(){
+                const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
+                const centerEmail = 'saraswatimaaschool@gmail.com';
+                if (!enrollment || !enrollment.name) {
+                    alert('Nenhuma inscrição encontrada. Complete o formulário antes de gerar a fatura.');
+                    return;
+                }
+                const subject = encodeURIComponent(`Fatura S.M.S - Ref ${enrollment.reference}`);
+                const body = encodeURIComponent(
+                    `S.M.S - Escola de Línguas & Habilidades\n`+
+                    `NIF: 500188916\n`+
+                    `Endereço: TERRA NOVA BFA DO VOLANTE CASA N° 475\n`+
+                    `Telefone: +244 951 474 872\n\n`+
+                    `Referência: ${enrollment.reference}\n`+
+                    `Nome: ${enrollment.name}\n`+
+                    `BI/Passaporte: (preencher no email)\n`+
+                    `Curso: ${enrollment.course}\n`+
+                    `Modalidade: ${enrollment.modality}\n`+
+                    `Valor do curso: Kz ${Number(enrollment.basePrice).toLocaleString('pt-PT')}\n`+
+                    `Taxa de inscrição: Kz ${Number(enrollment.fee).toLocaleString('pt-PT')}\n`+
+                    `Total: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}\n\n`+
+                    `Dados Bancários:\nBanco: Banco Yetu.\nTitular: HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED\nIBAN: AO6.0066.0000.0789.9088.1013.0\nNº Conta: 7899088.10001\nNIF: 500188916\n\n`+
+                    `Por favor, anexe o comprovativo de pagamento e envie este email para confirmação.`
+                );
+                const mailto = `mailto:${centerEmail}?subject=${subject}&body=${body}`;
+                window.open(mailto, '_blank');
+            }
+
+            function openWhatsAppEnrollment(){
+                const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
+                if (!enrollment || !enrollment.name) { alert('Nenhuma inscrição encontrada.'); return; }
+                const text = encodeURIComponent(`Olá, efetuei o pagamento. Ref: ${enrollment.reference}. Nome: ${enrollment.name}. Curso: ${enrollment.course}. Total: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}. Envio comprovativo em anexo.`);
+                const phone = '244951474872';
+                window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            }
         </script>
 </body>
 </html>
