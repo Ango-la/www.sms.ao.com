@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="S.M.S - Escola de Linguas & Habilidades">
     <meta name="description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
     <meta name="keywords" content="Escola de Linguas, Idiomas, Habilidades, Cursos, Aprendizado, Inglês, Francês, Alemão, Espanhol">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.saraswatimaamindschool.com/">
-    <meta property="og:url" content="https://www.saraswatimaamindschool.com/">
+    <link rel="canonical" href="./">
+    <meta property="og:url" content="./">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Saraswati MAA Mind School - Aprenda com Profissionais Experientes">
     <meta property="og:description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
-    <meta property="og:image" content="https://www.saraswatimaamindschool.com/Image/favicon.jpg">
+    <meta property="og:image" content="Image/favicon.jpg">
     <!-- Título da página, utilizado em navegadores, pesquisas e resultados de mecanismos de busca -->
     <title>Saraswati MAA Mind School - Aprenda com Profissionais Experientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -251,6 +252,7 @@
             letter-spacing: 0.6px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             align-items: center;
+            will-change: transform;
         }
 
         .ticker-item {
@@ -258,6 +260,16 @@
             display: inline-flex;
             align-items: center;
         }
+
+        /* animação do ticker: movendo o conteúdo para a esquerda
+           com pausa ao passar o mouse para melhor acessibilidade */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* pause-on-hover intentionally omitted because the ticker overlay
+           uses pointer-events:none to avoid blocking header interactions */
 
         .hidden {
             display: none !important;
