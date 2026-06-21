@@ -1141,6 +1141,7 @@
             text-align: center;
             font-size: 48px;
             font-weight: bold;
+            background-color: #f5f5f5;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -3831,21 +3832,11 @@
     <!-- BANNER COM SLIDES -->
     <section class="banner">
         <div class="banner-slider" id="bannerSlider">
-            <div class="banner-slide">
-                <img src="DashBoard/BannerPro.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="banner-slide">
-                <img src="DashBoard/BannerPro2.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="banner-slide">
-                <img src="DashBoard/BannerPro3.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="banner-slide">
-                <img src="DashBoard/BannerPro4.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="banner-slide">
-                <img src="DashBoard/BannerPro5.png" alt="Saraswati MAA Mind School" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro.png');"></div>
+            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro2.png');"></div>
+            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro3.png');"></div>
+            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro4.png');"></div>
+            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro5.png');"></div>
         </div>
         <div class="banner-dots">
             <span class="dot" onclick="currentSlide(1)"></span>
