@@ -8,6 +8,12 @@
     <meta name="description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
     <meta name="keywords" content="Escola de Linguas, Idiomas, Habilidades, Cursos, Aprendizado, Inglês, Francês, Alemão, Espanhol">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.saraswatimaamindschool.com/">
+    <meta property="og:url" content="https://www.saraswatimaamindschool.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Saraswati MAA Mind School - Aprenda com Profissionais Experientes">
+    <meta property="og:description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
+    <meta property="og:image" content="https://www.saraswatimaamindschool.com/Image/favicon.jpg">
     <!-- Título da página, utilizado em navegadores, pesquisas e resultados de mecanismos de busca -->
     <title>Saraswati MAA Mind School - Aprenda com Profissionais Experientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -3246,7 +3252,7 @@
                                     <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="ManuaisFT/Grammar Book.jpg" alt="Grammar Book">
+                                    <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
                                     <h3>GRAMMAR BOOK</h3>
                                     <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
                                     <p id="manualPrice3" >Preço: 3.000 Kz</p>
@@ -3774,7 +3780,7 @@
                 </div>
 
                 <div class="product-card">
-                    <img src="DashBoard/Aulas ao Domicilio.jpg" alt="Aulas ao Domicílio" class="product-image-img">
+                    <img src="DashBoard/Aulas ao domicilio.jpg" alt="Aulas ao Domicílio" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Aulas ao Domicílio</div>
                         <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
@@ -3925,6 +3931,12 @@
             <div class="form-group">
                 <label for="email">📧 Email:</label>
                 <input type="email" id="email" placeholder="saraswatimaaschool@gmailcom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idNumber">🆔 BI / Passaporte:</label>
+                <input type="text" id="idNumber" placeholder="Ex: 009915732LA059 (BI) ou AB1234567 (Passaporte)" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px;" required>
+                <small style="color:#6b7280; display:block; margin-top:6px;">Seu documento será para nossa base de dados.</small>
             </div>
 
             <div class="form-group">
@@ -4117,24 +4129,20 @@
                         <label style="font-weight: bold; color: #333;">Titulare da Conta:</label>
                         <p style="margin: 5px 0; color: #666;">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">Banco:</label>
                             <p style="margin: 5px 0; color: #666;">Banco Yetu.</p>
-                        </div>
-                        <div>
-                            <label style="font-weight: bold; color: #333;">Número da Conta:</label>
+                            <label style="font-weight: bold; color: #333; margin-top:8px; display:block;">Número da Conta:</label>
                             <p style="margin: 5px 0; color: #666; font-family: monospace;">7899088.10001</p>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
                         <div>
                             <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace; display:inline-block;">AO6.0066.0000.0789.9088.1013.0</p>
+                            <p style="margin: 5px 0; color: #666; font-family: monospace; display:inline-block;"><span>AO6.</span>0066.0000.0789.9088.1013.0</p>
                             <button type="button" onclick="copyIBAN()" style="margin-left:12px; padding:6px 10px; border-radius:8px; border:none; background:#d4a024; color:#072040; font-weight:700; cursor:pointer;">Copiar IBAN</button>
-                        </div>
-                        <div>
-                            <label style="font-weight: bold; color: #333;">Referência:</label>
+                            <label style="font-weight: bold; color: #333; margin-top:8px; display:block;">Referência:</label>
                             <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCOLA DE LÍNGUAS-2026</p>
                         </div>
                     </div>
@@ -4146,23 +4154,16 @@
             <!-- FORMULÁRIO DE ENVIO DE COMPROVANTE -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
                 <h3 style="color: #764ba2; margin-bottom: 20px;">📤 Enviar Comprovante de Pagamento</h3>
-                <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
-                    <button type="button" onclick="generateEnrollmentInvoice()" style="padding:8px 12px; border-radius:8px; border:none; background:#667eea; color:white; font-weight:700; cursor:pointer;">Gerar Fatura</button>
-                    <button type="button" onclick="openWhatsAppEnrollment()" style="padding:8px 12px; border-radius:8px; border:none; background:#25D366; color:white; font-weight:700; cursor:pointer;">Abrir WhatsApp</button>
-                </div>
-                <div class="form-group" style="margin-top: 15px;">
+                 <div class="form-group" style="margin-top: 15px;">
                     <label for="proofAttachment">📎 Anexar Comprovante (Imagem/PDF):</label>
                     <input type="file" id="proofAttachment" accept="image/*,.pdf" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
                 </div>
-
-                <div style="display: flex; gap: 10px; margin-top: 25px; flex-wrap: wrap;">
-                    <button style="flex: 1; padding: 12px 20px; background: #25D366; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.3s;" onclick="submitAllDataVia('whatsapp')" onmouseover="this.style.background='#20BA58'" onmouseout="this.style.background='#25D366'">
-                        <i class="fab fa-whatsapp"></i> Enviar Inscrição via WhatsApp
-                    </button>
-                    <button style="flex: 1; padding: 12px 20px; background: #EA4335; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.3s;" onclick="submitAllDataVia('email')" onmouseover="this.style.background='#D33425'" onmouseout="this.style.background='#EA4335'">
-                        <i class="fas fa-envelope"></i> Enviar Inscrição via Email
-                    </button>
+                <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+                    <button id="enrollGenerateInvoiceBtn" type="button" onclick="generateEnrollmentInvoice()" disabled style="padding:8px 12px; border-radius:8px; border:none; background:#667eea; color:white; font-weight:700; cursor:pointer; opacity:0.6;">Gerar Fatura</button>
+                    <button id="enrollSendWhatsAppBtn" type="button" onclick="submitAllDataVia('whatsapp')" style="padding:8px 12px; border-radius:8px; border:none; background:#25D366; color:white; font-weight:700; cursor:pointer;">Enviar Comprovante via WhatsApp</button>
                 </div>
+
+                <!-- removed duplicate send buttons; kept single WhatsApp action above -->
                 <div style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">
                     <i>Todos os dados serão enviados junto com o comprovante de pagamento.</i>
                 </div>
@@ -4501,6 +4502,20 @@
 
         document.addEventListener('DOMContentLoaded', setupInfoAccordion);
 
+        // Habilita/desabilita botão de gerar fatura quando houver comprovante anexado
+        document.addEventListener('DOMContentLoaded', function(){
+            const proof = document.getElementById('proofAttachment');
+            const enrollBtn = document.getElementById('enrollGenerateInvoiceBtn');
+            const purchaseInvBtn = document.getElementById('invoiceBtn');
+            function updateInvoiceButtons(){
+                const hasFile = proof && proof.files && proof.files.length;
+                if (enrollBtn){ enrollBtn.disabled = !hasFile; enrollBtn.style.opacity = hasFile ? '1' : '0.6'; }
+                if (purchaseInvBtn){ purchaseInvBtn.style.display = hasFile ? 'inline-flex' : 'none'; }
+            }
+            if (proof) proof.addEventListener('change', updateInvoiceButtons);
+            updateInvoiceButtons();
+        });
+
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
@@ -4531,6 +4546,14 @@
             const fee = (modality === 'presencial') ? FEE_PRESENTIAL : FEE_ONLINE;
             const total = Number(basePrice) + Number(fee);
 
+            // validar BI / Passaporte
+            const idNumber = (document.getElementById('idNumber')?.value || '').trim();
+            const idCheck = validateIdNumber(idNumber);
+            if (!idCheck.valid) {
+                alert('Por favor, preencha um BI ou Passaporte válido antes de prosseguir. Exemplos válidos: 008515032LA049 ou AB1234567');
+                return;
+            }
+
             // gerar referência aleatória
             const reference = generateReference();
 
@@ -4552,6 +4575,7 @@
                 name: name,
                 phone: phone,
                 email: email,
+                idNumber: idNumber,
                 municipality: municipality,
                 scheduleDate: scheduleDate,
                 scheduleTime: scheduleTime,
@@ -4574,6 +4598,7 @@
             const email = document.getElementById('email').value;
             const municipality = document.getElementById('municipality').value;
             const notes = document.getElementById('notes').value;
+            const idNumber = (document.getElementById('idNumber')?.value || '').trim();
             const proofFile = document.getElementById('proofAttachment').files[0];
             
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
@@ -4642,11 +4667,11 @@
             const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
 
             if (method === 'whatsapp') {
-                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
                 window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
             } else if (method === 'email') {
                 const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
                 window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
             }
 
@@ -4798,6 +4823,18 @@
                 return `SMS-INV-${date}-${rnd}`;
             }
 
+            // Validação simples para BI / Passaporte
+            function validateIdNumber(value){
+                if (!value || !value.trim()) return { valid: false, type: null };
+                const v = value.trim();
+                const passportRegex1 = /^[A-Za-z]{2}\d{7}$/; // AB1234567
+                const passportRegex2 = /^\d{7}[A-Za-z]{2}$/; // 1234567AB
+                const biRegex = /^\d{9}[A-Za-z]{2}\d{3}$/i; // 008515032LA049
+                if (passportRegex1.test(v) || passportRegex2.test(v)) return { valid: true, type: 'passport' };
+                if (biRegex.test(v)) return { valid: true, type: 'bi' };
+                return { valid: false, type: null };
+            }
+
             function copyIBAN(){
                 const iban = 'AO6.0066.0000.0789.9088.1013.0';
                 if (navigator.clipboard && navigator.clipboard.writeText){
@@ -4811,6 +4848,10 @@
             function generateEnrollmentInvoice(){
                 const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
                 const centerEmail = 'saraswatimaaschool@gmail.com';
+                const proofEl = document.getElementById('proofAttachment');
+                const hasProof = proofEl && proofEl.files && proofEl.files.length;
+                if (!hasProof) { alert('Anexe o comprovante antes de gerar a fatura.'); return; }
+
                 if (!enrollment || !enrollment.name) {
                     alert('Nenhuma inscrição encontrada. Complete o formulário antes de gerar a fatura.');
                     return;
@@ -4823,7 +4864,7 @@
                     `Telefone: +244 951 474 872\n\n`+
                     `Referência: ${enrollment.reference}\n`+
                     `Nome: ${enrollment.name}\n`+
-                    `BI/Passaporte: (preencher no email)\n`+
+                    `BI/Passaporte: ${enrollment.idNumber || '—'}\n`+
                     `Curso: ${enrollment.course}\n`+
                     `Modalidade: ${enrollment.modality}\n`+
                     `Valor do curso: Kz ${Number(enrollment.basePrice).toLocaleString('pt-PT')}\n`+
