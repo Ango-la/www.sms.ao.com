@@ -2117,6 +2117,33 @@
             color: #1f2937;
         }
 
+        .modality-confirmation {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 10px;
+            margin-top: 10px;
+            border-radius: 999px;
+            background: #16a34a;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 3px 10px rgba(22, 163, 74, 0.16);
+        }
+
+        .modality-confirmation.hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .modality-confirmation {
+                width: auto;
+                padding: 8px 12px;
+            }
+        }
+
         .whatsapp-button {
             width: 100%;
             padding: 15px;
@@ -4156,6 +4183,7 @@
                     <label class="radio-option" for="enrollModalityOnline"><input id="enrollModalityOnline" type="radio" name="enrollModality" value="online"><span>Online (+8.500 Kz)</span></label>
                     <label class="radio-option" for="enrollModalityPresencial"><input id="enrollModalityPresencial" type="radio" name="enrollModality" value="presencial"><span>Presencial (+10.000 Kz)</span></label>
                 </div>
+                <div id="modalityConfirmation" class="modality-confirmation hidden" aria-live="polite"></div>
             </div>
 
             <div class="form-group">
@@ -4812,16 +4840,35 @@
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
         }
 
+        function updateModalityConfirmation() {
+            const modalityEl = document.querySelector('input[name="enrollModality"]:checked');
+            const confirmation = document.getElementById('modalityConfirmation');
+            if (!confirmation) return;
+
+            if (modalityEl) {
+                const modalityText = modalityEl.value === 'presencial' ? 'Presencial' : 'Online';
+                confirmation.textContent = `✅ ${modalityText} selecionado`;
+                confirmation.classList.remove('hidden');
+            } else {
+                confirmation.classList.add('hidden');
+                confirmation.textContent = '';
+            }
+        }
+
         function setupEnrollModalityOptions() {
             const options = document.querySelectorAll('.radio-option');
             options.forEach(option => {
+                const input = option.querySelector('input[type="radio"]');
+                if (!input) return;
+
                 option.addEventListener('click', () => {
-                    const input = option.querySelector('input[type="radio"]');
-                    if (input) {
-                        input.checked = true;
-                    }
+                    input.checked = true;
+                    updateModalityConfirmation();
                 });
+
+                input.addEventListener('change', updateModalityConfirmation);
             });
+            updateModalityConfirmation();
         }
 
         document.addEventListener('DOMContentLoaded', setupEnrollModalityOptions);
