@@ -199,7 +199,7 @@ async function submitPurchaseRequest() {
 
   const centerName = 'S.M.S - Escola de Linguas & Habilidades';
   const centerPhone = '+244 951 474872';
-  const centerEmail = 'saraswatimaaschool@gmail.com';
+  const centerEmail = 'VendasRhSms@outlook.com';
   const centerAddress = 'Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola';
   const now = new Date();
 
@@ -347,7 +347,7 @@ function generateInvoice() {
     // Monta a fatura com informações completas do centro e do cliente
     const centerName = 'S.M.S - Escola de Linguas & Habilidades';
     const centerPhone = '+244 951 474872';
-    const centerEmail = 'saraswatimaaschool@gmail.com';
+    const centerEmail = 'VendasRhSms@outlook.com';
     const centerAddress = 'Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola';
 
     doc.setFontSize(16);
@@ -392,8 +392,8 @@ function generateInvoice() {
 (function(){
   // CSS for floating button and modal
   const css = `
-  .floating-report-btn{position:absolute;top:50%;right:18px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#ef4444;color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);z-index:1400;cursor:pointer;font-weight:700;font-size:12px;animation:report-slide 16s ease-in-out infinite alternate, report-shake 18s linear infinite;min-width:44px;min-height:44px;max-width:44px;max-height:44px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0;line-height:1}
-  .floating-report-btn.small{width:44px;height:44px;font-size:12px}
+  .floating-report-btn{position:fixed;top:50%;right:18px;left:auto;transform:translateY(-50%);min-width:44px;min-height:44px;border-radius:999px;background:#ef4444;color:#fff;border:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);z-index:9999;cursor:pointer;font-weight:700;font-size:12px;animation:report-slide 16s ease-in-out infinite alternate, report-shake 18s linear infinite;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 14px;line-height:1}
+  .floating-report-btn.small{width:auto;height:44px;font-size:12px;padding:0 12px;}
   .report-modal{position:fixed;top:70px;right:18px;z-index:1410;display:none}
   .report-modal .report-panel{width:320px;max-width:92vw;background:white;border-radius:12px;padding:12px 12px 10px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 12px 30px rgba(2,6,23,0.12);font-family:inherit}
   @media (max-width: 768px){.floating-report-btn{right:16px;top:50%;transform:translateY(-50%);}}
@@ -459,7 +459,7 @@ function generateInvoice() {
       </div>
     </div>
   `;
-  const headerContainer = document.querySelector('.header-container') || document.body;
+  const headerContainer = document.body;
   headerContainer.appendChild(container);
 
   // elements
