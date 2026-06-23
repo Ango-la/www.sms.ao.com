@@ -3111,7 +3111,7 @@
         }
 
         #scrollToTopBtn {
-            display: none !important;
+            display: none;
             position: fixed;
             bottom: 22px;
             right: 22px;
@@ -3125,10 +3125,9 @@
             z-index: 999;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
             transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0 !important;
+            opacity: 0;
             width: 52px;
             height: 52px;
-            pointer-events: none !important;
             align-items: center;
             justify-content: center;
         }
@@ -3174,6 +3173,10 @@
                 padding: 8px;
                 width: 40px;
                 height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                max-width: 40px;
+                max-height: 40px;
                 font-size: 14px;
             }
 
@@ -3184,6 +3187,26 @@
                 box-sizing: border-box;
             }
 
+            .floating-report-btn {
+                right: 12px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #scrollToTopBtn {
+                right: 10px;
+                bottom: 10px;
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                max-width: 36px;
+                max-height: 36px;
+                padding: 0;
+                font-size: 12px;
+            }
+        }
+
             .banner-slide {
                 padding: 18px 12px;
             }
@@ -3191,7 +3214,6 @@
             .banner-slide > div {
                 padding: 0 10px;
             }
-        }
 
         /* Center buy menu content on small screens and improve responsiveness */
         .buy-menu-content { text-align: center; }
@@ -3439,7 +3461,7 @@
                                     <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
                                 </li>
                                 <li>
-                                    <img src="ManuaisFT/Dialogue and meetings.jpg  " alt="Dialogue & Meetings">
+                                    <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
                                     <h3>DIALOGUE & MEETINGS</h3>
                                     <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
                                     <p id="manualPrice2" >Preço: 3.000 Kz</p>
@@ -3588,7 +3610,7 @@
                                             
                                             <p style="margin: 8px 0; color: #111827;"><strong>📞 Contactos:</strong></p>
                                             <p style="margin: 0 0 4px 0; color: #475569;">Telefone: +244 951 474872</p>
-                                            <p style="margin: 0; color: #475569;">Email: saraswatimaaschool@gmail.com</p>
+                                            <p style="margin: 0; color: #475569;">Email: VendasRhSms@outlook.com</p>
                                         </div>
                                         
                                         <div style="margin-top: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
@@ -3655,7 +3677,7 @@
                                                     <button type="submit" style="padding:10px 14px; background:#1d4ed8; color:#fff; border-radius:10px; border:none;">Enviar por Email</button>
                                                     <button type="button" onclick="hideApplicationForm()" style="padding:10px 14px; background:#6b7280; color:#fff; border-radius:10px; border:none;">Fechar</button>
                                                 </div>
-                                                <p style="margin:0; font-size:0.9rem; color:#6b7280;">Também pode enviar o seu CV para <a href="mailto:saraswatimaaschool@gmail.com">saraswatimaaschool@gmail.com</a></p>
+                                                <p style="margin:0; font-size:0.9rem; color:#6b7280;">Também pode enviar o seu CV para <a href="mailto:VendasRhSms@outlook.com">VendasRhSms@outlook.com</a></p>
                                             </form>
                                         </div>
                                         <p style="font-size: 1.05rem; color: #1f2937; margin-top: 10px;">Junte-se a uma equipa apaixonada por educação e por resultados. Aqui, você encontra oportunidades reais de crescimento, um ambiente inspirador e reconhecimento pelo seu talento.</p>
@@ -3712,8 +3734,8 @@
                                         </div>
                                         <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
                                             <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Não encontrou a vaga certa?</p>
-                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu currículo para <a href="mailto:saraswatimaaschool@gmail.com" style="color: #1d4ed8; text-decoration: none;">saraswatimaaschool@gmail.com</a> e seja considerado para futuras oportunidades.</p>
-                                            <a href="mailto:saraswatimaaschool@gmail.com" onclick="window.location.href=this.href; return false;" style="display:inline-block; padding: 12px 20px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar Currículo</a>
+                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu currículo para <a href="mailto:VendasRhSms@outlook.com" style="color: #1d4ed8; text-decoration: none;">VendasRhSms@outlook.com</a> e seja considerado para futuras oportunidades.</p>
+                                            <a href="mailto:VendasRhSms@outlook.com" onclick="window.location.href=this.href; return false;" style="display:inline-block; padding: 12px 20px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar Currículo</a>
                                         </div>
                                         </div>
                                     </section>
@@ -3756,7 +3778,7 @@
                                         </div>
                                         <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
                                             <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Quer compartilhar sua experiência?</p>
-                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:depoimentos@sms.com.br">depoimentos@sms.com.br</a></p>
+                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:VendasRhSms@outlook.com">VendasRhSms@outlook.com</a></p>
                                         </div>
                                         </div>
                                     </section>
@@ -3923,7 +3945,7 @@
             <h3 class="course-group-title">Outros Programas</h3>
             <div class="products-grid">
                 <div class="product-card">
-                    <img src="DashBoard/Aceleração da fluencia.jpg " alt="Aceleração da Fluência" class="product-image-img">
+                    <img src="DashBoard/Aceleração da fluencia.jpg" alt="Aceleração da Fluência" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Aceleração da Fluência</div>
                         <p class="product-meta">25.000 KZ · 3 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
@@ -3979,7 +4001,7 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="DashBoard/Club Meetings.png " alt="Club Meetings" class="product-image-img">
+                    <img src="DashBoard/Club Meetings.png" alt="Club Meetings" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Club Meetings</div>
                         <p class="product-meta">Presencial: 08:00–12:00 · Online: 19:00–21:00 · Modalidade: Híbrida · Gratuito</p>
@@ -4045,7 +4067,7 @@
                         </div>
                     <div class="product-info">
                         <div class="name-row">
-                            <img src="ManuaisFT/Joy dunkin avatar.png " alt="Joy Dunkin Avatar" class="joy-avatar">
+                            <img src="ManuaisFT/Joy dunkin avatar.png" alt="Joy Dunkin Avatar" class="joy-avatar">
                             <div class="product-name">Escrever para Joy Dunkin Kid</div>
                         </div>
                         <p class="product-meta">Atendimento via avatar Joy Dunkin Kid · Modalidade: Online · Gratuito</p>
@@ -4113,7 +4135,7 @@
 
             <div class="form-group">
                 <label for="email">📧 Email:</label>
-                <input type="email" id="email" placeholder="saraswatimaaschool@gmailcom" required>
+                <input type="email" id="email" placeholder="VendasRhSms@outlook.com" required>
             </div>
 
             <div class="form-group">
@@ -4390,13 +4412,13 @@
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Modelo 5.jpg " alt="Programação" class="gallery-image">
+                <img src="Image/Modelo 5.jpg" alt="Programação" class="gallery-image">
                 <div class="gallery-overlay">
                     <h3>Como assim ainda não se inscreveu?</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="Image/Modelo 6.jpg " alt="Grupo de Estudo" class="gallery-image">
+                <img src="Image/Modelo 6.jpg" alt="Grupo de Estudo" class="gallery-image">
                 <div class="gallery-overlay">
                     <h3>Já tens o Passaporte? Essa viagem é internacional venha fazer a logística </h3>
                 </div>
@@ -4577,15 +4599,15 @@
                     return;
                 }
 
-                const email = 'saraswatimaaschool@gmail.com';
+                const email = 'VendasRhSms@outlook.com';
                 const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
                 const body = encodeURIComponent(
                     `Pedido de compra de ${manualTitle}\n` +
                     `Nome: ${name}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
-                    `Envie o seu comprovante manualmente para acelerar a sua validação.\n\n` +
-                    `O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento. Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente.      Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem!  em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
+                    `**Envie o seu comprovante manualmente para acelerar a sua validação.**\n\n` +
+                    `**O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento.** Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente.      Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem!  em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
                 );
 
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
@@ -4828,59 +4850,6 @@
             const notes = document.getElementById('notes').value;
             const idNumber = (document.getElementById('idNumber')?.value || '').trim();
             const proofFile = document.getElementById('proofAttachment').files[0];
-            
-            if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
-                alert('Por favor, preencha todos os campos obrigatórios!');
-                return;
-            }
-            
-            if (!proofFile) {
-                alert('Por favor, anexe o comprovante de pagamento!');
-                return;
-            }
-            
-            const formData = new FormData();
-            formData.append('courseName', courseName);
-            formData.append('coursePrice', coursePrice);
-            formData.append('scheduleDate', scheduleDate);
-            formData.append('scheduleTime', scheduleTime);
-            formData.append('name', name);
-            formData.append('phone', phone);
-            formData.append('email', email);
-            formData.append('municipality', municipality);
-            formData.append('notes', notes);
-            formData.append('proofAttachment', proofFile);
-            formData.append('method', method);
-            
-            if (method === 'whatsapp') {
-                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento anexado\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!
-É um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.
-\n🌍📚 Cursos disponíveis para inscrição:\n\n🔹 Foundation English\n🔹 Intermediate English\n🔹 Professional English\n🔹 Aceleração da Fluência\n🔹 Habilidades de Comunicação\n🔹 Preparatório\n🔹 Aulas ao Domicílio\n🔹 Aulas Infantis Kindergarten – Presencial\n🔹 Aulas Infantis Kindergarten – Online\n\nSe precisar de ajuda para escolher o melhor curso, nossa equipe está pronta para orientar você.\n\n📞 Receção S.M.S` );
-                window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
-            } else if (method === 'email') {
-                const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n✅ Comprovante de pagamento em anexo \n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.\n\n🌍📚 Cursos disponíveis para inscrição:\n\n🔹 Foundation English\n🔹 Intermediate English\n🔹 Professional English\n🔹 Aceleração da Fluência\n🔹 Habilidades de Comunicação\n🔹 Preparatório\n🔹 Aulas ao Domicílio\n🔹 Aulas Infantis Kindergarten – Presencial\n🔹 Aulas Infantis Kindergarten – Online\n\nSe precisar de ajuda para escolher o melhor curso, nossa equipe está pronta para orientar você.\n\n📞 Receção S.M.S` );
-                window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
-            }
-            
-            setTimeout(() => {
-                hideAllSections();
-            }, 2000);
-        }
-        
-        // Overriding submitAllDataVia to include manual-send instruction and proof filename
-        function submitAllDataVia(method) {
-            const courseName = document.getElementById('courseName').value;
-            const coursePrice = document.getElementById('coursePrice').value;
-            const scheduleDate = document.getElementById('scheduleDate').value;
-            const scheduleTime = document.getElementById('scheduleTime').value;
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const municipality = document.getElementById('municipality').value;
-            const notes = document.getElementById('notes').value;
-            const idNumber = (document.getElementById('idNumber')?.value || '').trim();
-            const proofFile = document.getElementById('proofAttachment').files[0];
 
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
                 alert('Por favor, preencha todos os campos obrigatórios!');
@@ -4900,8 +4869,8 @@
                 window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
             } else if (method === 'email') {
                 const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`S.M.S - INSCRIÇÃO COMPLETA\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 Agradecimentos:🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
-                window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
+                const body = encodeURIComponent(`**S.M.S - INSCRIÇÃO COMPLETA**\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 **Agradecimentos:**🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             }
 
             setTimeout(() => {
@@ -4965,8 +4934,8 @@
                 return false;
             }
             const subject = encodeURIComponent(`Candidatura: ${position}`);
-            const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de ${position}.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0AMensagem:%0A${message}`);
-            window.location.href = `mailto:saraswatimaaschool@gmail.com?subject=${subject}&body=${body}`;
+            const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
+            window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             return false;
         }
 
@@ -5007,9 +4976,11 @@
             }
         });
         
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
          //-- ticker - texto rolando -->
 
@@ -5086,7 +5057,7 @@
 
             function generateEnrollmentInvoice(){
                 const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
-                const centerEmail = 'saraswatimaaschool@gmail.com';
+                const centerEmail = 'VendasRhSms@outlook.com';
                 const proofEl = document.getElementById('proofAttachment');
                 const hasProof = proofEl && proofEl.files && proofEl.files.length;
                 if (!hasProof) { alert('Anexe o comprovante antes de gerar a fatura.'); return; }
@@ -5126,3 +5097,4 @@
         </script>
 </body>
 </html>
+
