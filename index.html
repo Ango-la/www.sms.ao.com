@@ -2048,9 +2048,10 @@
             margin-bottom: 8px;
             font-weight: bold;
             color: #333;
+            cursor: pointer;
         }
 
-        .form-group input {
+        .form-group input:not([type="radio"]) {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -2059,9 +2060,61 @@
             transition: border-color 0.3s;
         }
 
-        .form-group input:focus {
+        .form-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .form-group input:not([type="radio"]):focus {
             outline: none;
             border-color: #667eea;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 6px;
+            touch-action: manipulation;
+        }
+
+        .radio-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            user-select: none;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .radio-option:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-color: #667eea;
+        }
+
+        .radio-option input[type="radio"] {
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .radio-option span {
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] + span {
+            display: inline-block;
+        }
+
+        .radio-option input[type="radio"]:checked + span {
+            font-weight: 700;
+            color: #1f2937;
         }
 
         .whatsapp-button {
@@ -4098,10 +4151,10 @@
             </div>
 
             <div class="form-group">
-                <label>🧭 Como deseja estudar? <span style="font-size:0.9rem; color:#6b7280;">(Escolha uma opção)</span></label>
-                <div style="display:flex; gap:12px; align-items:center; margin-top:6px;">
-                    <label style="display:inline-flex; gap:8px; align-items:center;"><input type="radio" name="enrollModality" value="online"> Online (+8.500 Kz)</label>
-                    <label style="display:inline-flex; gap:8px; align-items:center;"><input type="radio" name="enrollModality" value="presencial"> Presencial (+10.000 Kz)</label>
+                <div class="form-label">🧭 Como deseja estudar? <span style="font-size:0.9rem; color:#6b7280;">(Escolha uma opção)</span></div>
+                <div class="radio-group">
+                    <label class="radio-option" for="enrollModalityOnline"><input id="enrollModalityOnline" type="radio" name="enrollModality" value="online"><span>Online (+8.500 Kz)</span></label>
+                    <label class="radio-option" for="enrollModalityPresencial"><input id="enrollModalityPresencial" type="radio" name="enrollModality" value="presencial"><span>Presencial (+10.000 Kz)</span></label>
                 </div>
             </div>
 
@@ -4758,6 +4811,21 @@
             document.getElementById('agendamento').style.display = 'block';
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
         }
+
+        function setupEnrollModalityOptions() {
+            const options = document.querySelectorAll('.radio-option');
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const input = option.querySelector('input[type="radio"]');
+                    if (input) {
+                        input.checked = true;
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupEnrollModalityOptions);
+
         function proceedToPayment() {
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
