@@ -559,7 +559,6 @@ select[readonly]:focus {
         min-height: 48px;
         font-size: 0.95rem;
     }
-}
 
 @media screen and (max-width: 360px) {
     #purchase-form {
