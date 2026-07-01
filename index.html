@@ -3981,12 +3981,12 @@
                     <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Foundation English</div>
-                        <p class="product-meta">25.000 KZ / mês · 4 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
-                        <div class="product-price">25.000 KZ / mês</div>
+                        <p class="product-meta">15.000 KZ / mês · 3 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
+                        <div class="product-price">15.000 KZ / mês</div>
                         <div class="product-description">Ideal para iniciantes que buscam construir a base do inglês. Foco em comunicação básica, compreensão e vocabulário inicial.</div>
                         <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Foundation English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 25000.00);">Propina</button>
+                            <button class="buy-button" onclick="bookCourse('Foundation English', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 15000.00);">Propina</button>
                         </div>
                     </div>
                 </div>
@@ -3995,12 +3995,12 @@
                     <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
                     <div class="product-info">
                         <div class="product-name">Intermediate English</div>
-                        <p class="product-meta">30.000 KZ / mês · 5 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
-                        <div class="product-price">30.000 KZ / mês</div>
+                        <p class="product-meta">20.000 KZ / mês · 4 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
+                        <div class="product-price">20.000 KZ / mês</div>
                         <div class="product-description">Para alunos com base em inglês que desejam desenvolver comunicação prática e ganhar confiança no uso cotidiano da língua.</div>
                         <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Intermediate English', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 30000.00);">Propina</button>
+                            <button class="buy-button" onclick="bookCourse('Intermediate English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                            <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 20000.00);">Propina</button>
                         </div>
                     </div>
                 </div>
