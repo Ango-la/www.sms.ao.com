@@ -4180,8 +4180,8 @@
             <div class="form-group">
                 <div class="form-label">🧭 Como deseja estudar? <span style="font-size:0.9rem; color:#6b7280;">(Escolha uma opção)</span></div>
                 <div class="radio-group">
-                    <label class="radio-option" for="enrollModalityOnline"><input id="enrollModalityOnline" type="radio" name="enrollModality" value="online"><span>Online (+8.500 Kz)</span></label>
-                    <label class="radio-option" for="enrollModalityPresencial"><input id="enrollModalityPresencial" type="radio" name="enrollModality" value="presencial"><span>Presencial (+10.000 Kz)</span></label>
+                    <label class="radio-option" for="enrollModalityOnline"><input id="enrollModalityOnline" type="radio" name="enrollModality" value="online"><span>Online</span></label>
+                    <label class="radio-option" for="enrollModalityPresencial"><input id="enrollModalityPresencial" type="radio" name="enrollModality" value="presencial"><span>Presencial</span></label>
                 </div>
                 <div id="modalityConfirmation" class="modality-confirmation hidden" aria-live="polite"></div>
             </div>
