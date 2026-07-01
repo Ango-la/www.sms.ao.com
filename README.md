@@ -4895,8 +4895,8 @@
             // cálculo de taxa automática
             const modality = modalityEl.value; // 'online' | 'presencial'
             const basePrice = Number(document.getElementById('courseBasePrice')?.value || 0);
-            const FEE_PRESENTIAL = 10000;
-            const FEE_ONLINE = 8500;
+            const FEE_PRESENTIAL = 5000;
+            const FEE_ONLINE = 5000;
             const fee = (modality === 'presencial') ? FEE_PRESENTIAL : FEE_ONLINE;
             const total = Number(basePrice) + Number(fee);
 
