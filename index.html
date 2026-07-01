@@ -4978,13 +4978,15 @@
 
             const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
             const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
+            const enrollmentFee = '5.000 Kz';
+            const enrollmentTotal = coursePrice ? `${coursePrice} + ${enrollmentFee}` : enrollmentFee;
 
             if (method === 'whatsapp') {
-                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
                 window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
             } else if (method === 'email') {
                 const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`**S.M.S - INSCRIÇÃO COMPLETA**\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço: ${coursePrice}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 **Agradecimentos:**🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const body = encodeURIComponent(`**S.M.S - INSCRIÇÃO COMPLETA**\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 **Agradecimentos:**🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
                 window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             }
 
