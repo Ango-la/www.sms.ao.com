@@ -4221,7 +4221,7 @@
 
             <div class="form-group">
                 <label for="idNumber">🆔 BI / Passaporte:</label>
-                <input type="text" id="idNumber" placeholder="Ex: 009915732LA059 (BI) ou AB1234567 (Passaporte)" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px;" required>
+                <input type="text" id="idNumber" placeholder="Ex: 123456789AB123 (BI) ou AB1234567 (Passaporte)" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px;" required>
                 <small style="color:#6b7280; display:block; margin-top:6px;">Seu documento será para nossa base de dados.</small>
             </div>
 
@@ -4904,7 +4904,7 @@
             const idNumber = (document.getElementById('idNumber')?.value || '').trim();
             const idCheck = validateIdNumber(idNumber);
             if (!idCheck.valid) {
-                alert('Por favor, preencha um BI ou Passaporte válido antes de prosseguir. Exemplos válidos: 008515032LA049 ou AB1234567');
+                alert('Por favor, preencha um BI ou Passaporte válido antes de prosseguir. Exemplo de BI: 123456789AB123; Exemplo de Passaporte: AB1234567');
                 return;
             }
 
@@ -5154,10 +5154,9 @@
             function validateIdNumber(value){
                 if (!value || !value.trim()) return { valid: false, type: null };
                 const v = value.trim();
-                const passportRegex1 = /^[A-Za-z]{2}\d{7}$/; // AB1234567
-                const passportRegex2 = /^\d{7}[A-Za-z]{2}$/; // 1234567AB
-                const biRegex = /^\d{9}[A-Za-z]{2}\d{3}$/i; // 008515032LA049
-                if (passportRegex1.test(v) || passportRegex2.test(v)) return { valid: true, type: 'passport' };
+                const passportRegex = /^(?:[A-Za-z]{2}\d{7}|\d{7}[A-Za-z]{2})$/; // AB1234567 ou 1234567AB
+                const biRegex = /^\d{9}[A-Za-z]{2}\d{3}$/i; // 123456789AB123
+                if (passportRegex.test(v)) return { valid: true, type: 'passport' };
                 if (biRegex.test(v)) return { valid: true, type: 'bi' };
                 return { valid: false, type: null };
             }
