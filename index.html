@@ -37,7 +37,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
             animation: fadeIn 1s ease-in, gradientShift 15s ease infinite;
-            position: relative; }
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; }
         body::before {
             content: '';
             position: fixed;
@@ -146,27 +149,28 @@
 
         @media (max-width: 900px) {
             .header-container {
-                justify-content: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                align-items: center;
             }
             .store-name {
-                flex: 1 1 100%;
-                text-align: center;
-                font-size: 18px;
+                flex: 1 1 auto;
+                text-align: left;
+                font-size: 16px;
             }
             .header-actions {
-                width: 100%;
-                justify-content: center;
+                width: auto;
+                justify-content: flex-end;
+                flex-wrap: nowrap;
+                overflow-x: auto;
             }
             .header-actions > * {
-                flex: 1 1 auto;
-                min-width: 150px;
+                flex: 0 0 auto;
+                min-width: 0;
             }
-            .header-actions .google-translate {
-                width: 100%;
+            .header-actions .simple-google-translate {
+                width: auto;
                 justify-content: center;
-            }
-            .header-actions .google-translate-button {
-                width: 100%;
             }
         }
 
@@ -177,39 +181,33 @@
 
             .header-container {
                 padding: 0 12px;
+                flex-wrap: nowrap;
+                gap: 8px;
             }
 
             .store-name {
-                font-size: 15px;
+                font-size: 13px;
                 line-height: 1.2;
+                flex: 1 1 auto;
             }
 
             .header-actions {
                 gap: 6px;
-                flex-wrap: wrap;
-                justify-content: center;
-                width: 100%;
+                flex-wrap: nowrap;
+                justify-content: flex-end;
+                width: auto;
+                overflow-x: auto;
             }
             .header-actions > * {
-                flex: 1 1 0;
+                flex: 0 0 auto;
                 min-width: 0;
-                max-width: 140px;
+                max-width: none;
                 font-size: 11px;
                 padding: 7px 10px;
             }
-            .header-actions .google-translate {
+            .header-actions .simple-google-translate {
                 width: auto;
-                min-width: 40px;
-            }
-            .header-actions .google-translate-button {
-                padding: 8px 10px;
-            }
-            .google-translate-text {
-                display: none;
-            }
-            .google-chevron {
-                margin-left: 0;
-                font-size: 0.9rem;
+                min-width: 0;
             }
             .buy-button-container {
                 width: auto;
@@ -599,109 +597,106 @@
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);  }
-        .google-translate {
-            position: relative;
+        .simple-google-translate {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-right: 10px; }
-        .google-translate-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-width: 120px;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.95);
-            color: #111827;
-            border-radius: 999px;
-            border: 1px solid rgba(15,23,42,0.12);
-            box-shadow: 0 16px 40px rgba(15,23,42,0.12);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-            font-weight: 600;
-        }
-        .google-translate-button:hover {
-            transform: translateY(-1px);
-            background: #ffffff;
-            box-shadow: 0 18px 44px rgba(15,23,42,0.16);
-        }
-        .google-translate-icon {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #f3f4f6;
-            color: #111827;
-            font-size: 14px;
-            font-weight: 700;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
-        }
-        .google-translate-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            width: 280px;
-            background: #ffffff;
-            border: 1px solid rgba(15,23,42,0.08);
-            border-radius: 18px;
-            box-shadow: 0 24px 60px rgba(15,23,42,0.14);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-12px);
-            transition: opacity 0.26s ease, transform 0.26s ease;
-            z-index: 1200;
+            gap: 4px;
+            margin-right: 8px;
             overflow: hidden;
+            padding: 0;
         }
-        .google-translate:hover .google-translate-menu,
-        .google-translate:focus-within .google-translate-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .google-translate-menu:hover {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .google-translate-menu button {
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            background: none;
-            text-align: left;
-            font-size: 14px;
-            font-weight: 700;
-            color: #111827;
+        .lang-flag-btn {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            min-height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.95);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+            overflow: hidden;
+            padding: 0;
             cursor: pointer;
-            transition: background 0.2s ease;
+            background: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, height 0.2s ease, min-width 0.2s ease, min-height 0.2s ease;
         }
-        .google-translate-menu button:hover {
-            background: #f8fafc;
+        .lang-flag-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+        }
+        .lang-flag-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .google-translate-host {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .translation-overlay {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 99999;
+            display: none;
+        }
+        .translation-overlay.show {
+            display: block;
+        }
+        .translation-frame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: #ffffff;
+        }
+        .translation-close-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100000;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: #111827;
+            color: #ffffff;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
         }
         @media screen and (max-width: 768px) {
-            .google-translate-menu {
-                right: 0;
-                left: auto;
-                width: 100%;
-                min-width: auto;
-                max-width: 300px;
+            .simple-google-translate {
+                width: auto;
+                margin-right: 0;
+                flex-wrap: nowrap;
+                gap: 3px;
+                overflow: hidden;
+                padding: 0;
             }
-            .google-translate-button {
-                min-width: 0;
-                width: 100%;
-                justify-content: center;
-            }
-            .google-translate {
-                width: 100%;
+            .lang-flag-btn {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                min-height: 32px;
+                flex: 0 0 auto;
             }
         }
         /* RESPONSIVO - TABLETS E CELULARES */
         @media screen and (max-width: 768px) {
             .header-container {
-                flex-wrap: wrap;
-                gap: 10px; }
+                flex-wrap: nowrap;
+                gap: 8px;
+                align-items: center;
+            }
             
             .store-name {
                 font-size: 18px;
@@ -1282,6 +1277,85 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-bottom: 50px;
+        }
+
+        .course-category-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            border: 1px solid rgba(102, 126, 234, 0.16);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.16);
+            margin-bottom: 24px;
+        }
+
+        .course-category-trigger {
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(140px, 220px) 1fr;
+            gap: 20px;
+            align-items: center;
+            padding: 22px;
+            text-align: left;
+            background: transparent;
+        }
+
+        .course-category-action {
+            border: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .course-category-action:hover,
+        .course-category-action:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(102, 126, 234, 0.24);
+        }
+
+        .course-category-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .course-category-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .course-category-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .course-category-description {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .course-group-content {
+            padding: 0 20px 20px;
+        }
+
+        .course-group-content[hidden] {
+            display: none;
         }
 
         .product-card {
@@ -2227,8 +2301,10 @@
             color: white;
             text-align: center;
             padding: 40px 20px;
-            margin-top: 50px;
+            margin-top: auto;
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .social-media {
@@ -3113,18 +3189,19 @@
 
         /* Google Translate widget com logo do Google */
         #google_translate_element {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 100%;
+            min-height: 44px;
+            border-radius: 12px;
             background: #ffffff;
             border: 1px solid rgba(15, 23, 42, 0.12);
             box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-            overflow: hidden;
+            overflow: visible;
             transition: transform 0.18s ease, box-shadow 0.18s ease;
             position: relative;
+            padding: 8px 10px;
         }
 
         #google_translate_element:hover {
@@ -3133,31 +3210,39 @@
         }
 
         #google_translate_element::before {
-            content: "\f1a0";
-            font-family: "Font Awesome 6 Brands";
-            font-size: 20px;
-            color: #4285f4;
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
+            content: none;
         }
 
         #google_translate_element .goog-te-gadget-simple,
         #google_translate_element .goog-te-gadget {
-            position: absolute !important;
-            inset: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             width: 100% !important;
-            height: 100% !important;
-            opacity: 0 !important;
-            z-index: 1 !important;
+            min-height: 100% !important;
+            opacity: 1 !important;
+            z-index: auto !important;
             pointer-events: auto !important;
+            color: #111827;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        #google_translate_element .goog-te-gadget-simple {
+            gap: 6px;
         }
 
         #google_translate_element .goog-te-combo {
-            display: none !important;
+            display: inline-block !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            padding: 8px 10px !important;
+            border: 1px solid rgba(15, 23, 42, 0.16) !important;
+            border-radius: 8px !important;
+            background: #ffffff !important;
+            color: #111827 !important;
+            font-size: 13px !important;
+            appearance: auto !important;
         }
 
         #google_translate_element .goog-te-gadget img {
@@ -3329,33 +3414,40 @@
             .buy-menu-content ul li button { width: 100%; max-width: 100%; padding: 10px 12px; font-size: 0.95rem; }
         }
     </style>
-    <!-- Google Translate widget com logo do Google -->
     <script>
         function googleTranslateElementInit() {
-            const initTranslation = () => {
-                const container = document.getElementById('google_translate_element');
-                if (!container) {
-                    return window.setTimeout(initTranslation, 50);
-                }
-
+            const container = document.getElementById('google_translate_element');
+            if (!container) return;
+            if (window.google && window.google.translate && window.google.translate.TranslateElement) {
                 new google.translate.TranslateElement({
                     pageLanguage: 'pt',
                     includedLanguages: 'en,fr,es',
                     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                     autoDisplay: false
                 }, 'google_translate_element');
-            };
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initTranslation);
             } else {
-                initTranslation();
+                window.setTimeout(googleTranslateElementInit, 250);
             }
         }
+
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+                return;
+            }
+
+            const currentUrl = encodeURIComponent(window.location.href);
+            window.location.href = `https://translate.google.com/translate?hl=${lang}&sl=pt&tl=${lang}&u=${currentUrl}`;
+        }
+
+        window.changeLanguage = changeLanguage;
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+    <div id="google_translate_element" class="google-translate-host" aria-hidden="true"></div>
     <div class="ticker-overlay" aria-hidden="true">
         <div class="ticker-wrapper">
             <div class="ticker-content" role="marquee" aria-hidden="false"></div>
@@ -3509,159 +3601,148 @@
             <a href="#galeria" class="logo" ><img src="Image/favicon2.jpg" alt="S.M.S - Escola de Linguas & Habilidades" class="logo-official"></a>
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
             <div class="header-actions">
-                <div class="google-translate" aria-label="Google Translate">
-                    <button type="button" class="google-translate-button" aria-haspopup="true" aria-expanded="false" onclick="toggleGoogleTranslateMenu()">
-                        <span class="google-translate-icon" aria-hidden="true">G</span>
-                        <span class="google-translate-text">Idioma</span>
-                        <i class="fa fa-chevron-down google-chevron" aria-hidden="true"></i>
-                    </button>
-                    <div id="google-translate-menu" class="google-translate-menu" role="menu" aria-hidden="true">
-                        <div id="google_translate_element">selecione o idioma</div>
-                    </div>
+                <div class="simple-google-translate" aria-label="Google Translate">
+                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('en')" aria-label="English"><img src="https://flagcdn.com/w80/us.png" alt="English"></button>
+                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('fr')" aria-label="Français"><img src="https://flagcdn.com/w80/fr.png" alt="Français"></button>
+                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('es')" aria-label="Español"><img src="https://flagcdn.com/w80/es.png" alt="Español"></button>
                 </div>
-                <div>  
+                <div>
                     <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
                 </div>
-                <!-- Catálogo (removido conforme solicitação) -->
-                    <div class="buy-button-container">
+                <div class="buy-button-container">
                     <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
                 </div>
-                    <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
-                        <div class="buy-menu-header">
-                            <h2>Manuais</h2>
-                            <button type="button" class="buy-menu-close site-close-button" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
-                        </div>
-                        <div class="buy-menu-content">
-                            <ul>
-                                <li id="summeryprice">
-                                    <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
-                                    <h3>Guia S.M.S</h3>
-                                    <p>Guia Onde todas as informações <br/>estão disponíveis sobre a sua aula.</p>
-                                    <p id="manualPrice1" >Preço: 2.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
-                                    <h3>DIALOGUE & MEETINGS</h3>
-                                    <p>O master que te ensina a se comunicar <br/> efetivamente em reuniões e diálogos profissionais.</p>
-                                    <p id="manualPrice2" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
-                                    <h3>GRAMMAR BOOK</h3>
-                                    <p>O livro completo sobre gramática inglesa, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p id="manualPrice3" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Vocabulary.jpg" alt="Vocabulário">
-                                    <h3>VOCABULÁRIO</h3>
-                                    <p>O livro completo sobre vocabulário inglês, <br/> com fonéticas e explicações detalhadas.</p>
-                                    <p id="manualPrice4" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Text and reading Skills.jpg" alt="Textos & Habilidades de Leitura">
-                                    <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
-                                    <p>O livro completo sobre habilidades de leitura <br/> e escrita em inglês, com exercícios práticos<br/>  e explicações detalhadas.</p>
-                                    <p id="manualPrice5" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Verbs Regular and Irregular.jpg" alt="Verbos Regulares & Irregulares">
-                                    <h3>OS VERBOS REGULARES & IRREGULARES</h3>
-                                    <p>O livro completo sobre verbos ingleses, <br/> com exercícios práticos e explicações detalhadas.</p>
-                                    <p id="manualPrice6" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Fluency.jpg" alt="Aceleração da Fluência">
-                                    <h3>Aceleração da Fluência</h3>
-                                    <p> O método revolucionário para dominar <br/> o inglês com rapidez e eficácia.</p>
-                                    <p id="manualPrice7" >Preço: 6.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Aceleração da Fluência', 7, '6.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Not Available.png " alt="Um Estrangeiro Perdido">
-                                    <h3>UM ESTRANGEIRO PERDIDO</h3>
-                                    <p>O livro que conta a história de um estrangeiro perdido <br/> em uma terra desconhecida, cheio de desafios <br/> e descobertas.</p>
-                                    <p id="manualPrice8" >Preço: 6.500 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Not Available.png " alt="O Dicionário S.M.S">
-                                    <h3>O DICIONÁRIO S.M.S</h3>
-                                    <p>Dicionário completo com mais de 5.000 <br/> palavras e expressões em inglês.</p>
-                                    <p id="manualPrice9" >Preço: 9.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
-                                </li>
-                                <li>
-                                    <img src="ManuaisFT/Not Available.png " alt="500 Conversas">
-                                    <h3>500 CONVERSAS</h3>
-                                    <p>O livro completo com 500 conversas práticas em inglês, <br/> ideal para melhorar a fala e a compreensão auditiva.</p>
-                                    <p id="manualPrice10" >Preço: 3.000 Kz</p>
-                                    <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000 Kz')">Comprar</button>
-                                </li>
-                            </ul>
+                <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
+                    <div class="buy-menu-header">
+                        <h2>Manuais</h2>
+                        <button type="button" class="buy-menu-close site-close-button" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
+                    </div>
+                    <div class="buy-menu-content">
+                        <ul>
+                            <li>
+                                <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
+                                <h3>Guia S.M.S</h3>
+                                <p>Guia onde todas as informações estão disponíveis sobre a sua aula.</p>
+                                <p id="manualPrice1">Preço: 2.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
+                                <h3>Dialogue & Meetings</h3>
+                                <p>O master que te ensina a se comunicar efetivamente em reuniões e diálogos profissionais.</p>
+                                <p id="manualPrice2">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
+                                <h3>Grammar Book</h3>
+                                <p>O livro completo sobre gramática inglesa, com exercícios práticos e explicações detalhadas.</p>
+                                <p id="manualPrice3">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Vocabulary.jpg" alt="Vocabulário">
+                                <h3>VOCABULÁRIO</h3>
+                                <p>O livro completo sobre vocabulário inglês, com fonéticas e explicações detalhadas.</p>
+                                <p id="manualPrice4">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Text and reading Skills.jpg" alt="Textos & Habilidades de Leitura">
+                                <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
+                                <p>O livro completo sobre habilidades de leitura e escrita em inglês, com exercícios práticos e explicações detalhadas.</p>
+                                <p id="manualPrice5">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Verbs Regular and Irregular.jpg" alt="Verbos Regulares & Irregulares">
+                                <h3>OS VERBOS REGULARES & IRREGULARES</h3>
+                                <p>O livro completo sobre verbos ingleses, com exercícios práticos e explicações detalhadas.</p>
+                                <p id="manualPrice6">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Fluency.jpg" alt="Aceleração da Fluência">
+                                <h3>Aceleração da Fluência</h3>
+                                <p>O método revolucionário para dominar o inglês com rapidez e eficácia.</p>
+                                <p id="manualPrice7">Preço: 6.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Aceleração da Fluência', 7, '6.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Not Available.png " alt="Um Estrangeiro Perdido">
+                                <h3>UM ESTRANGEIRO PERDIDO</h3>
+                                <p>O livro que conta a história de um estrangeiro perdido em uma terra desconhecida, cheio de desafios e descobertas.</p>
+                                <p id="manualPrice8">Preço: 6.500 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Not Available.png " alt="O Dicionário S.M.S">
+                                <h3>O DICIONÁRIO S.M.S</h3>
+                                <p>Dicionário completo com mais de 5.000 palavras e expressões em inglês.</p>
+                                <p id="manualPrice9">Preço: 9.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
+                            </li>
+                            <li>
+                                <img src="ManuaisFT/Not Available.png " alt="500 Conversas">
+                                <h3>500 CONVERSAS</h3>
+                                <p>O livro completo com 500 conversas práticas em inglês, ideal para melhorar a fala e a compreensão auditiva.</p>
+                                <p id="manualPrice10">Preço: 3.000 Kz</p>
+                                <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000 Kz')">Comprar</button>
+                            </li>
+                        </ul>
 
-                            <div id="purchase-form" class="purchase-form hidden">
-                                <div class="purchase-form-header">
-                                    <h3 id="selectedManualTitle">Pedido de compra</h3>
-                                    <p>Preencha os dados abaixo para <br/>receber o manual rapidamente <br/>
-                                        ou receber de forma física.</p>
-                                </div>
-                                <p id="selectedManualPrice" style="margin:0 0 18px; color:#334155; font-weight:600;">Preço: —</p>
-                                <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
-                                    <label for="buyerName">Nome completo</label>
-                                    <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
-
-                                    <label for="buyerEmail">Email</label>
-                                    <input type="email" id="buyerEmail" placeholder="seu@email.com" required>
-
-                                    <label for="courseType">Tipo de curso</label>
-                                    <select id="courseType" required>
-                                        <option value="">Selecione...</option>
-                                        <option value="Inglês">Inglês</option>
-                                        <option value="Francês">Excel Avançado</option>
-                                        <option value="Alemão">Gestão de Projetos</option>
-                                        <option value="Espanhol">Higiene & Segurança No Trabalho</option>
-                                        <option value="Italiano">Informática Na Óptica do Utilizador</option>
-                                        <option value="Português">Logística Internacional</option>
-                                        <option value="Outro">Outro</option>
-
-                                    </select>
-
-                                    <label for="proofFile" class="full-width">Comprovante de pagamento</label>
-                                    <input type="file" id="proofFile" accept="application/pdf" required>
-
-                                    <input type="hidden" id="purchaseManualId">
-                                    <input type="hidden" id="purchaseManualPrice">
-                                    <div class="buttons-row">
-                                        <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Virtual</button>
-                                        <button type="button" class="purchase-submit-button" onclick="submitPhysicalPurchaseRequest()" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Físico</button>
-                                        <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
-                                    </div>
-                                    <p class="purchase-note">📋 Use Virtual para finalizar por email <br/> Físico para abrir o WhatsApp com <br/>instruções de entrega impressa.</p>
-                                    <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
-                                </form>
+                        <div id="purchase-form" class="purchase-form hidden">
+                            <div class="purchase-form-header">
+                                <h3 id="selectedManualTitle">Pedido de compra</h3>
+                                <p>Preencha os dados abaixo para receber o manual rapidamente ou receber de forma física.</p>
                             </div>
-                                    <!-- Area adicionada: documento solicitado e botão de fatura -->
-                                    <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none; padding:16px; border:1px solid rgba(102,126,234,0.18); border-radius:12px; background:#f8fbff;">
-                                        <p id="downloadDocumentName" style="margin:0 0 12px; font-weight:700; color:#334155;">Documento solicitado: <span>—</span></p>
-                                        <div id="purchaseSummary" style="margin-top:12px; padding:12px 14px; background:#eef2ff; border-radius:10px; display:none;">
-                                        <p style="margin:6px 0;"><strong>Nome:</strong> <span id="summaryName">—</span></p>
-                                        <p style="margin:6px 0;"><strong>Email:</strong> <span id="summaryEmail">—</span></p>
-                                        <p style="margin:6px 0;"><strong>Curso:</strong> <span id="summaryCourseType">—</span></p>
-                                        <p style="margin:6px 0;"><strong>Comprovativo:</strong> <span id="summaryProof">—</span></p>
-                                        <p style="margin:6px 0;"><strong>Preço:</strong> <span id="summaryPrice"></span></p>
-                                    </div>
-                                    <div style="display:flex; gap:10px; margin-top:10px;">
-                                            <button id="downloadChosenBtn" class="purchase-submit-button" style="flex:1;" onclick="downloadRequestedDocument()">Baixar documento</button>
-                                            <button id="invoiceBtn" class="purchase-submit-button" style="flex:1; display:none; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);" onclick="generateInvoice()">Receber Fatura</button>
-                                        </div>
-                                    </div>
-                            <!-- Embeds removidos: documentos não são mais servidos embutidos. Pedidos são enviados por email com a fatura no corpo da mensagem. -->
+                            <p id="selectedManualPrice" style="margin:0 0 18px; color:#334155; font-weight:600;">Preço: —</p>
+                            <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
+                                <label for="buyerName">Nome completo</label>
+                                <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
+
+                                <label for="buyerEmail">Email</label>
+                                <input type="email" id="buyerEmail" placeholder="seu@email.com" required>
+
+                                <label for="courseType">Tipo de curso</label>
+                                <select id="courseType" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Inglês">Inglês</option>
+                                    <option value="Francês">Excel Avançado</option>
+                                    <option value="Alemão">Gestão de Projetos</option>
+                                    <option value="Espanhol">Higiene & Segurança No Trabalho</option>
+                                    <option value="Italiano">Informática Na Óptica do Utilizador</option>
+                                    <option value="Português">Logística Internacional</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+
+                                <label for="proofFile" class="full-width">Comprovante de pagamento</label>
+                                <input type="file" id="proofFile" accept="application/pdf" required>
+
+                                <input type="hidden" id="purchaseManualId">
+                                <input type="hidden" id="purchaseManualPrice">
+                                <div class="buttons-row">
+                                    <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Virtual</button>
+                                    <button type="button" class="purchase-submit-button" onclick="submitPhysicalPurchaseRequest()" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Físico</button>
+                                    <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
+                                </div>
+                                <p class="purchase-note">📋 Use Virtual para finalizar por email <br/> Físico para abrir o WhatsApp com <br/>instruções de entrega impressa.</p>
+                                <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
+                            </form>
+                        </div>
+                        <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none; padding:16px; border:1px solid rgba(102,126,234,0.18); border-radius:12px; background:#f8fbff;">
+                            <p id="downloadDocumentName" style="margin:0 0 12px; font-weight:700; color:#334155;">Documento solicitado: <span>—</span></p>
+                            <div id="purchaseSummary" style="margin-top:12px; padding:12px 14px; background:#eef2ff; border-radius:10px; display:none;">
+                                <p style="margin:6px 0;"><strong>Nome:</strong> <span id="summaryName">—</span></p>
+                                <p style="margin:6px 0;"><strong>Email:</strong> <span id="summaryEmail">—</span></p>
+                                <p style="margin:6px 0;"><strong>Curso:</strong> <span id="summaryCourseType">—</span></p>
+                                <p style="margin:6px 0;"><strong>Comprovativo:</strong> <span id="summaryProof">—</span></p>
+                                <p style="margin:6px 0;"><strong>Preço:</strong> <span id="summaryPrice"></span></p>
+                            </div>
+                            <div style="display:flex; gap:10px; margin-top:10px;">
+                                <button id="downloadChosenBtn" class="purchase-submit-button" style="flex:1;" onclick="downloadRequestedDocument()">Baixar documento</button>
+                                <button id="invoiceBtn" class="purchase-submit-button" style="flex:1; display:none; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);" onclick="generateInvoice()">Receber Fatura</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3974,188 +4055,394 @@
     <section class="dashboard" id="cursos">   
         <h2 class="section-title">Catálogo de Cursos</h2>
 
-        <div class="course-group">
-            <h3 class="course-group-title">Programas Principais</h3>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Foundation English</div>
-                        <p class="product-meta">15.000 KZ / mês · 3 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
-                        <div class="product-price">15.000 KZ / mês</div>
-                        <div class="product-description">Ideal para iniciantes que buscam construir a base do inglês. Foco em comunicação básica, compreensão e vocabulário inicial.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Foundation English', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 15000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Intermediate English</div>
-                        <p class="product-meta">20.000 KZ / mês · 4 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
-                        <div class="product-price">20.000 KZ / mês</div>
-                        <div class="product-description">Para alunos com base em inglês que desejam desenvolver comunicação prática e ganhar confiança no uso cotidiano da língua.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Intermediate English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 20000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="DashBoard/Profissional english.jpg" alt="Professional English" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Professional English</div>
-                        <p class="product-meta">De 25.000 KZ até 99.000 KZ · 1h30 ou 3h por aula · Duração variável · Modalidade: Online / Presencial</p>
-                        <div class="product-price">25.000 KZ - 99.000 KZ</div>
-                        <div class="product-description">Programa avançado com categorias como Business, Academic, Technical, Travel e Specialized English. Estrutura personalizada conforme seu objetivo profissional.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Professional English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Professional English', 25000.00);">Propina</button>
-                        </div>
-                    </div>
+        <div class="course-category-card">
+            <div class="course-category-trigger">
+                <img src="DashBoard/ProgramaBasico1.png" alt="Programa Básico" class="course-category-image">
+                <div class="course-category-copy">
+                    <h3 class="course-category-title">Programa Básico</h3>
+                    <p class="course-category-description">O Programa Básico foi desenvolvido para quem pretende aprender inglês desde o início, construindo uma base sólida em comunicação, gramática, vocabulário, leitura, escrita e compreensão oral. Inscrições abertas no valor de 3.000 Kz.</p>
+                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
                 </div>
             </div>
-        </div>
-
-        <div class="course-group">
-            <h3 class="course-group-title">Outros Programas</h3>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="DashBoard/Aceleração da fluencia.jpg" alt="Aceleração da Fluência" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Aceleração da Fluência</div>
-                        <p class="product-meta">25.000 KZ · 3 meses · 2 horas por aula · Modalidade: Online / Presencial</p>
-                        <div class="product-price">25.000 KZ</div>
-                        <div class="product-description">Para quem já fala inglês e quer acelerar o domínio completo da língua com prática intensiva e foco em fluência.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aceleração da Fluência', 25000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="DashBoard/Habilidades de Comunicação.jpg" alt="Habilidades de Comunicação" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Habilidades de Comunicação</div>
-                        <p class="product-meta">18.000 KZ / aula · 6 horas · Intervalo de 30 minutos · Modalidade: Online / Presencial</p>
-                        <div class="product-price">18.000 KZ / aula</div>
-                        <div class="product-description">Diversifique entre inglês americano, britânico e nigeriano, aumentando sua capacidade de diálogo, pronúncia e versatilidade.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 18000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Habilidades de Comunicação', 18000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="DashBoard/Preparatorio.jpg" alt="Preparatório" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Preparatório</div>
-                        <p class="product-meta">15.000 KZ / aula · 4 horas · Intervalo de 10 minutos · Modalidade: Online / Presencial</p>
-                        <div class="product-price">15.000 KZ / aula</div>
-                        <div class="product-description">Preparação para entrevistas de emprego, escolar, universitário, emigração, logística e outros objetivos com foco em desempenho.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Preparatório', 15000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="Image/Aulas ao domicilio2.jpg" alt="Aulas ao Domicílio" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Aulas ao Domicílio</div>
-                        <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
-                        <div class="product-price">30.000 KZ / mês (base)</div>
-                        <div class="product-description">Aulas no domicílio com valor sujeito a alteração conforme horário e localização. Ideal para quem busca conforto e flexibilidade.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Aulas ao Domicílio', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas ao Domicílio', 30000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="DashBoard/Club Meetings.png" alt="Club Meetings" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Club Meetings</div>
-                        <p class="product-meta">Presencial: 08:00–12:00 · Online: 19:00–21:00 · Modalidade: Híbrida · Gratuito</p>
-                        <div class="product-price">Entrar no grupo (grátis)</div>
-                        <div class="product-description">Encontros de prática em grupo para conversação e troca cultural. Participação aberta sem pagamento — entre no grupo via convite WhatsApp.</div>
-                        <a class="buy-button free" role="button" href="https://chat.whatsapp.com/H2eDhya4kXm4hmZ5G95BXL?s=sw&p=a&ilr=4&amv=3" target="_blank" rel="noopener noreferrer">Entrar no grupo</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="DashBoard/Pacote Autodidata.png " alt="Pacote Autodidata - 25 aulas" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Pacote Autodidata (YouTube + WhatsApp)</div>
-                        <p class="product-meta">Pacote único · 25 aulas liberadas · Modalidade: Online (YouTube / WhatsApp)</p>
-                        <div class="product-price">10.000 KZ (pacote único)</div>
-                        <div class="product-description">Aulas gravadas liberadas no nosso canal do YouTube com suporte via grupo WhatsApp. Ideal para estudo autónomo sem professor presente.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Pacote Autodidata (25 aulas)', 10000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Pacote Autodidata (YouTube + WhatsApp)', 10000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="course-group">
-            <h3 class="course-group-title">Cursos Infantis</h3>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="DashBoard/Kindergarten presencial.png " alt="Aulas Infantis Kindergarten Presencial" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Aulas Infantis Kindergarten – Presencial</div>
-                        <p class="product-meta">26.500 KZ mensalidade · 5 meses · 1h30/aula (3 primeiros meses), 2h/aula (últimos 2 meses) · Modalidade: Presencial</p>
-                        <div class="product-price">26.500 KZ / mês</div>
-                        <div class="product-description">Curso infantil presencial com foco em comunicação e conversação progressiva, desenvolvido para o crescimento do aprendizado desde cedo.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Aulas Infantis Kindergarten – Presencial', 26500.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas Infantis Kindergarten – Presencial', 26500.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src=" DashBoard/Kindergarten online.png" alt="Aulas Infantis Kindergarten Online" class="product-image-img">
-                    <div class="product-info">
-                        <div class="product-name">Aulas Infantis Kindergarten – Online</div>
-                        <p class="product-meta">20.000 KZ mensal · 6 meses · 1h/aula (3 primeiros meses), 1h30/aula (últimos 3 meses) · Modalidade: Online</p>
-                        <div class="product-price">20.000 KZ / mês</div>
-                        <div class="product-description">Acompanhamento contínuo com aulas em tempo real, videoaulas, flashcards, áudios Playcast e brincadeiras com Joy Dunkin Kid.</div>
-                        <div class="course-buttons-container">
-                            <button class="buy-button" onclick="bookCourse('Aulas Infantis Kindergarten – Online', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                            <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas Infantis Kindergarten – Online', 20000.00);">Propina</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="course-video" style="position:relative;width:100%;height:300px;overflow:hidden;">
-                            <div id="joyPlayerContainer" style="position:absolute;inset:0;width:100%;height:100%;padding-bottom:0;">
-                                <div id="joyPlayer" style="position:absolute;left:0;top:0;width:100%;height:100%;"></div>
-                                <button id="joySoundBtn" aria-label="Ativar som" style="position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:6px;background:rgba(0,0,0,0.45);color:#fff;border:0;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:12">🔈</button>
+            <div class="course-group-content" hidden>
+                <div class="course-group">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="DashBoard/StandardEnglish1.png" alt="Standard English Estágio 1" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Standard English – Estágio 1</div>
+                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
+                                <p class="product-meta">Duração: 2 meses · Propina: 5.000 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
+                                <div class="product-price">5.000 KZ</div>
+                                <div class="product-description">
+                                    <strong>Objetivo:</strong> Construir os fundamentos da língua inglesa.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Vocabulário essencial</li>
+                                        <li>Gramática básica</li>
+                                        <li>Pronúncia</li>
+                                        <li>Leitura</li>
+                                        <li>Escrita</li>
+                                        <li>Conversação inicial</li>
+                                        <li>Listening</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 1', 5000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 1', 5000.00);">Propina</button>
+                                </div>
                             </div>
                         </div>
-                    <div class="product-info">
-                        <div class="name-row">
-                            <img src="ManuaisFT/Joy dunkin avatar.png" alt="Joy Dunkin Avatar" class="joy-avatar">
-                            <div class="product-name">Escrever para Joy Dunkin Kid</div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/StandardEnglish2.png" alt="Standard English Estágio 2" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Standard English – Estágio 2</div>
+                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
+                                <p class="product-meta">Duração: 2 meses · Propina: 8.000 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
+                                <div class="product-price">8.000 KZ</div>
+                                <div class="product-description">
+                                    <strong>Pré-requisito:</strong> Conclusão do Estágio 1 ou avaliação de nivelamento.<br><br>
+                                    <strong>Objetivo:</strong> Desenvolver maior autonomia na comunicação.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Conversação</li>
+                                        <li>Gramática intermédia</li>
+                                        <li>Escrita</li>
+                                        <li>Listening</li>
+                                        <li>Comunicação prática</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 2', 8000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 2', 8000.00);">Propina</button>
+                                </div>
+                            </div>
                         </div>
-                        <p class="product-meta">Atendimento via avatar Joy Dunkin Kid · Modalidade: Online · Gratuito</p>
-                        <div class="product-price">Custo: 0 KZ</div>
-                        <div class="product-description">As crianças podem escrever e interagir com nosso avatar Joy Dunkin Kid para atividades, dúvidas e brincadeiras educativas — sem teacher e sem custo.</div>
-                    
-                        <a class="buy-button free" role="button" href="https://wa.me/244951474872?text=Olá%20Joy%20Dunkin%20Kid%20%e2%9c%8c%20Quero%20interagir" target="_blank" rel="noopener noreferrer">Escrever para Joy</a>
+
+                        <div class="product-card">
+                            <img src="DashBoard/StandardEnglish3.png" alt="Standard English Estágio 3" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Standard English – Estágio 3</div>
+                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
+                                <p class="product-meta">Duração: 2 meses · Propina: 12.500 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
+                                <div class="product-price">12.500 KZ</div>
+                                <div class="product-description">
+                                    <strong>Pré-requisito:</strong> Conclusão do Estágio 2 ou avaliação de nivelamento.<br><br>
+                                    <strong>Objetivo:</strong> Consolidar a comunicação e preparar o aluno para o Programa Geral.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Fluência básica</li>
+                                        <li>Conversação</li>
+                                        <li>Pronúncia</li>
+                                        <li>Escrita</li>
+                                        <li>Apresentações</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 3', 12500.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 3', 12500.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div style="margin-top: 18px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid #cbd5e1; border-radius: 10px; color: #1e3a8a; font-weight: 700; text-align: center;">Duração Total do Programa: 6 meses</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-category-card">
+            <div class="course-category-trigger">
+                <img src="DashBoard/Foundationenglish.jpg" alt="Programa Geral" class="course-category-image">
+                <div class="course-category-copy">
+                    <h3 class="course-category-title">Programa Geral</h3>
+                    <p class="course-category-description">O Programa Geral destina-se aos alunos que já possuem uma base em inglês e desejam desenvolver maior fluência e domínio da comunicação. Inscrições abertas no valor de 5.000 Kz.</p>
+                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
+                </div>
+            </div>
+            <div class="course-group-content" hidden>
+                <div class="course-group">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Foundation English</div>
+                                <p class="product-meta">Duração: 3 meses · 15.000 KZ / mês · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
+                                <div class="product-price">15.000 KZ / mês</div>
+                                <div class="product-description">
+                                    <strong>Objetivo:</strong> Fortalecer as quatro competências da língua inglesa.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Speaking</li>
+                                        <li>Listening</li>
+                                        <li>Reading</li>
+                                        <li>Writing</li>
+                                        <li>Gramática</li>
+                                        <li>Vocabulário</li>
+                                        <li>Pronúncia</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Foundation English', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 15000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Intermediate English</div>
+                                <p class="product-meta">Duração: 3 meses · 20.000 KZ / mês · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
+                                <div class="product-price">20.000 KZ / mês</div>
+                                <div class="product-description">
+                                    <strong>Objetivo:</strong> Desenvolver uma comunicação mais natural.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Conversação</li>
+                                        <li>Fluência</li>
+                                        <li>Gramática intermédia</li>
+                                        <li>Escrita</li>
+                                        <li>Expressões naturais</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Intermediate English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 20000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/Aceleração da fluencia.jpg" alt="Aceleração da Fluência" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Aceleração da Fluência</div>
+                                <p class="product-meta">Duração: 3 meses · 25.000 KZ · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
+                                <div class="product-price">25.000 KZ</div>
+                                <div class="product-description">
+                                    <strong>Objetivo:</strong> Eliminar bloqueios e acelerar a fluência.<br><br>
+                                    <strong>Competências:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Conversação intensiva</li>
+                                        <li>Debates</li>
+                                        <li>Pronúncia</li>
+                                        <li>Comunicação espontânea</li>
+                                        <li>Vocabulário avançado</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Aceleração da Fluência', 25000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 18px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid #cbd5e1; border-radius: 10px; color: #1e3a8a; font-weight: 700; text-align: center;">Duração Total do Programa: 9 meses</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-category-card">
+            <div class="course-category-trigger">
+                <img src="DashBoard/Profissional english.jpg" alt="Programa Profissional" class="course-category-image">
+                <div class="course-category-copy">
+                    <h3 class="course-category-title">Programa Profissional</h3>
+                    <p class="course-category-description">Programa destinado a profissionais, universitários e empresas que necessitam utilizar o inglês em contextos específicos. Inscrições abertas e Gratuito.</p>
+                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
+                </div>
+            </div>
+            <div class="course-group-content" hidden>
+                <div class="course-group">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="DashBoard/Profissional english.jpg" alt="Professional English" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Professional English</div>
+                                <p class="product-meta">De 25.000 KZ até 99.000 KZ · 1h30 ou 3h por aula · Duração variável · Modalidade: Online / Presencial</p>
+                                <div class="product-price">25.000 KZ - 99.000 KZ</div>
+                                <div class="product-description">
+                                    <strong>Especializações:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Business English 35.000 KZ (30 horas)</li>
+                                        <li>Academic English 25.000 KZ (30 horas)</li>
+                                        <li>Technical English 50.000 KZ (20 horas)</li>
+                                        <li>Travel English 15.000 KZ (10 horas)</li>
+                                        <li>Specialized English 100.000 KZ (100 horas)</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Professional English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Professional English', 25000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/Preparatorio.jpg" alt="Preparatório" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Preparatório</div>
+                                <p class="product-meta">15.000 KZ / aula · 4 horas · Intervalo de 10 minutos · Modalidade: Online / Presencial</p>
+                                <div class="product-price">15.000 KZ / aula</div>
+                                <div class="product-description">
+                                    <strong>Preparação para:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Entrevistas</li>
+                                        <li>Universidades</li>
+                                        <li>Emigração</li>
+                                        <li>Logística Internacional</li>
+                                        <li>Outros processos seletivos</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Preparatório', 15000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/Habilidades de Comunicação.jpg" alt="Habilidades de Comunicação" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Habilidades de Comunicação</div>
+                                <p class="product-meta">18.000 KZ / aula · 6 horas · Intervalo de 30 minutos · Modalidade: Online / Presencial</p>
+                                <div class="product-price">18.000 KZ / aula</div>
+                                <div class="product-description">
+                                    <strong>Conteúdo:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Inglês Americano</li>
+                                        <li>Inglês Britânico</li>
+                                        <li>Inglês Nigeriano</li>
+                                        <li>Comunicação intercultural</li>
+                                        <li>Pronúncia</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 18000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Habilidades de Comunicação', 18000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-category-card">
+            <div class="course-category-trigger">
+                <img src="DashBoard/Kindergarten presencial.png " alt="Programa Kids" class="course-category-image">
+                <div class="course-category-copy">
+                    <h3 class="course-category-title">Programa Kids</h3>
+                    <p class="course-category-description">Programa infantil desenvolvido para ensinar inglês de forma divertida e progressiva. Inscrições abertas e Gratuito.</p>
+                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
+                </div>
+            </div>
+            <div class="course-group-content" hidden>
+                <div class="course-group">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="DashBoard/Kindergarten presencial.png " alt="Programa Kids" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Programa Kids</div>
+                                <p class="product-meta">Modalidades: Presencial · Online</p>
+                                <div class="product-price">26.500 KZ / mês (Presencial) · 20.000 KZ / mês (Online)</div>
+                                <div class="product-description">
+                                    <strong>Conteúdo:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Vocabulário</li>
+                                        <li>Jogos</li>
+                                        <li>Histórias</li>
+                                        <li>Música</li>
+                                        <li>Pronúncia</li>
+                                        <li>Conversação</li>
+                                        <li>Leitura</li>
+                                        <li>Escrita</li>
+                                    </ul>
+                                    <br>
+                                    <strong>Recursos:</strong>
+                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
+                                        <li>Flashcards</li>
+                                        <li>Videoaulas</li>
+                                        <li>Áudios</li>
+                                        <li>Joy Dunkin Kid</li>
+                                    </ul>
+                                </div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Programa Kids', 26500.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Programa Kids', 26500.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-category-card">
+            <div class="course-category-trigger">
+                <img src="Image/Aulas ao domicilio2.jpg" alt="Programas Flexíveis" class="course-category-image">
+                <div class="course-category-copy">
+                    <h3 class="course-category-title">Programas Flexíveis</h3>
+                    <p class="course-category-description">Modelos de aprendizagem adaptados à rotina e às necessidades de cada aluno. Inscrições abertas e Gratuitas.</p>
+                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
+                </div>
+            </div>
+            <div class="course-group-content" hidden>
+                <div class="course-group">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="Image/Aulas ao domicilio2.jpg" alt="Aulas ao Domicílio" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Aulas ao Domicílio</div>
+                                <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
+                                <div class="product-price">30.000 KZ / mês (base)</div>
+                                <div class="product-description">Aulas com maior flexibilidade e conforto, adaptadas ao ritmo e à rotina do aluno em contexto domiciliar.</div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Aulas ao Domicílio', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas ao Domicílio', 30000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="DashBoard/Club Meetings.png" alt="Club Meetings" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Club Meetings</div>
+                                <p class="product-meta">Presencial: 08:00–12:00 · Online: 19:00–21:00 · Modalidade: Híbrida · Gratuito</p>
+                                <div class="product-price">Entrar no grupo (grátis)</div>
+                                <div class="product-description">Encontros de prática em grupo para conversação, troca cultural e desenvolvimento de confiança comunicativa.</div>
+                                <a class="buy-button free" role="button" href="https://chat.whatsapp.com/H2eDhya4kXm4hmZ5G95BXL?s=sw&p=a&ilr=4&amv=3" target="_blank" rel="noopener noreferrer">Entrar no grupo</a>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="DashBoard/Pacote Autodidata.png " alt="Pacote Autodidata - 25 aulas" class="product-image-img">
+                            <div class="product-info">
+                                <div class="product-name">Pacote Autodidata (YouTube + WhatsApp)</div>
+                                <p class="product-meta">Pacote único · 25 aulas liberadas · Modalidade: Online (YouTube / WhatsApp)</p>
+                                <div class="product-price">10.000 KZ (pacote único)</div>
+                                <div class="product-description">Aulas gravadas e recursos digitais para estudo autónomo, com acompanhamento e suporte via WhatsApp e YouTube.</div>
+                                <div class="course-buttons-container">
+                                    <button class="buy-button" onclick="bookCourse('Pacote Autodidata (25 aulas)', 10000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Pacote Autodidata (YouTube + WhatsApp)', 10000.00);">Propina</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-category-card" style="margin-top: 20px;">
+            <div class="course-category-copy" style="padding: 22px 24px;">
+                <h3 class="course-category-title">A Sua Jornada de Aprendizagem</h3>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 14px; color: #1e3a8a; font-weight: 700; text-align: center;">
+                    <div>Programa Básico (6 meses)</div>
+                    <div>↓</div>
+                    <div>Programa Geral (9 meses)</div>
+                    <div>↓</div>
+                    <div>Programa Profissional</div>
+                    <div>↓</div>
+                    <div>Especializações e Formação Contínua</div>
                 </div>
             </div>
         </div>
@@ -4163,12 +4450,22 @@
     <!-- FORMULÁRIO PARA INSCRIÇÃO -->
     <section id="agendamento" style="display: none;">
         <div class="whatsapp-section">
-            <h2>📱 Inscrever-se</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <h2 style="margin: 0;">📱 Inscrever-se</h2>
+                <button type="button" onclick="closeEnrollmentForm()" aria-label="Fechar formulário" style="border: none; background: #ef4444; color: white; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer;">×</button>
+            </div>
             <p style="color: #666; margin-bottom: 20px;">Preencha todos os campos abaixo para inscrever-se em seu curso ou entre em contato conosco</p>
             
             <div class="form-group">
                 <label for="courseName">📚 Curso:</label>
                 <input type="text" id="courseName" placeholder="Nome do curso" readonly style="background-color: #f0f0f0;">
+            </div>
+
+            <div class="form-group" id="courseVariantGroup" style="display: none;">
+                <label for="courseVariantSelect" id="courseVariantLabel">Opção:</label>
+                <select id="courseVariantSelect" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                    <option value="">Selecione uma opção...</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -4309,6 +4606,19 @@
                     <div class="form-group">
                         <label for="propina-course">Curso:</label>
                         <input type="text" id="propina-course" name="course" readonly placeholder="Curso será preenchido automaticamente" style="background: #f5f5f5; cursor: not-allowed;">
+                    </div>
+                    <div class="form-group">
+                        <label for="propina-stage">Estágio:</label>
+                        <select id="propina-stage" name="stage" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="Estágio 1">Estágio 1</option>
+                            <option value="Estágio 2">Estágio 2</option>
+                            <option value="Estágio 3">Estágio 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="propina-purpose">Objetivo do pagamento:</label>
+                        <input type="text" id="propina-purpose" name="purpose" placeholder="Ex: Propina / Avaliação / Continuidade" required>
                     </div>
                 </fieldset>
 
@@ -4642,6 +4952,39 @@
                 });
             };
 
+            function savePurchaseDraft() {
+                const draft = {
+                    buyerName: document.getElementById('buyerName')?.value || '',
+                    buyerEmail: document.getElementById('buyerEmail')?.value || '',
+                    courseType: document.getElementById('courseType')?.value || '',
+                    purchaseManualId: document.getElementById('purchaseManualId')?.value || '',
+                    purchaseManualPrice: document.getElementById('purchaseManualPrice')?.value || '',
+                    selectedManualTitle: document.getElementById('selectedManualTitle')?.textContent || '',
+                    selectedManualPrice: document.getElementById('selectedManualPrice')?.textContent || '',
+                    expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000)
+                };
+                try { localStorage.setItem('sms_purchase_draft', JSON.stringify(draft)); } catch (e) { console.warn('Unable to save purchase draft', e); }
+            }
+
+            function restorePurchaseDraft() {
+                try {
+                    const raw = localStorage.getItem('sms_purchase_draft');
+                    if (!raw) return;
+                    const draft = JSON.parse(raw);
+                    if (!draft || Number(draft.expiresAt || 0) < Date.now()) {
+                        localStorage.removeItem('sms_purchase_draft');
+                        return;
+                    }
+                    if (draft.buyerName) document.getElementById('buyerName').value = draft.buyerName;
+                    if (draft.buyerEmail) document.getElementById('buyerEmail').value = draft.buyerEmail;
+                    if (draft.courseType) document.getElementById('courseType').value = draft.courseType;
+                    if (draft.purchaseManualId) document.getElementById('purchaseManualId').value = draft.purchaseManualId;
+                    if (draft.purchaseManualPrice) document.getElementById('purchaseManualPrice').value = draft.purchaseManualPrice;
+                    if (draft.selectedManualTitle) document.getElementById('selectedManualTitle').textContent = draft.selectedManualTitle;
+                    if (draft.selectedManualPrice) document.getElementById('selectedManualPrice').textContent = draft.selectedManualPrice;
+                } catch (e) { console.warn('Unable to restore purchase draft', e); }
+            }
+
             window.openPurchaseForm = function(manualTitle, manualId) {
                 const formWrapper = document.getElementById('purchase-form');
                 if (!formWrapper) return;
@@ -4649,11 +4992,13 @@
                 document.getElementById('purchaseManualId').value = manualId;
                 formWrapper.classList.remove('hidden');
                 formWrapper.classList.add('show');
+                restorePurchaseDraft();
                 const nameInput = document.getElementById('buyerName');
                 if (nameInput) nameInput.focus();
             };
 
             window.closePurchaseForm = function() {
+                savePurchaseDraft();
                 const formWrapper = document.getElementById('purchase-form');
                 if (formWrapper) {
                     formWrapper.classList.add('hidden');
@@ -4663,12 +5008,14 @@
 
             window.submitPurchaseRequest = function() {
                 const name = document.getElementById('buyerName').value.trim();
+                const buyerEmail = document.getElementById('buyerEmail').value.trim();
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
                 const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
+                const manualPrice = document.getElementById('purchaseManualPrice')?.value || document.getElementById('selectedManualPrice')?.textContent || '—';
 
-                if (!name || !courseType || !proofFile) {
-                    alert('Preencha o nome, tipo de curso e anexe o comprovante em PDF.');
+                if (!name || !buyerEmail || !courseType || !proofFile) {
+                    alert('Preencha o nome, email, tipo de curso e anexe o comprovante em PDF.');
                     return;
                 }
                 if (proofFile.type !== 'application/pdf') {
@@ -4680,31 +5027,48 @@
                     return;
                 }
 
+                const draftPayload = {
+                    name,
+                    buyerEmail,
+                    courseType,
+                    manualTitle,
+                    manualPrice,
+                    proofFileName: proofFile.name,
+                    proofFileType: proofFile.type,
+                    proofFileSize: proofFile.size,
+                    expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000)
+                };
+                localStorage.setItem('sms_purchase_draft', JSON.stringify(draftPayload));
+
                 const email = 'VendasRhSms@outlook.com';
                 const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
                 const body = encodeURIComponent(
                     `Pedido de compra de ${manualTitle}\n` +
                     `Nome: ${name}\n` +
+                    `Email: ${buyerEmail}\n` +
                     `Tipo de curso: ${courseType}\n` +
+                    `Preço: ${manualPrice}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
                     `**Envie o seu comprovante manualmente para acelerar a sua validação.**\n\n` +
-                    `**O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento.** Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente.      Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem!  em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
+                    `**O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento.** Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente. Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem! Em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
                 );
 
+                const whatsappMessage = encodeURIComponent(`Olá! Recebi um pedido de compra de manual.\n\nManual: ${manualTitle}\nNome: ${name}\nEmail: ${buyerEmail}\nTipo de curso: ${courseType}\nPreço: ${manualPrice}\nComprovante: ${proofFile.name}`);
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                window.open(`https://wa.me/244951474872?text=${whatsappMessage}`, '_blank');
                 closePurchaseForm();
             };
 
-            // Toggle Google translate menu
-            window.toggleGoogleTranslateMenu = function(){
-                const menu = document.getElementById('google-translate-menu');
-                if (!menu) return;
-                const hidden = menu.getAttribute('aria-hidden') === 'true';
-                menu.setAttribute('aria-hidden', hidden ? 'false' : 'true');
-                menu.style.opacity = hidden ? '1' : '';
-                menu.style.visibility = hidden ? 'visible' : '';
-                menu.style.transform = hidden ? 'translateY(0)' : '';
-            };
+            document.addEventListener('DOMContentLoaded', function() {
+                ['buyerName','buyerEmail','courseType','purchaseManualId','purchaseManualPrice'].forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.addEventListener('input', savePurchaseDraft);
+                        el.addEventListener('change', savePurchaseDraft);
+                    }
+                });
+                restorePurchaseDraft();
+            });
 
             // Safe handlers for scrollToTop button
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
@@ -4733,12 +5097,140 @@
             };
         })();
         // Inscrição e automatização
+        function getEnrollmentFee(courseName) {
+            const normalizedCourse = (courseName || '').toLowerCase();
+
+            if (normalizedCourse.includes('standard english') || normalizedCourse.includes('estágio') || normalizedCourse.includes('estagio')) {
+                return 3000;
+            }
+
+            if (
+                normalizedCourse.includes('foundation english') ||
+                normalizedCourse.includes('intermediate english') ||
+                normalizedCourse.includes('aceleração da fluência') ||
+                normalizedCourse.includes('aceleracao da fluencia')
+            ) {
+                return 5000;
+            }
+
+            return 0;
+        }
+
+        function getCourseVariantConfig(courseName) {
+            const normalizedCourse = (courseName || '').toLowerCase();
+
+            if (normalizedCourse.includes('professional english')) {
+                return {
+                    label: 'Especializações',
+                    placeholder: 'Selecione uma especialização...',
+                    requiresSelection: true,
+                    priceMode: 'dynamic',
+                    options: [
+                        { label: 'Business English 35.000 KZ (30 horas)', value: 'Business English', price: 35000 },
+                        { label: 'Academic English 25.000 KZ (30 horas)', value: 'Academic English', price: 25000 },
+                        { label: 'Technical English 50.000 KZ (20 horas)', value: 'Technical English', price: 50000 },
+                        { label: 'Travel English 15.000 KZ (10 horas)', value: 'Travel English', price: 15000 },
+                        { label: 'Specialized English 100.000 KZ (100 horas)', value: 'Specialized English', price: 100000 }
+                    ]
+                };
+            }
+
+            if (normalizedCourse.includes('preparatório') || normalizedCourse.includes('preparatorio')) {
+                return {
+                    label: 'Preparação para',
+                    placeholder: 'Selecione uma preparação...',
+                    requiresSelection: true,
+                    priceMode: 'fixed',
+                    options: [
+                        { label: 'Entrevistas', value: 'Entrevistas', price: 15000 },
+                        { label: 'Universidades', value: 'Universidades', price: 15000 },
+                        { label: 'Emigração', value: 'Emigração', price: 15000 },
+                        { label: 'Logística Internacional', value: 'Logística Internacional', price: 15000 },
+                        { label: 'Outros processos seletivos', value: 'Outros processos seletivos', price: 15000 }
+                    ]
+                };
+            }
+
+            if (normalizedCourse.includes('habilidades de comunicação')) {
+                return {
+                    label: 'Conteúdo',
+                    placeholder: 'Selecione um conteúdo...',
+                    requiresSelection: true,
+                    priceMode: 'fixed',
+                    options: [
+                        { label: 'Inglês Americano', value: 'Inglês Americano', price: 18000 },
+                        { label: 'Inglês Britânico', value: 'Inglês Britânico', price: 18000 },
+                        { label: 'Inglês Nigeriano', value: 'Inglês Nigeriano', price: 18000 },
+                        { label: 'Comunicação intercultural', value: 'Comunicação intercultural', price: 18000 },
+                        { label: 'Pronúncia', value: 'Pronúncia', price: 18000 }
+                    ]
+                };
+            }
+
+            return null;
+        }
+
+        function updateCourseVariantUI(courseName, basePrice) {
+            const group = document.getElementById('courseVariantGroup');
+            const label = document.getElementById('courseVariantLabel');
+            const select = document.getElementById('courseVariantSelect');
+            const priceInput = document.getElementById('coursePrice');
+            const baseInput = document.getElementById('courseBasePrice');
+
+            if (!group || !label || !select || !priceInput || !baseInput) return;
+
+            const config = getCourseVariantConfig(courseName);
+            if (!config) {
+                group.style.display = 'none';
+                select.innerHTML = '<option value="">Selecione uma opção...</option>';
+                select.value = '';
+                return;
+            }
+
+            label.textContent = `${config.label}:`;
+            group.style.display = 'block';
+            select.innerHTML = `<option value="">${config.placeholder}</option>` + config.options.map(option => `<option value="${option.value}">${option.label}</option>`).join('');
+            select.value = '';
+
+            const defaultPrice = Number(basePrice || 0);
+            priceInput.value = 'Kz ' + defaultPrice.toFixed(2).replace('.', ',');
+            baseInput.value = defaultPrice;
+
+            select.onchange = function () {
+                const selectedOption = config.options.find(option => option.value === this.value);
+                const selectedPrice = (config.priceMode === 'dynamic' && selectedOption)
+                    ? Number(selectedOption.price || defaultPrice)
+                    : defaultPrice;
+                priceInput.value = 'Kz ' + selectedPrice.toFixed(2).replace('.', ',');
+                baseInput.value = selectedPrice;
+            };
+        }
+
+        function applyEnrollmentModalityRules(courseName) {
+            const onlineOption = document.querySelector('label[for="enrollModalityOnline"]');
+            const presencialOption = document.querySelector('label[for="enrollModalityPresencial"]');
+            const onlineInput = document.getElementById('enrollModalityOnline');
+            const presencialInput = document.getElementById('enrollModalityPresencial');
+
+            if (onlineOption) onlineOption.style.display = '';
+            if (presencialOption) presencialOption.style.display = '';
+            if (onlineInput) {
+                onlineInput.disabled = false;
+            }
+            if (presencialInput) {
+                presencialInput.disabled = false;
+            }
+            updateModalityConfirmation();
+        }
+
         function bookCourse(courseName, coursePrice) {
             document.getElementById('courseName').value = courseName;
-            // preencher preço formatado e guardar preço base num campo oculto (valor numérico)
-            document.getElementById('coursePrice').value = 'Kz ' + coursePrice.toFixed(2).replace('.', ',');
+            const priceInput = document.getElementById('coursePrice');
             const baseInput = document.getElementById('courseBasePrice');
+            if (priceInput) priceInput.value = 'Kz ' + Number(coursePrice || 0).toFixed(2).replace('.', ',');
             if (baseInput) baseInput.value = Number(coursePrice || 0);
+            updateCourseVariantUI(courseName, coursePrice);
+            applyEnrollmentModalityRules(courseName);
             const section = document.getElementById('agendamento');
             section.classList.add('show');
             setTimeout(() => {
@@ -4821,6 +5313,34 @@
 
         document.addEventListener('DOMContentLoaded', setupInfoAccordion);
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const actions = document.querySelectorAll('.course-category-action');
+            const panels = document.querySelectorAll('.course-group-content');
+
+            actions.forEach(action => {
+                action.addEventListener('click', () => {
+                    const card = action.closest('.course-category-card');
+                    const panel = card ? card.querySelector('.course-group-content') : null;
+                    const shouldOpen = panel ? panel.hidden : false;
+
+                    panels.forEach(item => {
+                        item.hidden = true;
+                    });
+
+                    actions.forEach(item => {
+                        item.setAttribute('aria-expanded', 'false');
+                        item.textContent = 'Abrir catálogo';
+                    });
+
+                    if (panel && shouldOpen) {
+                        panel.hidden = false;
+                        action.setAttribute('aria-expanded', 'true');
+                        action.textContent = 'Fechar catálogo';
+                    }
+                });
+            });
+        });
+
         // Habilita/desabilita botão de gerar fatura quando houver comprovante anexado
         document.addEventListener('DOMContentLoaded', function(){
             const proof = document.getElementById('proofAttachment');
@@ -4838,6 +5358,65 @@
         function showRegistrationAndPayment() {
             document.getElementById('agendamento').style.display = 'block';
             document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeEnrollmentForm() {
+            document.getElementById('agendamento').style.display = 'none';
+        }
+
+        function saveEnrollmentDraft() {
+            const draft = {
+                courseName: document.getElementById('courseName')?.value || '',
+                courseVariant: document.getElementById('courseVariantSelect')?.value || '',
+                coursePrice: document.getElementById('coursePrice')?.value || '',
+                courseBasePrice: document.getElementById('courseBasePrice')?.value || '0',
+                modality: document.querySelector('input[name="enrollModality"]:checked')?.value || '',
+                scheduleDate: document.getElementById('scheduleDate')?.value || '',
+                scheduleTime: document.getElementById('scheduleTime')?.value || '',
+                name: document.getElementById('name')?.value || '',
+                phone: document.getElementById('phone')?.value || '',
+                email: document.getElementById('email')?.value || '',
+                idNumber: document.getElementById('idNumber')?.value || '',
+                municipality: document.getElementById('municipality')?.value || '',
+                notes: document.getElementById('notes')?.value || ''
+            };
+            try {
+                const expiresAt = Date.now() + (7 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('sms_enrollment_draft', JSON.stringify({ ...draft, expiresAt }));
+            } catch (e) {
+                console.warn('Unable to save enrollment draft', e);
+            }
+        }
+
+        function restoreEnrollmentDraft() {
+            try {
+                const raw = localStorage.getItem('sms_enrollment_draft');
+                if (!raw) return;
+                const draft = JSON.parse(raw);
+                if (!draft || Number(draft.expiresAt || 0) < Date.now()) {
+                    localStorage.removeItem('sms_enrollment_draft');
+                    return;
+                }
+                if (draft.courseName) document.getElementById('courseName').value = draft.courseName;
+                if (draft.courseVariant) document.getElementById('courseVariantSelect').value = draft.courseVariant;
+                if (draft.coursePrice) document.getElementById('coursePrice').value = draft.coursePrice;
+                if (draft.courseBasePrice) document.getElementById('courseBasePrice').value = draft.courseBasePrice;
+                if (draft.modality) {
+                    const radio = document.querySelector(`input[name="enrollModality"][value="${draft.modality}"]`);
+                    if (radio) radio.checked = true;
+                }
+                if (draft.scheduleDate) document.getElementById('scheduleDate').value = draft.scheduleDate;
+                if (draft.scheduleTime) document.getElementById('scheduleTime').value = draft.scheduleTime;
+                if (draft.name) document.getElementById('name').value = draft.name;
+                if (draft.phone) document.getElementById('phone').value = draft.phone;
+                if (draft.email) document.getElementById('email').value = draft.email;
+                if (draft.idNumber) document.getElementById('idNumber').value = draft.idNumber;
+                if (draft.municipality) document.getElementById('municipality').value = draft.municipality;
+                if (draft.notes) document.getElementById('notes').value = draft.notes;
+                updateModalityConfirmation();
+            } catch (e) {
+                console.warn('Unable to restore enrollment draft', e);
+            }
         }
 
         function updateModalityConfirmation() {
@@ -4868,10 +5447,32 @@
 
                 input.addEventListener('change', updateModalityConfirmation);
             });
-            updateModalityConfirmation();
+            applyEnrollmentModalityRules(document.getElementById('courseName')?.value || '');
         }
 
-        document.addEventListener('DOMContentLoaded', setupEnrollModalityOptions);
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEnrollModalityOptions();
+            restoreEnrollmentDraft();
+            restoreCareerDraft();
+            const draftFields = ['courseName','courseVariantSelect','coursePrice','courseBasePrice','scheduleDate','scheduleTime','name','phone','email','idNumber','municipality','notes'];
+            draftFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', saveEnrollmentDraft);
+                    el.addEventListener('change', saveEnrollmentDraft);
+                }
+            });
+            document.querySelectorAll('input[name="enrollModality"]').forEach(input => {
+                input.addEventListener('change', saveEnrollmentDraft);
+            });
+            ['appName','appEmail','appPhone','jobPosition','appMessage'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', saveCareerDraft);
+                    el.addEventListener('change', saveCareerDraft);
+                }
+            });
+        });
 
         function proceedToPayment() {
             const name = document.getElementById('name').value.trim();
@@ -4895,9 +5496,14 @@
             // cálculo de taxa automática
             const modality = modalityEl.value; // 'online' | 'presencial'
             const basePrice = Number(document.getElementById('courseBasePrice')?.value || 0);
-            const FEE_PRESENTIAL = 5000;
-            const FEE_ONLINE = 5000;
-            const fee = (modality === 'presencial') ? FEE_PRESENTIAL : FEE_ONLINE;
+            const courseName = document.getElementById('courseName').value;
+            const courseVariantSelect = document.getElementById('courseVariantSelect');
+            const courseVariantConfig = getCourseVariantConfig(courseName);
+            if (courseVariantConfig?.requiresSelection && (!courseVariantSelect || !courseVariantSelect.value)) {
+                alert(`Por favor, selecione ${courseVariantConfig.label.toLowerCase()} antes de prosseguir.`);
+                return;
+            }
+            const fee = getEnrollmentFee(courseName);
             const total = Number(basePrice) + Number(fee);
 
             // validar BI / Passaporte
@@ -4912,8 +5518,8 @@
             const reference = generateReference();
 
             // preencher resumo na UI
-            const courseName = document.getElementById('courseName').value;
-            document.getElementById('summary_course').textContent = courseName || '—';
+            const selectedVariant = courseVariantSelect?.value ? ` • ${courseVariantSelect.value}` : '';
+            document.getElementById('summary_course').textContent = `${courseName || '—'}${selectedVariant}`;
             document.getElementById('summary_base').textContent = basePrice ? ('Kz ' + basePrice.toLocaleString('pt-PT')) : '—';
             document.getElementById('summary_fee').textContent = 'Kz ' + fee.toLocaleString('pt-PT');
             document.getElementById('summary_total').textContent = 'Kz ' + total.toLocaleString('pt-PT');
@@ -4953,8 +5559,10 @@
             document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
         }
         
-        function submitAllDataVia(method) {
+        function buildEnrollmentSummaryText() {
             const courseName = document.getElementById('courseName').value;
+            const courseVariantSelect = document.getElementById('courseVariantSelect');
+            const selectedVariant = courseVariantSelect?.value ? ` • ${courseVariantSelect.value}` : '';
             const coursePrice = document.getElementById('coursePrice').value;
             const scheduleDate = document.getElementById('scheduleDate').value;
             const scheduleTime = document.getElementById('scheduleTime').value;
@@ -4965,28 +5573,40 @@
             const notes = document.getElementById('notes').value;
             const idNumber = (document.getElementById('idNumber')?.value || '').trim();
             const proofFile = document.getElementById('proofAttachment').files[0];
+            const enrollmentFee = document.getElementById('summary_fee')?.textContent || '5.000 Kz';
+            const enrollmentTotal = document.getElementById('summary_total')?.textContent || (coursePrice ? `${coursePrice} + 5.000 Kz` : '5.000 Kz');
+            const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
+            const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
+
+            return `*S.M.S - INSCRIÇÃO COMPLETA*\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}${selectedVariant}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`;
+        }
+
+        function submitAllDataVia(method) {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const municipality = document.getElementById('municipality').value;
+            const scheduleDate = document.getElementById('scheduleDate').value;
+            const scheduleTime = document.getElementById('scheduleTime').value;
 
             if (!name || !phone || !email || !municipality || !scheduleDate || !scheduleTime) {
                 alert('Por favor, preencha todos os campos obrigatórios!');
                 return;
             }
 
-            if (!proofFile) {
+            if (!document.getElementById('proofAttachment').files[0]) {
                 alert('Por favor, anexe o comprovante de pagamento!');
                 return;
             }
 
-            const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
-            const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
-            const enrollmentFee = '5.000 Kz';
-            const enrollmentTotal = coursePrice ? `${coursePrice} + ${enrollmentFee}` : enrollmentFee;
+            const messageBody = buildEnrollmentSummaryText();
 
             if (method === 'whatsapp') {
-                const message = encodeURIComponent(`*S.M.S - INSCRIÇÃO COMPLETA* \n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const message = encodeURIComponent(messageBody);
                 window.location.href = `https://api.whatsapp.com/send?phone=244951474872&text=${message}`;
             } else if (method === 'email') {
                 const subject = encodeURIComponent('S.M.S - INSCRIÇÃO COMPLETA');
-                const body = encodeURIComponent(`**S.M.S - INSCRIÇÃO COMPLETA**\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 **Agradecimentos:**🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`);
+                const body = encodeURIComponent(messageBody);
                 window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             }
 
@@ -5025,6 +5645,41 @@
             }
         }
 
+        function saveCareerDraft() {
+            const draft = {
+                appName: document.getElementById('appName')?.value || '',
+                appEmail: document.getElementById('appEmail')?.value || '',
+                appPhone: document.getElementById('appPhone')?.value || '',
+                jobPosition: document.getElementById('jobPosition')?.value || '',
+                appMessage: document.getElementById('appMessage')?.value || '',
+                expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000)
+            };
+            try {
+                localStorage.setItem('sms_career_draft', JSON.stringify(draft));
+            } catch (e) {
+                console.warn('Unable to save career draft', e);
+            }
+        }
+
+        function restoreCareerDraft() {
+            try {
+                const raw = localStorage.getItem('sms_career_draft');
+                if (!raw) return;
+                const draft = JSON.parse(raw);
+                if (!draft || Number(draft.expiresAt || 0) < Date.now()) {
+                    localStorage.removeItem('sms_career_draft');
+                    return;
+                }
+                if (draft.appName) document.getElementById('appName').value = draft.appName;
+                if (draft.appEmail) document.getElementById('appEmail').value = draft.appEmail;
+                if (draft.appPhone) document.getElementById('appPhone').value = draft.appPhone;
+                if (draft.jobPosition) document.getElementById('jobPosition').value = draft.jobPosition;
+                if (draft.appMessage) document.getElementById('appMessage').value = draft.appMessage;
+            } catch (e) {
+                console.warn('Unable to restore career draft', e);
+            }
+        }
+
         function applyViaWhatsApp() {
             const name = document.getElementById('appName').value.trim();
             const email = document.getElementById('appEmail').value.trim();
@@ -5037,6 +5692,7 @@
             }
             const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá, desejo candidatar-me à vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
             window.open(whatsappUrl, '_blank');
+            saveCareerDraft();
         }
 
         function submitCareerForm(event) {
@@ -5053,6 +5709,7 @@
             const subject = encodeURIComponent(`Candidatura: ${position}`);
             const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
             window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
+            saveCareerDraft();
             return false;
         }
 
@@ -5183,20 +5840,11 @@
                     return;
                 }
                 const subject = encodeURIComponent(`Fatura S.M.S - Ref ${enrollment.reference}`);
+                const messageBody = buildEnrollmentSummaryText();
                 const body = encodeURIComponent(
-                    `S.M.S - Escola de Línguas & Habilidades\n`+
-                    `NIF: 500188916\n`+
-                    `Endereço: TERRA NOVA BFA DO VOLANTE CASA N° 475\n`+
-                    `Telefone: +244 951 474 872\n\n`+
-                    `Referência: ${enrollment.reference}\n`+
-                    `Nome: ${enrollment.name}\n`+
-                    `BI/Passaporte: ${enrollment.idNumber || '—'}\n`+
-                    `Curso: ${enrollment.course}\n`+
-                    `Modalidade: ${enrollment.modality}\n`+
-                    `Valor do curso: Kz ${Number(enrollment.basePrice).toLocaleString('pt-PT')}\n`+
-                    `Taxa de inscrição: Kz ${Number(enrollment.fee).toLocaleString('pt-PT')}\n`+
-                    `Total: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}\n\n`+
-                    `Dados Bancários:\nBanco: Banco Yetu.\nTitular: HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED\nIBAN: AO6.0066.0000.0789.9088.1013.0\nNº Conta: 7899088.10001\nNIF: 500188916\n\n`+
+                    `${messageBody}\n\n`+
+                    `📄 Referência: ${enrollment.reference}\n`+
+                    `🏦 Dados Bancários:\nBanco: Banco Yetu.\nTitular: HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED\nIBAN: AO6.0066.0000.0789.9088.1013.0\nNº Conta: 7899088.10001\nNIF: 500188916\n\n`+
                     `Por favor, anexe o comprovativo de pagamento e envie este email para confirmação.`
                 );
                 const mailto = `mailto:${centerEmail}?subject=${subject}&body=${body}`;
