@@ -598,40 +598,69 @@
             transform: scale(1.1);
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);  }
         .simple-google-translate {
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
             margin-right: 8px;
-            overflow: hidden;
             padding: 0;
         }
-        .lang-flag-btn {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            min-height: 40px;
+        .lang-globe-btn {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            min-height: 42px;
             border-radius: 50%;
             border: 2px solid rgba(255,255,255,0.95);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.16);
-            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
             padding: 0;
+            margin: 0;
             cursor: pointer;
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, height 0.2s ease, min-width 0.2s ease, min-height 0.2s ease;
+            color: #1d4ed8;
+            font-size: 24px;
+            line-height: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .lang-flag-btn:hover {
+        .lang-globe-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.22);
         }
-        .lang-flag-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .lang-picker {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            min-width: 120px;
+            z-index: 10000;
+            pointer-events: none;
+        }
+        .simple-google-translate.open .lang-picker {
+            display: flex;
+            pointer-events: auto;
+        }
+        .lang-picker button {
+            border: 0;
+            background: transparent;
+            text-align: left;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .lang-picker button:hover {
+            background: #eff6ff;
         }
         .google-translate-host {
             position: absolute;
@@ -677,17 +706,17 @@
             .simple-google-translate {
                 width: auto;
                 margin-right: 0;
-                flex-wrap: nowrap;
-                gap: 3px;
-                overflow: hidden;
-                padding: 0;
+                align-self: center;
             }
-            .lang-flag-btn {
-                width: 32px;
-                height: 32px;
-                min-width: 32px;
-                min-height: 32px;
-                flex: 0 0 auto;
+            .lang-globe-btn {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                font-size: 22px;
+            }
+            .lang-picker {
+                min-width: 118px;
             }
         }
         /* RESPONSIVO - TABLETS E CELULARES */
@@ -1366,6 +1395,8 @@
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 2px solid rgba(102, 126, 234, 0.1);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-card::before {
@@ -1442,6 +1473,9 @@
 
         .product-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .product-name {
@@ -2722,6 +2756,35 @@
 
             .product-card {
                 border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .product-image-img {
+                order: 1;
+            }
+
+            .product-info {
+                order: 2;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .product-name {
+                order: 1;
+            }
+
+            .product-price {
+                order: 2;
+            }
+
+            .product-description {
+                order: 3;
+            }
+
+            .buy-button {
+                order: 4;
+                width: 100%;
             }
 
             .product-image {
@@ -2865,6 +2928,104 @@
 
         }
 
+        @media (max-width: 768px) {
+            .product-card {
+                display: grid !important;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "image"
+                    "title"
+                    "meta"
+                    "price"
+                    "description"
+                    "button";
+                gap: 0;
+            }
+
+            .product-image-img {
+                grid-area: image;
+                order: 0 !important;
+                height: 180px !important;
+                width: 100% !important;
+            }
+
+            .product-info {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+                padding: 15px !important;
+            }
+
+            .product-name {
+                grid-area: title;
+                order: 0 !important;
+                margin-bottom: 8px !important;
+            }
+
+            .product-meta {
+                grid-area: meta;
+                margin: 0 0 8px 0 !important;
+            }
+
+            .product-price {
+                grid-area: price;
+                margin: 0 0 10px 0 !important;
+            }
+
+            .product-description {
+                grid-area: description;
+                margin: 0 0 12px 0 !important;
+            }
+
+            .course-buttons-container {
+                grid-area: button;
+                width: 100% !important;
+                display: flex !important;
+                gap: 10px !important;
+            }
+
+            .course-buttons-container .buy-button {
+                flex: 1 1 0 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .course-category-trigger {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 14px !important;
+                padding: 16px !important;
+            }
+
+            .course-category-image {
+                width: 100% !important;
+                height: 200px !important;
+                max-width: 100% !important;
+                display: block !important;
+                object-fit: cover !important;
+            }
+
+            .course-category-copy {
+                gap: 8px !important;
+            }
+
+            .course-category-title {
+                font-size: 20px !important;
+            }
+
+            .course-category-description {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+
+            .course-category-action {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+
         @media (max-width: 360px) {
             .banner {
                 height: 150px;
@@ -2916,6 +3077,46 @@
             .header-container {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .product-card {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            .product-image-img {
+                order: 1 !important;
+                height: 180px !important;
+                width: 100% !important;
+            }
+
+            .product-info {
+                order: 2 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+            }
+
+            .product-name {
+                order: 1 !important;
+            }
+
+            .product-meta {
+                order: 2 !important;
+            }
+
+            .product-price {
+                order: 3 !important;
+            }
+
+            .product-description {
+                order: 4 !important;
+            }
+
+            .course-buttons-container {
+                order: 5 !important;
+                width: 100% !important;
             }
             
             .store-name {
@@ -2997,6 +3198,45 @@
             .header-container {
                 flex-direction: column;
                 padding: 15px 10px;
+            }
+
+            .product-card {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            .product-image-img {
+                order: 1 !important;
+                height: 220px !important;
+            }
+
+            .product-info {
+                order: 2 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+            }
+
+            .product-name {
+                order: 1 !important;
+            }
+
+            .product-meta {
+                order: 2 !important;
+            }
+
+            .product-price {
+                order: 3 !important;
+            }
+
+            .product-description {
+                order: 4 !important;
+            }
+
+            .course-buttons-container {
+                order: 5 !important;
+                width: 100% !important;
             }
             
             .store-name {
@@ -3442,7 +3682,42 @@
             window.location.href = `https://translate.google.com/translate?hl=${lang}&sl=pt&tl=${lang}&u=${currentUrl}`;
         }
 
+        function toggleLanguagePicker(event) {
+            event.stopPropagation();
+            const container = document.querySelector('.simple-google-translate');
+            const picker = container ? container.querySelector('.lang-picker') : null;
+            const button = container ? container.querySelector('.lang-globe-btn') : null;
+            if (!container || !picker || !button) return;
+
+            if (container.classList.contains('open')) {
+                closeLanguagePicker();
+                return;
+            }
+
+            const rect = button.getBoundingClientRect();
+            picker.style.top = `${rect.bottom + 8}px`;
+            picker.style.left = `${Math.max(8, rect.left)}px`;
+            container.classList.add('open');
+        }
+
+        function closeLanguagePicker() {
+            const container = document.querySelector('.simple-google-translate');
+            if (container) container.classList.remove('open');
+        }
+
+        document.addEventListener('click', function (event) {
+            const container = document.querySelector('.simple-google-translate');
+            if (!container) return;
+            if (!container.contains(event.target)) {
+                container.classList.remove('open');
+            }
+        });
+
+        window.addEventListener('resize', closeLanguagePicker);
+
         window.changeLanguage = changeLanguage;
+        window.toggleLanguagePicker = toggleLanguagePicker;
+        window.closeLanguagePicker = closeLanguagePicker;
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
@@ -3602,9 +3877,12 @@
             <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
             <div class="header-actions">
                 <div class="simple-google-translate" aria-label="Google Translate">
-                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('en')" aria-label="English"><img src="https://flagcdn.com/w80/us.png" alt="English"></button>
-                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('fr')" aria-label="Français"><img src="https://flagcdn.com/w80/fr.png" alt="Français"></button>
-                    <button type="button" class="lang-flag-btn" onclick="changeLanguage('es')" aria-label="Español"><img src="https://flagcdn.com/w80/es.png" alt="Español"></button>
+                    <button type="button" class="lang-globe-btn" onclick="toggleLanguagePicker(event)" aria-label="Traduzir para outro idioma">🌐</button>
+                    <div class="lang-picker" role="menu" aria-label="Escolha o idioma">
+                        <button type="button" onclick="changeLanguage('en'); closeLanguagePicker();" role="menuitem">English</button>
+                        <button type="button" onclick="changeLanguage('fr'); closeLanguagePicker();" role="menuitem">Français</button>
+                        <button type="button" onclick="changeLanguage('es'); closeLanguagePicker();" role="menuitem">Español</button>
+                    </div>
                 </div>
                 <div>
                     <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
@@ -4153,7 +4431,7 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/Foundationenglish.jpg" alt="Programa Geral" class="course-category-image">
+                <img src="DashBoard/ProgramaGeral.png" alt="Programa Geral" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Geral</h3>
                     <p class="course-category-description">O Programa Geral destina-se aos alunos que já possuem uma base em inglês e desejam desenvolver maior fluência e domínio da comunicação. Inscrições abertas no valor de 5.000 Kz.</p>
@@ -4244,7 +4522,7 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/Profissional english.jpg" alt="Programa Profissional" class="course-category-image">
+                <img src="DashBoard/Programaprofissional.png" alt="Programa Profissional" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Profissional</h3>
                     <p class="course-category-description">Programa destinado a profissionais, universitários e empresas que necessitam utilizar o inglês em contextos específicos. Inscrições abertas e Gratuito.</p>
