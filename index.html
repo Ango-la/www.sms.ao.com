@@ -225,8 +225,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 34px;
-            z-index: 110;
+            height: 44px;
+            z-index: 95;
             pointer-events: none;
             overflow: hidden;
         }
@@ -234,21 +234,31 @@
         .ticker-wrapper {
             background: linear-gradient(90deg, rgba(118, 75, 162, 0.95) 0%, rgba(102, 126, 234, 0.95) 50%, rgba(79, 172, 254, 0.95) 100%);
             color: white;
-            padding: 8px 0;
+            padding: 10px 12px;
             overflow: hidden;
             position: relative;
             width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .ticker-content {
             position: relative;
+            width: 100%;
             white-space: normal;
             font-size: 11px;
             font-weight: 400;
             letter-spacing: 0.4px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 18px;
+            min-height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .ticker-item {
@@ -604,6 +614,7 @@
             justify-content: center;
             margin-right: 8px;
             padding: 0;
+            z-index: 120;
         }
         .lang-globe-btn {
             width: 42px;
@@ -633,6 +644,8 @@
         }
         .lang-picker {
             position: fixed;
+            top: 92px;
+            left: 12px;
             display: none;
             flex-direction: column;
             gap: 6px;
@@ -641,9 +654,10 @@
             background: rgba(255,255,255,0.98);
             box-shadow: 0 12px 28px rgba(0,0,0,0.16);
             border: 1px solid rgba(148, 163, 184, 0.3);
-            min-width: 120px;
+            min-width: 128px;
             z-index: 10000;
             pointer-events: none;
+            backdrop-filter: blur(8px);
         }
         .simple-google-translate.open .lang-picker {
             display: flex;
@@ -653,11 +667,15 @@
             border: 0;
             background: transparent;
             text-align: left;
-            padding: 8px 10px;
+            padding: 10px 12px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             color: #1f2937;
+            font-size: 14px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
         .lang-picker button:hover {
             background: #eff6ff;
@@ -1319,10 +1337,10 @@
 
         .course-category-trigger {
             width: 100%;
-            display: grid;
-            grid-template-columns: minmax(140px, 220px) 1fr;
-            gap: 20px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
             padding: 22px;
             text-align: left;
             background: transparent;
@@ -1351,18 +1369,11 @@
             box-shadow: 0 10px 24px rgba(102, 126, 234, 0.24);
         }
 
-        .course-category-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
         .course-category-copy {
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
         }
 
         .course-category-title {
@@ -3694,9 +3705,9 @@
                 return;
             }
 
-            const rect = button.getBoundingClientRect();
-            picker.style.top = `${rect.bottom + 8}px`;
-            picker.style.left = `${Math.max(8, rect.left)}px`;
+            picker.style.top = '92px';
+            picker.style.left = '12px';
+            picker.style.zIndex = '120';
             container.classList.add('open');
         }
 
@@ -3732,16 +3743,17 @@
     <header>
         <div class="header-container">
             <style>
-                .header-container { position: relative; }
+                header { overflow: visible; }
+                .header-container { position: relative; overflow: visible; }
                 .buy-button-container { display: inline-block; }
                 #buy-menu {
-                    position: fixed;
-                    top: 96px;
+                    position: absolute;
+                    top: calc(100% + 10px);
                     left: 50%;
                     transform: translateX(-50%);
                     width: min(96%, 920px);
                     max-width: 620px;
-                    max-height: calc(100vh - 116px);
+                    max-height: calc(100vh - 120px);
                     overflow-y: auto;
                     overflow-x: hidden;
                     background: #ffffff;
@@ -3825,15 +3837,16 @@
                     .purchase-cancel-button { padding: 8px 12px; font-size: 0.82rem; min-width: 0; }
                     .purchase-note { font-size: 0.82rem; padding: 12px 14px; }
                     #buy-menu {
-                        position: fixed !important;
-                        top: 0 !important;
-                        left: 12px !important;
-                        right: 12px !important;
-                        width: calc(100% - 24px) !important;
+                        position: absolute !important;
+                        top: calc(100% + 8px) !important;
+                        left: 8px !important;
+                        right: 8px !important;
+                        width: auto !important;
                         max-width: none !important;
                         transform: none !important;
                         overflow-x: hidden;
-                        z-index: 9999 !important;
+                        z-index: 110 !important;
+                        border-radius: 16px;
                     }
                     .buy-menu-content { padding: 12px; }
                     .buy-menu-content ul { grid-template-columns: 1fr; }
@@ -4335,7 +4348,6 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/ProgramaBasico1.png" alt="Programa Básico" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Básico</h3>
                     <p class="course-category-description">O Programa Básico foi desenvolvido para quem pretende aprender inglês desde o início, construindo uma base sólida em comunicação, gramática, vocabulário, leitura, escrita e compreensão oral. Inscrições abertas no valor de 3.000 Kz.</p>
@@ -4431,7 +4443,6 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/ProgramaGeral.png" alt="Programa Geral" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Geral</h3>
                     <p class="course-category-description">O Programa Geral destina-se aos alunos que já possuem uma base em inglês e desejam desenvolver maior fluência e domínio da comunicação. Inscrições abertas no valor de 5.000 Kz.</p>
@@ -4522,7 +4533,6 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/Programaprofissional.png" alt="Programa Profissional" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Profissional</h3>
                     <p class="course-category-description">Programa destinado a profissionais, universitários e empresas que necessitam utilizar o inglês em contextos específicos. Inscrições abertas e Gratuito.</p>
@@ -4607,7 +4617,6 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="DashBoard/Kindergarten presencial.png " alt="Programa Kids" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programa Kids</h3>
                     <p class="course-category-description">Programa infantil desenvolvido para ensinar inglês de forma divertida e progressiva. Inscrições abertas e Gratuito.</p>
@@ -4657,7 +4666,6 @@
 
         <div class="course-category-card">
             <div class="course-category-trigger">
-                <img src="Image/Aulas ao domicilio2.jpg" alt="Programas Flexíveis" class="course-category-image">
                 <div class="course-category-copy">
                     <h3 class="course-category-title">Programas Flexíveis</h3>
                     <p class="course-category-description">Modelos de aprendizagem adaptados à rotina e às necessidades de cada aluno. Inscrições abertas e Gratuitas.</p>
@@ -5183,38 +5191,15 @@
                 const opened = !buyMenu.classList.contains('show');
                 buyMenu.classList.toggle('show');
                 if (opened) {
-                    // If on small screens, compute the header bottom and position the menu below it
-                    try {
-                        const header = document.querySelector('header');
-                        if (header && window.innerWidth <= 600) {
-                                const rect = header.getBoundingClientRect();
-                                const topPx = Math.ceil(rect.bottom) + 6; // small gap
-                                buyMenu.style.setProperty('top', topPx + 'px', 'important');
-                                buyMenu.style.setProperty('left', '0', 'important');
-                                buyMenu.style.setProperty('transform', 'none', 'important');
-                                buyMenu.style.setProperty('z-index', '90', 'important');
-                            } else {
-                                // revert to CSS default for larger screens
-                                buyMenu.style.removeProperty('top');
-                                buyMenu.style.removeProperty('left');
-                                buyMenu.style.removeProperty('transform');
-                                buyMenu.style.removeProperty('z-index');
-                            }
-                    } catch (e) {
-                        buyMenu.style.top = '';
-                    }
                     buyMenu.style.display = 'block';
+                    buyMenu.style.setProperty('z-index', '110', 'important');
                     buyMenu.setAttribute('aria-hidden', 'false');
                     if (button) button.textContent = 'Fechar';
                 } else {
-                    // hide and reset any inline positioning
                     buyMenu.style.display = 'none';
                     buyMenu.setAttribute('aria-hidden', 'true');
-                    buyMenu.style.removeProperty('top');
-                    buyMenu.style.removeProperty('left');
-                    buyMenu.style.removeProperty('transform');
                     buyMenu.style.removeProperty('z-index');
-                    if (button) button.textContent = 'Comprar';
+                    if (button) button.textContent = 'Manuais';
                 }
             };
 
@@ -6139,4 +6124,3 @@
         </script>
 </body>
 </html>
-
