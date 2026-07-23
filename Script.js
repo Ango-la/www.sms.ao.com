@@ -14,19 +14,146 @@ const manualFileMap = {
 
 // Fallback price map for manuals (used when price wasn't passed to openPurchaseForm)
 const manualPriceMap = {
-  '1': '2.000 Kz',
-  '2': '3.000 Kz',
-  '3': '3.000 Kz',
-  '4': '3.000 Kz',
-  '5': '3.000 Kz',
-  '6': '3.000 Kz',
+  '1': '5.000 Kz',
+  '2': '5.000 Kz',
+  '3': '5.000 Kz',
+  '4': '5.000 Kz',
+  '5': '5.000 Kz',
+  '6': '5.000 Kz',
   '7': '5.000 Kz',
-  '8': '6.500 Kz',
-  '9': '9.000 Kz',
-  '10': '3.000 Kz'
+  '8': '5.000 Kz',
+  '9': '5.000 Kz',
+  '10': '5.000 Kz',
+  '11': '5.000 Kz',
+  '12': '5.000 Kz'
 };
 
+function setActiveOverlay(overlayId, contentId, isOpen) {
+  const overlay = document.getElementById(overlayId);
+  const content = contentId ? document.getElementById(contentId) : null;
+  if (!overlay) return;
+
+  overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  overlay.style.display = isOpen ? 'block' : 'none';
+  overlay.classList.toggle('is-open', isOpen);
+  document.body.classList.toggle('site-overlay-open', isOpen);
+
+  if (content) {
+    content.classList.toggle('is-open', isOpen);
+    content.hidden = !isOpen;
+    content.style.display = isOpen ? 'block' : 'none';
+  }
+}
+
+function closeAllInteractivePanels(except = []) {
+  const enrollmentSection = document.getElementById('agendamento');
+  if (enrollmentSection && !except.includes('enrollment')) {
+    enrollmentSection.hidden = true;
+    enrollmentSection.classList.remove('show');
+    enrollmentSection.style.display = 'none';
+    enrollmentSection.setAttribute('aria-hidden', 'true');
+  }
+
+  const paymentSection = document.getElementById('pagamento');
+  if (paymentSection && !except.includes('payment')) {
+    paymentSection.hidden = true;
+    paymentSection.style.display = 'none';
+    paymentSection.setAttribute('aria-hidden', 'true');
+    paymentSection.classList.remove('is-open');
+  }
+
+  const termsPanel = document.getElementById('termos-privacidade');
+  if (termsPanel && !except.includes('terms')) {
+    termsPanel.hidden = true;
+    termsPanel.style.display = 'none';
+    termsPanel.setAttribute('aria-hidden', 'true');
+    termsPanel.classList.remove('is-open');
+  }
+
+  const propinaModal = document.getElementById('propina-modal');
+  if (propinaModal && !except.includes('propina')) {
+    propinaModal.style.display = 'none';
+    propinaModal.setAttribute('aria-hidden', 'true');
+    propinaModal.classList.remove('is-open');
+  }
+
+  const purchaseOverlay = document.getElementById('purchaseModalOverlay');
+  if (purchaseOverlay && !except.includes('purchase')) {
+    purchaseOverlay.style.display = 'none';
+    purchaseOverlay.setAttribute('aria-hidden', 'true');
+    purchaseOverlay.classList.remove('is-open');
+  }
+
+  const purchaseForm = document.getElementById('purchase-form');
+  if (purchaseForm && !except.includes('purchase')) {
+    purchaseForm.classList.add('hidden');
+    purchaseForm.hidden = true;
+  }
+
+  const infoSystem = document.getElementById('infoPanel');
+  if (infoSystem && !except.includes('info')) {
+    infoSystem.classList.add('collapsed');
+    infoSystem.classList.remove('is-open');
+    infoSystem.hidden = true;
+    infoSystem.style.display = 'none';
+    infoSystem.setAttribute('aria-hidden', 'true');
+    const infoButton = document.getElementById('infoToggleAllBtn');
+    if (infoButton) infoButton.textContent = 'Ver informações';
+  }
+
+  const gallerySection = document.getElementById('sms-gallery');
+  if (gallerySection && !except.includes('gallery')) {
+    gallerySection.hidden = true;
+    gallerySection.style.display = 'none';
+    gallerySection.setAttribute('aria-hidden', 'true');
+  }
+
+  const overlay = document.querySelector('.site-overlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('is-open');
+  }
+
+  document.body.classList.remove('site-overlay-open');
+  document.body.style.overflow = '';
+}
+
+function changeProgram(step) {
+  const track = document.getElementById('programsTrack');
+  if (!track) return;
+
+  const cards = Array.from(track.children);
+  if (!cards.length) return;
+
+  const currentIndex = cards.findIndex(card => card.classList.contains('active'));
+  const nextIndex = (currentIndex + step + cards.length) % cards.length;
+
+  cards.forEach(card => card.classList.remove('active'));
+  cards[nextIndex].classList.add('active');
+
+  track.style.transform = `translateX(-${nextIndex * 100}%)`;
+}
+
+function applyScrollableOverlayState(overlay, content) {
+  if (!overlay || !content) return;
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'flex-start';
+  overlay.style.justifyContent = 'center';
+  overlay.style.padding = '16px 16px 24px';
+  overlay.style.overflowY = 'auto';
+  overlay.style.WebkitOverflowScrolling = 'touch';
+  content.style.width = 'min(760px, 100%)';
+  content.style.maxHeight = 'min(90vh, 860px)';
+  content.style.overflowY = 'auto';
+  content.style.overflowX = 'hidden';
+  content.style.WebkitOverflowScrolling = 'touch';
+  content.style.touchAction = 'pan-y';
+}
+
 function openPurchaseForm(manualTitle, manualId, manualPrice) {
+  closeAllInteractivePanels(['purchase']);
+
   const form = document.getElementById('purchase-form');
   const selectedTitle = document.getElementById('selectedManualTitle');
   const selectedPrice = document.getElementById('selectedManualPrice');
@@ -42,17 +169,18 @@ function openPurchaseForm(manualTitle, manualId, manualPrice) {
   if (manualPriceInput) manualPriceInput.value = manualPrice;
   status.textContent = '';
 
-  // Create modal overlay that reuses propina modal styles
   let overlay = document.getElementById('purchaseModalOverlay');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.id = 'purchaseModalOverlay';
     overlay.className = 'propina-modal';
+    // accessibility
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
 
     const content = document.createElement('div');
     content.className = 'propina-modal-content purchase-modal-content';
 
-    // close button (styled like propina)
     const closeBtn = document.createElement('button');
     closeBtn.type = 'button';
     closeBtn.className = 'propina-modal-close site-close-button';
@@ -65,15 +193,25 @@ function openPurchaseForm(manualTitle, manualId, manualPrice) {
     document.body.appendChild(overlay);
   }
 
-  // move form into modal content
   const modalContent = overlay.querySelector('.propina-modal-content');
   if (form && modalContent) {
     modalContent.appendChild(form);
     form.classList.remove('hidden');
-    overlay.style.display = 'flex';
+    form.hidden = false;
+    form.style.visibility = 'visible';
+    form.style.opacity = '1';
+    form.style.setProperty('display', 'grid', 'important');
+    overlay.style.display = 'block';
     overlay.setAttribute('aria-hidden', 'false');
-    // ensure vertical scroll and focus
-    setTimeout(() => { form.scrollIntoView({ behavior: 'smooth' }); }, 50);
+    overlay.classList.add('is-open');
+    document.body.classList.add('site-overlay-open');
+    document.body.style.overflow = 'hidden';
+    // accessibility: focus first input inside the form
+    const firstInput = form.querySelector('input, select, textarea, button');
+    if (firstInput && typeof firstInput.focus === 'function') {
+      setTimeout(() => firstInput.focus(), 80);
+    }
+    setTimeout(() => { modalContent.scrollTop = 0; form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
   }
 }
 
@@ -85,17 +223,20 @@ function closePurchaseForm() {
 
   if (form) {
     form.classList.add('hidden');
+    form.hidden = true;
     if (purchaseRequest) purchaseRequest.reset();
     if (status) status.textContent = '';
 
-    // move form back into buy-menu content if overlay exists
     if (overlay) {
       const buyMenuContent = document.querySelector('.buy-menu-content');
       if (buyMenuContent) buyMenuContent.appendChild(form);
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
+      overlay.classList.remove('is-open');
     }
   }
+  document.body.classList.remove('site-overlay-open');
+  document.body.style.overflow = '';
 }
 
 function showPurchaseStatus(message, isError = false) {
@@ -197,7 +338,7 @@ async function submitPurchaseRequest() {
 
   showPurchaseStatus('Preparando fatura e redirecionando para email...');
 
-  const centerName = 'S.M.S - Escola de Linguas & Habilidades';
+  const centerName = 'S.M.S - ACADEMIA de Linguas & Habilidades';
   const centerPhone = '+244 951 474872';
   const centerEmail = 'VendasRhSms@outlook.com';
   const centerAddress = 'Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola';
@@ -213,17 +354,19 @@ async function submitPurchaseRequest() {
   invoiceLines.push(`Email: ${email}`);
   invoiceLines.push(`Tipo de curso: ${courseType}`);
   invoiceLines.push('');
-  invoiceLines.push('=== PEDIDO / DOCUMENTO ===');
-  invoiceLines.push(`Documento: ${manualTitle}`);
-  invoiceLines.push(`Documento ID: ${manualId}`);
+  invoiceLines.push('=== ITEM SELECIONADO ===');
+  invoiceLines.push(`Item: ${manualTitle}`);
+  invoiceLines.push(`Item ID: ${manualId}`);
   invoiceLines.push(`Preço: ${manualPrice}`);
+  invoiceLines.push('');
+  invoiceLines.push('=== DADOS DO PEDIDO ===');
   invoiceLines.push(`Comprovante enviado: ${file.name}`);
   invoiceLines.push('');
   invoiceLines.push('=== DETALHES DE PAGAMENTO ===');
   invoiceLines.push('- Banco: Banco Yetu.');
   invoiceLines.push('- Nº Conta: 7899088.10001');
   invoiceLines.push('- IBAN: AO6.0066.0000.0789.9088.1013.0');
-  invoiceLines.push('- Referência: SMS-ESCOLA DE LÍNGUAS-2026');
+  invoiceLines.push('- Referência: SMS-ACADEMIA DE LÍNGUAS-2026');
   invoiceLines.push('');
   invoiceLines.push(`Data do pedido: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`);
   invoiceLines.push('');
@@ -298,7 +441,8 @@ function submitPhysicalPurchaseRequest() {
   const whatsappNumber = '244951474872';
   const messageLines = [];
   messageLines.push('O pagamento total do manual foi feito.');
-  messageLines.push(`Descrição do Manual: ${manualTitle}`);
+  messageLines.push(`Item selecionado: ${manualTitle}`);
+  messageLines.push(`ID do item: ${manualId}`);
   messageLines.push(`Hora comprada: ${now.toLocaleString()}`);
   messageLines.push(`Nome: ${name}`);
   messageLines.push(`Tipo de curso: ${courseType}`);
@@ -345,7 +489,7 @@ function generateInvoice() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     // Monta a fatura com informações completas do centro e do cliente
-    const centerName = 'S.M.S - Escola de Linguas & Habilidades';
+    const centerName = 'S.M.S - ACADEMIA de Linguas & Habilidades';
     const centerPhone = '+244 951 474872';
     const centerEmail = 'VendasRhSms@outlook.com';
     const centerAddress = 'Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola';
@@ -372,7 +516,7 @@ function generateInvoice() {
     doc.text(`- Banco: Banco Yetu.`, 14, 106);
     doc.text(`- Nº Conta: 7899088.10001`, 14, 114);
     doc.text(`- IBAN: AO6.0066.0000.0789.9088.1013.0`, 14, 122);
-    doc.text(`- Referência: SMS-ESCOLA DE LÍNGUAS-2026`, 14, 130);
+    doc.text(`- Referência: SMS-ACADEMIA DE LÍNGUAS-2026`, 14, 130);
     doc.text('Código de acesso ao documento: @saraswat!-2026sms', 14, 142);
 
     doc.setFontSize(12);
@@ -671,14 +815,76 @@ function generateInvoice() {
 })();
 // ===== PROPINA MODAL FUNCTIONS =====
 
+function getDraftStorageKey(formKey) {
+  return `sms_${formKey}_draft`;
+}
+
+function saveFormDraft(formKey, fieldIds) {
+  const payload = {};
+  fieldIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'checkbox' || el.type === 'radio') {
+      payload[id] = !!el.checked;
+    } else if (el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+      payload[id] = el.value;
+    }
+  });
+  payload.expiresAt = Date.now() + (7 * 24 * 60 * 60 * 1000);
+  try {
+    localStorage.setItem(getDraftStorageKey(formKey), JSON.stringify(payload));
+  } catch (e) {
+    console.warn('Unable to save draft', formKey, e);
+  }
+}
+
+function restoreFormDraft(formKey, fieldIds) {
+  try {
+    const raw = localStorage.getItem(getDraftStorageKey(formKey));
+    if (!raw) return false;
+    const draft = JSON.parse(raw);
+    if (!draft || Number(draft.expiresAt || 0) < Date.now()) {
+      localStorage.removeItem(getDraftStorageKey(formKey));
+      return false;
+    }
+    fieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        el.checked = !!draft[id];
+      } else if (el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+        if (draft[id] !== undefined) {
+          el.value = draft[id];
+        }
+      }
+    });
+    return true;
+  } catch (e) {
+    console.warn('Unable to restore draft', formKey, e);
+    return false;
+  }
+}
+
+function clearFormDraft(formKey) {
+  try {
+    localStorage.removeItem(getDraftStorageKey(formKey));
+  } catch (e) {
+    console.warn('Unable to clear draft', formKey, e);
+  }
+}
+
 // Open Propina Modal
 function openProptinaModal(courseName, coursePrice) {
+  closeAllInteractivePanels(['propina']);
+
   const modal = document.getElementById('propina-modal');
   if (!modal) return;
   
-  // Set the course name and price in the form
   const courseSelect = document.getElementById('propina-course');
   const amountInput = document.getElementById('propina-amount');
+  const stageInput = document.getElementById('propina-stage');
+  const stageLabel = document.querySelector('label[for="propina-stage"]');
+  const purposeInput = document.getElementById('propina-purpose');
   
   if (courseSelect && courseName) {
     courseSelect.value = courseName;
@@ -689,22 +895,65 @@ function openProptinaModal(courseName, coursePrice) {
     amountInput.dataset.defaultPrice = coursePrice;
   }
   
-  // Reset other form fields but keep course and price
-  document.getElementById('propina-name').value = '';
-  document.getElementById('propina-email').value = '';
-  document.getElementById('propina-phone').value = '';
-  document.getElementById('propina-type').value = '';
-  document.getElementById('propina-month').value = '';
-  document.getElementById('propina-package').value = '';
-  document.getElementById('propina-corporate').value = '';
-  document.getElementById('propina-proof').value = '';
-  document.getElementById('monthly-fields').style.display = 'none';
-  document.getElementById('package-fields').style.display = 'none';
-  document.getElementById('corporate-fields').style.display = 'none';
+  if (stageInput && stageLabel) {
+    const normalizedCourse = (courseName || '').toLowerCase();
+    if (normalizedCourse.includes('professional english')) {
+      stageLabel.textContent = 'Especialização:';
+      stageInput.innerHTML = `
+        <option value="">-- Selecione --</option>
+        <option value="Travel English">Travel English</option>
+        <option value="Technical English">Technical English</option>
+        <option value="Academic English">Academic English</option>
+        <option value="Business English">Business English</option>
+        <option value="Specialized English">Specialized English</option>
+      `;
+    } else {
+      stageLabel.textContent = 'Estágio:';
+      stageInput.innerHTML = `
+        <option value="">-- Selecione --</option>
+        <option value="Estágio 1">Estágio 1</option>
+        <option value="Estágio 2">Estágio 2</option>
+        <option value="Estágio 3">Estágio 3</option>
+      `;
+      const stageMatch = (courseName || '').match(/Estágio\s*(\d+)/i);
+      stageInput.value = stageMatch ? `Estágio ${stageMatch[1]}` : '';
+    }
+    stageInput.value = '';
+    stageInput.onchange = () => {
+      updatePropinaAmountForCourse(courseName, stageInput.value);
+    };
+  }
+
+  if (purposeInput) {
+    purposeInput.value = 'Propina / Pagamento de curso';
+  }
+
+  restoreFormDraft('propina', [
+    'propina-name',
+    'propina-email',
+    'propina-phone',
+    'propina-type',
+    'propina-month',
+    'propina-package',
+    'propina-corporate'
+  ]);
+
+  const monthlyFields = document.getElementById('monthly-fields');
+  const packageFields = document.getElementById('package-fields');
+  const corporateFields = document.getElementById('corporate-fields');
+  if (monthlyFields) monthlyFields.style.display = 'none';
+  if (packageFields) packageFields.style.display = 'none';
+  if (corporateFields) corporateFields.style.display = 'none';
+  updatePaymentTypeFields();
   
-  // Show modal
-  modal.style.display = 'flex';
+  applyScrollableOverlayState(modal, modal.querySelector('.propina-modal-content'));
+  modal.setAttribute('aria-hidden', 'false');
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
   document.body.style.overflow = 'hidden';
+  // accessibility: focus first interactive element
+  const first = modal.querySelector('input, select, textarea, button');
+  if (first && typeof first.focus === 'function') setTimeout(() => first.focus(), 60);
 }
 
 // Close Propina Modal
@@ -712,9 +961,27 @@ function closeProptinaModal() {
   const modal = document.getElementById('propina-modal');
   if (!modal) return;
   
+  const form = document.getElementById('propina-form');
+  if (form) {
+    const propinaFieldIds = [
+      'propina-name',
+      'propina-email',
+      'propina-phone',
+      'propina-course',
+      'propina-stage',
+      'propina-purpose',
+      'propina-type',
+      'propina-month',
+      'propina-package',
+      'propina-corporate',
+      'propina-amount'
+    ];
+    saveFormDraft('propina', propinaFieldIds);
+  }
+
   modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-  document.getElementById('propina-form').reset();
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
 // Update Payment Type Fields
@@ -726,6 +993,8 @@ function updatePaymentTypeFields() {
   const monthSelect = document.getElementById('propina-month');
   const packageSelect = document.getElementById('propina-package');
   const corporateSelect = document.getElementById('propina-corporate');
+  const courseName = document.getElementById('propina-course')?.value || '';
+  const stageValue = document.getElementById('propina-stage')?.value || '';
   
   monthlyFields.style.display = 'none';
   packageFields.style.display = 'none';
@@ -737,33 +1006,63 @@ function updatePaymentTypeFields() {
 
   const amountInput = document.getElementById('propina-amount');
   const defaultAmount = amountInput ? amountInput.dataset.defaultPrice : '';
+  const computedAmount = getPropinaAmountForCourse(courseName, stageValue, defaultAmount);
 
   if (paymentType === 'monthly') {
     monthlyFields.style.display = 'block';
     monthSelect.required = true;
-    if (amountInput) amountInput.value = defaultAmount;
+    if (amountInput) amountInput.value = computedAmount;
   } else if (paymentType === 'package') {
     packageFields.style.display = 'block';
     packageSelect.required = true;
-    if (amountInput) amountInput.value = defaultAmount;
+    if (amountInput) amountInput.value = computedAmount;
   } else if (paymentType === 'corporate') {
     corporateFields.style.display = 'block';
     corporateSelect.required = true;
+    if (amountInput) amountInput.value = computedAmount;
   } else {
-    if (amountInput) amountInput.value = defaultAmount;
+    if (amountInput) amountInput.value = computedAmount;
   }
+}
+
+function updatePropinaAmountForCourse(courseName, stageValue) {
+  const amountInput = document.getElementById('propina-amount');
+  if (!amountInput) return;
+  const defaultAmount = amountInput.dataset.defaultPrice || '';
+  amountInput.value = getPropinaAmountForCourse(courseName, stageValue, defaultAmount);
+}
+
+function getPropinaAmountForCourse(courseName, stageValue, defaultAmount) {
+  if ((courseName || '').toLowerCase().includes('professional english') && stageValue) {
+    const stagePrice = getPropinaSpecializationPrice(stageValue);
+    if (stagePrice) {
+      return stagePrice;
+    }
+  }
+  return defaultAmount || '';
+}
+
+function getPropinaSpecializationPrice(specialization) {
+  const prices = {
+    'Travel English': 20000,
+    'Technical English': 40000,
+    'Academic English': 60000,
+    'Business English': 70000,
+    'Specialized English': 180000
+  };
+  return prices[specialization] || null;
 }
 
 function updateCorporateAmount() {
   const corporateSelect = document.getElementById('propina-corporate');
   const amountInput = document.getElementById('propina-amount');
   const corporateAmounts = {
-    'Business English': 35000,
-    'Academic English': 30000,
-    'Travel English': 25000,
+    'Business English': 70000,
+    'Academic English': 60000,
+    'Travel English': 20000,
     'Professional English': 50000,
-    'Technical English': 60000,
-    'Specialized English': 75000,
+    'Technical English': 40000,
+    'Specialized English': 180000,
     'Team/Company 3 Member': 100000
   };
   const selected = corporateSelect.value;
@@ -776,29 +1075,27 @@ function updateCorporateAmount() {
 function submitProptinaForm(event) {
   event.preventDefault();
   
-  // Get form data
   const name = document.getElementById('propina-name').value.trim();
   const email = document.getElementById('propina-email').value.trim();
   const phone = document.getElementById('propina-phone').value.trim();
   const course = document.getElementById('propina-course').value.trim();
+  const stage = document.getElementById('propina-stage').value.trim();
+  const purpose = document.getElementById('propina-purpose').value.trim();
   const paymentType = document.getElementById('propina-type').value;
   const monthRef = document.getElementById('propina-month').value || '';
   const amount = document.getElementById('propina-amount').value.trim();
   const proofFile = document.getElementById('propina-proof').files[0];
   
-  // Validate all fields
-  if (!name || !email || !phone || !course || !paymentType || !amount || !proofFile) {
+  if (!name || !email || !phone || !course || !stage || !purpose || !paymentType || !amount || !proofFile) {
     alert('Por favor, preencha todos os campos obrigatórios e anexe o comprovante.');
     return;
   }
   
-  // Validate payment type selection
   if (paymentType === 'monthly' && !monthRef) {
     alert('Por favor, selecione a referência da mensalidade.');
     return;
   }
   
-  // Format payment type for display
   let paymentTypeDisplay = '';
   switch(paymentType) {
     case 'monthly':
@@ -814,7 +1111,6 @@ function submitProptinaForm(event) {
       paymentTypeDisplay = paymentType;
   }
   
-  // Build the message for WhatsApp
   const message = `
 Olá! Envie o seu comprovante manualmente para acelerar a sua validação.
 
@@ -825,6 +1121,8 @@ Telefone: ${phone}
 
 *OBJETIVO DO PAGAMENTO:*
 Curso: ${course}
+Estágio: ${stage}
+Objetivo: ${purpose}
 
 *TIPO DE PAGAMENTO:*
 ${paymentTypeDisplay}
@@ -840,17 +1138,19 @@ Obs: Por favor, envie o seu comprovante manualmente via WhatsApp após abrir a c
 Aguardo a confirmação do pagamento.
   `.trim();
   
-  // Encode message for WhatsApp
   const encodedMessage = encodeURIComponent(message);
-  const whatsappNumber = '244951474872'; // School WhatsApp number without + and spaces
+  const whatsappNumber = '244951474872';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  const subject = encodeURIComponent(`Pagamento S.M.S - ${course}`);
+  const mailtoBody = encodeURIComponent(`Olá,\n\nSegue o pedido de confirmação de pagamento.\n\nNome: ${name}\nEmail: ${email}\nTelefone: ${phone}\nCurso: ${course}\nEstágio: ${stage}\nObjetivo: ${purpose}\nTipo de pagamento: ${paymentTypeDisplay}\nMontante: Kz ${parseFloat(amount).toLocaleString('pt-AO')}\nComprovante: ${proofFile.name}`);
+  const mailtoUrl = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${mailtoBody}`;
   
-  // Close modal and redirect to WhatsApp
+  clearFormDraft('propina');
   closeProptinaModal();
   
-  // Open WhatsApp
   setTimeout(() => {
     window.open(whatsappUrl, '_blank');
+    window.location.href = mailtoUrl;
   }, 300);
 }
 
@@ -864,5 +1164,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  const enrollmentSection = document.getElementById('agendamento');
+  if (enrollmentSection) {
+    enrollmentSection.hidden = true;
+    enrollmentSection.classList.remove('show');
+    enrollmentSection.style.display = 'none';
+    enrollmentSection.setAttribute('aria-hidden', 'true');
+  }
+
+  const propinaForm = document.getElementById('propina-form');
+  if (propinaForm) {
+    const propinaFieldIds = [
+      'propina-name',
+      'propina-email',
+      'propina-phone',
+      'propina-course',
+      'propina-stage',
+      'propina-purpose',
+      'propina-type',
+      'propina-month',
+      'propina-package',
+      'propina-corporate',
+      'propina-amount'
+    ];
+    propinaFieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      ['input', 'change'].forEach((eventName) => {
+        el.addEventListener(eventName, () => saveFormDraft('propina', propinaFieldIds));
+      });
+    });
+  }
 });
+
 
