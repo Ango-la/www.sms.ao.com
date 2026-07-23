@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="./">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="S.M.S - Escola de Linguas & Habilidades">
-    <meta name="description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
-    <meta name="keywords" content="Escola de Linguas, Idiomas, Habilidades, Cursos, Aprendizado, Inglês, Francês, Alemão, Espanhol">
+    <meta name="author" content="S.M.S - ACADEMIA de Linguas & Habilidades">
+    <meta name="description" content="S.M.S - ACADEMIA de Línguas & Habilidades em Luanda, com cursos, manuais, matrículas e pagamentos online para uma experiência profissional e prática.">
+    <meta name="keywords" content="ACADEMIA de Línguas, Habilidades, Cursos em Luanda, Inglês, Francês, SMS, Educação, Matrículas Online, Manuais">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="./">
     <meta property="og:url" content="./">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Saraswati MAA Mind School - Aprenda com Profissionais Experientes">
-    <meta property="og:description" content="S.M.S - Escola de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
+    <meta property="og:description" content="S.M.S - ACADEMIA de Línguas & Habilidades em Luanda, com formação de excelência, matrículas online e acesso a manuais e mensalidades sem sair de casa.">
     <meta property="og:image" content="Image/favicon.jpg">
     <!-- Título da página, utilizado em navegadores, pesquisas e resultados de mecanismos de busca -->
     <title>Saraswati MAA Mind School - Aprenda com Profissionais Experientes</title>
@@ -22,3651 +22,22 @@
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="Script.js" defer></script>
-<style>
-    /* RESET E ESTILIZAÇÃO GLOBAL */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box; }
-        html, body {
-            overflow-x: hidden;
+<script>
+        function hideGoogleTranslateUI() {
+            const container = document.getElementById('google_translate_element');
+            if (container) {
+                container.setAttribute('style', 'position:fixed !important; left:-9999px !important; top:-9999px !important; width:1px !important; height:1px !important; overflow:hidden !important; opacity:0 !important; display:none !important;');
+            }
+            document.querySelectorAll('.goog-te-banner-frame, .goog-te-menu-frame, .goog-te-ftab, .goog-te-gadget, .goog-te-gadget-simple, .goog-te-spinner-pos, .goog-te-balloon-frame').forEach((el) => {
+                if (el) {
+                    el.setAttribute('style', 'display:none !important; visibility:hidden !important; position:fixed !important; left:-9999px !important; top:-9999px !important; width:1px !important; height:1px !important;');
+                }
+            });
+            document.querySelectorAll('.skiptranslate').forEach((el) => el.remove());
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-            background-size: 400% 400%;
-            animation: fadeIn 1s ease-in, gradientShift 15s ease infinite;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column; }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="10" y="50" font-size="12" opacity="0.03" fill="black">📚</text></svg>'),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="12" opacity="0.03" fill="black">🌍</text></svg>'),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="80" y="50" font-size="12" opacity="0.03" fill="black">👨‍🎓</text></svg>');
-            background-size: 300px 300px, 350px 350px, 400px 400px;
-            background-position: 0 0, 40px 60px, 130px 270px;
-            animation: slide 20s linear infinite;
-            pointer-events: none;
-            z-index: -1; }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; } }
-        @keyframes slide {
-            0% { background-position: 0 0, 40px 60px, 130px 270px; }
-            100% { background-position: 300px 300px, 340px 360px, 430px 570px; } }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; } }
 
-        /* HEADER E MENU */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid rgba(255, 255, 255, 0.2); }
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px;
-            font-weight: bold;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .header-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-left: 0;
-            flex-shrink: 0;
-        }
-
-        .header-actions > * {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 14px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-
-        .header-actions .buy-button,
-        .header-actions .info-toggle-button {
-            width: auto;
-            padding: 8px 14px;
-            font-size: 13px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
-        }
-
-        .header-actions .info-toggle-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: #fff;
-            border: none;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .header-actions .buy-button:hover,
-        .header-actions .info-toggle-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
-        }
-
-        .buy-button-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @media (max-width: 900px) {
-            .header-container {
-                justify-content: space-between;
-                flex-wrap: nowrap;
-                align-items: center;
-            }
-            .store-name {
-                flex: 1 1 auto;
-                text-align: left;
-                font-size: 16px;
-            }
-            .header-actions {
-                width: auto;
-                justify-content: flex-end;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-            .header-actions > * {
-                flex: 0 0 auto;
-                min-width: 0;
-            }
-            .header-actions .simple-google-translate {
-                width: auto;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 650px) {
-            header {
-                padding: 10px 0;
-            }
-
-            .header-container {
-                padding: 0 12px;
-                flex-wrap: nowrap;
-                gap: 8px;
-            }
-
-            .store-name {
-                font-size: 13px;
-                line-height: 1.2;
-                flex: 1 1 auto;
-            }
-
-            .header-actions {
-                gap: 6px;
-                flex-wrap: nowrap;
-                justify-content: flex-end;
-                width: auto;
-                overflow-x: auto;
-            }
-            .header-actions > * {
-                flex: 0 0 auto;
-                min-width: 0;
-                max-width: none;
-                font-size: 11px;
-                padding: 7px 10px;
-            }
-            .header-actions .simple-google-translate {
-                width: auto;
-                min-width: 0;
-            }
-            .buy-button-container {
-                width: auto;
-            }
-            .header-actions .buy-button,
-            .header-actions .info-toggle-button {
-                font-size: 11px;
-                padding: 7px 10px;
-                min-width: 0;
-            }
-        }
-
-        .ticker-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 44px;
-            z-index: 95;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .ticker-wrapper {
-            background: linear-gradient(90deg, rgba(118, 75, 162, 0.95) 0%, rgba(102, 126, 234, 0.95) 50%, rgba(79, 172, 254, 0.95) 100%);
-            color: white;
-            padding: 10px 12px;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .ticker-content {
-            position: relative;
-            width: 100%;
-            white-space: normal;
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.4px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .ticker-item {
-            position: absolute;
-            inset: 0;
-            padding: 0 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.45s ease;
-            white-space: normal;
-            line-height: 1.4;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-            font-weight: 300;
-        }
-
-        .ticker-item.active {
-            opacity: 1;
-        }
-
-        /* pause-on-hover intentionally omitted because the ticker overlay
-           uses pointer-events:none to avoid blocking header interactions */
-
-        @media (max-width: 768px) {
-            .ticker-wrapper {
-                min-height: 52px;
-                padding: 10px 0;
-            }
-
-            .ticker-content {
-                min-height: 32px;
-            }
-
-            .ticker-item {
-                padding: 0 14px;
-                font-size: 11px;
-            }
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .purchase-form {
-            background: #f8fafc;
-            border: 1px solid rgba(102, 126, 234, 0.18);
-            border-radius: 14px;
-            padding: 18px;
-            margin-top: 20px;
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.12);
-            overflow-x: hidden;
-            word-break: break-word;
-        }
-
-        .purchase-form.show {
-            display: block;
-        }
-
-        .purchase-form h3 {
-            margin: 0 0 14px 0;
-            font-size: 18px;
-            color: #2d3748;
-        }
-
-        .purchase-request-form {
-            display: grid;
-            gap: 12px;
-        }
-
-        .purchase-request-form label {
-            display: block;
-            font-size: 13px;
-            color: #334155;
-            margin-bottom: 4px;
-        }
-
-        .purchase-request-form input,
-        .purchase-request-form select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-            margin-bottom: 12px;
-        }
-
-        .purchase-submit-button,
-        .purchase-cancel-button {
-            padding: 10px 16px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .purchase-submit-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .purchase-cancel-button {
-            background: #cbd5e1;
-            color: #1f2937;
-        }
-
-        .purchase-note {
-            margin: 0;
-            color: #475569;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .manual-documents {
-            margin-top: 16px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .manual-pdf-area {
-            display: none;
-            border: 1px solid rgba(102, 126, 234, 0.18);
-            border-radius: 12px;
-            overflow: hidden;
-            background: #ffffff;
-            padding: 10px;
-        }
-
-        .manual-pdf-area embed {
-            width: 100%;
-            height: 220px;
-            border: none;
-        }
-
-        .manual-pdf-area.visible {
-            display: block;
-        }
-
-        .purchase-form p {
-            margin-top: 10px;
-        }
-
-        /* Responsive Payment & Purchase Forms for today's updates */
-        .payment-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            margin-top: 40px;
-            overflow-x: hidden;
-            word-break: break-word;
-        }
-
-        .payment-info-block {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 24px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            overflow-x: hidden;
-            word-break: break-word;
-            word-wrap: break-word;
-        }
-
-        .payment-info-block h3 {
-            font-size: 16px;
-            color: #764ba2;
-            margin-bottom: 12px;
-        }
-
-        .payment-info-block p {
-            color: #333;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 8px 0;
-        }
-
-        @media (max-width: 768px) {
-            .payment-section {
-                padding: 24px 16px;
-                margin-top: 24px;
-                overflow-x: hidden;
-            }
-
-            .payment-info-block {
-                padding: 18px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-                overflow-x: hidden;
-                word-break: break-word;
-            }
-
-            .payment-info-block h3 {
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-
-            .payment-info-block p {
-                font-size: 13px;
-            }
-
-            .whatsapp-section {
-                max-width: 100%;
-                padding: 24px 16px;
-                margin: 20px auto;
-            }
-
-            .whatsapp-button {
-                padding: 12px;
-                font-size: 16px;
-            }
-
-            .form-group input {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .form-group input[readonly] {
-                background: #f0f4ff;
-                color: #374151;
-                cursor: not-allowed;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .payment-section {
-                padding: 16px 12px;
-                margin-top: 16px;
-                overflow-x: hidden;
-            }
-
-            .payment-info-block {
-                padding: 14px;
-                border-radius: 8px;
-                margin-bottom: 12px;
-                overflow-x: hidden;
-                word-break: break-word;
-            }
-
-            .payment-info-block h2 {
-                font-size: 18px;
-            }
-
-            .payment-info-block h3 {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            .payment-info-block p {
-                font-size: 12px;
-                margin: 6px 0;
-            }
-
-            .whatsapp-section {
-                max-width: 100%;
-                padding: 16px 12px;
-                margin: 16px auto;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            .whatsapp-section h2 {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-
-            .form-group {
-                margin-bottom: 12px;
-            }
-
-            .form-group label {
-                font-size: 12px;
-                margin-bottom: 6px;
-            }
-
-            .form-group input {
-                padding: 8px;
-                font-size: 13px;
-            }
-
-            .form-group input[readonly] {
-                background: #f0f4ff;
-                color: #374151;
-                cursor: not-allowed;
-                word-break: break-word;
-            }
-
-            .whatsapp-button {
-                padding: 10px 12px;
-                font-size: 14px;
-            }
-
-            .purchase-form {
-                padding: 12px;
-                border-radius: 10px;
-            }
-
-            .purchase-form h3 {
-                font-size: 14px;
-                margin: 0 0 12px 0;
-            }
-
-            .purchase-request-form input,
-            .purchase-request-form select {
-                padding: 8px;
-                font-size: 13px;
-                margin-bottom: 10px;
-            }
-
-            .purchase-submit-button,
-            .purchase-cancel-button {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-
-            .purchase-note {
-                font-size: 12px;
-                margin: 8px 0;
-            }
-        }
-        .store-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            flex: 1 1 auto;
-            min-width: 0;
-            margin: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        nav {
-            margin-left: auto;  }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px; }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 8px 15px;
-            border-radius: 5px; }
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);  }
-        .simple-google-translate {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 8px;
-            padding: 0;
-            z-index: 120;
-        }
-        .lang-globe-btn {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
-            min-height: 42px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.95);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #1d4ed8;
-            font-size: 24px;
-            line-height: 1;
-            overflow: hidden;
-            box-sizing: border-box;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .lang-globe-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.22);
-        }
-        .lang-picker {
-            position: fixed;
-            top: 92px;
-            left: 12px;
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            padding: 8px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.98);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            min-width: 128px;
-            z-index: 10000;
-            pointer-events: none;
-            backdrop-filter: blur(8px);
-        }
-        .simple-google-translate.open .lang-picker {
-            display: flex;
-            pointer-events: auto;
-        }
-        .lang-picker button {
-            border: 0;
-            background: transparent;
-            text-align: left;
-            padding: 10px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #1f2937;
-            font-size: 14px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-        }
-        .lang-picker button:hover {
-            background: #eff6ff;
-        }
-        .google-translate-host {
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-        }
-        .translation-overlay {
-            position: fixed;
-            inset: 0;
-            background: #ffffff;
-            z-index: 99999;
-            display: none;
-        }
-        .translation-overlay.show {
-            display: block;
-        }
-        .translation-frame {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            background: #ffffff;
-        }
-        .translation-close-btn {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 100000;
-            width: 44px;
-            height: 44px;
-            border: none;
-            border-radius: 50%;
-            background: #111827;
-            color: #ffffff;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-        }
-        @media screen and (max-width: 768px) {
-            .simple-google-translate {
-                width: auto;
-                margin-right: 0;
-                align-self: center;
-            }
-            .lang-globe-btn {
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-                min-height: 40px;
-                font-size: 22px;
-            }
-            .lang-picker {
-                min-width: 118px;
-            }
-        }
-        /* RESPONSIVO - TABLETS E CELULARES */
-        @media screen and (max-width: 768px) {
-            .header-container {
-                flex-wrap: nowrap;
-                gap: 8px;
-                align-items: center;
-            }
-            
-            .store-name {
-                font-size: 18px;
-            }
-            
-            nav ul {
-                gap: 15px;
-            }
-            
-            nav a {
-                font-size: 14px;
-                padding: 6px 10px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .product-image-img {
-                height: 200px;
-            }
-
-            .product-image {
-                height: 200px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .banner-slide {
-                font-size: 32px;
-            }
-
-            .dashboard {
-                margin: 30px auto;
-                padding: 0 15px;
-            }
-
-            .banner {
-                height: 350px;
-            }  }
-        @media screen and (max-width: 480px) {
-            .header-container {
-                padding: 0 10px;
-                gap: 8px; }
-
-            .logo-official {
-                max-height: 60px;
-                width: 70px;
-            }
-
-            .store-name {
-                font-size: 14px;
-            }
-
-            nav ul {
-                gap: 10px;
-                flex-wrap: wrap;
-            }
-
-            nav a {
-                font-size: 12px;
-                padding: 5px 8px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .product-image-img {
-                height: 180px;
-            }
-
-            .product-image {
-                height: 180px;
-            }
-
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-
-            .banner-slide {
-                font-size: 20px;
-            }
-
-            .banner {
-                height: 250px;
-            }
-
-            .dashboard {
-                margin: 20px auto;
-                padding: 0 10px;
-            }
-
-            .terms-container {
-                padding: 20px;
-            }
-
-            .terms-container h2 {
-                font-size: 22px;
-            }
-
-            .terms-content h3 {
-                font-size: 16px;
-            }
-
-            .terms-content p {
-                font-size: 14px;
-            }}
-
-.info-system {
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  width: min(420px, calc(100vw - 32px));
-  max-height: calc(100vh - 120px);
-  overflow: hidden;
-  margin: 0;
-  background: rgba(248, 251, 255, 0.98);
-  border-radius: 22px;
-  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.18);
-  padding: 14px;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
-.info-system .info-system-close-wrap {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 1001;
-}
-.info-system-close-button,
-.site-close-button {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: #000;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none;
-}
-
-.info-system-close-button:hover,
-.site-close-button:hover {
-  transform: translateY(-1px);
-}
-
-.info-system.collapsed {
-  display: none;
-}
-
-.info-system-content {
-  padding: 0;
-  max-width: 100%;
-  margin: 0;
-  max-height: calc(88vh - 56px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  word-break: break-word;
-  touch-action: pan-y;
-}
-
-.buy-menu-content ul li img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.buy-menu-content ul li h3,
-.buy-menu-content ul li p,
-.buy-menu-content ul li #manualPrice1,
-.buy-menu-content ul li #manualPrice2,
-.buy-menu-content ul li #manualPrice3,
-.buy-menu-content ul li #manualPrice4,
-.buy-menu-content ul li #manualPrice5,
-.buy-menu-content ul li #manualPrice6,
-.buy-menu-content ul li #manualPrice7,
-.buy-menu-content ul li #manualPrice8,
-.buy-menu-content ul li #manualPrice9,
-.buy-menu-content ul li #manualPrice10 {
-  word-break: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-}
-
-.buy-menu-content ul li button {
-  width: 100%;
-  max-width: 100%;
-  padding: 10px 12px;
-}
-
-.info-system-toggle-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 18px;
-}
-
-.info-toggle-button {
-  width: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 130px;
-   padding: 8px 16px;
-   border-radius: 8px;
-   font-size: 14px;
-   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-   color: white;
-   border: none;
-   cursor: pointer;
-   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-   transition: all 0.4s ease;
-   position: relative;
-   overflow: hidden;
-   white-space: nowrap;
-   line-height: 1.2;
- }
-
- .info-toggle-button::before {
-   content: '';
-   position: absolute;
-   top: 0;
-   left: -100%;
-   width: 100%;
-   height: 100%;
-   background: rgba(255, 255, 255, 0.2);
-   transition: left 0.4s ease;
- }
-
- .info-toggle-button:hover::before {
-   left: 100%;
- }
-
- .info-toggle-button:hover {
-   transform: translateY(-3px);
-   background-position: 100% 0;
-   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
- }
-
-.info-system .info-section > *:not(h2) {
-  max-height: 0;
-  opacity: 0;
-  visibility: hidden;
-  overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-}
-
-.info-system.collapsed .info-section > *:not(h2) {
-  max-height: 0;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.info-section.opened > *:not(h2) {
-  max-height: 9999px;
-  opacity: 1;
-  visibility: visible;
-}
-
-.info-section {
-  margin-bottom: 12px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(102, 126, 234, 0.14);
-  border-radius: 16px;
-  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.05);
-  padding: 12px;
-  overflow: hidden;
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-}
-
-.info-section.opened {
-  box-shadow: 0 18px 36px rgba(102, 126, 234, 0.12);
-  transform: translateY(-1px);
-}
-
-.info-section h2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #1f2937;
-  background: #f7f9ff;
-  padding: 10px 14px;
-  border-radius: 14px;
-  cursor: pointer;
-  border: 1px solid rgba(102, 126, 234, 0.12);
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-.info-section h2::after {
-  content: '⯈';
-  font-size: 1.1rem;
-  transition: transform 0.25s ease;
-}
-
-.info-section.opened h2::after {
-  transform: rotate(90deg);
-}
-
-.info-section h2:hover {
-  background: #eef4ff;
-}
-
-.info-section-body {
-  display: grid;
-  gap: 14px;
-}
-
-.info-section-body p,
-.info-section-body li,
-.info-section-body label,
-.info-section-body h3,
-.info-section-body strong,
-.info-section-body .contact-item {
-  color: #475569;
-  line-height: 1.75;
-}
-
-.info-section-body > div,
-.info-section-body > .parceiros-gallery,
-.info-section-body > .vagas-container,
-.info-section-body > div[class*="contact-item"] {
-  width: 100%;
-}
-
-.info-section-body .parceiros-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 14px;
-}
-
-.info-section-body .parceiro-item,
-.info-section-body .vaga-card,
-.info-section-body .contact-item,
-.info-section-body .info-card {
-  background: #f8fbff;
-  border: 1px solid rgba(102, 126, 234, 0.14);
-  border-radius: 16px;
-  padding: 14px;
-}
-
-.info-section-body .vaga-card {
-  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.08);
-}
-
-.info-section-body .contact-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.info-section-body .testimonial-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-}
-
-.info-section-body .testimonial-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #eef2ff;
-    color: #1e3a8a;
-    font-weight: 700;
-    font-size: 0.95rem;
-    flex-shrink: 0;
-}
-
-.info-system-content p {
-  color: #475569;
-  line-height: 1.8;
-  margin-bottom: 18px;
-  font-size: 15px;
-}
-.terms-container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.terms-container h2 {
-  color: #667eea;
-  font-size: 28px;
-  margin-bottom: 30px;
-  text-align: center;
-  border-bottom: 3px solid #667eea;
-  padding-bottom: 15px;
-}
-.terms-content h3 {
-  color: #333;
-  font-size: 18px;
-  margin-top: 25px;
-  margin-bottom: 12px;
-  border-left: 4px solid #667eea;
-  padding-left: 15px;
-}
-.terms-content p {
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  font-size: 15px;
-}
-.terms-content ul {
-  margin-left: 25px;
-  margin-bottom: 20px;
-}
-.terms-content li {
-  color: #666;
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-.terms-content strong {
-  color: #667eea;
-  font-weight: 600;
-}
-        /* BANNER */
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            background: #f5f5f5;
-        }
-        .banner-slider {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s ease-in-out;
-        }
-        .banner-slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            font-size: 48px;
-            font-weight: bold;
-            background-color: #f5f5f5;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-        }
-        .banner-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: none;
-            z-index: 1;
-        }
-        .banner-slide > div {
-            position: relative;
-            z-index: 2;
-        }
-        .banner-slide:nth-child(2) > div {
-             display: none;
-        }
-        .banner-slide:nth-child(1) > div {
-           display: none;
-        }
-
-
-        .banner-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 5;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.55);
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            touch-action: manipulation;
-        }
-
-        .dot:hover,
-        .dot:focus {
-            transform: scale(1.1);
-        }
-
-        .dot.active {
-            background: white;
-        }
-
-        @media (max-width: 768px) {
-            .banner {
-                height: 320px;
-            }
-
-            .banner-dots {
-                bottom: 16px;
-                gap: 8px;
-            }
-
-            .dot {
-                width: 14px;
-                height: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .banner {
-                height: 260px;
-            }
-
-            .banner-dots {
-                bottom: 14px;
-            }
-
-            .dot {
-                width: 16px;
-                height: 16px;
-            }
-        }
-
-        /* DASHBOARD */
-        .dashboard {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            margin-bottom: 30px;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: titlePulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .course-category-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
-            border: 1px solid rgba(102, 126, 234, 0.16);
-            border-radius: 22px;
-            overflow: hidden;
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.16);
-            margin-bottom: 24px;
-        }
-
-        .course-category-trigger {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 14px;
-            padding: 22px;
-            text-align: left;
-            background: transparent;
-        }
-
-        .course-category-action {
-            border: 0;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 14px;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.18);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .course-category-action:hover,
-        .course-category-action:focus-visible {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(102, 126, 234, 0.24);
-        }
-
-        .course-category-copy {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .course-category-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #1f2937;
-            margin: 0;
-        }
-
-        .course-category-description {
-            font-size: 15px;
-            color: #64748b;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .course-group-content {
-            padding: 0 20px 20px;
-        }
-
-        .course-group-content[hidden] {
-            display: none;
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 2px solid rgba(102, 126, 234, 0.1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.4s;
-            z-index: -1;
-        }
-
-        .product-card:hover {
-            transform: none;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-            border-color: rgba(102, 126, 234, 0.3);
-        }
-        
-        .product-card:hover::before {
-            opacity: 0.08;
-        }
-
-        .product-image-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-            background-size: 400% 400%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            position: relative;
-            animation: productGradient 6s ease infinite;
-            overflow: hidden;
-        }
-        
-        @keyframes productGradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .product-image-text {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .product-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .product-price {
-            font-size: 24px;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .product-description {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .buy-button {
-            flex: 1;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 200% 200%;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-        }
-
-        .course-buttons-container {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .course-buttons-container .buy-button {
-            flex: 1;
-        }
-
-        .propina-btn {
-            background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%) !important;
-        }
-
-        .propina-btn:hover {
-            background-position: 100% 0 !important;
-            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5) !important;
-        }
-        
-        .buy-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.4s ease;
-        }
-        
-        .buy-button:hover::before {
-            left: 100%;
-        }
-
-        .buy-button:hover {
-            background-position: 100% 0;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-            transform: translateY(-3px);
-            animation: buttonPulse 0.6s;
-        }
-
-        /* PROPINA MODAL STYLES */
-        .propina-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            z-index: 2000;
-            padding: 100px 20px 20px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            backdrop-filter: blur(4px);
-        }
-
-        .propina-modal-content {
-            background: white;
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Use same layout/appearance as site-close-button so X is consistent across desktop and mobile */
-        .propina-modal-close {
-            width: 44px;
-            height: 44px;
-            border: 0;
-            border-radius: 50%;
-            background: transparent;
-            color: #000;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: none;
-            transition: transform 0.18s ease;
-        }
-
-        .propina-modal-close:hover {
-            transform: translateY(-1px);
-        }
-
-        .buy-menu-header,
-        .propina-modal-title-row,
-        .info-system-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            width: 100%;
-            margin-bottom: 18px;
-        }
-
-        .buy-menu-header h2,
-        .propina-modal-title-row h2,
-        .info-system-header h2 {
-            margin: 0;
-            flex: 1;
-            color: #000;
-            font-size: 1.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .buy-menu-header button,
-        .propina-modal-title-row button,
-        .info-system-header button {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 768px) {
-            .propina-modal-content,
-            .info-system {
-                position: relative !important;
-            }
-
-            #buy-menu {
-                position: fixed !important;
-                top: 84px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: min(96%, 920px) !important;
-                max-width: 620px !important;
-                max-height: calc(100vh - 94px) !important;
-                z-index: 9999 !important;
-            }
-
-            .site-close-button,
-            .propina-modal-close,
-            .buy-menu-close,
-            .info-system-close-button {
-                width: 44px !important;
-                height: 44px !important;
-                min-width: 44px !important;
-                min-height: 44px !important;
-                border-radius: 50% !important;
-                background: transparent !important;
-                color: #000 !important;
-                font-size: 24px !important;
-                font-weight: 700 !important;
-                line-height: 1 !important;
-                box-shadow: none !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-        }
-
-        .propina-modal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            padding: 28px 24px;
-            border-radius: 16px 16px 0 0;
-            margin-bottom: 24px;
-        }
-
-        .propina-modal-header h2 {
-            margin: 0 0 16px 0;
-            font-size: 24px;
-        }
-
-        .iban-display {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 16px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-
-        .iban-display p {
-            margin: 8px 0;
-            font-size: 14px;
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-        }
-
-        .iban-display .iban-code {
-            font-family: monospace;
-            font-size: 18px;
-            background: #080808;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 8px 0;
-            overflow-x: hidden;
-            word-break: break-all;
-            white-space: normal;
-        }
-
-        .propina-form {
-            padding: 24px;
-        }
-
-        .propina-fieldset {
-            border: none;
-            padding: 0 0 24px 0;
-            margin: 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .propina-fieldset:last-of-type {
-            border-bottom: none;
-        }
-
-        .propina-fieldset legend {
-            font-size: 16px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 16px;
-            padding: 0;
-            display: block;
-        }
-
-        .propina-form .form-group {
-            margin-bottom: 16px;
-        }
-
-        .propina-form .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #374151;
-            font-size: 14px;
-        }
-
-        .propina-form input,
-        .propina-form select {
-            width: 100%;
-            padding: 12px;
-            border: 1.5px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            background: white;
-        }
-
-        .propina-form input:focus,
-        .propina-form select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .monthly-fields {
-            padding: 12px;
-            background: #f8fbff;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-
-        .monthly-fields label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #374151;
-            font-size: 14px;
-        }
-
-        .monthly-fields select {
-            width: 100%;
-            padding: 12px;
-            border: 1.5px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .propina-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .propina-submit-btn,
-        .propina-cancel-btn {
-            flex: 1;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .propina-submit-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .propina-submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .propina-submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .propina-cancel-btn {
-            background: #f3f4f6;
-            color: #374151;
-            border: 1px solid #d1d5db;
-        }
-
-        .propina-cancel-btn:hover {
-            background: #e5e7eb;
-            border-color: #9ca3af;
-        }
-
-        @media (max-width: 768px) {
-            .propina-modal-content {
-                max-height: 95vh;
-                border-radius: 12px;
-            }
-
-            .propina-form {
-                padding: 16px;
-            }
-
-            .propina-modal-header {
-                padding: 16px;
-                border-radius: 12px 12px 0 0;
-            }
-
-            .propina-modal-header h2 {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
-
-            .iban-display {
-                padding: 12px;
-            }
-
-            .iban-display p {
-                font-size: 13px;
-            }
-
-            .propina-fieldset {
-                padding: 0 0 16px 0;
-                margin-bottom: 8px;
-            }
-
-            .propina-fieldset legend {
-                font-size: 15px;
-                margin-bottom: 12px;
-            }
-
-            .propina-form .form-group {
-                margin-bottom: 12px;
-            }
-
-            .propina-form .form-group label {
-                font-size: 13px;
-                margin-bottom: 6px;
-            }
-
-            .propina-form input,
-            .propina-form select {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .propina-form input[readonly] {
-                background: #f0f4ff;
-                color: #374151;
-            }
-
-            .monthly-fields {
-                padding: 10px;
-                margin-top: 8px;
-            }
-
-            .monthly-fields label {
-                font-size: 13px;
-                margin-bottom: 6px;
-            }
-
-            .monthly-fields select {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .propina-buttons {
-                flex-direction: column;
-                gap: 10px;
-                margin-top: 16px;
-                padding-top: 16px;
-            }
-
-            .propina-submit-btn,
-            .propina-cancel-btn {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
-
-            .course-buttons-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .course-buttons-container .buy-button {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .propina-modal {
-                padding: 12px;
-            }
-
-            .propina-modal-content {
-                border-radius: 10px;
-                max-height: 98vh;
-            }
-
-            .propina-form {
-                padding: 12px;
-            }
-
-            .propina-modal-header {
-                padding: 12px;
-                margin-bottom: 16px;
-            }
-
-            .propina-modal-header h2 {
-                font-size: 18px;
-                margin-bottom: 8px;
-            }
-
-            /* Keep close button size consistent across breakpoints (fixed overlay) */
-
-            .propina-modal {
-                padding: 80px 12px 12px;
-            }
-
-            .propina-modal-content {
-                max-width: 100%;
-            }
-
-            .iban-display .iban-code {
-                font-size: 15px;
-                padding: 10px;
-            }
-
-            .iban-display {
-                padding: 10px;
-            }
-
-            .iban-display p {
-                font-size: 12px;
-                margin: 6px 0;
-            }
-
-            .propina-fieldset {
-                padding: 0 0 12px 0;
-                margin-bottom: 6px;
-            }
-
-            .propina-fieldset legend {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-
-            .propina-form .form-group {
-                margin-bottom: 10px;
-            }
-
-            .propina-form .form-group label {
-                font-size: 12px;
-                margin-bottom: 5px;
-            }
-
-            .propina-form input,
-            .propina-form select {
-                padding: 8px;
-                font-size: 13px;
-            }
-
-            .propina-form input[readonly] {
-                background: #f0f4ff;
-                color: #374151;
-                word-break: break-word;
-            }
-
-            .monthly-fields {
-                padding: 8px;
-                margin-top: 6px;
-            }
-
-            .monthly-fields label {
-                font-size: 12px;
-                margin-bottom: 5px;
-            }
-
-            .monthly-fields select {
-                padding: 8px;
-                font-size: 13px;
-            }
-
-            .propina-buttons {
-                flex-direction: column;
-                gap: 8px;
-                margin-top: 12px;
-                padding-top: 12px;
-            }
-
-            .propina-submit-btn,
-            .propina-cancel-btn {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% { transform: translateY(-3px); }
-            50% { transform: translateY(-8px); }
-        }
-
-
-        .order-toggle-btn {
-            display: block;
-            margin: 40px auto;
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 50%, #00a884 100%);
-            background-size: 200% 200%;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .order-toggle-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .order-toggle-btn:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        .order-toggle-btn:hover {
-            background-position: 100% 0;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-            transform: translateY(-3px) scale(1.05);
-        }
-
-        #agendamento {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 100px 20px 20px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            touch-action: pan-y;
-        }
-
-        #agendamento.show {
-            display: flex;
-        }
-
-        /* FORMULÁRIO WHATSAPP */
-        .whatsapp-section {
-            background: white;
-            padding: 24px;
-            border-radius: 12px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            text-align: left;
-            overflow-x: hidden;
-            word-break: break-word;
-        }
-
-        .whatsapp-section h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .form-group input:not([type="radio"]) {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input[type="radio"] {
-            width: auto;
-            margin: 0;
-            cursor: pointer;
-        }
-
-        .form-group input:not([type="radio"]):focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-top: 6px;
-            touch-action: manipulation;
-        }
-
-        .radio-option {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
-            user-select: none;
-            position: relative;
-            pointer-events: auto;
-        }
-
-        .radio-option:hover {
-            background: rgba(102, 126, 234, 0.08);
-            border-color: #667eea;
-        }
-
-        .radio-option input[type="radio"] {
-            cursor: pointer;
-            position: relative;
-            z-index: 2;
-        }
-
-        .radio-option span {
-            cursor: pointer;
-        }
-
-        .radio-option input[type="radio"] + span {
-            display: inline-block;
-        }
-
-        .radio-option input[type="radio"]:checked + span {
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .modality-confirmation {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 6px 10px;
-            margin-top: 10px;
-            border-radius: 999px;
-            background: #16a34a;
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            box-shadow: 0 3px 10px rgba(22, 163, 74, 0.16);
-        }
-
-        .modality-confirmation.hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .modality-confirmation {
-                width: auto;
-                padding: 8px 12px;
-            }
-        }
-
-        .whatsapp-button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 50%, #00a884 100%);
-            background-size: 200% 200%;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-            position: relative;
-        }
-
-        .whatsapp-button:hover {
-            background-position: 100% 0;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-            transform: translateY(-3px);
-        }
-
-        /* GALERIA */
-        .gallery {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 2px solid rgba(102, 126, 234, 0.1);
-        }
-
-        .gallery-item:hover {
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
-        }
-
-        .gallery-image {
-            width: 110%;
-            height: 600px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-overlay h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        /* FOOTER */
-        footer {
-            background: linear-gradient(135deg, #333 0%, #1a1a1a 50%, #0d0d0d 100%);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: auto;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .social-media {
-            margin-top: 10px;
-        }
-
-        .social-media a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .social-media a:hover {
-            color: #f093fb;
-            transform: scale(1.3);
-            transition: all 0.3s ease;
-        }
-
-        /* BUY BUTTON AND MENU */
-        .buy-button-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-        /* make the buy menu fixed and centered so it never opens off-screen */
-        .buy-menu {
-            display: none;
-            position: fixed;
-            top: 64px; /* sits just under the header */
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
-            z-index: 1200;
-            width: min(92%, 900px);
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-            margin-top: 0;
-            animation: fadeIn 0.25s ease;
-            -webkit-overflow-scrolling: touch;
-        }
-        @media (max-width: 600px) {
-            #buy-menu,
-            .buy-menu {
-                top: 88px !important;
-                left: 0;
-                transform: none;
-                width: calc(100% - 10px);
-                max-width: none;
-                max-height: calc(100vh - 94px);
-                height: calc(100vh - 94px);
-                border-radius: 0 0 16px 16px;
-                margin: 0 5px 0 5px;
-                z-index: 90 !important; /* put below header (header z-index:100) */
-            }
-        }
-        @media (max-width: 480px) {
-            .buy-menu {
-                top: 110px;
-                max-height: calc(100vh - 116px);
-                height: calc(100vh - 116px);
-            }
-        }
-        @media (max-width: 360px) {
-            .buy-menu {
-                top: 130px;
-                max-height: calc(100vh - 136px);
-                height: calc(100vh - 136px);
-            }
-        }
-        .buy-menu.show {
-            display: block;
-        }
-        .buy-menu-content {
-            padding: 20px;
-        }
-        .buy-menu-content h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 24px;
-        }
-        .buy-menu-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .buy-menu-content li {
-            background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.3s ease;
-        }
-        .buy-menu-content li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-        .buy-menu-content li h3 {
-            color: #333;
-            margin: 0 0 10px 0;
-            font-size: 18px;
-        }
-        .buy-menu-content li p {
-            color: #666;
-            margin: 5px 0;
-            font-size: 14px;
-        }
-        .buy-menu-content li img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .buy-menu-content li button {
-            width: 100%;
-            padding: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        .buy-menu-content li button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        @media (max-width: 1024px) {
-            .header-container {
-                padding: 0 10px;
-                gap: 10px;
-            }
-
-            .store-name {
-                font-size: 20px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-
-            .banner {
-                height: 400px;
-            }
-
-            .banner-slide {
-                font-size: 36px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #agendamento {
-                padding: 80px 16px 16px;
-            }
-
-            .whatsapp-section {
-                padding: 18px;
-                max-width: 100%;
-            }
-
-            header {
-                padding: 15px 0;
-            }
-
-            .header-container {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 10px;
-            }
-
-            .logo-official {
-                max-height: 60px;
-                width: 80px;
-            }
-
-            .store-name {
-                font-size: 18px;
-            }
-
-            nav {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-
-            nav a {
-                font-size: 14px;
-                padding: 8px 12px;
-            }
-
-            .banner {
-                height: 320px;
-            }
-
-            .banner-slide {
-                font-size: 24px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(1, 1fr);
-                gap: 20px;
-                margin-bottom: 30px;
-            }
-
-            .product-image {
-                height: 200px;
-            }
-
-            .product-image-img {
-                height: 200px;
-            }
-
-            .product-name {
-                font-size: 16px;
-            }
-
-            .product-price {
-                font-size: 20px;
-            }
-
-            .product-description {
-                font-size: 13px;
-            }
-
-            .buy-button {
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 28px;
-                margin-bottom: 20px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(1, 1fr);
-                gap: 15px;
-            }
-
-            .gallery-image {
-                height: 300px;
-            }
-
-            .order-toggle-btn {
-                padding: 15px 30px;
-                font-size: 16px;
-                margin: 30px auto;
-            }
-
-            .whatsapp-section {
-                padding: 25px;
-                margin: 30px 15px;
-                max-width: 100%;
-            }
-
-            .whatsapp-section h2 {
-                font-size: 20px;
-            }
-
-            .form-group label {
-                font-size: 14px;
-            }
-
-            .form-group input {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .whatsapp-button {
-                padding: 12px;
-                font-size: 16px;
-            }
-
-            .terms-container {
-                padding: 20px;
-            }
-
-            .terms-container h2 {
-                font-size: 22px;
-            }
-
-            .terms-content h3 {
-                font-size: 16px;
-            }
-
-            .terms-content p {
-                font-size: 14px;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            #agendamento {
-                padding: 70px 12px 12px;
-            }
-
-            .whatsapp-section {
-                padding: 14px;
-                border-radius: 10px;
-            }
-
-            .whatsapp-section h2 {
-                font-size: 18px;
-            }
-
-            .form-group {
-                margin-bottom: 14px;
-            }
-
-            .form-group label {
-                font-size: 13px;
-            }
-
-            .form-group input,
-            .form-group select {
-                font-size: 15px;
-                padding: 10px;
-            }
-
-            .whatsapp-button {
-                padding: 12px;
-                font-size: 16px;
-            }
-
-            header {
-                padding: 10px 0;
-            }
-
-            .header-container {
-                padding: 0 8px;
-                gap: 8px;
-            }
-
-            .logo-official {
-                max-height: 50px;
-                width: 60px;
-            }
-
-            .store-name {
-                font-size: 14px;
-            }
-
-            nav ul {
-                gap: 5px;
-            }
-
-            nav a {
-                font-size: 12px;
-                padding: 5px 8px;
-            }
-
-            .banner {
-                height: 260px;
-            }
-
-            .banner-slide {
-                font-size: 18px;
-            }
-
-            .dot {
-                width: 8px;
-                height: 8px;
-            }
-
-            .banner-dots {
-                bottom: 10px;
-                gap: 5px;
-            }
-
-            .dashboard {
-                margin: 20px auto;
-                padding: 0 10px;
-            }
-
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-
-            .products-grid {
-                gap: 15px;
-                margin-bottom: 20px;
-            }
-
-            .product-card {
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .product-image-img {
-                order: 1;
-            }
-
-            .product-info {
-                order: 2;
-                align-items: flex-start;
-                text-align: left;
-            }
-
-            .product-name {
-                order: 1;
-            }
-
-            .product-price {
-                order: 2;
-            }
-
-            .product-description {
-                order: 3;
-            }
-
-            .buy-button {
-                order: 4;
-                width: 100%;
-            }
-
-            .product-image {
-                height: 150px;
-            }
-
-            .product-image-img {
-                height: 150px;
-            }
-
-            .product-info {
-                padding: 15px;
-            }
-
-            .product-name {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            .product-price {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .product-description {
-                font-size: 12px;
-                margin-bottom: 10px;
-            }
-
-            .buy-button {
-                padding: 10px;
-                font-size: 13px;
-            }
-
-            .gallery-grid {
-                gap: 10px;
-            }
-
-            .gallery-image {
-                height: 200px;
-            }
-
-            .gallery-overlay h3 {
-                font-size: 14px;
-            }
-
-            .order-toggle-btn {
-                padding: 12px 20px;
-                font-size: 14px;
-                margin: 20px 10px;
-            }
-
-            .whatsapp-section {
-                padding: 20px;
-                margin: 20px 10px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .whatsapp-section h2 {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-
-            .form-group {
-                margin-bottom: 15px;
-            }
-
-            .form-group label {
-                font-size: 12px;
-                margin-bottom: 6px;
-            }
-
-            .form-group input {
-                padding: 8px;
-                font-size: 13px;
-            }
-
-            .whatsapp-button {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            /* Removed duplicate/legacy .sidenav rules to avoid conflicts with the main responsive styles. */
-
-            .terms-privacy {
-                padding: 20px 10px;
-                margin: 20px 0;
-                height: auto;
-            }
-
-            .terms-container {
-                padding: 15px;
-                margin: 0 auto;
-            }
-
-            .terms-container h2 {
-                font-size: 18px;
-                margin-bottom: 20px;
-            }
-
-            .terms-content h3 {
-                font-size: 14px;
-                margin-top: 15px;
-                margin-bottom: 10px;
-            }
-
-            .terms-content p {
-                font-size: 12px;
-                line-height: 1.6;
-                margin-bottom: 10px;
-            }
-
-            .terms-content ul {
-                margin-left: 15px;
-                margin-bottom: 15px;
-            }
-
-            .terms-content li {
-                font-size: 12px;
-                margin-bottom: 8px;
-            }
-
-            footer {
-                padding: 25px 15px;
-                margin-top: 30px;
-            }
-
-            footer p {
-                font-size: 12px;
-                margin-bottom: 10px;
-            }
-
-            .social-media {
-                margin-top: 10px;
-            }
-
-            .social-media a {
-                margin: 0 8px;
-                font-size: 16px;
-            }
-
-        }
-
-        @media (max-width: 768px) {
-            .product-card {
-                display: grid !important;
-                grid-template-columns: 1fr;
-                grid-template-areas:
-                    "image"
-                    "title"
-                    "meta"
-                    "price"
-                    "description"
-                    "button";
-                gap: 0;
-            }
-
-            .product-image-img {
-                grid-area: image;
-                order: 0 !important;
-                height: 180px !important;
-                width: 100% !important;
-            }
-
-            .product-info {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-                padding: 15px !important;
-            }
-
-            .product-name {
-                grid-area: title;
-                order: 0 !important;
-                margin-bottom: 8px !important;
-            }
-
-            .product-meta {
-                grid-area: meta;
-                margin: 0 0 8px 0 !important;
-            }
-
-            .product-price {
-                grid-area: price;
-                margin: 0 0 10px 0 !important;
-            }
-
-            .product-description {
-                grid-area: description;
-                margin: 0 0 12px 0 !important;
-            }
-
-            .course-buttons-container {
-                grid-area: button;
-                width: 100% !important;
-                display: flex !important;
-                gap: 10px !important;
-            }
-
-            .course-buttons-container .buy-button {
-                flex: 1 1 0 !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .course-category-trigger {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 14px !important;
-                padding: 16px !important;
-            }
-
-            .course-category-image {
-                width: 100% !important;
-                height: 200px !important;
-                max-width: 100% !important;
-                display: block !important;
-                object-fit: cover !important;
-            }
-
-            .course-category-copy {
-                gap: 8px !important;
-            }
-
-            .course-category-title {
-                font-size: 20px !important;
-            }
-
-            .course-category-description {
-                font-size: 14px !important;
-                line-height: 1.5 !important;
-            }
-
-            .course-category-action {
-                width: 100% !important;
-                justify-content: center !important;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .banner {
-                height: 150px;
-            }
-
-            .banner-slide {
-                font-size: 16px;
-            }
-
-            .section-title {
-                font-size: 18px;
-            }
-
-            .product-image {
-                height: 120px;
-            }
-
-            .gallery-image {
-                height: 150px;
-            }
-        }
-
-        
-        * {
-            box-sizing: border-box;
-        }
-        
-        @keyframes rotateParceiros {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
-        }
-        .parceiro-item:nth-child(3n+1) {
-            animation: rotateParceiros 2s infinite;
-        }
-        .parceiro-item:nth-child(3n+2) {
-            animation: rotateParceiros 2s infinite 0.67s;
-        }
-        .parceiro-item:nth-child(3n) {
-            animation: rotateParceiros 2s infinite 1.33s;
-        }
-
-        /* RESPONSIVE DESIGN */
-        /* Mobile First - Extra Small (xs) */
-        @media (max-width: 480px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .product-card {
-                display: flex !important;
-                flex-direction: column !important;
-            }
-
-            .product-image-img {
-                order: 1 !important;
-                height: 180px !important;
-                width: 100% !important;
-            }
-
-            .product-info {
-                order: 2 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-            }
-
-            .product-name {
-                order: 1 !important;
-            }
-
-            .product-meta {
-                order: 2 !important;
-            }
-
-            .product-price {
-                order: 3 !important;
-            }
-
-            .product-description {
-                order: 4 !important;
-            }
-
-            .course-buttons-container {
-                order: 5 !important;
-                width: 100% !important;
-            }
-            
-            .store-name {
-                font-size: 16px !important;
-                margin: 10px 0;
-            }
-            
-            .logo-official {
-                width: 40px !important;
-                height: 40px !important;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            nav li {
-                width: 100%;
-            }
-            
-            nav a {
-                font-size: 14px;
-                display: block;
-                padding: 10px;
-            }
-            
-            .banner-slide h1 {
-                font-size: 18px !important;
-            }
-            
-            .banner-slide p {
-                font-size: 14px !important;
-            }
-            
-            .section-title {
-                font-size: 22px !important;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .product-card {
-                margin: 10px 0;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .parceiros-gallery {
-                flex-direction: column;
-                gap: 20px !important;
-            }
-            
-            .parceiro-item {
-                width: 120px !important;
-                height: 120px !important;
-            }
-            
-            .parceiro-logo {
-                width: 90px !important;
-                height: 90px !important;
-            }
-            
-            #agendamento .form-group label {
-                font-size: 14px;
-            }
-            
-            button {
-                min-width: 100%;
-                font-size: 14px;
-            }
-        }
-
-        /* Small devices (sm) */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                padding: 15px 10px;
-            }
-
-            .product-card {
-                display: flex !important;
-                flex-direction: column !important;
-            }
-
-            .product-image-img {
-                order: 1 !important;
-                height: 220px !important;
-            }
-
-            .product-info {
-                order: 2 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-            }
-
-            .product-name {
-                order: 1 !important;
-            }
-
-            .product-meta {
-                order: 2 !important;
-            }
-
-            .product-price {
-                order: 3 !important;
-            }
-
-            .product-description {
-                order: 4 !important;
-            }
-
-            .course-buttons-container {
-                order: 5 !important;
-                width: 100% !important;
-            }
-            
-            .store-name {
-                font-size: 18px !important;
-                margin: 10px 0;
-            }
-            
-            .logo-official {
-                width: 50px !important;
-                height: 50px !important;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            nav li {
-                width: 100%;
-            }
-            
-            nav a {
-                font-size: 14px;
-                padding: 8px 5px;
-            }
-            
-            .banner-slide h1 {
-                font-size: 24px !important;
-            }
-            
-            .banner-slide p {
-                font-size: 16px !important;
-            }
-            
-            .section-title {
-                font-size: 26px !important;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 15px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 15px;
-            }
-            
-            .parceiros-gallery {
-                gap: 20px !important;
-            }
-            
-            .parceiro-item {
-                width: 130px !important;
-                height: 130px !important;
-                border-width: 3px;
-            }
-            
-            .parceiro-logo {
-                width: 100px !important;
-                height: 100px !important;
-            }
-            
-            .payment-container {
-                padding: 20px !important;
-            }
-            
-            #agendamento .form-group {
-                margin-bottom: 12px;
-            }
-        }
-
-        /* Medium devices (md) */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            
-            .parceiros-gallery {
-                gap: 25px !important;
-            }
-        }
-
-        /* Large devices (lg) and up */
-        @media (min-width: 1025px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
-        }
-
-        /* Touch-friendly adjustments for small screens */
-        @media (max-width: 768px) {
-            button {
-                padding: 12px 16px !important;
-                min-height: 44px;
-            }
-            
-            input, select, textarea {
-                font-size: 16px !important;
-                padding: 12px !important;
-            }
-            
-            .form-group {
-                margin-bottom: 15px !important;
-            }
-
-            .info-system {
-                position: fixed !important;
-                top: 72px !important;
-                left: 0 !important;
-                right: 0 !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                height: calc(100vh - 72px) !important;
-                border-radius: 0 !important;
-                box-shadow: 0 16px 40px rgba(0,0,0,0.18) !important;
-                background: rgba(255,255,255,0.98) !important;
-                margin: 0 !important;
-                overflow: hidden !important;
-                z-index: 1000 !important;
-            }
-
-            .info-system.collapsed {
-                display: none !important;
-            }
-
-            .info-system-content {
-                max-height: calc(100vh - 72px);
-                padding: 10px 12px 12px;
-                overflow-y: auto;
-            }
-
-            .info-section {
-                margin-bottom: 10px;
-                padding: 10px;
-            }
-
-            .info-section h2 {
-                font-size: 15px;
-                padding: 10px 12px;
-            }
-
-            .info-section-body {
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 10px 0;
-            }
-
-            .header-container {
-                padding: 0 10px;
-            }
-
-            .info-system {
-                top: 66px !important;
-                height: calc(100vh - 66px) !important;
-            }
-
-            .info-system-content {
-                max-height: calc(100vh - 66px);
-                padding: 10px 10px 10px;
-            }
-
-            .info-section h2 {
-                font-size: 14px;
-            }
-
-            .info-section-body {
-                gap: 10px;
-            }
-
-            .info-section-body .parceiro-item,
-            .info-section-body .vaga-card,
-            .info-section-body .contact-item,
-            .info-section-body .info-card {
-                padding: 12px;
-            }
-        }
-
-        /* Google Translate widget com logo do Google */
-        #google_translate_element {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 44px;
-            border-radius: 12px;
-            background: #ffffff;
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-            overflow: visible;
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-            position: relative;
-            padding: 8px 10px;
-        }
-
-        #google_translate_element:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
-        }
-
-        #google_translate_element::before {
-            content: none;
-        }
-
-        #google_translate_element .goog-te-gadget-simple,
-        #google_translate_element .goog-te-gadget {
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            width: 100% !important;
-            min-height: 100% !important;
-            opacity: 1 !important;
-            z-index: auto !important;
-            pointer-events: auto !important;
-            color: #111827;
-            font-size: 12px;
-            line-height: 1.2;
-        }
-
-        #google_translate_element .goog-te-gadget-simple {
-            gap: 6px;
-        }
-
-        #google_translate_element .goog-te-combo {
-            display: inline-block !important;
-            width: 100% !important;
-            min-width: 0 !important;
-            padding: 8px 10px !important;
-            border: 1px solid rgba(15, 23, 42, 0.16) !important;
-            border-radius: 8px !important;
-            background: #ffffff !important;
-            color: #111827 !important;
-            font-size: 13px !important;
-            appearance: auto !important;
-        }
-
-        #google_translate_element .goog-te-gadget img {
-            display: none !important;
-        }
-
-        img,
-        iframe,
-        video {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .banner-slide img {
-            width: 100%;
-            height: 100%;
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-info,
-        .vagas-container,
-        .gallery,
-        .payment-container,
-        .whatsapp-section,
-        .terms-container,
-        .header-container {
-            width: 100%;
-        }
-
-        #scrollToTopBtn {
-            display: none;
-            position: fixed;
-            bottom: 22px;
-            right: 22px;
-            background-color: #ffd700;
-            color: #000;
-            border: none;
-            padding: 14px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            z-index: 999;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0;
-            width: 52px;
-            height: 52px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #scrollToTopBtn:hover {
-            transform: translateY(-3px);
-        }
-
-        @media (max-width: 768px) {
-            #scrollToTopBtn {
-                right: 16px;
-                bottom: 16px;
-                padding: 12px;
-                width: 48px;
-                height: 48px;
-                font-size: 18px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .header-container {
-                justify-content: center;
-            }
-
-            .product-card,
-            .gallery-item,
-            .vaga-card {
-                width: 100%;
-            }
-
-            .gallery-image {
-                height: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #scrollToTopBtn {
-                right: 12px;
-                bottom: 12px;
-                padding: 8px;
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-                min-height: 40px;
-                max-width: 40px;
-                max-height: 40px;
-                font-size: 14px;
-            }
-
-            .buy-button,
-            .whatsapp-button,
-            .order-toggle-btn {
-                min-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .floating-report-btn {
-                right: 12px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            #scrollToTopBtn {
-                right: 10px;
-                bottom: 10px;
-                width: 36px;
-                height: 36px;
-                min-width: 36px;
-                min-height: 36px;
-                max-width: 36px;
-                max-height: 36px;
-                padding: 0;
-                font-size: 12px;
-            }
-        }
-
-            .banner-slide {
-                padding: 18px 12px;
-            }
-
-            .banner-slide > div {
-                padding: 0 10px;
-            }
-
-        /* Center buy menu content on small screens and improve responsiveness */
-        .buy-menu-content { text-align: center; }
-        .buy-menu-content ul li { align-items: center; justify-content: center; text-align: center; max-width: 100%; overflow: hidden; }
-        .buy-menu-content ul li h3,
-        .buy-menu-content ul li p,
-        .buy-menu-content ul li span,
-        .buy-menu-content ul li strong {
-            word-break: break-word;
-            overflow-wrap: anywhere;
-            max-width: 100%;
-        }
-        .buy-menu-content ul li button { margin-left: auto; margin-right: auto; max-width: 260px; }
-
-        @media (max-width: 600px) {
-            .buy-menu {
-                top: 130px;
-                left: 0;
-                transform: none;
-                width: calc(100% - 10px);
-                max-width: none;
-                max-height: calc(100vh - 140px);
-                height: calc(100vh - 140px);
-                border-radius: 0 0 16px 16px;
-                margin: 0 5px;
-            }
-            .buy-menu-content { padding: 12px; }
-            .buy-menu-content ul { grid-template-columns: 1fr; gap: 12px; }
-            .buy-menu-content ul li { padding: 10px 10px 12px; }
-            .buy-menu-content ul li img { width: 100%; height: 140px; object-fit: cover; }
-            .buy-menu-content ul li h3 { font-size: 0.98rem; margin-bottom: 6px; }
-            .buy-menu-content ul li p { font-size: 0.92rem; line-height: 1.4; margin: 0 0 10px; }
-            .buy-menu-content ul li button { width: 100%; max-width: 100%; padding: 10px 12px; font-size: 0.95rem; }
-        }
-    </style>
-    <script>
         function googleTranslateElementInit() {
+            hideGoogleTranslateUI();
             const container = document.getElementById('google_translate_element');
             if (!container) return;
             if (window.google && window.google.translate && window.google.translate.TranslateElement) {
@@ -3705,26 +76,60 @@
                 return;
             }
 
-            picker.style.top = '92px';
-            picker.style.left = '12px';
-            picker.style.zIndex = '120';
+            // Move picker to body to avoid being clipped by header containers
+            if (picker.parentElement !== document.body) {
+                // remember original parent for restore
+                picker._origParent = picker.parentElement;
+                document.body.appendChild(picker);
+            }
+
+            // position picker fixed just below header
+            const header = document.querySelector('header');
+            const headerBottom = header ? Math.ceil(header.getBoundingClientRect().bottom) : 56;
+            picker.style.position = 'fixed';
+            picker.style.top = (headerBottom + 8) + 'px';
+            picker.style.left = '50%';
+            picker.style.transform = 'translateX(-50%)';
+            picker.style.zIndex = '1400';
+            picker.style.display = 'flex';
             container.classList.add('open');
         }
 
         function closeLanguagePicker() {
             const container = document.querySelector('.simple-google-translate');
-            if (container) container.classList.remove('open');
+            const picker = document.querySelector('.lang-picker');
+            if (!container || !picker) return;
+
+            // restore picker to original parent if moved
+            if (picker._origParent) {
+                picker._origParent.appendChild(picker);
+                picker._origParent = null;
+            }
+
+            // clear inline positioning styles
+            picker.style.position = '';
+            picker.style.top = '';
+            picker.style.left = '';
+            picker.style.transform = '';
+            picker.style.zIndex = '';
+            picker.style.display = '';
+            container.classList.remove('open');
         }
 
         document.addEventListener('click', function (event) {
             const container = document.querySelector('.simple-google-translate');
+            const picker = document.querySelector('.lang-picker');
             if (!container) return;
-            if (!container.contains(event.target)) {
-                container.classList.remove('open');
+            // if click is outside both container and the moved picker, close it
+            const clickedOutside = !container.contains(event.target) && !(picker && picker.contains(event.target));
+            if (clickedOutside) {
+                closeLanguagePicker();
             }
         });
 
         window.addEventListener('resize', closeLanguagePicker);
+        window.addEventListener('load', hideGoogleTranslateUI);
+        setTimeout(hideGoogleTranslateUI, 300);
 
         window.changeLanguage = changeLanguage;
         window.toggleLanguagePicker = toggleLanguagePicker;
@@ -3734,135 +139,34 @@
 </head>
 <body>
     <div id="google_translate_element" class="google-translate-host" aria-hidden="true"></div>
-    <div class="ticker-overlay" aria-hidden="true">
+    <div class="ticker-overlay" aria-label="Barra de navegação superior">
         <div class="ticker-wrapper">
-            <div class="ticker-content" role="marquee" aria-hidden="false"></div>
+            <div class="ticker-actions">
+                <a href="#cursos" class="ticker-link" onclick="event.preventDefault(); openCourseCatalog();">Cursos</a>
+                <a href="#sms-gallery" class="ticker-link" onclick="event.preventDefault(); toggleSmsGallery();">Galeria</a>
+                <a href="#contato" class="ticker-link" onclick="event.preventDefault(); scrollToContacts();">Contato</a>
+                <a href="Privacidade & termos.html" class="ticker-link">Termos</a>
+                <div class="simple-google-translate" aria-label="Google Translate">
+                    <button type="button" class="lang-globe-btn" onclick="toggleLanguagePicker(event)" aria-label="Traduzir para outro idioma">🌐</button>
+                    <div class="lang-picker" role="menu" aria-label="Escolha o idioma">
+                        <button type="button" onclick="changeLanguage('en'); closeLanguagePicker();" role="menuitem">English</button>
+                        <button type="button" onclick="changeLanguage('fr'); closeLanguagePicker();" role="menuitem">Français</button>
+                        <button type="button" onclick="changeLanguage('es'); closeLanguagePicker();" role="menuitem">Español</button>
+                    </div>
+                </div>
+                <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
+                <div class="buy-button-container">
+                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
+                </div>
+                <div class="buy-button-container">
+                    <button id="faqToggleBtn" type="button" class="buy-button" onclick="toggleFaqPanel()">FAQ</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- HEADER COM MENU -->
     <header>
         <div class="header-container">
-            <style>
-                header { overflow: visible; }
-                .header-container { position: relative; overflow: visible; }
-                .buy-button-container { display: inline-block; }
-                #buy-menu {
-                    position: absolute;
-                    top: calc(100% + 10px);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: min(96%, 920px);
-                    max-width: 620px;
-                    max-height: calc(100vh - 120px);
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    background: #ffffff;
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-                    border-radius: 12px;
-                    padding: 18px;
-                    z-index: 9999;
-                    display: none;
-                    touch-action: pan-y;
-                }
-                .buy-menu.show { display: block !important; }
-                .buy-menu-close {
-                    width: 44px;
-                    height: 44px;
-                    min-width: 44px;
-                    min-height: 44px;
-                    border: none;
-                    border-radius: 50%;
-                    background: transparent;
-                    color: #000;
-                    font-size: 24px;
-                    font-weight: 700;
-                    line-height: 1;
-                    cursor: pointer;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-                }
-                .buy-menu-content h2 { margin-top: 0; }
-                .buy-menu-content ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; list-style: none; padding: 0; margin: 0; }
-                .buy-menu-content ul li { background: transparent; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
-                .buy-menu-content ul li img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; }
-                .purchase-form { max-width: 760px; width: 100%; margin: 12px auto; padding: 12px; box-sizing: border-box; }
-                .manual-pdf-area embed { width: 100%; height: 360px; }
-                .purchase-submit-button, .purchase-cancel-button { padding: 10px 14px; border-radius: 8px; }
-
-                /* Purchase form styling (refined) */
-                .purchase-form { width: 100%; max-width: 720px; box-sizing: border-box; background: rgba(255,255,255,0.98); border: 1px solid rgba(79,70,229,0.12); backdrop-filter: blur(12px); border-radius: 22px; padding: 24px; box-shadow: 0 20px 50px rgba(15,23,42,0.08); margin: 16px auto; }
-                .purchase-form h3 { margin: 0 0 12px 0; font-size: 1.45rem; color: #111827; font-weight: 800; letter-spacing: 0.01em; }
-                .purchase-form.hidden { display: none; }
-                .purchase-form.show { display: block; }
-                .purchase-form .purchase-form-header { margin-bottom: 18px; padding: 18px 20px; background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(59,130,246,0.08)); border-radius: 18px; border: 1px solid rgba(79,70,229,0.14); }
-                .purchase-form .purchase-form-header p { margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.7; }
-                .purchase-request-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
-                .purchase-request-form label { display: block; font-size: 0.94rem; color: #334155; font-weight: 700; margin-bottom: 8px; }
-                .purchase-request-form input[type="text"],
-                .purchase-request-form input[type="email"],
-                .purchase-request-form select,
-                .purchase-request-form input[type="file"] { width: 100%; padding: 14px 16px; border: 1px solid rgba(148,163,184,0.35); border-radius: 16px; background: #f8fbff; box-shadow: inset 0 1px 2px rgba(15,23,42,0.04); font-size: 0.95rem; color: #0f172a; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
-                .purchase-request-form input[type="text"]:focus,
-                .purchase-request-form input[type="email"]:focus,
-                .purchase-request-form select:focus,
-                .purchase-request-form input[type="file"]:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 4px rgba(79,70,229,0.12); }
-                .purchase-request-form input[type="file"] { padding: 12px 14px; height: auto; }
-                .purchase-request-form .full-width { grid-column: 1 / -1; }
-                #purchase-form .purchase-request-form .buttons-row { display: flex !important; flex-direction: row !important; gap: 12px !important; justify-content: flex-end !important; align-items: center !important; flex-wrap: wrap !important; margin-top: 16px !important; }
-                .purchase-request-form .buttons-row { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; flex-direction: row; margin-top: 16px; }
-                #purchase-form .purchase-request-form .buttons-row button { display: inline-flex !important; white-space: nowrap; min-width: 90px; width: auto !important; flex: 0 1 auto !important; padding: 10px 14px; font-size: 0.92rem; }
-                .purchase-request-form .buttons-row .purchase-cancel-button { flex: 0 1 auto; }
-                .purchase-note { font-size: 0.88rem; color: #475569; margin-top: 16px; grid-column: 1 / -1; line-height: 1.75; background: #eef2ff; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(79,70,229,0.14); }
-                .purchase-submit-button { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border: none; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
-                .purchase-submit-button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
-                .purchase-cancel-button { background: #f3f4f6; color: #374151; border: 1.5px solid #d1d5db; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.95rem; transition: all 0.3s; }
-                .purchase-cancel-button:hover { background: #e5e7eb; border-color: #9ca3af; }
-
-                @media (max-width: 900px) {
-                    .purchase-request-form { grid-template-columns: 1fr; gap: 12px; }
-                    .purchase-form { max-width: calc(100% - 24px); padding: 16px; }
-                }
-                @media (max-width: 600px) {
-                    .purchase-form { max-width: calc(100% - 16px); padding: 12px; margin: 10px 8px; overflow-x: hidden; }
-                    .purchase-request-form { gap: 10px; grid-template-columns: 1fr; }
-                    .purchase-request-form label { font-size: 0.86rem; }
-                    .purchase-request-form input,
-                    .purchase-request-form select { font-size: 15px; height: 40px; }
-                    .purchase-request-form input[type="file"] { padding: 10px 12px; }
-                    .purchase-request-form .buttons-row { flex-direction: column !important; gap: 8px !important; align-items: stretch !important; }
-                    .purchase-request-form .buttons-row button { width: 100% !important; min-width: 0 !important; max-width: none !important; padding: 8px 12px !important; font-size: 0.82rem !important; }
-                    .purchase-submit-button,
-                    .purchase-cancel-button { padding: 8px 12px; font-size: 0.82rem; min-width: 0; }
-                    .purchase-note { font-size: 0.82rem; padding: 12px 14px; }
-                    #buy-menu {
-                        position: absolute !important;
-                        top: calc(100% + 8px) !important;
-                        left: 8px !important;
-                        right: 8px !important;
-                        width: auto !important;
-                        max-width: none !important;
-                        transform: none !important;
-                        overflow-x: hidden;
-                        z-index: 110 !important;
-                        border-radius: 16px;
-                    }
-                    .buy-menu-content { padding: 12px; }
-                    .buy-menu-content ul { grid-template-columns: 1fr; }
-                    .buy-menu-content ul li { padding: 10px; gap: 8px; }
-                    .buy-menu-content ul li img { width: 100%; height: 180px; }
-                    .buy-menu-content ul li button { width: 100%; max-width: none; padding: 10px 12px; font-size: 0.95rem; }
-                    .buy-button-container { width: 100%; text-align: right; }
-                    .header-actions { width: 100%; justify-content: space-between; gap: 8px; }
-                    .header-actions > * { flex: 1 1 0; min-width: 0; max-width: 140px; }
-                    .header-actions .google-translate { width: auto; min-width: 40px; }
-                    .header-actions .buy-button,
-                    .header-actions .info-toggle-button { padding: 8px 10px; font-size: 0.8rem; min-width: 0; }
-                    .google-translate-text { display: none; }
-                    .google-chevron { margin-left: 0; font-size: 0.9rem; }
-                }
-            </style>
             <script>
                 (function(){
                     window.hideBuyMenu = function(){
@@ -3886,108 +190,159 @@
                     });
                 })();
             </script>
-            <a href="#galeria" class="logo" ><img src="Image/favicon2.jpg" alt="S.M.S - Escola de Linguas & Habilidades" class="logo-official"></a>
-            <h1 class="store-name">S.M.S - Escola de Linguas & Habilidades</h1>
-            <div class="header-actions">
-                <div class="simple-google-translate" aria-label="Google Translate">
-                    <button type="button" class="lang-globe-btn" onclick="toggleLanguagePicker(event)" aria-label="Traduzir para outro idioma">🌐</button>
-                    <div class="lang-picker" role="menu" aria-label="Escolha o idioma">
-                        <button type="button" onclick="changeLanguage('en'); closeLanguagePicker();" role="menuitem">English</button>
-                        <button type="button" onclick="changeLanguage('fr'); closeLanguagePicker();" role="menuitem">Français</button>
-                        <button type="button" onclick="changeLanguage('es'); closeLanguagePicker();" role="menuitem">Español</button>
-                    </div>
-                </div>
-                <div>
-                    <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
-                </div>
-                <div class="buy-button-container">
-                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
-                </div>
-                <div id="buy-menu" class="buy-menu" aria-hidden="true" style="display:none;">
+            <a href="#sms-gallery" class="logo" onclick="event.preventDefault(); toggleSmsGallery();"><img src="Image/favicon2.jpg" alt="S.M.S - ACADEMIA de Linguas & Habilidades" class="logo-official"></a>
+            <h1 class="store-name">S.M.S - ACADEMIA de Linguas & Habilidades</h1>
+            <div id="buy-menu" class="buy-menu" aria-hidden="true">
                     <div class="buy-menu-header">
                         <h2>Manuais</h2>
                         <button type="button" class="buy-menu-close site-close-button" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                     </div>
                     <div class="buy-menu-content">
-                        <ul>
-                            <li>
-                                <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
-                                <h3>Guia S.M.S</h3>
-                                <p>Guia onde todas as informações estão disponíveis sobre a sua aula.</p>
-                                <p id="manualPrice1">Preço: 2.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Guia S.M.S', 1, '2.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
-                                <h3>Dialogue & Meetings</h3>
-                                <p>O master que te ensina a se comunicar efetivamente em reuniões e diálogos profissionais.</p>
-                                <p id="manualPrice2">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 2, '3.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
-                                <h3>Grammar Book</h3>
-                                <p>O livro completo sobre gramática inglesa, com exercícios práticos e explicações detalhadas.</p>
-                                <p id="manualPrice3">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Grammar Book', 3, '3.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Vocabulary.jpg" alt="Vocabulário">
-                                <h3>VOCABULÁRIO</h3>
-                                <p>O livro completo sobre vocabulário inglês, com fonéticas e explicações detalhadas.</p>
-                                <p id="manualPrice4">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Vocabulário', 4, '3.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Text and reading Skills.jpg" alt="Textos & Habilidades de Leitura">
-                                <h3>TEXTOS & HABILIDADES DE LEITURA</h3>
-                                <p>O livro completo sobre habilidades de leitura e escrita em inglês, com exercícios práticos e explicações detalhadas.</p>
-                                <p id="manualPrice5">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Textos & Habilidades de Leitura', 5, '3.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Verbs Regular and Irregular.jpg" alt="Verbos Regulares & Irregulares">
-                                <h3>OS VERBOS REGULARES & IRREGULARES</h3>
-                                <p>O livro completo sobre verbos ingleses, com exercícios práticos e explicações detalhadas.</p>
-                                <p id="manualPrice6">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Verbos Regulares & Irregulares', 6, '3.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Fluency.jpg" alt="Aceleração da Fluência">
-                                <h3>Aceleração da Fluência</h3>
-                                <p>O método revolucionário para dominar o inglês com rapidez e eficácia.</p>
-                                <p id="manualPrice7">Preço: 6.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Aceleração da Fluência', 7, '6.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Not Available.png " alt="Um Estrangeiro Perdido">
-                                <h3>UM ESTRANGEIRO PERDIDO</h3>
-                                <p>O livro que conta a história de um estrangeiro perdido em uma terra desconhecida, cheio de desafios e descobertas.</p>
-                                <p id="manualPrice8">Preço: 6.500 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('Um Estrangeiro Perdido', 8, '6.500 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Not Available.png " alt="O Dicionário S.M.S">
-                                <h3>O DICIONÁRIO S.M.S</h3>
-                                <p>Dicionário completo com mais de 5.000 palavras e expressões em inglês.</p>
-                                <p id="manualPrice9">Preço: 9.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('O Dicionário S.M.S', 9, '9.000 Kz')">Comprar</button>
-                            </li>
-                            <li>
-                                <img src="ManuaisFT/Not Available.png " alt="500 Conversas">
-                                <h3>500 CONVERSAS</h3>
-                                <p>O livro completo com 500 conversas práticas em inglês, ideal para melhorar a fala e a compreensão auditiva.</p>
-                                <p id="manualPrice10">Preço: 3.000 Kz</p>
-                                <button type="button" onclick="openPurchaseForm('500 Conversas', 10, '3.000 Kz')">Comprar</button>
-                            </li>
-                        </ul>
+                        <div class="manual-program-grid">
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Programa Básico</h3>
+                                    <span>3 manuais disponíveis</span>
+                                </div>
+                                <ul class="manual-program-list">
+                                    <li>
+                                        <img src="DashBoard/StandardEnglish1.png" alt="Standard English Estágio 1">
+                                        <h4>Standard English – Estágio 1</h4>
+                                        <p>Base sólida para quem está a iniciar a aprendizagem com foco em vocabulário e comunicação básica.</p>
+                                        <p id="manualPrice1">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 1', 1, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="DashBoard/StandardEnglish2.png" alt="Standard English Estágio 2">
+                                        <h4>Standard English – Estágio 2</h4>
+                                        <p>Reforço prático para a construção de frases, leitura simples e confiança na fala.</p>
+                                        <p id="manualPrice2">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 2', 2, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="DashBoard/StandardEnglish3.png" alt="Standard English Estágio 3">
+                                        <h4>Standard English – Estágio 3</h4>
+                                        <p>Material ideal para consolidar o básico com exercícios progressivos e maior autonomia.</p>
+                                        <p id="manualPrice3">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 3', 3, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Programa Geral</h3>
+                                    <span>2 manuais disponíveis</span>
+                                </div>
+                                <ul class="manual-program-list">
+                                    <li>
+                                        <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English">
+                                        <h4>Foundation English</h4>
+                                        <p>Material complementar para aprofundar a base gramatical e fortalecer os primeiros passos.</p>
+                                        <p id="manualPrice4">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Foundation English', 4, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English">
+                                        <h4>Intermediate English</h4>
+                                        <p>Conteúdo pensado para quem já domina o básico e quer avançar com mais fluidez.</p>
+                                        <p id="manualPrice5">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Intermediate English', 5, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="DashBoard/StandardEnglish3.png" alt="Aceleração da Fluência / Advanced Stage">
+                                        <h4>Aceleração da Fluência / Advanced Stage</h4>
+                                        <p>Manual voltado para quem quer ganhar autonomia, precisão e confiança numa fase mais avançada.</p>
+                                        <p id="manualPrice12">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Aceleração da Fluência / Advanced Stage', 12, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Programa Profissional</h3>
+                                    <span>Sem manuais disponíveis</span>
+                                </div>
+                                <p class="manual-empty-state">Neste programa ainda não há manuais disponíveis para venda, mas a ACADEMIA continua a apoiar o desenvolvimento profissional com conteúdos de alta qualidade.</p>
+                            </section>
+
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Programa Kids</h3>
+                                    <span>2 manuais disponíveis</span>
+                                </div>
+                                <ul class="manual-program-list">
+                                    <li>
+                                        <img src="DashBoard/Kindergarten presencial.png" alt="Kids English Starter">
+                                        <h4>Kids English Starter</h4>
+                                        <p>Material lúdico para introduzir o inglês desde cedo com atividades e reforço visual.</p>
+                                        <p id="manualPrice6">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Kids English Starter', 6, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="DashBoard/Kindergarten presencial.png" alt="Kids English Practice">
+                                        <h4>Kids English Practice</h4>
+                                        <p>Exercícios simples e divertidos para estimular a leitura, escrita e compreensão oral.</p>
+                                        <p id="manualPrice7">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Kids English Practice', 7, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Programas Flexíveis</h3>
+                                    <span>1 manual disponível</span>
+                                </div>
+                                <ul class="manual-program-list">
+                                    <li>
+                                        <img src="Image/Aulas ao domicilio2.jpg" alt="English for Everyday Life">
+                                        <h4>English for Everyday Life</h4>
+                                        <p>Recurso ideal para aprender inglês prático para rotina, viagens e comunicação diária.</p>
+                                        <p id="manualPrice8">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('English for Everyday Life', 8, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="manual-program-section">
+                                <div class="manual-program-header">
+                                    <h3>Livros SMS</h3>
+                                    <span>3 livros de apoio</span>
+                                </div>
+                                <ul class="manual-program-list">
+                                    <li>
+                                        <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
+                                        <h4>Guia S.M.S</h4>
+                                        <p>Guia completo com as principais informações para acompanhar a sua aula com mais clareza.</p>
+                                        <p id="manualPrice9">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Guia S.M.S', 9, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
+                                        <h4>Dialogue & Meetings</h4>
+                                        <p>Material pensado para fortalecer a comunicação em reuniões, conversas e contextos profissionais.</p>
+                                        <p id="manualPrice10">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 10, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                    <li>
+                                        <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
+                                        <h4>Grammar Book</h4>
+                                        <p>Livro de apoio com explicações claras e exercícios práticos para melhorar a gramática inglesa.</p>
+                                        <p id="manualPrice11">Preço: 5.000 Kz</p>
+                                        <button type="button" onclick="openPurchaseForm('Grammar Book', 11, '5.000 Kz')">Comprar</button>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
 
                         <div id="purchase-form" class="purchase-form hidden">
                             <div class="purchase-form-header">
                                 <h3 id="selectedManualTitle">Pedido de compra</h3>
                                 <p>Preencha os dados abaixo para receber o manual rapidamente ou receber de forma física.</p>
                             </div>
-                            <p id="selectedManualPrice" style="margin:0 0 18px; color:#334155; font-weight:600;">Preço: —</p>
+                            <p id="selectedManualPrice" class="migrated-inline-002">Preço: —</p>
                             <form id="purchaseRequestForm" class="purchase-request-form" onsubmit="return false;">
                                 <label for="buyerName">Nome completo</label>
                                 <input type="text" id="buyerName" placeholder="Ex: João Silva" required>
@@ -4014,25 +369,25 @@
                                 <input type="hidden" id="purchaseManualPrice">
                                 <div class="buttons-row">
                                     <button type="button" class="purchase-submit-button" onclick="submitPurchaseRequest()">Virtual</button>
-                                    <button type="button" class="purchase-submit-button" onclick="submitPhysicalPurchaseRequest()" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">Físico</button>
+                                    <button type="button" class="purchase-submit-button" onclick="submitPhysicalPurchaseRequest()">Físico</button>
                                     <button type="button" class="purchase-cancel-button" onclick="closePurchaseForm()">Cancelar</button>
                                 </div>
                                 <p class="purchase-note">📋 Use Virtual para finalizar por email <br/> Físico para abrir o WhatsApp com <br/>instruções de entrega impressa.</p>
-                                <div id="purchaseStatus" style="margin-top:8px; font-weight:600; color:#065f46"></div>
+                                <div id="purchaseStatus" class="migrated-inline-004"></div>
                             </form>
                         </div>
-                        <div id="afterFinalizeArea" class="manual-documents" style="margin-top:18px; display:none; padding:16px; border:1px solid rgba(102,126,234,0.18); border-radius:12px; background:#f8fbff;">
-                            <p id="downloadDocumentName" style="margin:0 0 12px; font-weight:700; color:#334155;">Documento solicitado: <span>—</span></p>
-                            <div id="purchaseSummary" style="margin-top:12px; padding:12px 14px; background:#eef2ff; border-radius:10px; display:none;">
-                                <p style="margin:6px 0;"><strong>Nome:</strong> <span id="summaryName">—</span></p>
-                                <p style="margin:6px 0;"><strong>Email:</strong> <span id="summaryEmail">—</span></p>
-                                <p style="margin:6px 0;"><strong>Curso:</strong> <span id="summaryCourseType">—</span></p>
-                                <p style="margin:6px 0;"><strong>Comprovativo:</strong> <span id="summaryProof">—</span></p>
-                                <p style="margin:6px 0;"><strong>Preço:</strong> <span id="summaryPrice"></span></p>
+                        <div id="afterFinalizeArea" class="manual-documents">
+                            <p id="downloadDocumentName" class="migrated-inline-006">Documento solicitado: <span>—</span></p>
+                            <div id="purchaseSummary" class="migrated-inline-007">
+                                <p class="migrated-inline-008"><strong>Nome:</strong> <span id="summaryName">—</span></p>
+                                <p class="migrated-inline-008"><strong>Email:</strong> <span id="summaryEmail">—</span></p>
+                                <p class="migrated-inline-008"><strong>Curso:</strong> <span id="summaryCourseType">—</span></p>
+                                <p class="migrated-inline-008"><strong>Comprovativo:</strong> <span id="summaryProof">—</span></p>
+                                <p class="migrated-inline-008"><strong>Preço:</strong> <span id="summaryPrice"></span></p>
                             </div>
-                            <div style="display:flex; gap:10px; margin-top:10px;">
-                                <button id="downloadChosenBtn" class="purchase-submit-button" style="flex:1;" onclick="downloadRequestedDocument()">Baixar documento</button>
-                                <button id="invoiceBtn" class="purchase-submit-button" style="flex:1; display:none; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);" onclick="generateInvoice()">Receber Fatura</button>
+                            <div class="migrated-inline-009">
+                                <button id="downloadChosenBtn" class="purchase-submit-button" onclick="downloadRequestedDocument()">Baixar documento</button>
+                                <button id="invoiceBtn" class="purchase-submit-button" onclick="generateInvoice()">Receber Fatura</button>
                             </div>
                         </div>
                     </div>
@@ -4040,728 +395,485 @@
             </div>
         </header>
 
-    <div class="info-system collapsed">
-                    <div class="info-system-header">
-                        <h2>Informações</h2>
-                        <button type="button" class="info-system-close-button site-close-button" onclick="toggleAllInfoSections()" aria-label="Fechar informações">×</button>
-                    </div>
-                    <div class="info-system-content">
-                       
-                                    <!-- LOCALIZAÇÃO SECTION -->
-                                    <section id="localizacao" class="info-section">
-                                        <h2 style="color: #667eea;">📍 Localização</h2>
-                                        <div class="info-section-body">
-                                        <p style="color: #475569; line-height: 1.7;">Visite-nos ou agende sua aula online. <br/>Nossa escola está estrategicamente localizada<br/> em Luanda,com acesso facilitado e <br/>atendimento personalizado.</p>
-                                        
-                                        <div style="background: linear-gradient(135deg, #eef2ff, #f3f0ff); padding: 16px; border-radius: 12px; margin: 16px 0; border-left: 4px solid #667eea;">
-                                            <p style="margin: 8px 0; color: #111827;"><strong>📮 Endereço:</strong></p>
-                                            <p style="margin: 0 0 12px 0; color: #475569;">Av. Deolinda Rodrigues, nº 475, Rangel, <br/>Luanda, Angola</p>
-                                            
-                                            <p style="margin: 8px 0; color: #111827;"><strong>🕒 Horário de Funcionamento:</strong></p>
-                                            <p style="margin: 0 0 12px 0; color: #475569;">Segunda a Sexta: 07:30 - 20:00</p>
-                                            
-                                            <p style="margin: 8px 0; color: #111827;"><strong>📞 Contactos:</strong></p>
-                                            <p style="margin: 0 0 4px 0; color: #475569;">Telefone: +244 951 474872</p>
-                                            <p style="margin: 0; color: #475569;">Email: VendasRhSms@outlook.com</p>
-                                        </div>
-                                        
-                                        <div style="margin-top: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                            <iframe src="https://maps.google.com/maps?q=-8.838337,13.234373&z=15&output=embed" width="100%" height="300" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                        </div>
-                                        
-                                        <div style="margin-top: 20px; padding: 18px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 12px; border-left: 4px solid #10b981;">
-                                            <h3 style="margin: 0 0 12px 0; color: #111827; font-size: 1.1rem;">✨ Agende sua Visita</h3>
-                                            <p style="margin: 0 0 12px 0; color: #475569; line-height: 1.6;">Entre em contato conosco para agendar uma <br/>visita à nossa escola.Nossa equipe confirmará <br/>o horário e detalhes com você.</p>
-                                            <a href="https://wa.me/244951474872" style="display: inline-block; padding: 10px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#059669';" onmouseout="this.style.background='#10b981';">💬 Contacte via WhatsApp</a>
-                                        </div>
-                                        </div>
-                                    </section>
-                                    <!-- PARCEIROS SECTION -->
-                                   <section id="parceiros-sidenav" class="info-section">
-                                    <h2 style="color: #667eea;">🤝 Nossos Parceiros</h2>
-                                    <div class="info-section-body">
-                                    <p style="color: #475569; line-height: 1.7;">Conheça as instituições que confiam <br/>em nosso trabalho e fazem parte da<br/> nossa jornada educacional.</p>
-                                    <div class="parceiros-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px;">
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/parceiro1.jpg" alt="Parceiro 1" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/parceiro2.jpg" alt="Parceiro 2" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/favicon1.jpg" alt="Parceiro 3" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/parceiro4.jpg" alt="Parceiro 4" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/parceiro5.jpg" alt="Parceiro 5" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        <div class="parceiro-item" style="border: 3px solid #667eea; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f8fafc; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(102, 126, 234, 0.2)';" onmouseout="this.style.boxShadow='none';">
-                                            <img src="Image/parceiro6.jpg" alt="Parceiro 6" class="parceiro-logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
-                                        </div>
-                                        </div>
-                                   </section>
-                                    <!-- CARREIRA SECTION -->
-                                    <section id="carreira" class="info-section">
-                                        <h2 style="color: #667eea;">Carreira</h2> 
-                                        <div class="info-section-body">
-                                        <!-- Application form (hidden by default) -->
-                                        <div id="application-form" style="display:none; margin-top:18px; padding:18px; border-radius:12px; background:#ffffff; border:1px solid #e5e7eb;">
-                                            <h3 style="margin-top:0;">Formulário de Candidatura</h3>
-                                            <form id="careersForm" onsubmit="return submitCareerForm(event)" style="display:grid; gap:10px;">
-                                                <input type="hidden" id="jobPosition" name="jobPosition" value="">
-
-                                                <label for="appName" style="font-size:0.95rem; color:#374151; display:block;">Nome completo</label>
-                                                <input required type="text" id="appName" name="name" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
-
-                                                <label for="appEmail" style="font-size:0.95rem; color:#374151; display:block;">Email</label>
-                                                <input required type="email" id="appEmail" name="email" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
-
-                                                <label for="appPhone" style="font-size:0.95rem; color:#374151; display:block;">Telemóvel</label>
-                                                <input required type="tel" id="appPhone" name="phone" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;">
-
-                                                <label for="appMessage" style="font-size:0.95rem; color:#374151; display:block;">Mensagem / Carta de Apresentação</label>
-                                                <textarea id="appMessage" name="message" rows="4" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px;"></textarea>
-
-                                                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                                                    <button type="button" onclick="applyViaWhatsApp()" style="padding:10px 14px; background:#16a34a; color:#fff; border-radius:10px; border:none;">Candidatar via WhatsApp</button>
-                                                    <button type="submit" style="padding:10px 14px; background:#1d4ed8; color:#fff; border-radius:10px; border:none;">Enviar por Email</button>
-                                                    <button type="button" onclick="hideApplicationForm()" style="padding:10px 14px; background:#6b7280; color:#fff; border-radius:10px; border:none;">Fechar</button>
-                                                </div>
-                                                <p style="margin:0; font-size:0.9rem; color:#6b7280;">Também pode enviar o seu CV para <a href="mailto:VendasRhSms@outlook.com">VendasRhSms@outlook.com</a></p>
-                                            </form>
-                                        </div>
-                                        <p style="font-size: 1.05rem; color: #1f2937; margin-top: 10px;">Junte-se a uma equipa apaixonada por educação e por resultados. Aqui, você encontra oportunidades reais de crescimento, um ambiente inspirador e reconhecimento pelo seu talento.</p>
-                                        <p style="margin-top: 12px; color: #4b5563;">Buscamos profissionais proativos, criativos e comprometidos com a transformação de vidas.</p>
-                                        <div class="vagas-container" style="margin-top: 24px; display: grid; gap: 22px;">
-                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #fff8ec, #fdf1da); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
-                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #fbbf24; display: flex; align-items: center; justify-content: center; color: #1f2937; font-weight: 700;">1</div>
-                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Professor de Inglês</h3>
-                                                </div>
-                                                <p style="color: #334155;">Inspire alunos de todas as idades com aulas dinâmicas, conversação prática e uma metodologia que gera confiança e resultados rápidos.</p>
-                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
-                                                    <li>Ambiente colaborativo com formação contínua</li>
-                                                    <li>Carga horária flexível e plano de carreira claro</li>
-                                                    <li><strong>Requisitos:</strong> Experiência em sala de aula, comunicação clara e fluência em inglês</li>
-                                                </ul>
-                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Professor de Inglês','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Professor de Inglês','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
-                                                </div>
-                                            </article>
-                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
-                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #6366f1; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">2</div>
-                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Coach de Desenvolvimento Pessoal</h3>
-                                                </div>
-                                                <p style="color: #334155;">Apoie nossos alunos em sua jornada de crescimento, motivando mudanças positivas e ajudando-os a atingir metas pessoais e profissionais.</p>
-                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
-                                                    <li>Trabalho com foco no desenvolvimento humano e resultados reais</li>
-                                                    <li>Ambiente de apoio e feedback contínuo</li>
-                                                    <li><strong>Requisitos:</strong> Experiência em coaching, empatia e metodologia centrada no aluno</li>
-                                                </ul>
-                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Coach de Desenvolvimento Pessoal','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Coach de Desenvolvimento Pessoal','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
-                                                </div>
-                                            </article>
-                                            <article class="vaga-card" style="border-radius: 18px; padding: 22px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);">
-                                                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
-                                                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;">3</div>
-                                                    <h3 style="margin: 0; font-size: 1.35rem; color: #111827;">Auxiliar Administrativo</h3>
-                                                </div>
-                                                <p style="color: #334155;">Garanta a organização das nossas operações, apoie a equipe e ofereça uma experiência de atendimento excepcional para alunos e responsáveis.</p>
-                                                <ul style="margin: 16px 0 0 18px; color: #475569; line-height: 1.7;">
-                                                    <li>Equipe acolhedora e foco em desenvolvimento profissional</li>
-                                                    <li>Atuação em ambiente moderno e colaborativo</li>
-                                                    <li><strong>Requisitos:</strong> Organização, proatividade e experiência com atendimento</li>
-                                                </ul>
-                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Auxiliar Administrativo','whatsapp')" style="display:inline-block; padding: 12px 18px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Candidatar via WhatsApp</a>
-                                                    <a href="javascript:void(0)" onclick="showApplicationForm('Auxiliar Administrativo','email')" style="display:inline-block; padding: 12px 18px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar por email</a>
-                                                </div>
-                                            </article>
-                                        </div>
-                                        <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
-                                            <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Não encontrou a vaga certa?</p>
-                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu currículo para <a href="mailto:VendasRhSms@outlook.com" style="color: #1d4ed8; text-decoration: none;">VendasRhSms@outlook.com</a> e seja considerado para futuras oportunidades.</p>
-                                            <a href="mailto:VendasRhSms@outlook.com" onclick="window.location.href=this.href; return false;" style="display:inline-block; padding: 12px 20px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600;">Enviar Currículo</a>
-                                        </div>
-                                        </div>
-                                    </section>
-                                    <!-- LOUVORES SECTION -->
-                                    <section id="louvores" class="info-section">
-                                        <h2 style="color: #667eea;">Louvores</h2>
-                                        <div class="info-section-body">
-                                        <p style="max-width: 720px; color: #475569; line-height: 1.75;">Veja como nossos alunos e parceiros reconhecem a qualidade pedagógica e o impacto das nossas aulas. Cada depoimento reflete a experiência real com atendimento acolhedor, resultados rápidos e suporte personalizado.</p>
-                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
-                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div class="testimonial-header">
-                                                    <div class="testimonial-avatar">AL</div>
-                                                    <div>
-                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Ana Luiza</strong>
-                                                        <span style="color: #64748b; font-size: 0.95rem;">Estudante de inglês</span>
-                                                    </div>
-                                                </div>
-                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“A S.M.S transformou meu desempenho em conversação. O acompanhamento é atencioso e a metodologia faz com que eu evolua com confiança em cada aula.”</p>
-                                            </article>
-                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div class="testimonial-header">
-                                                    <div class="testimonial-avatar">JM</div>
-                                                    <div>
-                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">João Marcos</strong>
-                                                        <span style="color: #64748b; font-size: 0.95rem;">Responsável</span>
-                                                    </div>
-                                                </div>
-                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“O suporte humano e dedicado fez a diferença para meu filho. As aulas são personalizadas e o progresso é visível desde o primeiro mês.”</p>
-                                            </article>
-                                            <article style="background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 20px; padding: 20px; box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);">
-                                                <div class="testimonial-header">
-                                                    <div class="testimonial-avatar">CB</div>
-                                                    <div>
-                                                        <strong style="display: block; color: #111827; font-size: 1rem; margin-bottom: 4px;">Camila Braga</strong>
-                                                        <span style="color: #64748b; font-size: 0.95rem;">Parceira pedagógica</span>
-                                                    </div>
-                                                </div>
-                                                <p style="margin: 0; color: #334155; line-height: 1.8;">“A equipe é preparada e acolhedora. Recomendo a S.M.S para quem busca um ensino de idiomas com foco em conversação e resultados rápidos.”</p>
-                                            </article>
-                                        </div>
-                                        <div style="margin-top: 24px; padding: 20px; border-radius: 18px; background: #f8fafc; border: 1px solid #cbd5e1;">
-                                            <p style="margin: 0 0 8px; font-weight: 700; color: #111827;">Quer compartilhar sua experiência?</p>
-                                            <p style="margin: 0 0 14px; color: #475569;">Envie seu depoimento para <a href="mailto:VendasRhSms@outlook.com">VendasRhSms@outlook.com</a></p>
-                                        </div>
-                                        </div>
-                                    </section>
-                                    <!-- Dados-Bancarios SECTION -->
-                                     <section id="Bankdetail" class="info-section">
-                                         <h2 style="text-align: center; color: #667eea; margin-bottom: 30px;">💳 Dados Bancários & Comprovante</h2>
-                                         <div class="info-section-body">
-            
-            <!-- DADOS BANCÁRIOS -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
-                <h3 style="color: #333; margin-bottom: 15px;">📋 Dados Bancários</h3>
-                <div style="display: grid; gap: 15px;">
+        <section class="banner">
+            <div class="banner-slider" id="bannerSlider">
+                <div class="banner-slide" style="background-image: url('DashBoard/BannerPro.png');">
                     <div>
-                        <label style="font-weight: bold; color: #333;">Titular da Conta:</label>
-                        <p style="margin: 5px 0; color: #666;">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div>
-                            <label style="font-weight: bold; color: #333;">Banco:</label>
-                            <p style="margin: 5px 0; color: #666;">Banco Yetu.</p>
-                        </div>
-                        <div>
-                            <label style="font-weight: bold; color: #333;">Número da Conta:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">7899088.10001</p>
-                        </div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div>
-                            <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">AO6.0066.0000.0789.9088.1013.0</p>
-                        </div>
-                        <div>
-                            <label style="font-weight: bold; color: #333;">Referência:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCOLA DE LÍNGUAS-2026</p>
-                        </div>
+                        <h2>Fluência real com ensino de excelência</h2>
+                        <p>Uma jornada de aprendizagem prática, elegante e orientada para resultados duradouros.</p>
                     </div>
                 </div>
-                <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; color: #856404;">
-                    <strong>⚠️ Importante:</strong> Após efetuar o pagamento, envie o comprovante para confirmar sua inscrição.
+                <div class="banner-slide" style="background-image: url('DashBoard/BannerPro2.png');">
+                    <div>
+                        <h2>Acompanhamento premium e atenção individual</h2>
+                        <p>Professores experientes guiam cada aluno com clareza, rigor e motivação.</p>
+                    </div>
                 </div>
-                    <div class="contact-item">
-                        <strong style="color: #333;">Direção: Estevão A. Lizi</strong>
-                        <p>(244) 929452645</p>
+                <div class="banner-slide" style="background-image: url('DashBoard/BannerPro3.png');">
+                    <div>
+                        <h2>Formação de qualidade em Luanda</h2>
+                        <p>Aulas presenciais e online, pensadas para a rotina moderna e para o crescimento profissional.</p>
                     </div>
-                    <div class="contact-item">
-                        <strong style="color: #333;">WhatsApp:S.M.S</strong>
-                        <p>(244) 951474872</p>
+                </div>
+                <div class="banner-slide" style="background-image: url('DashBoard/BannerPro4.png');">
+                    <div>
+                        <h2>Recursos estruturados para evoluir com confiança</h2>
+                        <p>Manuais, suporte e ferramentas digitais para um estudo mais completo e seguro.</p>
                     </div>
-                    </div>  
-                                    </section>
-                                    <!-- TERMOS E PRIVACIDADE SECTION -->
-                                    <section id="termos-privacidade" class="info-section">
-                                        <h2 style="color: #667eea;">Termos de Serviço e Privacidade</h2>
-                                        <div class="terms-container">
-                                            <div class="terms-content">
-                                                <h3>1. Termos de Serviço</h3>
-                                                <p>Bem-vindo à S.M.S - Escola de Linguas & Habilidades. Ao usar nosso site, você concorda com os seguintes termos e condições:</p>
-                                                <ul>
-                                                    <li>Todas as aulas são agendadas conforme disponibilidade</li>
-                                                    <li>Os preços estão sujeitos a alterações sem aviso prévio</li>
-                                                    <li>Os alunos são responsáveis pela precisão das informações fornecidas no agendamento</li>
-                                                    <li>Reservamos o direito de recusar ou cancelar qualquer agendamento</li>
-                                                    <li>As imagens dos cursos são apenas ilustrativas</li>
-                                                </ul>
-                                                <h3>2. Política de Privacidade</h3>
-                                                <p>A S.M.S - Escola de Linguas & Habilidades respeita sua privacidade. Informamos como coletamos e usamos seus dados:</p>
-                                                <ul>
-                                                    <li><strong>Coleta de Dados:</strong> Coletamos informações pessoais como nome, telefone, endereço e email quando você agenda uma aula</li>
-                                                    <li><strong>Uso de Dados:</strong> Seus dados são usados exclusivamente para processar agendamentos e melhorar nossos serviços</li>
-                                                    <li><strong>Proteção de Dados:</strong> Mantemos suas informações seguras e confidenciais</li>
-                                                    <li><strong>Compartilhamento:</strong> Não compartilhamos seus dados com terceiros sem sua autorização</li>
-                                                    <li><strong>Cookies:</strong> Nosso site pode usar cookies para melhorar sua experiência</li>
-                                                </ul>
-                                                <h3>3. Direitos do Aluno</h3>
-                                                <p>Você tem direito a:</p>
-                                                <ul>
-                                                    <li>Receber informações claras sobre os cursos</li>
-                                                    <li>Cancelamento de aulas dentro do prazo estabelecido</li>
-                                                    <li>Acesso às políticas de aulas e cancelamento</li>
-                                                    <li>Contato com nosso suporte ao cliente</li>
-                                                </ul>
-                                                <h3>4. Limitação de Responsabilidade</h3>
-                                                <p>A S.M.S - Escola de Linguas & Habilidades não se responsabiliza por danos indiretos ou consequentes resultantes do uso de nossos serviços ou aulas.</p>
-                                                <h3>5. Alterações nos Termos</h3>
-                                                <p>Reservamos o direito de alterar estes termos a qualquer momento. Recomendamos que revise esta página regularmente.</p>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="banner-slide" style="background-image: url('DashBoard/BannerPro5.png');">
+                    <div>
+                        <h2>Inscrições, manuais e mensalidades online</h2>
+                        <p>Os nossos clientes podem avançar no processo sem sair de casa, com praticidade e confiança.</p>
+                    </div>
                 </div>
             </div>
+            <div class="banner-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </section>
+
+        <section class="info-highlight-card">
+            <div class="info-highlight-copy">
+                <span class="eyebrow eyebrow-soft">Por que escolher a SMS</span>
+                <h2>Uma ACADEMIA de línguas e habilidades em Luanda, com excelência, compromisso e presença real.</h2>
+                <p>Na S.M.S, cada aluno é acompanhado por uma metodologia clara, recursos de qualidade e um ambiente profissional que transforma aprendizagem em progresso concreto.</p>
+            </div>
+            <div class="info-highlight-pills">
+                <span>Metodologia prática</span>
+                <span>Professores experientes</span>
+                <span>Aulas online e presenciais</span>
+                <span>Atendimento inteligente</span>
+            </div>
+        </section>
+
+        <div class="info-system collapsed" id="infoPanel">
+            <div class="info-system-header">
+                <div>
+                    <span class="eyebrow eyebrow-soft">Informações da SMS</span>
+                    <h2>Tudo o que você precisa saber em um só lugar</h2>
+                </div>
+                <button type="button" class="info-system-close-button site-close-button" onclick="toggleAllInfoSections()" aria-label="Ocultar informações">×</button>
+            </div>
+            <div class="info-system-content">
+                <section class="info-section opened">
+                    <div class="info-section-body">
+                        <div class="info-summary-grid">
+                            <article class="info-card">
+                                <h3>📍 Endereço e horário</h3>
+                                <p>Uma ACADEMIA de referência em Luanda, com presença forte, atendimento próximo e um modelo de ensino preparado para a vida profissional.</p>
+                                <ul>
+                                    <li><strong>Endereço:</strong> Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</li>
+                                    <li><strong>Horário:</strong> Segunda a Sexta, 07:30 - 20:00</li>
+                                </ul>
+                            </article>
+                            <article class="info-card">
+                                <h3>📞 Telefone e email</h3>
+                                <p>Entre em contato para conhecer os nossos programas, esclarecer dúvidas e iniciar o seu processo de matrícula com confiança.</p>
+                                <ul>
+                                    <li><strong>Telefone:</strong> +244 951 474872</li>
+                                    <li><strong>Email:</strong> VendasRhSms@outlook.com</li>
+                                </ul>
+                            </article>
+                            <article class="info-card info-map-card">
+                                <h3>🗺️ Localização no Google Maps</h3>
+                                <iframe src="https://www.google.com/maps?q=Av.%20Deolinda%20Rodrigues%20n%C2%BA%20475%2C%20Rangel%2C%20Luanda%2C%20Angola&output=embed" loading="lazy" title="Mapa da localização da S.M.S" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </article>
+                            <article class="info-card">
+                                <h3>🤝 Atendimento e apoio</h3>
+                                <p>Inscrições, compra de manuais e pagamento de mensalidades podem ser organizados de forma prática, segura e totalmente online.</p>
+                                <ul>
+                                    <li>Suporte personalizado para inscrição</li>
+                                    <li>Orientação sobre cursos e objetivos</li>
+                                    <li>Atendimento ágil com foco em resultado</li>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <section class="info-section opened">
+                    <div class="info-section-body">
+                        <div class="section-divider-label">Parceiros</div>
+                        <div class="partner-grid">
+                            <article class="partner-card">
+                                <a class="partner-link" href="https://www.maptss.gov.ao/" target="_blank" rel="noopener" aria-label="Visitar Parceiro estratégico">
+                                    <img src="Image/parceiro5.jpg " alt="Parceiro 1 da SMS">
+                                    <span>Parceiro estratégico</span>
+                                </a>
+                            </article>
+                            <article class="partner-card">
+                                <a class="partner-link" href="https://governo.gov.ao/" target="_blank" rel="noopener" aria-label="Visitar Rede de apoio">
+                                    <img src="Image/parceiro2.jpg" alt="Parceiro 2 da SMS">
+                                    <span>Rede de apoio</span>
+                                </a>
+                            </article>
+                            <article class="partner-card">
+                                <a class="partner-link" href="https://example.com/parceiro3" target="_blank" rel="noopener" aria-label="Visitar Parceria institucional">
+                                    <img src="Image/Parceiro3.jpg" alt="Parceiro 3 da SMS">
+                                    <span>Parceria institucional</span>
+                                </a>
+                            </article>
+                            <article class="partner-card">
+                                <a class="partner-link" href="https://horizon-groupindia.com" target="_blank" rel="noopener" aria-label="Visitar Parceiro Oficial INDIA">
+                                    <img src="Image/parceiro4.jpg" alt="Parceiro 4 da SMS">
+                                    <span>Parceiro Oficial INDIA</span>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <section class="info-section opened">
+                    <div class="info-section-body">
+                        <div class="section-divider-label">Depoimentos</div>
+                        <div class="testimonial-grid">
+                            <article class="testimonial-card">
+                                <div class="rating-stars">★★★★★</div>
+                                <p>“A metodologia da ACADEMIA é muito clara, prática e ajuda mesmo a evoluir com confiança.”</p>
+                                <span>— Ana M.</span>
+                            </article>
+                            <article class="testimonial-card">
+                                <div class="rating-stars">★★★★★</div>
+                                <p>“O acompanhamento foi muito humano, o que fez toda a diferença nos meus resultados.”</p>
+                                <span>— José K.</span>
+                            </article>
+                            <article class="testimonial-card">
+                                <div class="rating-stars">★★★★★</div>
+                                <p>“Superou as expectativas. A organização das aulas e o suporte são excelentes.”</p>
+                                <span>— Carla V.</span>
+                            </article>
+                            <article class="testimonial-card">
+                                <div class="rating-stars">★★★★★</div>
+                                <p>“Senti crescimento real em fala, escuta e confiança para comunicar no dia a dia.”</p>
+                                <span>— Daniel S.</span>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                    </div>
+                </section>
+            </div>
         </div>
-    <!-- BANNER COM SLIDES -->
-    <section class="banner">
-        <div class="banner-slider" id="bannerSlider">
-            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro.png');"></div>
-            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro2.png');"></div>
-            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro3.png');"></div>
-            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro4.png');"></div>
-            <div class="banner-slide" style="background-image: url('DashBoard/BannerPro5.png');"></div>
-        </div>
-        <div class="banner-dots">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-    </section>
+
+        <section class="terms-privacy-panel" id="termos-privacidade" hidden>
+            <div class="terms-privacy-header">
+                <div>
+                    <span class="eyebrow eyebrow-soft">Termos e privacidade</span>
+                    <h2>Política e condições do site</h2>
+                </div>
+                <button type="button" class="info-system-close-button site-close-button" onclick="closeTermsPanel()" aria-label="Ocultar termos e privacidade">×</button>
+            </div>
+            <div class="terms-privacy-content">
+                <p>O uso deste site implica respeito às políticas de privacidade, proteção de dados e condições de acesso aos serviços e materiais educativos disponibilizados.</p>
+                <p>As informações enviadas por clientes e alunos são tratadas com responsabilidade e apenas para apoiar o processo de inscrição, atendimento, compra de manuais e pagamento de mensalidades.</p>
+                <p>Para consultar a versão completa, acesse a página <a href="Privacidade & termos.html" target="_blank" rel="noopener">Privacidade & Termos</a>.</p>
+            </div>
+        </section>
+
+        <main>
+            <section class="hero">
+                <div class="hero-inner">
+                    <div class="hero-copy">
+                        <span class="eyebrow">ACADEMIA de Línguas e Habilidades com foco em resultados</span>
+                        <h1>Desenvolva competências, confiança e fluência com uma ACADEMIA de referência em Luanda.</h1>
+                        <p>A S.M.S oferece formação de excelência em línguas e habilidades, com métodos modernos, acompanhamento profissional e uma experiência simples, elegante e acessível para cada aluno.</p>
+                    </div>
+                    <div class="hero-card">
+                        <h2>Destaques SMS</h2>
+                        <ul>
+                            <li>Turmas reduzidas e acompanhamento individual</li>
+                            <li>Cursos para diferentes níveis e objetivos profissionais</li>
+                            <li>Inscrição, compra de manuais e pagamento de mensalidades online</li>
+                            <li>Atendimento em Luanda com aulas presenciais e online</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gallery sms-gallery-section" id="sms-gallery" hidden>
+                <div class="sms-gallery-shell">
+                    <div class="sms-gallery-header">
+                        <h2 class="section-title">Galeria SMS</h2>
+                        <p class="gallery-intro">Uma visão do ambiente, da metodologia e da identidade da S.M.S.</p>
+                    </div>
+                    <div class="sms-gallery-viewport">
+                        <div class="sms-gallery-track">
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 1.jpg" alt="Modelo 1 da galeria da SMS" class="sms-gallery-image">
+                                <span>Ambiente de aprendizagem</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 2.jpg" alt="Modelo 2 da galeria da SMS" class="sms-gallery-image">
+                                <span>Atividades com foco em prática</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 3.jpg" alt="Estudantes da S.M.S" class="sms-gallery-image">
+                                <span>Grupo de alunos em ação</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 4.jpg" alt="Modelo 4 da galeria da SMS" class="sms-gallery-image">
+                                <span>Proximidade e acompanhamento</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 5.jpg" alt="Modelo 5 da galeria da SMS" class="sms-gallery-image">
+                                <span>Aprendizagem com impacto real</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="Image/Modelo 6.jpg" alt="Modelo 6 da galeria da SMS" class="sms-gallery-image">
+                                <span>Experiência premium da ACADEMIA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
     <!-- DASHBOARD COM CURSOS -->
     <section class="dashboard" id="cursos">   
         <h2 class="section-title">Catálogo de Cursos</h2>
 
-        <div class="course-category-card">
-            <div class="course-category-trigger">
-                <div class="course-category-copy">
-                    <h3 class="course-category-title">Programa Básico</h3>
-                    <p class="course-category-description">O Programa Básico foi desenvolvido para quem pretende aprender inglês desde o início, construindo uma base sólida em comunicação, gramática, vocabulário, leitura, escrita e compreensão oral. Inscrições abertas no valor de 3.000 Kz.</p>
-                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
-                </div>
-            </div>
-            <div class="course-group-content" hidden>
-                <div class="course-group">
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <img src="DashBoard/StandardEnglish1.png" alt="Standard English Estágio 1" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Standard English – Estágio 1</div>
-                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
-                                <p class="product-meta">Duração: 2 meses · Propina: 5.000 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
-                                <div class="product-price">5.000 KZ</div>
-                                <div class="product-description">
-                                    <strong>Objetivo:</strong> Construir os fundamentos da língua inglesa.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Vocabulário essencial</li>
-                                        <li>Gramática básica</li>
-                                        <li>Pronúncia</li>
-                                        <li>Leitura</li>
-                                        <li>Escrita</li>
-                                        <li>Conversação inicial</li>
-                                        <li>Listening</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 1', 5000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 1', 5000.00);">Propina</button>
-                                </div>
+        <div class="course-programs-shell">
+            <button class="program-nav-arrow" data-side="prev" type="button" onclick="changeProgram(-1)" aria-label="Programa anterior">‹</button>
+            <div class="course-programs-carousel">
+                <div class="course-programs-track" id="programsTrack">
+                    <div class="course-program-card active">
+                        <div class="course-program-header">
+                            <img src="DashBoard/ProgramaBasico1.png" alt="Programa Básico" class="course-program-image">
+                            <div>
+                                <h3>Programa Básico</h3>
+                                <p>Um percurso estruturado para quem pretende construir bases sólidas em inglês e desenvolver confiança desde o início.</p>
                             </div>
                         </div>
-
-                        <div class="product-card">
-                            <img src="DashBoard/StandardEnglish2.png" alt="Standard English Estágio 2" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Standard English – Estágio 2</div>
-                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
-                                <p class="product-meta">Duração: 2 meses · Propina: 8.000 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
-                                <div class="product-price">8.000 KZ</div>
-                                <div class="product-description">
-                                    <strong>Pré-requisito:</strong> Conclusão do Estágio 1 ou avaliação de nivelamento.<br><br>
-                                    <strong>Objetivo:</strong> Desenvolver maior autonomia na comunicação.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Conversação</li>
-                                        <li>Gramática intermédia</li>
-                                        <li>Escrita</li>
-                                        <li>Listening</li>
-                                        <li>Comunicação prática</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 2', 8000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 2', 8000.00);">Propina</button>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="DashBoard/StandardEnglish1.png" alt="Standard English Estágio 1" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Standard English – Estágio 1</div>
+                                    <p class="product-meta">Modalidade: Presencial</p>
+                                    <div class="product-price">5.000 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Standard English – Estágio 1', 5000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 1', 5000.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="product-card">
-                            <img src="DashBoard/StandardEnglish3.png" alt="Standard English Estágio 3" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Standard English – Estágio 3</div>
-                                <p class="product-meta" style="color: #667eea; font-weight: 700;">Modalidade: Presencial</p>
-                                <p class="product-meta">Duração: 2 meses · Propina: 12.500 Kz · Inscrição: 3.000 Kz · Modalidade: Presencial · 1h30 por aula · 3 aulas semanais</p>
-                                <div class="product-price">12.500 KZ</div>
-                                <div class="product-description">
-                                    <strong>Pré-requisito:</strong> Conclusão do Estágio 2 ou avaliação de nivelamento.<br><br>
-                                    <strong>Objetivo:</strong> Consolidar a comunicação e preparar o aluno para o Programa Geral.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Fluência básica</li>
-                                        <li>Conversação</li>
-                                        <li>Pronúncia</li>
-                                        <li>Escrita</li>
-                                        <li>Apresentações</li>
-                                    </ul>
+                            <div class="product-card">
+                                <img src="DashBoard/StandardEnglish2.png" alt="Standard English Estágio 2" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Standard English – Estágio 2</div>
+                                    <p class="product-meta">Modalidade: Presencial</p>
+                                    <div class="product-price">8.000 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Standard English – Estágio 2', 8000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 2', 8000.00);">Propina</button>
+                                    </div>
                                 </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Standard English – Estágio 3', 12500.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 3', 12500.00);">Propina</button>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/StandardEnglish3.png" alt="Standard English Estágio 3" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Standard English – Estágio 3</div>
+                                    <p class="product-meta">Modalidade: Presencial</p>
+                                    <div class="product-price">12.500 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Standard English – Estágio 3', 12500.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Standard English – Estágio 3', 12500.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div style="margin-top: 18px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid #cbd5e1; border-radius: 10px; color: #1e3a8a; font-weight: 700; text-align: center;">Duração Total do Programa: 6 meses</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="course-category-card">
-            <div class="course-category-trigger">
-                <div class="course-category-copy">
-                    <h3 class="course-category-title">Programa Geral</h3>
-                    <p class="course-category-description">O Programa Geral destina-se aos alunos que já possuem uma base em inglês e desejam desenvolver maior fluência e domínio da comunicação. Inscrições abertas no valor de 5.000 Kz.</p>
-                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
-                </div>
-            </div>
-            <div class="course-group-content" hidden>
-                <div class="course-group">
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Foundation English</div>
-                                <p class="product-meta">Duração: 3 meses · 15.000 KZ / mês · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
-                                <div class="product-price">15.000 KZ / mês</div>
-                                <div class="product-description">
-                                    <strong>Objetivo:</strong> Fortalecer as quatro competências da língua inglesa.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Speaking</li>
-                                        <li>Listening</li>
-                                        <li>Reading</li>
-                                        <li>Writing</li>
-                                        <li>Gramática</li>
-                                        <li>Vocabulário</li>
-                                        <li>Pronúncia</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Foundation English', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 15000.00);">Propina</button>
-                                </div>
+                    <div class="course-program-card">
+                        <div class="course-program-header">
+                            <img src="DashBoard/ProgramaGeral.png" alt="Programa Geral" class="course-program-image">
+                            <div>
+                                <h3>Programa Geral</h3>
+                                <p>Ideal para quem já possui conhecimentos básicos e deseja avançar com mais fluência, precisão e segurança.</p>
                             </div>
                         </div>
-
-                        <div class="product-card">
-                            <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Intermediate English</div>
-                                <p class="product-meta">Duração: 3 meses · 20.000 KZ / mês · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
-                                <div class="product-price">20.000 KZ / mês</div>
-                                <div class="product-description">
-                                    <strong>Objetivo:</strong> Desenvolver uma comunicação mais natural.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Conversação</li>
-                                        <li>Fluência</li>
-                                        <li>Gramática intermédia</li>
-                                        <li>Escrita</li>
-                                        <li>Expressões naturais</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Intermediate English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 20000.00);">Propina</button>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Foundation English</div>
+                                    <div class="product-price">15.000 KZ / mês</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Foundation English', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Foundation English', 15000.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="product-card">
-                            <img src="DashBoard/Aceleração da fluencia.jpg" alt="Aceleração da Fluência" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Aceleração da Fluência</div>
-                                <p class="product-meta">Duração: 3 meses · 25.000 KZ · Aula presencial: 1h30 · 3 aulas semanais · Aula online: 2 horas · 4 aulas semanais</p>
-                                <div class="product-price">25.000 KZ</div>
-                                <div class="product-description">
-                                    <strong>Objetivo:</strong> Eliminar bloqueios e acelerar a fluência.<br><br>
-                                    <strong>Competências:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Conversação intensiva</li>
-                                        <li>Debates</li>
-                                        <li>Pronúncia</li>
-                                        <li>Comunicação espontânea</li>
-                                        <li>Vocabulário avançado</li>
-                                    </ul>
+                            <div class="product-card">
+                                <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Intermediate English</div>
+                                    <div class="product-price">20.000 KZ / mês</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Intermediate English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Intermediate English', 20000.00);">Propina</button>
+                                    </div>
                                 </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Aceleração da Fluência', 25000.00);">Propina</button>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/Aceleração da fluencia.jpg" alt="Aceleração da Fluência" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Aceleração da Fluência</div>
+                                    <div class="product-price">25.000 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Aceleração da Fluência', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Aceleração da Fluência', 25000.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div style="margin-top: 18px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid #cbd5e1; border-radius: 10px; color: #1e3a8a; font-weight: 700; text-align: center;">Duração Total do Programa: 9 meses</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="course-category-card">
-            <div class="course-category-trigger">
-                <div class="course-category-copy">
-                    <h3 class="course-category-title">Programa Profissional</h3>
-                    <p class="course-category-description">Programa destinado a profissionais, universitários e empresas que necessitam utilizar o inglês em contextos específicos. Inscrições abertas e Gratuito.</p>
-                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
-                </div>
-            </div>
-            <div class="course-group-content" hidden>
-                <div class="course-group">
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <img src="DashBoard/Profissional english.jpg" alt="Professional English" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Professional English</div>
-                                <p class="product-meta">De 25.000 KZ até 99.000 KZ · 1h30 ou 3h por aula · Duração variável · Modalidade: Online / Presencial</p>
-                                <div class="product-price">25.000 KZ - 99.000 KZ</div>
-                                <div class="product-description">
-                                    <strong>Especializações:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Business English 35.000 KZ (30 horas)</li>
-                                        <li>Academic English 25.000 KZ (30 horas)</li>
-                                        <li>Technical English 50.000 KZ (20 horas)</li>
-                                        <li>Travel English 15.000 KZ (10 horas)</li>
-                                        <li>Specialized English 100.000 KZ (100 horas)</li>
-                                    </ul>
+                    <div class="course-program-card">
+                        <div class="course-program-header">
+                            <img src="DashBoard/Programaprofissional.png" alt="Programa Profissional" class="course-program-image">
+                            <div>
+                                <h3>Programa Profissional</h3>
+                                <p>Uma formação voltada para o mercado, com foco em comunicação profissional, performance e oportunidades globais.</p>
+                            </div>
+                        </div>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="DashBoard/Profissional english.jpg" alt="Professional English" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Professional English</div>
+                                    <div class="product-price">20.000 KZ - 180.000 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Professional English', 20000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Professional English', 20000.00);">Propina</button>
+                                    </div>
                                 </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Professional English', 25000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Professional English', 25000.00);">Propina</button>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/Preparatorio.jpg" alt="Preparatório" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Preparatório</div>
+                                    <div class="product-price">15.000 KZ / aula</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Preparatório', 15000.00);">Propina</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/Habilidades de Comunicação.jpg" alt="Habilidades de Comunicação" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Habilidades de Comunicação</div>
+                                    <div class="product-price">18.000 KZ / aula</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 18000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Habilidades de Comunicação', 18000.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="product-card">
-                            <img src="DashBoard/Preparatorio.jpg" alt="Preparatório" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Preparatório</div>
-                                <p class="product-meta">15.000 KZ / aula · 4 horas · Intervalo de 10 minutos · Modalidade: Online / Presencial</p>
-                                <div class="product-price">15.000 KZ / aula</div>
-                                <div class="product-description">
-                                    <strong>Preparação para:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Entrevistas</li>
-                                        <li>Universidades</li>
-                                        <li>Emigração</li>
-                                        <li>Logística Internacional</li>
-                                        <li>Outros processos seletivos</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Preparatório', 15000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Preparatório', 15000.00);">Propina</button>
+                    <div class="course-program-card">
+                        <div class="course-program-header">
+                            <img src="DashBoard/Kindergarten presencial.png" alt="Programa Kids" class="course-program-image">
+                            <div>
+                                <h3>Programa Kids</h3>
+                                <p>Uma abordagem acolhedora e estimulante para crianças desenvolverem inglês com naturalidade e confiança.</p>
+                            </div>
+                        </div>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="DashBoard/Kindergarten presencial.png" alt="Programa Kids" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Programa Kids</div>
+                                    <div class="product-price">26.500 KZ / mês</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Programa Kids', 26500.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Programa Kids', 26500.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="product-card">
-                            <img src="DashBoard/Habilidades de Comunicação.jpg" alt="Habilidades de Comunicação" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Habilidades de Comunicação</div>
-                                <p class="product-meta">18.000 KZ / aula · 6 horas · Intervalo de 30 minutos · Modalidade: Online / Presencial</p>
-                                <div class="product-price">18.000 KZ / aula</div>
-                                <div class="product-description">
-                                    <strong>Conteúdo:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Inglês Americano</li>
-                                        <li>Inglês Britânico</li>
-                                        <li>Inglês Nigeriano</li>
-                                        <li>Comunicação intercultural</li>
-                                        <li>Pronúncia</li>
-                                    </ul>
+                    <div class="course-program-card">
+                        <div class="course-program-header">
+                            <img src="Image/Aulas ao domicilio2.jpg" alt="Programas Flexíveis" class="course-program-image">
+                            <div>
+                                <h3>Programas Flexíveis</h3>
+                                <p>Modelos flexíveis para quem precisa de aprendizagem prática, personalizada e compatível com o dia a dia.</p>
+                            </div>
+                        </div>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="Image/Aulas ao domicilio2.jpg" alt="Aulas ao Domicílio" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Aulas ao Domicílio</div>
+                                    <div class="product-price">30.000 KZ / mês</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Aulas ao Domicílio', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas ao Domicílio', 30000.00);">Propina</button>
+                                    </div>
                                 </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Habilidades de Comunicação', 18000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Habilidades de Comunicação', 18000.00);">Propina</button>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/Club Meetings.png" alt="Club Meetings" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Club Meetings</div>
+                                    <div class="product-price">Grátis</div>
+                                    <a class="buy-button free" role="button" href="https://chat.whatsapp.com/H2eDhya4kXm4hmZ5G95BXL?s=sw&p=a&ilr=4&amv=3" target="_blank" rel="noopener noreferrer">Entrar no grupo</a>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <img src="DashBoard/Pacote Autodidata.png" alt="Pacote Autodidata" class="product-image-img">
+                                <div class="product-info">
+                                    <div class="product-name">Pacote Autodidata</div>
+                                    <div class="product-price">10.000 KZ</div>
+                                    <div class="course-buttons-container">
+                                        <button class="buy-button" onclick="bookCourse('Pacote Autodidata (25 aulas)', 10000.00); showRegistrationAndPayment();">Inscrever-se</button>
+                                        <button class="buy-button propina-btn" onclick="openProptinaModal('Pacote Autodidata (YouTube + WhatsApp)', 10000.00);">Propina</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="course-category-card">
-            <div class="course-category-trigger">
-                <div class="course-category-copy">
-                    <h3 class="course-category-title">Programa Kids</h3>
-                    <p class="course-category-description">Programa infantil desenvolvido para ensinar inglês de forma divertida e progressiva. Inscrições abertas e Gratuito.</p>
-                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
-                </div>
-            </div>
-            <div class="course-group-content" hidden>
-                <div class="course-group">
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <img src="DashBoard/Kindergarten presencial.png " alt="Programa Kids" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Programa Kids</div>
-                                <p class="product-meta">Modalidades: Presencial · Online</p>
-                                <div class="product-price">26.500 KZ / mês (Presencial) · 20.000 KZ / mês (Online)</div>
-                                <div class="product-description">
-                                    <strong>Conteúdo:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Vocabulário</li>
-                                        <li>Jogos</li>
-                                        <li>Histórias</li>
-                                        <li>Música</li>
-                                        <li>Pronúncia</li>
-                                        <li>Conversação</li>
-                                        <li>Leitura</li>
-                                        <li>Escrita</li>
-                                    </ul>
-                                    <br>
-                                    <strong>Recursos:</strong>
-                                    <ul style="margin: 8px 0 0 18px; padding: 0;">
-                                        <li>Flashcards</li>
-                                        <li>Videoaulas</li>
-                                        <li>Áudios</li>
-                                        <li>Joy Dunkin Kid</li>
-                                    </ul>
-                                </div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Programa Kids', 26500.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Programa Kids', 26500.00);">Propina</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="course-category-card">
-            <div class="course-category-trigger">
-                <div class="course-category-copy">
-                    <h3 class="course-category-title">Programas Flexíveis</h3>
-                    <p class="course-category-description">Modelos de aprendizagem adaptados à rotina e às necessidades de cada aluno. Inscrições abertas e Gratuitas.</p>
-                    <button class="course-category-action" type="button" aria-expanded="false">Abrir catálogo</button>
-                </div>
-            </div>
-            <div class="course-group-content" hidden>
-                <div class="course-group">
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <img src="Image/Aulas ao domicilio2.jpg" alt="Aulas ao Domicílio" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Aulas ao Domicílio</div>
-                                <p class="product-meta">30.000 KZ mensal · 2 horas por aula · Duração sob consulta · Modalidade: Domicílio</p>
-                                <div class="product-price">30.000 KZ / mês (base)</div>
-                                <div class="product-description">Aulas com maior flexibilidade e conforto, adaptadas ao ritmo e à rotina do aluno em contexto domiciliar.</div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Aulas ao Domicílio', 30000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Aulas ao Domicílio', 30000.00);">Propina</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="product-card">
-                            <img src="DashBoard/Club Meetings.png" alt="Club Meetings" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Club Meetings</div>
-                                <p class="product-meta">Presencial: 08:00–12:00 · Online: 19:00–21:00 · Modalidade: Híbrida · Gratuito</p>
-                                <div class="product-price">Entrar no grupo (grátis)</div>
-                                <div class="product-description">Encontros de prática em grupo para conversação, troca cultural e desenvolvimento de confiança comunicativa.</div>
-                                <a class="buy-button free" role="button" href="https://chat.whatsapp.com/H2eDhya4kXm4hmZ5G95BXL?s=sw&p=a&ilr=4&amv=3" target="_blank" rel="noopener noreferrer">Entrar no grupo</a>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <img src="DashBoard/Pacote Autodidata.png " alt="Pacote Autodidata - 25 aulas" class="product-image-img">
-                            <div class="product-info">
-                                <div class="product-name">Pacote Autodidata (YouTube + WhatsApp)</div>
-                                <p class="product-meta">Pacote único · 25 aulas liberadas · Modalidade: Online (YouTube / WhatsApp)</p>
-                                <div class="product-price">10.000 KZ (pacote único)</div>
-                                <div class="product-description">Aulas gravadas e recursos digitais para estudo autónomo, com acompanhamento e suporte via WhatsApp e YouTube.</div>
-                                <div class="course-buttons-container">
-                                    <button class="buy-button" onclick="bookCourse('Pacote Autodidata (25 aulas)', 10000.00); showRegistrationAndPayment();">Inscrever-se</button>
-                                    <button class="buy-button propina-btn" onclick="openProptinaModal('Pacote Autodidata (YouTube + WhatsApp)', 10000.00);">Propina</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="course-category-card" style="margin-top: 20px;">
-            <div class="course-category-copy" style="padding: 22px 24px;">
-                <h3 class="course-category-title">A Sua Jornada de Aprendizagem</h3>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 14px; color: #1e3a8a; font-weight: 700; text-align: center;">
-                    <div>Programa Básico (6 meses)</div>
-                    <div>↓</div>
-                    <div>Programa Geral (9 meses)</div>
-                    <div>↓</div>
-                    <div>Programa Profissional</div>
-                    <div>↓</div>
-                    <div>Especializações e Formação Contínua</div>
-                </div>
-            </div>
+            <button class="program-nav-arrow" data-side="next" type="button" onclick="changeProgram(1)" aria-label="Próximo programa">›</button>
         </div>
     </section>
     <!-- FORMULÁRIO PARA INSCRIÇÃO -->
-    <section id="agendamento" style="display: none;">
+    <section id="agendamento" class="migrated-inline-087">
         <div class="whatsapp-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px;">
-                <h2 style="margin: 0;">📱 Inscrever-se</h2>
-                <button type="button" onclick="closeEnrollmentForm()" aria-label="Fechar formulário" style="border: none; background: #ef4444; color: white; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer;">×</button>
+            <div class="migrated-inline-088">
+                <h2 class="migrated-inline-089">📱 Inscrever-se</h2>
+                <button type="button" onclick="closeEnrollmentForm()" aria-label="Fechar formulário" class="migrated-inline-090">×</button>
             </div>
-            <p style="color: #666; margin-bottom: 20px;">Preencha todos os campos abaixo para inscrever-se em seu curso ou entre em contato conosco</p>
+            <p class="migrated-inline-091">Finalize a sua inscrição, compra de manual ou processo de matrícula com rapidez, segurança e acompanhamento profissional.</p>
             
             <div class="form-group">
                 <label for="courseName">📚 Curso:</label>
-                <input type="text" id="courseName" placeholder="Nome do curso" readonly style="background-color: #f0f0f0;">
+                <input type="text" id="courseName" placeholder="Nome do curso" readonly class="migrated-inline-092">
             </div>
 
-            <div class="form-group" id="courseVariantGroup" style="display: none;">
+            <div class="form-group" id="courseVariantGroup">
                 <label for="courseVariantSelect" id="courseVariantLabel">Opção:</label>
-                <select id="courseVariantSelect" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <select id="courseVariantSelect" class="migrated-inline-093">
                     <option value="">Selecione uma opção...</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="coursePrice">💵 Preço:</label>
-                <input type="text" id="coursePrice" placeholder="Preço do curso" readonly style="background-color: #f0f0f0;">
+                <input type="text" id="coursePrice" placeholder="Preço do curso" readonly class="migrated-inline-092">
                 <input type="hidden" id="courseBasePrice" value="0">
             </div>
 
             <div class="form-group">
-                <div class="form-label">🧭 Como deseja estudar? <span style="font-size:0.9rem; color:#6b7280;">(Escolha uma opção)</span></div>
+                <div class="form-label">🧭 Como deseja estudar? <span class="migrated-inline-094">(Escolha uma opção)</span></div>
                 <div class="radio-group">
                     <label class="radio-option" for="enrollModalityOnline"><input id="enrollModalityOnline" type="radio" name="enrollModality" value="online"><span>Online</span></label>
                     <label class="radio-option" for="enrollModalityPresencial"><input id="enrollModalityPresencial" type="radio" name="enrollModality" value="presencial"><span>Presencial</span></label>
@@ -4776,13 +888,14 @@
 
             <div class="form-group">
                 <label for="scheduleTime">⏰ Horário Preferido:</label>
-                <select id="scheduleTime" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <select id="scheduleTime" required class="migrated-inline-093">
                     <option value="">Selecione um horário...</option>
-                    <option value="08:00">08:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
+                    <option value="08:00-10:00">08:00 - 10:00</option>
+                    <option value="10:00-12:00">10:00 - 12:00</option>
+                    <option value="12:00-14:00">12:00 - 14:00</option>
+                    <option value="14:00-16:00">14:00 - 16:00</option>
+                    <option value="16:00-18:00">16:00 - 18:00</option>
+                    <option value="18:00-20:00">18:00 - 20:00</option>
                     <option value="online">Online</option>
                 </select>
             </div>
@@ -4804,13 +917,13 @@
 
             <div class="form-group">
                 <label for="idNumber">🆔 BI / Passaporte:</label>
-                <input type="text" id="idNumber" placeholder="Ex: 123456789AB123 (BI) ou AB1234567 (Passaporte)" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px;" required>
-                <small style="color:#6b7280; display:block; margin-top:6px;">Seu documento será para nossa base de dados.</small>
+                <input type="text" id="idNumber" placeholder="Ex: 123456789AB123 (BI) ou AB1234567 (Passaporte)" class="migrated-inline-095" required>
+                <small class="migrated-inline-096">Seu documento será para nossa base de dados.</small>
             </div>
 
             <div class="form-group">
                 <label for="municipality">🏘️ Localização:</label>
-                <select id="municipality" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <select id="municipality" required class="migrated-inline-093">
                     <option value="">Selecione um município...</option>
                       <option value="Luanda">Online</option>
                     <option value="Luanda">Luanda</option>
@@ -4837,13 +950,13 @@
 
             <div class="form-group">
                 <label for="notes">📝 Observações:</label>
-                <textarea id="notes" placeholder="Alguma observação adicional?" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; resize: vertical; min-height: 80px;"></textarea>
+                <textarea id="notes" placeholder="Alguma observação adicional?" class="migrated-inline-097"></textarea>
             </div>
-            <div style="font-size: 14px; color: #666; margin-bottom: 20px;">
+            <div class="migrated-inline-098">
                 <i>Após clicar no botão abaixo, você será redirecionado para confirmar a Inscrição.</i>
             </div>
             
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <div class="migrated-inline-099">
                 <button class="whatsapp-button" onclick="proceedToPayment()">
                     💬 Ir para pagamento
                 </button>
@@ -4852,17 +965,17 @@
     </section>
     
     <!-- MODAL DE PAGAMENTO DE PROPINAS -->
-    <div id="propina-modal" class="propina-modal" style="display: none;">
+    <div id="propina-modal" class="propina-modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="propina-modal-content">
             <div class="propina-modal-header">
                 <div class="propina-modal-title-row">
                     <h2>💳 Formulário de Propina</h2>
-                    <button class="propina-modal-close site-close-button" onclick="closeProptinaModal()" aria-label="Fechar modal">×</button>
+                    <button type="button" class="propina-modal-close site-close-button" onclick="closeProptinaModal()" aria-label="Fechar modal">×</button>
                 </div>
                 <div class="iban-display">
                     <p><strong >IBAN para Pagamento:</strong></p>
                     <p class="iban-code">AO6.0066.0000.0789.9088.1013.0</p>
-                    <p style="font-size: 14px; color: #000000; margin-top: 10px;">
+                    <p class="migrated-inline-100">
                         <strong>⚠️ Instruções:</strong> Efetue o pagamento para o IBAN acima, preencha os dados abaixo e anexe o comprovante antes de clicar em "Eu paguei".
                     </p>
                 </div>
@@ -4891,7 +1004,7 @@
                     <legend>🎯 Objetivo do Pagamento</legend>
                     <div class="form-group">
                         <label for="propina-course">Curso:</label>
-                        <input type="text" id="propina-course" name="course" readonly placeholder="Curso será preenchido automaticamente" style="background: #f5f5f5; cursor: not-allowed;">
+                        <input type="text" id="propina-course" name="course" readonly placeholder="Curso será preenchido automaticamente" class="migrated-inline-101">
                     </div>
                     <div class="form-group">
                         <label for="propina-stage">Estágio:</label>
@@ -4922,7 +1035,7 @@
                     </div>
 
                     <!-- Campos para Mensalidade -->
-                    <div id="monthly-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                    <div id="monthly-fields" class="monthly-fields">
                         <label for="propina-month">Referência da Mensalidade:</label>
                         <select id="propina-month" name="month_ref">
                             <option value="">-- Selecione --</option>
@@ -4935,7 +1048,7 @@
                     </div>
 
                     <!-- Campos para Pacote Único -->
-                    <div id="package-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                    <div id="package-fields" class="monthly-fields">
                         <label for="propina-package">Referência de Pacote Único:</label>
                         <select id="propina-package" name="package_ref">
                             <option value="">-- Selecione --</option>
@@ -4949,16 +1062,16 @@
                     </div>
 
                     <!-- Campos para Pacote Empresas -->
-                    <div id="corporate-fields" class="monthly-fields" style="display: none; margin-top: 15px;">
+                    <div id="corporate-fields" class="monthly-fields">
                         <label for="propina-corporate">Categoria de Pacote Empresas:</label>
                         <select id="propina-corporate" name="corporate_category" onchange="updateCorporateAmount();">
                             <option value="">-- Selecione --</option>
-                            <option value="Business English">Business English — 35.000</option>
-                            <option value="Academic English">Academic English — 30.000</option>
-                            <option value="Travel English">Travel English — 25.000</option>
+                            <option value="Business English">Business English — 70.000</option>
+                            <option value="Academic English">Academic English — 60.000</option>
+                            <option value="Travel English">Travel English — 20.000</option>
                             <option value="Professional English">Professional English — 50.000</option>
-                            <option value="Technical English">Technical English — 60.000</option>
-                            <option value="Specialized English">Specialized English — 75.000</option>
+                            <option value="Technical English">Technical English — 40.000</option>
+                            <option value="Specialized English">Specialized English — 180.000</option>
                             <option value="Team/Company 3 Member">Team/Company 3 Member — 100.000</option>
                         </select>
                     </div>
@@ -4969,7 +1082,7 @@
                     <legend>💵 Montante a Pagar</legend>
                     <div class="form-group">
                         <label for="propina-amount">Valor (KZ):</label>
-                        <input type="number" id="propina-amount" name="amount" placeholder="Ex: 25000" step="0.01" readonly style="background: #f5f5f5; cursor: not-allowed;" required>
+                        <input type="number" id="propina-amount" name="amount" placeholder="Ex: 25000" step="0.01" readonly class="migrated-inline-101" required>
                     </div>
                 </fieldset>
 
@@ -4979,7 +1092,7 @@
                     <div class="form-group">
                         <label for="propina-proof">Anexar Comprovante (Imagem/PDF):</label>
                         <input type="file" id="propina-proof" name="proof" accept="image/*,.pdf" required>
-                        <p style="font-size: 12px; color: #666; margin-top: 8px;">Formatos aceitos: JPG, PNG, PDF (máx. 10 MB)</p>
+                        <p class="migrated-inline-103">Formatos aceitos: JPG, PNG, PDF (máx. 10 MB)</p>
                     </div>
                 </fieldset>
 
@@ -4993,115 +1106,74 @@
     </div>
     
     <!-- DADOS BANCÁRIOS E PAGAMENTO -->
-    <section class="payment-section" id="pagamento" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; margin-top: 40px; display: none;">
-        <div class="payment-container" style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-            <h2 style="text-align: center; color: #333; margin-bottom: 30px;">💳 Dados Bancários & Comprovante de Pagamento</h2>
-            <div id="paymentSummaryBox" style="background:#fff8eb; padding:16px; border-radius:10px; margin-bottom:18px; border:1px solid rgba(212,160,36,0.12);">
-                <h3 style="margin:0 0 8px 0; color:#333;">Resumo da Inscrição</h3>
-                <p style="margin:6px 0; color:#475569;"><strong>Curso:</strong> <span id="summary_course">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Valor do curso:</strong> <span id="summary_base">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Taxa de inscrição:</strong> <span id="summary_fee">—</span></p>
-                <p style="margin:6px 0; color:#111827;"><strong>Total final:</strong> <span id="summary_total" style="color:#d4a024; font-weight:800; font-size:1.1rem;">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Referência:</strong> <span id="summary_reference">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Nome:</strong> <span id="summary_name">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Telefone:</strong> <span id="summary_phone">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Email:</strong> <span id="summary_email">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>BI/Passaporte:</strong> <span id="summary_idNumber">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Município:</strong> <span id="summary_municipality">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Data / Hora:</strong> <span id="summary_schedule">—</span></p>
-                <p style="margin:6px 0; color:#475569;"><strong>Observações:</strong> <span id="summary_notes">—</span></p>
+    <section class="payment-section" id="pagamento" hidden>
+        <div class="payment-container">
+            <h2 class="migrated-inline-106">💳 Dados Bancários & Comprovante de Pagamento</h2>
+            <div id="paymentSummaryBox" class="migrated-inline-107">
+                <h3 class="migrated-inline-108">Resumo da Inscrição</h3>
+                <p class="migrated-inline-109"><strong>Curso:</strong> <span id="summary_course">—</span></p>
+                <p class="migrated-inline-109"><strong>Valor do curso:</strong> <span id="summary_base">—</span></p>
+                <p class="migrated-inline-109"><strong>Taxa de inscrição:</strong> <span id="summary_fee">—</span></p>
+                <p class="migrated-inline-110"><strong>Total final:</strong> <span id="summary_total" class="migrated-inline-111">—</span></p>
+                <p class="migrated-inline-109"><strong>Referência:</strong> <span id="summary_reference">—</span></p>
+                <p class="migrated-inline-109"><strong>Nome:</strong> <span id="summary_name">—</span></p>
+                <p class="migrated-inline-109"><strong>Telefone:</strong> <span id="summary_phone">—</span></p>
+                <p class="migrated-inline-109"><strong>Email:</strong> <span id="summary_email">—</span></p>
+                <p class="migrated-inline-109"><strong>BI/Passaporte:</strong> <span id="summary_idNumber">—</span></p>
+                <p class="migrated-inline-109"><strong>Município:</strong> <span id="summary_municipality">—</span></p>
+                <p class="migrated-inline-109"><strong>Data / Hora:</strong> <span id="summary_schedule">—</span></p>
+                <p class="migrated-inline-109"><strong>Observações:</strong> <span id="summary_notes">—</span></p>
             </div>
             <!-- DADOS BANCÁRIOS -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">📋 Dados Bancários</h3>
-                <div style="display: grid; gap: 15px;">
+            <div class="migrated-inline-066">
+                <h3 class="migrated-inline-112">📋 Dados Bancários</h3>
+                <div class="migrated-inline-068">
                     <div>
-                        <label style="font-weight: bold; color: #333;">Titulare da Conta:</label>
-                        <p style="margin: 5px 0; color: #666;">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
+                        <label class="migrated-inline-069">Titulare da Conta:</label>
+                        <p class="migrated-inline-070">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
+                    <div class="migrated-inline-113">
                         <div>
-                            <label style="font-weight: bold; color: #333;">Banco:</label>
-                            <p style="margin: 5px 0; color: #666;">Banco Yetu.</p>
-                            <label style="font-weight: bold; color: #333; margin-top:8px; display:block;">Número da Conta:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">7899088.10001</p>
+                            <label class="migrated-inline-069">Banco:</label>
+                            <p class="migrated-inline-070">Banco Yetu.</p>
+                            <label class="migrated-inline-114">Número da Conta:</label>
+                            <p class="migrated-inline-072">7899088.10001</p>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
+                    <div class="migrated-inline-113">
                         <div>
-                            <label style="font-weight: bold; color: #333;">IBAN:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace; display:inline-block;"><span>AO6.</span>0066.0000.0789.9088.1013.0</p>
-                            <button type="button" onclick="copyIBAN()" style="margin-left:12px; padding:6px 10px; border-radius:8px; border:none; background:#d4a024; color:#072040; font-weight:700; cursor:pointer;">Copiar IBAN</button>
-                            <label style="font-weight: bold; color: #333; margin-top:8px; display:block;">Referência:</label>
-                            <p style="margin: 5px 0; color: #666; font-family: monospace;">SMS-ESCOLA DE LÍNGUAS-2026</p>
+                            <label class="migrated-inline-069">IBAN:</label>
+                            <p class="migrated-inline-115"><span>AO6.</span>0066.0000.0789.9088.1013.0</p>
+                            <button type="button" onclick="copyIBAN()" class="migrated-inline-116">Copiar IBAN</button>
+                            <label class="migrated-inline-114">Referência:</label>
+                            <p class="migrated-inline-072">SMS-ACADEMIA DE LÍNGUAS-2026</p>
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; color: #856404;">
+                <div class="migrated-inline-073">
                     <strong>⚠️ Importante:</strong> Após efetuar o pagamento, envie o comprovante para confirmar sua inscrição.
                 </div>
             </div>
             <!-- FORMULÁRIO DE ENVIO DE COMPROVANTE -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #764ba2;">
-                <h3 style="color: #764ba2; margin-bottom: 20px;">📤 Enviar Comprovante de Pagamento</h3>
-                 <div class="form-group" style="margin-top: 15px;">
+            <div class="migrated-inline-117">
+                <h3 class="migrated-inline-118">📤 Enviar Comprovante de Pagamento</h3>
+                 <div class="form-group">
                     <label for="proofAttachment">📎 Anexar Comprovante (Imagem/PDF):</label>
-                    <input type="file" id="proofAttachment" accept="image/*,.pdf" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                    <input type="file" id="proofAttachment" accept="image/*,.pdf" class="migrated-inline-120">
                 </div>
-                <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
-                    <button id="enrollGenerateInvoiceBtn" type="button" onclick="generateEnrollmentInvoice()" disabled style="padding:8px 12px; border-radius:8px; border:none; background:#667eea; color:white; font-weight:700; cursor:pointer; opacity:0.6;">Gerar Fatura</button>
-                    <button id="enrollSendWhatsAppBtn" type="button" onclick="submitAllDataVia('whatsapp')" style="padding:8px 12px; border-radius:8px; border:none; background:#25D366; color:white; font-weight:700; cursor:pointer;">Enviar Comprovante via WhatsApp</button>
+                <div class="migrated-inline-121">
+                    <button id="enrollGenerateInvoiceBtn" type="button" onclick="generateEnrollmentInvoice()" disabled class="migrated-inline-122">Gerar Fatura</button>
+                    <button id="enrollSendWhatsAppBtn" type="button" onclick="submitAllDataVia('whatsapp')" class="migrated-inline-123">Enviar Comprovante via WhatsApp</button>
                 </div>
 
                 <!-- removed duplicate send buttons; kept single WhatsApp action above -->
-                <div style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">
+                <div class="migrated-inline-124">
                     <i>Todos os dados serão enviados junto com o comprovante de pagamento.</i>
                 </div>
             </div>
         </div>
     </section>
-    <!-- GALERIA DE FOTOS -->
-    <section class="gallery" id="galeria">
-        <h2 class="section-title">Jornal SMS</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="Image/Modelo 1.jpg" alt="Aula de Inglês" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Curso de Excel Avançado Já estará disponível e todos poderão se inscrever</h3>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="Image/Modelo 2.jpg" alt="Sala de Aula" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Curso de Gestão de Projetos Vem aí!</h3>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="Image/Modelo 3.jpg" alt="Estudantes" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Higiene e Segurança no Trabalho - quem dirige a segurança agora é você!</h3>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="Image/Modelo 4.jpg" alt="Materiais" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Informática está chegando até você traga seu computador na SMS</h3>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="Image/Modelo 5.jpg" alt="Programação" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Como assim ainda não se inscreveu?</h3>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="Image/Modelo 6.jpg" alt="Grupo de Estudo" class="gallery-image">
-                <div class="gallery-overlay">
-                    <h3>Já tens o Passaporte? Essa viagem é internacional venha fazer a logística </h3>
-                </div>
-            </div>
-        </div>
-    </section>
+        </main>
     <!-- FOOTER -->
     <footer id="contato"> 
         <section id="contato-social">  
@@ -5117,15 +1189,103 @@
             <a href="https://www.reddit.com/user/Imaginary-Shock5217/?utm_source=share&utm_medium=mweb3x&utm_name=mweb3xcss&utm_term=1&utm_content=share_button" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="FAQ.html" target="_blank">FAQ</a>
         </div>
-        <section id="contato-info" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
+        <section id="contato-info" class="migrated-inline-125">
             <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 07:30 - 18:00</p>
         </section>
-        <p style="margin-top: 20px;">&copy; 2026 S.M.S - Escola de Linguas & Habilidades - Todos os direitos reservados.</p>
+        <p class="migrated-inline-084">&copy; 2026 S.M.S - ACADEMIA de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
-<button id="scrollToTopBtn" title="Voltar ao topo" style="display: none;">up</button>
+<button id="scrollToTopBtn" title="Voltar ao topo" class="migrated-inline-087">up</button>
     </footer>
 <script>
         // Slides automáticos e controles do site
+        function openCourseCatalog() {
+            const section = document.getElementById('cursos');
+            document.querySelectorAll('.course-group-content').forEach(panel => {
+                panel.hidden = false;
+            });
+            document.querySelectorAll('.course-category-action').forEach(button => {
+                button.setAttribute('aria-expanded', 'true');
+                button.textContent = 'Fechar catálogo';
+            });
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function setGalleryButtonLabel(isOpen) {
+            const galleryLink = document.querySelector('.ticker-link[href="#sms-gallery"]');
+            if (galleryLink) {
+                galleryLink.textContent = isOpen ? 'Fechar' : 'Galeria';
+            }
+        }
+
+        function openSmsGallery() {
+            closeAllInteractivePanels(['gallery']);
+            const section = document.getElementById('sms-gallery');
+            if (section) {
+                // create backdrop overlay if missing
+                let overlay = document.getElementById('galleryOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'galleryOverlay';
+                    overlay.className = 'site-overlay';
+                    overlay.setAttribute('aria-hidden', 'false');
+                    overlay.addEventListener('click', closeSmsGallery);
+                    document.body.appendChild(overlay);
+                }
+
+                section.hidden = false;
+                section.style.display = 'block';
+                section.classList.add('is-open');
+                section.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('site-overlay-open');
+                document.body.style.overflow = 'hidden';
+                setGalleryButtonLabel(true);
+                // focus first element to improve accessibility
+                setTimeout(() => {
+                    const h = section.querySelector('h2');
+                    if (h) h.focus?.();
+                }, 60);
+            }
+        }
+
+        function closeSmsGallery() {
+            const section = document.getElementById('sms-gallery');
+            if (section) {
+                section.hidden = true;
+                section.style.display = 'none';
+                section.classList.remove('is-open');
+                section.setAttribute('aria-hidden', 'true');
+                setGalleryButtonLabel(false);
+            }
+            // remove backdrop overlay when closing
+            const overlay = document.getElementById('galleryOverlay');
+            if (overlay) overlay.remove();
+            document.body.classList.remove('site-overlay-open');
+            document.body.style.overflow = '';
+        }
+
+        function toggleSmsGallery() {
+            const section = document.getElementById('sms-gallery');
+            if (!section) return;
+            if (section.hidden) {
+                openSmsGallery();
+            } else {
+                closeSmsGallery();
+            }
+        }
+
+        function scrollToContacts() {
+            const footer = document.getElementById('contato');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleFaqPanel() {
+            window.open('FAQ.html', '_blank', 'noopener,noreferrer');
+        }
+
         (function(){
             let currentSlideIndex = 0;
             let slideInterval = null;
@@ -5248,25 +1408,90 @@
                 } catch (e) { console.warn('Unable to restore purchase draft', e); }
             }
 
-            window.openPurchaseForm = function(manualTitle, manualId) {
+            window.openPurchaseForm = function(manualTitle, manualId, manualPrice) {
+                closeAllInteractivePanels(['purchase']);
                 const formWrapper = document.getElementById('purchase-form');
-                if (!formWrapper) return;
-                document.getElementById('selectedManualTitle').textContent = `Comprar ${manualTitle}`;
-                document.getElementById('purchaseManualId').value = manualId;
-                formWrapper.classList.remove('hidden');
-                formWrapper.classList.add('show');
-                restorePurchaseDraft();
-                const nameInput = document.getElementById('buyerName');
-                if (nameInput) nameInput.focus();
+                const selectedTitle = document.getElementById('selectedManualTitle');
+                const selectedPrice = document.getElementById('selectedManualPrice');
+                const purchaseManualId = document.getElementById('purchaseManualId');
+                const purchaseManualPrice = document.getElementById('purchaseManualPrice');
+                const status = document.getElementById('purchaseStatus');
+                if (!formWrapper || !selectedTitle || !selectedPrice || !purchaseManualId) return;
+
+                selectedTitle.textContent = `Comprar ${manualTitle}`;
+                selectedPrice.textContent = `Preço: ${manualPrice || '—'}`;
+                purchaseManualId.value = manualId;
+                if (purchaseManualPrice) purchaseManualPrice.value = manualPrice || '';
+                if (status) status.textContent = '';
+
+                let overlay = document.getElementById('purchaseModalOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'purchaseModalOverlay';
+                    overlay.className = 'propina-modal';
+
+                    const content = document.createElement('div');
+                    content.className = 'propina-modal-content purchase-modal-content';
+
+                    const closeBtn = document.createElement('button');
+                    closeBtn.type = 'button';
+                    closeBtn.className = 'propina-modal-close site-close-button';
+                    closeBtn.setAttribute('aria-label', 'Fechar pedido de compra');
+                    closeBtn.innerHTML = '&times;';
+                    closeBtn.addEventListener('click', window.closePurchaseForm);
+
+                    content.appendChild(closeBtn);
+                    overlay.appendChild(content);
+                    document.body.appendChild(overlay);
+                }
+
+                const modalContent = overlay.querySelector('.propina-modal-content');
+                if (modalContent) {
+                    if (formWrapper.parentElement !== modalContent) {
+                        modalContent.appendChild(formWrapper);
+                    }
+                    formWrapper.classList.remove('hidden');
+                    formWrapper.classList.remove('show');
+                    formWrapper.hidden = false;
+                    formWrapper.style.display = 'grid';
+                    formWrapper.style.visibility = 'visible';
+                    formWrapper.style.opacity = '1';
+                    formWrapper.style.removeProperty('display');
+                    formWrapper.style.setProperty('display', 'grid', 'important');
+                    applyScrollableOverlayState(overlay, modalContent);
+                    overlay.style.display = 'flex';
+                    overlay.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                    restorePurchaseDraft();
+                    const nameInput = document.getElementById('buyerName');
+                    if (nameInput) nameInput.focus();
+                    setTimeout(() => {
+                        formWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
+                }
             };
 
             window.closePurchaseForm = function() {
                 savePurchaseDraft();
                 const formWrapper = document.getElementById('purchase-form');
+                const overlay = document.getElementById('purchaseModalOverlay');
                 if (formWrapper) {
                     formWrapper.classList.add('hidden');
                     formWrapper.classList.remove('show');
+                    formWrapper.hidden = true;
+                    formWrapper.style.visibility = 'hidden';
+                    formWrapper.style.opacity = '0';
+                    formWrapper.style.setProperty('display', 'none', 'important');
+                    if (overlay) {
+                        overlay.style.display = 'none';
+                        overlay.setAttribute('aria-hidden', 'true');
+                    }
+                    const buyMenuContent = document.querySelector('.buy-menu-content');
+                    if (buyMenuContent && formWrapper.parentElement !== buyMenuContent) {
+                        buyMenuContent.appendChild(formWrapper);
+                    }
                 }
+                document.body.style.overflow = '';
             };
 
             window.submitPurchaseRequest = function() {
@@ -5274,7 +1499,7 @@
                 const buyerEmail = document.getElementById('buyerEmail').value.trim();
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
-                const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
+                const manualTitle = document.getElementById('selectedManualTitle').textContent.replace(/^(Pedido de compra - |Comprar )/, '').trim();
                 const manualPrice = document.getElementById('purchaseManualPrice')?.value || document.getElementById('selectedManualPrice')?.textContent || '—';
 
                 if (!name || !buyerEmail || !courseType || !proofFile) {
@@ -5306,23 +1531,32 @@
                 const email = 'VendasRhSms@outlook.com';
                 const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
                 const body = encodeURIComponent(
-                    `Pedido de compra de ${manualTitle}\n` +
+                    `Olá,\n\n` +
+                    `Recebemos o seu pedido de compra do manual ${manualTitle}.\n\n` +
+                    `Detalhes do pedido:\n` +
+                    `Item selecionado: ${manualTitle}\n` +
                     `Nome: ${name}\n` +
                     `Email: ${buyerEmail}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Preço: ${manualPrice}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
-                    `**Envie o seu comprovante manualmente para acelerar a sua validação.**\n\n` +
-                    `**O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento.** Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente. Agradecemos a sua preferência e confiança na S.M.S - Escola de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem! Em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
+                    `Assim que o pagamento for validado, enviaremos o material para o seu email. Agradecemos a sua confiança na S.M.S.`
                 );
 
-                const whatsappMessage = encodeURIComponent(`Olá! Recebi um pedido de compra de manual.\n\nManual: ${manualTitle}\nNome: ${name}\nEmail: ${buyerEmail}\nTipo de curso: ${courseType}\nPreço: ${manualPrice}\nComprovante: ${proofFile.name}`);
+                const whatsappMessage = encodeURIComponent(`Olá! Recebemos o seu pedido de compra do manual ${manualTitle}.\n\nItem selecionado: ${manualTitle}\nNome: ${name}\nEmail: ${buyerEmail}\nTipo de curso: ${courseType}\nPreço: ${manualPrice}`);
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
                 window.open(`https://wa.me/244951474872?text=${whatsappMessage}`, '_blank');
                 closePurchaseForm();
             };
 
             document.addEventListener('DOMContentLoaded', function() {
+                const formWrapper = document.getElementById('purchase-form');
+                if (formWrapper) {
+                    formWrapper.classList.add('hidden');
+                    formWrapper.classList.remove('show');
+                    formWrapper.style.display = 'none';
+                }
+
                 ['buyerName','buyerEmail','courseType','purchaseManualId','purchaseManualPrice'].forEach((id) => {
                     const el = document.getElementById(id);
                     if (el) {
@@ -5389,11 +1623,11 @@
                     requiresSelection: true,
                     priceMode: 'dynamic',
                     options: [
-                        { label: 'Business English 35.000 KZ (30 horas)', value: 'Business English', price: 35000 },
-                        { label: 'Academic English 25.000 KZ (30 horas)', value: 'Academic English', price: 25000 },
-                        { label: 'Technical English 50.000 KZ (20 horas)', value: 'Technical English', price: 50000 },
-                        { label: 'Travel English 15.000 KZ (10 horas)', value: 'Travel English', price: 15000 },
-                        { label: 'Specialized English 100.000 KZ (100 horas)', value: 'Specialized English', price: 100000 }
+                        { label: 'Travel English 10 horas — 20.000 KZ', value: 'Travel English', price: 20000 },
+                        { label: 'Technical English 20 horas — 40.000 KZ', value: 'Technical English', price: 40000 },
+                        { label: 'Academic English 30 horas — 60.000 KZ', value: 'Academic English', price: 60000 },
+                        { label: 'Business English 30 horas — 70.000 KZ', value: 'Business English', price: 70000 },
+                        { label: 'Specialized English 100 horas — 180.000 KZ', value: 'Specialized English', price: 180000 }
                     ]
                 };
             }
@@ -5486,6 +1720,22 @@
             updateModalityConfirmation();
         }
 
+        function openEnrollmentPanel() {
+            closeAllInteractivePanels(['enrollment']);
+            const section = document.getElementById('agendamento');
+            if (!section) return;
+            section.hidden = false;
+            section.classList.add('show');
+            section.style.display = 'flex';
+            section.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('site-overlay-open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                document.getElementById('scheduleDate')?.focus();
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
         function bookCourse(courseName, coursePrice) {
             document.getElementById('courseName').value = courseName;
             const priceInput = document.getElementById('coursePrice');
@@ -5494,19 +1744,16 @@
             if (baseInput) baseInput.value = Number(coursePrice || 0);
             updateCourseVariantUI(courseName, coursePrice);
             applyEnrollmentModalityRules(courseName);
-            const section = document.getElementById('agendamento');
-            section.classList.add('show');
-            setTimeout(() => {
-                document.getElementById('scheduleDate').focus();
-                section.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            openEnrollmentPanel();
         }
 
         function toggleOrderSection() {
             const section = document.getElementById('agendamento');
-            section.classList.toggle('show');
-            if (section.classList.contains('show')) {
-                section.scrollIntoView({ behavior: 'smooth' });
+            if (!section) return;
+            if (section.hidden) {
+                openEnrollmentPanel();
+            } else {
+                closeAllInteractivePanels();
             }
         }
 
@@ -5526,7 +1773,7 @@
                 return;
             }
 
-            const message = `Olá! Gostaria de agendar uma aula.%0A%0A📚 Curso: ${course}%0A💵 Preço: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
+            const message = `Olá! Gostaria de solicitar uma avaliação para o curso ${course}.%0A%0A📚 Curso: ${course}%0A💵 Preço: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
             const whatsappUrl = `https://wa.me/244951474872?text=${message}`;
 
             window.open(whatsappUrl, '_blank');
@@ -5538,13 +1785,77 @@
             const button = document.getElementById('infoToggleAllBtn');
             if (!infoSystem || !button) return;
 
-            const isCollapsed = infoSystem.classList.toggle('collapsed');
-            button.textContent = isCollapsed ? 'Ver informações' : 'Ocultar informações';
+            const isCollapsed = infoSystem.classList.contains('collapsed');
             sectionsCloseAll();
 
-            if (!isCollapsed) {
-                infoSystem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (isCollapsed) {
+                closeAllInteractivePanels(['info']);
+                // create overlay backdrop
+                let overlay = document.getElementById('infoOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'infoOverlay';
+                    overlay.className = 'site-overlay';
+                    overlay.setAttribute('aria-hidden', 'false');
+                    overlay.addEventListener('click', toggleAllInfoSections);
+                    document.body.appendChild(overlay);
+                }
+
+                infoSystem.classList.remove('collapsed');
+                infoSystem.classList.add('is-open');
+                infoSystem.hidden = false;
+                infoSystem.style.display = 'block';
+                infoSystem.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('site-overlay-open');
+                document.body.style.overflow = 'hidden';
+                button.textContent = 'Ocultar informações';
+                // focus first heading and keep content below header
+                setTimeout(() => {
+                    const firstHeading = infoSystem.querySelector('h2');
+                    if (firstHeading) firstHeading.focus?.();
+                }, 60);
+            } else {
+                // remove overlay backdrop
+                const overlay = document.getElementById('infoOverlay');
+                if (overlay) overlay.remove();
+
+                infoSystem.classList.add('collapsed');
+                infoSystem.classList.remove('is-open');
+                infoSystem.hidden = true;
+                infoSystem.style.display = 'none';
+                infoSystem.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('site-overlay-open');
+                document.body.style.overflow = '';
+                button.textContent = 'Ver informações';
             }
+        }
+
+        function openTermsPanel() {
+            const termsPanel = document.getElementById('termos-privacidade');
+            const button = document.getElementById('infoToggleAllBtn');
+            if (!termsPanel) return;
+
+            closeAllInteractivePanels(['terms']);
+            termsPanel.hidden = false;
+            termsPanel.style.display = 'block';
+            termsPanel.classList.add('is-open');
+            termsPanel.setAttribute('aria-hidden', 'false');
+            if (button) button.textContent = 'Ver informações';
+            document.body.classList.add('site-overlay-open');
+            document.body.style.overflow = 'hidden';
+            termsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closeTermsPanel() {
+            const termsPanel = document.getElementById('termos-privacidade');
+            if (termsPanel) {
+                termsPanel.hidden = true;
+                termsPanel.style.display = 'none';
+                termsPanel.classList.remove('is-open');
+                termsPanel.setAttribute('aria-hidden', 'true');
+            }
+            document.body.classList.remove('site-overlay-open');
+            document.body.style.overflow = '';
         }
 
         function sectionsCloseAll() {
@@ -5619,12 +1930,11 @@
         });
 
         function showRegistrationAndPayment() {
-            document.getElementById('agendamento').style.display = 'block';
-            document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
+            openEnrollmentPanel();
         }
 
         function closeEnrollmentForm() {
-            document.getElementById('agendamento').style.display = 'none';
+            closeAllInteractivePanels();
         }
 
         function saveEnrollmentDraft() {
@@ -5817,9 +2127,21 @@
             if (typeof closeProptinaModal === 'function') {
                 closeProptinaModal();
             }
-            document.getElementById('agendamento').style.display = 'none';
-            document.getElementById('pagamento').style.display = 'block';
-            document.getElementById('pagamento').scrollIntoView({ behavior: 'smooth' });
+            const enrollmentSection = document.getElementById('agendamento');
+            const paymentSection = document.getElementById('pagamento');
+            if (enrollmentSection) {
+                enrollmentSection.hidden = true;
+                enrollmentSection.style.display = 'none';
+                enrollmentSection.setAttribute('aria-hidden', 'true');
+            }
+            if (paymentSection) {
+                paymentSection.hidden = false;
+                paymentSection.style.display = 'flex';
+                paymentSection.classList.add('is-open');
+                paymentSection.setAttribute('aria-hidden', 'false');
+            }
+            document.body.classList.add('site-overlay-open');
+            document.body.style.overflow = 'hidden';
         }
         
         function buildEnrollmentSummaryText() {
@@ -5828,7 +2150,9 @@
             const selectedVariant = courseVariantSelect?.value ? ` • ${courseVariantSelect.value}` : '';
             const coursePrice = document.getElementById('coursePrice').value;
             const scheduleDate = document.getElementById('scheduleDate').value;
-            const scheduleTime = document.getElementById('scheduleTime').value;
+            // normalize schedule format
+            let scheduleTime = (document.getElementById('scheduleTime').value || '').toString();
+            scheduleTime = scheduleTime.replace(/\s*-\s*/, ' - ');
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
@@ -5838,10 +2162,9 @@
             const proofFile = document.getElementById('proofAttachment').files[0];
             const enrollmentFee = document.getElementById('summary_fee')?.textContent || '5.000 Kz';
             const enrollmentTotal = document.getElementById('summary_total')?.textContent || (coursePrice ? `${coursePrice} + 5.000 Kz` : '5.000 Kz');
-            const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
-            const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
+            const proofInfo = proofFile ? `\nComprovante anexado: ${proofFile.name}` : '';
 
-            return `*S.M.S - INSCRIÇÃO COMPLETA*\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}${selectedVariant}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`;
+            return `*S.M.S - INSCRIÇÃO RECEBIDA*\n\nOlá,\n\nRecebemos a sua solicitação de inscrição.\n\nDetalhes:\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}${selectedVariant}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}${proofInfo}\n\nAssim que o pagamento for confirmado, daremos continuidade ao processo. Agradecemos a sua confiança na S.M.S - Academia de Línguas & Habilidades.`;
         }
 
         function submitAllDataVia(method) {
@@ -5879,9 +2202,25 @@
         }
 
         function hideAllSections() {
-            document.getElementById('agendamento').style.display = 'none';
-            document.getElementById('pagamento').style.display = 'none';
-            document.getElementById('formulario-section').style.display = 'none';
+            const section = document.getElementById('agendamento');
+            const paymentSection = document.getElementById('pagamento');
+            if (section) {
+                section.style.display = 'none';
+                section.hidden = true;
+                section.setAttribute('aria-hidden', 'true');
+            }
+            if (paymentSection) {
+                paymentSection.style.display = 'none';
+                paymentSection.hidden = true;
+                paymentSection.classList.remove('is-open');
+                paymentSection.setAttribute('aria-hidden', 'true');
+            }
+            const formSection = document.getElementById('formulario-section');
+            if (formSection) {
+                formSection.style.display = 'none';
+            }
+            document.body.classList.remove('site-overlay-open');
+            document.body.style.overflow = '';
         }
  // Candidaturas & Formas da Aplicação
         function showApplicationForm(position, method) {
@@ -5953,7 +2292,7 @@
                 alert('Por favor, preencha nome, email e telemóvel para continuar.');
                 return;
             }
-            const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá, desejo candidatar-me à vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
+            const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá! Quero submeter a minha candidatura para a vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
             window.open(whatsappUrl, '_blank');
             saveCareerDraft();
         }
@@ -5970,7 +2309,7 @@
                 return false;
             }
             const subject = encodeURIComponent(`Candidatura: ${position}`);
-            const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
+            const body = encodeURIComponent(`Olá,%0A%0AGostaria de submeter a minha candidatura para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
             window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             saveCareerDraft();
             return false;
@@ -6047,7 +2386,7 @@
                 });
 
                 let currentIndex = 0;
-                const intervalMs = 3800;
+                const intervalMs = 8000;
 
                 setInterval(function() {
                     tickerItems[currentIndex].classList.remove('active');
@@ -6117,10 +2456,12 @@
             function openWhatsAppEnrollment(){
                 const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
                 if (!enrollment || !enrollment.name) { alert('Nenhuma inscrição encontrada.'); return; }
-                const text = encodeURIComponent(`Olá, efetuei o pagamento. Ref: ${enrollment.reference}. Nome: ${enrollment.name}. Curso: ${enrollment.course}. Total: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}. Envio comprovativo em anexo.`);
+                const text = encodeURIComponent(`Olá! Efetuei o pagamento referente à minha inscrição.\n\nReferência: ${enrollment.reference}\nNome: ${enrollment.name}\nCurso: ${enrollment.course}\nTotal: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}\nEnvio o comprovativo em anexo.`);
                 const phone = '244951474872';
                 window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
             }
         </script>
 </body>
 </html>
+
+
