@@ -3,199 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacidade & Termos</title>
+    <title>Privacidade & Termos | SMS</title>
     <link rel="icon" type="image/x-icon" href="Image/favicon.jpg">
     <link rel="stylesheet" href="style.css">
+    <script>
+        function hideGoogleTranslateUI() {
+            const container = document.getElementById('google_translate_element');
+            if (container) {
+                container.setAttribute('style', 'position:fixed !important; left:-9999px !important; top:-9999px !important; width:1px !important; height:1px !important; overflow:hidden !important; opacity:0 !important; display:none !important;');
+            }
+            document.querySelectorAll('.goog-te-banner-frame, .goog-te-menu-frame, .goog-te-ftab, .goog-te-gadget, .goog-te-gadget-simple, .goog-te-spinner-pos, .goog-te-balloon-frame').forEach((el) => {
+                if (el) {
+                    el.setAttribute('style', 'display:none !important; visibility:hidden !important; position:fixed !important; left:-9999px !important; top:-9999px !important; width:1px !important; height:1px !important;');
+                }
+            });
+            document.querySelectorAll('.skiptranslate').forEach((el) => el.remove());
+        }
+
+        function googleTranslateElementInit() {
+            hideGoogleTranslateUI();
+            const container = document.getElementById('google_translate_element');
+            if (!container) return;
+            if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'pt',
+                    includedLanguages: 'en,fr,es',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+            } else {
+                window.setTimeout(googleTranslateElementInit, 250);
+            }
+        }
+
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+                return;
+            }
+
+            const currentUrl = encodeURIComponent(window.location.href);
+            window.location.href = `https://translate.google.com/translate?hl=${lang}&sl=pt&tl=${lang}&u=${currentUrl}`;
+        }
+
+        function toggleLanguagePicker(event) {
+            event.stopPropagation();
+            const container = document.querySelector('.simple-google-translate');
+            const picker = container ? container.querySelector('.lang-picker') : null;
+            const button = container ? container.querySelector('.lang-globe-btn') : null;
+            if (!container || !picker || !button) return;
+
+            if (container.classList.contains('open')) {
+                closeLanguagePicker();
+                return;
+            }
+
+            picker.style.top = 'calc(100% + 10px)';
+            picker.style.left = '50%';
+            picker.style.transform = 'translateX(-50%)';
+            picker.style.zIndex = '120';
+            container.classList.add('open');
+        }
+
+        function closeLanguagePicker() {
+            const container = document.querySelector('.simple-google-translate');
+            if (container) container.classList.remove('open');
+        }
+
+        document.addEventListener('click', function (event) {
+            const container = document.querySelector('.simple-google-translate');
+            if (!container) return;
+            if (!container.contains(event.target)) {
+                container.classList.remove('open');
+            }
+        });
+
+        window.addEventListener('resize', closeLanguagePicker);
+        window.addEventListener('load', hideGoogleTranslateUI);
+        setTimeout(hideGoogleTranslateUI, 300);
+
+        window.changeLanguage = changeLanguage;
+        window.toggleLanguagePicker = toggleLanguagePicker;
+        window.closeLanguagePicker = closeLanguagePicker;
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-    <style> 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header { 
-            background-color: #333;
-            color: #fff;    
-            padding: 0;
-            text-align: center;
-        }
-        main {
-            padding: 20px;
-        }
-         a {
-            color: #fff;    
-            text-decoration: violette;
-            padding:0;
-            display: block;
-            transition: background-color 0.3s;
-            text-align: left;
-            font-size: 20px;
-            font-weight: bold;      
-        }
-        .closebtn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            min-height: 44px;
-            border: none;
-            border-radius: 50%;
-            background: transparent;
-            color: #000;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        p {
-            margin: 10px 0;
-            line-height: 1.6;
-            text-align: center;
-        } 
-        .servicos { 
-            background-color: #fff;
-            padding: 20px;
-             }  
-        ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-            margin: 10px 0;
-            text-align: center;
-            font-size: 15px;
-        }
-            </style>
-            <header>
-                <nav>
-                    <div class="logo">
-                        <a href="LeonildePimentel_Galeria.html" target="_blank">
-                            <img class="logo" src="Image/Fashion2-Logo.png" alt="Logo da Loja">
-                        </a></div>
-                    <h1>Privacidade & Termos</h1>
-                     <!--Barra de Navegação-->
-                     <div class="sidebar3">
-                        <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="Sobre nós.html">Sobre Nós</a>
-                        <a href="Servicos.html">Serviços</a>
-                        <a href="#">Clientes</a>
-                        <a href="index.html#contato">Contato</a>
-                        <a href="Privacidade & termos.html">Privacidade e Termos</a>
-                        <a href="#">Apoio ao Cliente</a>
-                        <a href="Politica de Devolucao.html">Politica de Devolução</a>
-                        <a href="Politica de Entrega.html">Politica de Entrega</a>
-                        </div>
-                        <span style="font: size 20px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
-                        <script>
-                         function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                    }
-                    function closeNav() {
-                      document.getElementById("mySidenav").style.width = "0";
-                    }
-                        </script>
-                </nav>
-            </header>
-    <main>
-        <section>
-            <h2>Sobre Nós</h2>
-            <p>Somos uma empresa dedicada a oferecer produtos de qualidade e um excelente serviço de entrega. Nossa missão é garantir a satisfação dos nossos clientes,<br/> proporcionando uma experiência de compra agradável e eficiente.</p>
-            <p>Nosso compromisso é com a transparência e a confiança. Trabalhamos com fornecedores confiáveis e seguimos rigorosos padrões de qualidade em todos os nossos produtos.</p>
-            </section>
-        <section>
-            <h2>Privacidade & Termos</h2>
-            <p>Bem-vindo à nossa página de privacidade e termos! <br/>
-                Aqui, você encontrará informações importantes sobre como lidamos com seus dados pessoais e quais são os nossos termos de uso. <br/>
-                A sua privacidade é muito importante para nós, e estamos comprometidos em proteger as suas informações.</p>
-            <p>Ao utilizar nosso site, você concorda com os nossos termos e condições. <br/>
-                É importante que você leia atentamente esta página antes de continuar a navegar. <br/>
-                Se você não concorda com os nossos termos, recomendamos que não utilize o nosso site.</p>
-            <p>Se você tiver alguma dúvida ou preocupação sobre a nossa política de privacidade ou os nossos termos, <br/>
-                não hesite em entrar em contato conosco. <br/>
-                Estamos sempre disponíveis para ajudar e esclarecer qualquer questão.</p>
-            <p>Obrigado por visitar o nosso site e confiar em nós com as suas informações pessoais. <br/>
-                Estamos comprometidos em oferecer a melhor experiência possível e garantir a sua satisfação.</p>
+    <div id="google_translate_element" class="google-translate-host" aria-hidden="true"></div>
+    <div class="ticker-overlay" aria-label="Barra de navegação superior">
+        <div class="ticker-wrapper">
+            <div class="ticker-actions">
+                <a href="index.html#cursos" class="ticker-link">Cursos</a>
+                <a href="index.html#sms-gallery" class="ticker-link">Galeria</a>
+                <a href="index.html#contato" class="ticker-link">Contato</a>
+                <div class="simple-google-translate" aria-label="Google Translate">
+                    <button type="button" class="lang-globe-btn" onclick="toggleLanguagePicker(event)" aria-label="Traduzir para outro idioma">🌐</button>
+                    <div class="lang-picker" role="menu" aria-label="Escolha o idioma">
+                        <button type="button" onclick="changeLanguage('en'); closeLanguagePicker();" role="menuitem">English</button>
+                        <button type="button" onclick="changeLanguage('fr'); closeLanguagePicker();" role="menuitem">Français</button>
+                        <button type="button" onclick="changeLanguage('es'); closeLanguagePicker();" role="menuitem">Español</button>
+                    </div>
+                </div>
+                <a href="Privacidade & termos.html" class="ticker-link">Termos</a>
+                <a href="index.html" class="buy-button info-toggle-button">Início</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html" aria-label="Voltar para a página inicial">
+                    <img class="logo-official" src="Image/favicon.jpg" alt="Logo da S.M.S">
+                </a>
+            </div>
+            <h1 class="store-name">Privacidade &amp; Termos</h1>
+        </div>
+    </header>
+
+    <main class="terms-page">
+        <section class="terms-hero-card">
+            <span class="eyebrow eyebrow-soft">Compromisso com transparência</span>
+            <h2>Política de privacidade, proteção de dados e condições de uso.</h2>
+            <p>Este espaço foi organizado para refletir o mesmo padrão visual premium do site principal, com clareza, confiança e uma experiência mais profissional para clientes, alunos e parceiros.</p>
         </section>
-        <section>
-            <h2>Como tratamos a sua informação </h2>
-            <p>Coletamos informações pessoais quando você se registra em nosso site, faz uma compra ou entra em contato conosco. <br/>
-                Essas informações podem incluir seu nome, endereço de e-mail, número de telefone e endereço de entrega. <br/>
-                Utilizamos essas informações para processar seus pedidos, responder a suas perguntas e melhorar nossos serviços.</p>
-            <p>Não compartilhamos suas informações pessoais com terceiros, exceto quando necessário para processar seu pedido ou cumprir a lei. <br/>
-                Tomamos medidas adequadas para proteger suas informações pessoais contra acesso não autorizado, uso indevido ou divulgação. <br/>
-                No entanto, lembre-se de que nenhum método de transmissão pela Internet ou armazenamento eletrônico é 100% seguro.</p>
-            <p>Ao utilizar nosso site, você concorda com a coleta e uso de suas informações pessoais conforme descrito nesta política. <br/>
-                Reservamo-nos o direito de atualizar esta política a qualquer momento, e recomendamos que você a revise periodicamente para se manter informado sobre como protegemos suas informações.</p>
+
+        <section class="terms-card">
+            <h2>Sobre nós</h2>
+            <p>Somos uma ACADEMIA dedicada a oferecer uma experiência de aprendizagem clara, segura e de qualidade. A nossa missão é garantir atendimento transparente, apoio real e resultados visíveis para alunos, responsáveis e parceiros que confiam no nosso trabalho.</p>
         </section>
-        <section>
-            <h2>Como Proceder para comprar com as referências de cada produto</h2>
-            <p>1- Para comprar no nosso portal, basta navegar pelas categorias de produtos e selecionar os itens que deseja adquirir. <br/>
-               Ao selecionar você verá as referências de cada produto, e siga as instruções para finalizar a compra. <br/>
-                Você poderá escolher a forma de pagamento e o endereço de entrega durante o processo de checkout.</p>
-            <p>2- Após confirmar a referência do produto, você poderá ligar para nós, ou pedir mais detalhes <br/>do seu produto por e-mail ou Telefone. <br/>
-                Fique atento ao seu e-mail, pois enviaremos atualizações sobre o status do seu pedido e informações de rastreamento assim que estiverem disponíveis.</p>
-            <p> 3- Se você tiver alguma dúvida ou precisar de assistência durante o processo de compra, nossa equipe de atendimento ao cliente está à disposição para ajudar. <br/>
-                Você pode entrar em contato conosco por e-mail ou telefone, e teremos prazer em auxiliá-lo.</p>
+
+        <section class="terms-card">
+            <h2>Privacidade &amp; Termos</h2>
+            <p>Ao utilizar este site, você concorda com os termos e condições aqui descritos, bem como com a forma como as informações são tratadas para apoiar o processo educativo, o atendimento, a organização das aulas e a gestão dos serviços disponibilizados.</p>
+            <p>Prezamos pela proteção dos seus dados, pelo uso responsável das informações e por uma comunicação objetiva, honesta e segura.</p>
         </section>
-        <section>
-            <h2>Pagamento só depois de Ver o Produto</h2>
-            <p>1- Para garantir a sua satisfação, oferecemos a opção de pagamento somente após a verificação do produto. <br/>
-                Isso significa que você pode receber o produto em sua casa e verificar se ele atende às suas expectativas antes de efetuar o pagamento. <br/>
-                Essa política visa proporcionar maior segurança e confiança em suas compras.</p>
-            <p>2- Ao optar por essa modalidade, você terá a oportunidade de inspecionar o produto, verificar sua qualidade e funcionalidade antes de concluir a transação. <br/>
-                Caso o produto não atenda às suas expectativas, você poderá recusar o pagamento do produto <br/>e devolver o item sem qualquer compromisso.</p>
-            <p>3- Essa abordagem é parte do nosso compromisso em oferecer uma experiência de compra transparente e satisfatória. <br/>
-                Queremos que você se sinta seguro e confiante ao adquirir nossos produtos, sabendo que sua satisfação é nossa prioridade.</p>
-                <p> 4- Para mais informações sobre essa política de pagamento, entre em contato com nossa equipe de atendimento ao cliente. <br/>
-                Estamos aqui para esclarecer suas dúvidas e garantir que você tenha uma experiência de compra excepcional.</p>
+
+        <section class="terms-card">
+            <h2>Como tratamos a sua informação</h2>
+            <p>Coletamos apenas os dados necessários para o atendimento, matrícula, agendamento, comunicação com a ACADEMIA e apoio ao processo de aprendizagem.</p>
+            <p>Essas informações podem incluir nome, e-mail, telefone, município e detalhes relacionados à sua inscrição ou pedido de apoio.</p>
+            <p>Não compartilhamos os seus dados com terceiros sem necessidade legítima, e tomamos medidas adequadas para proteger as suas informações contra uso indevido ou acesso não autorizado.</p>
         </section>
-        <section>
+
+        <section class="terms-card">
+            <h2>Processo de compra, matrícula e pagamento</h2>
+            <p>Para adquirir materiais, confirmar presença em turmas, avançar no processo de matrícula ou organizar pagamentos, o cliente deve seguir as instruções apresentadas no site e proceder de acordo com as informações disponibilizadas nas páginas correspondentes.</p>
+            <p>As referências, valores e políticas de pagamento serão detalhados no canal adequado para cada processo, garantindo clareza e segurança no acompanhamento.</p>
+        </section>
+
+        <section class="terms-card">
+            <h2>Pagamento e comprovante</h2>
+            <p>As inscrições, confirmações e processos de pagamento estão sujeitos ao envio do comprovante correspondente, conforme o procedimento indicado pela ACADEMIA.</p>
+            <p>As informações bancárias e referências para pagamento são fornecidas apenas para fins de confirmação e organização do processo.</p>
+        </section>
+
+        <section class="terms-card">
             <h2>Atenção</h2>
-            <p>1- É importante ressaltar que, ao optar por essa modalidade de pagamento, você deve estar ciente de que o produto deve ser devolvido em perfeitas condições, <br/>
-                com todas as etiquetas e embalagens originais intactas. <br/>
-                Caso contrário, poderá haver cobrança de taxas adicionais ou recusa na devolução.
-                <br/> Independentemente da situação toda deslocação é paga pelos clientes comprando ou não os nossos Produtos </p>
-            <p>2- Além disso, é fundamental que você esteja disponível para receber o produto no endereço informado, <br/>
-                pois a entrega será realizada por meio de transportadora parceira. <br/>
-                Caso não haja ninguém para receber o produto, a entrega poderá ser reagendada, <br/>
-                e eventuais custos adicionais serão de responsabilidade do cliente.</p>
-            <p>3- Reforçamos que essa política de pagamento só é válida para produtos adquiridos diretamente em nosso site. <br/>
-                Para compras realizadas em lojas físicas ou por meio de outros canais, <br/>
-                as condições de pagamento podem variar e devem ser consultadas diretamente com o vendedor.</p>
-            <p>4- Agradecemos pela sua compreensão e colaboração. <br/>
-                Estamos sempre à disposição para esclarecer suas dúvidas e garantir que você tenha uma experiência de compra excepcional.</p>
+            <p>É importante manter os dados informados atualizados e garantir que a sua comunicação com a ACADEMIA esteja correta, especialmente em relação a contatos, documentos, confirmação de presença e acompanhamento do processo educativo.</p>
+            <p>Se houver qualquer dúvida sobre o uso dos seus dados, solicitações, pagamentos, devoluções ou acesso aos serviços, entre em contato diretamente com a ACADEMIA.</p>
         </section>
-        <section>
-            <h2>Termos de Devolução</h2>
-            <p>1- Nosssos Termos de devolução é simples e transparente. <br/>
-                Se você não estiver satisfeito com o produto adquirido, poderá solicitar a devolução em até 7 dias corridos após o recebimento. <br/>
-                Para isso, basta entrar em contato conosco e informar o motivo da devolução.</p>
-            <p>2- O produto deve ser devolvido em perfeitas condições, com todas as etiquetas e embalagens originais intactas. <br/>
-                Caso contrário, poderá haver cobrança de taxas adicionais ou recusa na devolução.</p>
-            <p>3- Após recebermos o produto devolvido, faremos a análise e, se tudo estiver em conformidade, procederemos com o reembolso do valor pago. <br/>
-                O prazo para reembolso pode variar de acordo com a forma de pagamento utilizada na compra.</p>
-            <p>4- Lembramos que a devolução é válida apenas para produtos adquiridos diretamente em nosso site. <br/>
-                Para compras realizadas em lojas físicas ou por meio de outros canais, as condições de devolução podem variar e devem ser consultadas diretamente com o vendedor.</p>
-            <p>5- Agradecemos pela sua compreensão e colaboração. <br/>
-                Estamos sempre à disposição para esclarecer suas dúvidas e garantir que você tenha uma experiência de compra excepcional.</p>
-        </section>
-        <section>
+
+        <section class="terms-card">
             <h2>Contato</h2>
-            <p>Se você deseja saber mais sobre nós ou nossos serviços, não hesite em entrar em contato! <br/>
-                Estamos sempre prontos para ajudar e responder a todas as suas perguntas.</p>
-            <p>Email: VendasRhSms@outlook.com
-            <br/>Telefone: 945530028 
-            <br/>Endereço: Angola-Luanda, Ragel Rua Comadante catiga, casa 123,Precol</p>
+            <p>Email: VendasRhSms@outlook.com</p>
+            <p>Telefone: +244 951 474872</p>
+            <p>Endereço: Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025. Todos os direitos reservados.</p>
-        <a href="index.html">Início</a>
-    </footer>
 </body>
 </html>
