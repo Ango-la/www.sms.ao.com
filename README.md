@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="./">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="S.M.S - ACADEMIA de Linguas & Habilidades">
-    <meta name="description" content="S.M.S - ACADEMIA de Línguas & Habilidades em Luanda, com cursos, manuais, matrículas e pagamentos online para uma experiência profissional e prática.">
-    <meta name="keywords" content="ACADEMIA de Línguas, Habilidades, Cursos em Luanda, Inglês, Francês, SMS, Educação, Matrículas Online, Manuais">
+    <meta name="author" content="S.M.S - Academia de Linguas & Habilidades">
+    <meta name="description" content="S.M.S - Academia de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
+    <meta name="keywords" content="Academia de Linguas, Idiomas, Habilidades, Cursos, Aprendizado, Inglês, Francês, Alemão, Espanhol">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="./">
     <meta property="og:url" content="./">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Saraswati MAA Mind School - Aprenda com Profissionais Experientes">
-    <meta property="og:description" content="S.M.S - ACADEMIA de Línguas & Habilidades em Luanda, com formação de excelência, matrículas online e acesso a manuais e mensalidades sem sair de casa.">
+    <meta property="og:description" content="S.M.S - Academia de Linguas & Habilidades - Aprenda idiomas e desenvolva novas competências. Agende suas aulas hoje!">
     <meta property="og:image" content="Image/favicon.jpg">
     <!-- Título da página, utilizado em navegadores, pesquisas e resultados de mecanismos de busca -->
     <title>Saraswati MAA Mind School - Aprenda com Profissionais Experientes</title>
@@ -21,7 +21,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Image/favicon.jpg">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="Script.js" defer></script>
+    <script src="access-control.js?v=20260810-1"></script>
+    <script src="Script.js?v=20260809-2"></script>
+    <script src="purchase-flow-v2.js?v=20260809-2"></script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script>
         function hideGoogleTranslateUI() {
             const container = document.getElementById('google_translate_element');
@@ -76,54 +79,23 @@
                 return;
             }
 
-            // Move picker to body to avoid being clipped by header containers
-            if (picker.parentElement !== document.body) {
-                // remember original parent for restore
-                picker._origParent = picker.parentElement;
-                document.body.appendChild(picker);
-            }
-
-            // position picker fixed just below header
-            const header = document.querySelector('header');
-            const headerBottom = header ? Math.ceil(header.getBoundingClientRect().bottom) : 56;
-            picker.style.position = 'fixed';
-            picker.style.top = (headerBottom + 8) + 'px';
+            picker.style.top = 'calc(100% + 10px)';
             picker.style.left = '50%';
             picker.style.transform = 'translateX(-50%)';
-            picker.style.zIndex = '1400';
-            picker.style.display = 'flex';
+            picker.style.zIndex = '120';
             container.classList.add('open');
         }
 
         function closeLanguagePicker() {
             const container = document.querySelector('.simple-google-translate');
-            const picker = document.querySelector('.lang-picker');
-            if (!container || !picker) return;
-
-            // restore picker to original parent if moved
-            if (picker._origParent) {
-                picker._origParent.appendChild(picker);
-                picker._origParent = null;
-            }
-
-            // clear inline positioning styles
-            picker.style.position = '';
-            picker.style.top = '';
-            picker.style.left = '';
-            picker.style.transform = '';
-            picker.style.zIndex = '';
-            picker.style.display = '';
-            container.classList.remove('open');
+            if (container) container.classList.remove('open');
         }
 
         document.addEventListener('click', function (event) {
             const container = document.querySelector('.simple-google-translate');
-            const picker = document.querySelector('.lang-picker');
             if (!container) return;
-            // if click is outside both container and the moved picker, close it
-            const clickedOutside = !container.contains(event.target) && !(picker && picker.contains(event.target));
-            if (clickedOutside) {
-                closeLanguagePicker();
+            if (!container.contains(event.target)) {
+                container.classList.remove('open');
             }
         });
 
@@ -139,13 +111,14 @@
 </head>
 <body>
     <div id="google_translate_element" class="google-translate-host" aria-hidden="true"></div>
+    <div id="infoBackdrop" class="site-overlay" aria-hidden="true" onclick="closeOpenPanel()"></div>
     <div class="ticker-overlay" aria-label="Barra de navegação superior">
         <div class="ticker-wrapper">
             <div class="ticker-actions">
                 <a href="#cursos" class="ticker-link" onclick="event.preventDefault(); openCourseCatalog();">Cursos</a>
-                <a href="#sms-gallery" class="ticker-link" onclick="event.preventDefault(); toggleSmsGallery();">Galeria</a>
+                <a href="#sms-gallery" class="ticker-link" onclick="event.preventDefault(); openSmsGallery();">Galeria</a>
                 <a href="#contato" class="ticker-link" onclick="event.preventDefault(); scrollToContacts();">Contato</a>
-                <a href="Privacidade & termos.html" class="ticker-link">Termos</a>
+                <a href="Privacidade & termos.html" class="ticker-link" onclick="event.preventDefault(); window.open('Privacidade & termos.html', '_blank');">Termos</a>
                 <div class="simple-google-translate" aria-label="Google Translate">
                     <button type="button" class="lang-globe-btn" onclick="toggleLanguagePicker(event)" aria-label="Traduzir para outro idioma">🌐</button>
                     <div class="lang-picker" role="menu" aria-label="Escolha o idioma">
@@ -155,12 +128,8 @@
                     </div>
                 </div>
                 <button id="infoToggleAllBtn" class="buy-button info-toggle-button" type="button" onclick="toggleAllInfoSections()">Ver informações</button>
-                <div class="buy-button-container">
-                    <button id="buyMenuToggleBtn" type="button" class="buy-button" onclick="toggleBuyMenu()">Manuais</button>
-                </div>
-                <div class="buy-button-container">
-                    <button id="faqToggleBtn" type="button" class="buy-button" onclick="toggleFaqPanel()">FAQ</button>
-                </div>
+                <button id="buyMenuToggleBtn" type="button" class="ticker-link" onclick="toggleBuyMenu()">Manuais</button>
+                  <a href="FAQ.html" class="ticker-link">FAQ</a>
             </div>
         </div>
     </div>
@@ -190,152 +159,132 @@
                     });
                 })();
             </script>
-            <a href="#sms-gallery" class="logo" onclick="event.preventDefault(); toggleSmsGallery();"><img src="Image/favicon2.jpg" alt="S.M.S - ACADEMIA de Linguas & Habilidades" class="logo-official"></a>
-            <h1 class="store-name">S.M.S - ACADEMIA de Linguas & Habilidades</h1>
+            <a href="#sms-gallery" class="logo" onclick="event.preventDefault(); openSmsGallery();"><img src="Image/favicon2.jpg" alt="S.M.S - Academia de Linguas & Habilidades" class="logo-official"></a>
+            <h1 class="store-name">S.M.S - Academia de Linguas & Habilidades</h1>
             <div id="buy-menu" class="buy-menu" aria-hidden="true">
                     <div class="buy-menu-header">
-                        <h2>Manuais</h2>
+                        <h2>Manuais por Categoria</h2>
                         <button type="button" class="buy-menu-close site-close-button" onclick="hideBuyMenu()" aria-label="Fechar menu">×</button>
                     </div>
                     <div class="buy-menu-content">
-                        <div class="manual-program-grid">
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Programa Básico</h3>
-                                    <span>3 manuais disponíveis</span>
-                                </div>
-                                <ul class="manual-program-list">
-                                    <li>
-                                        <img src="DashBoard/StandardEnglish1.png" alt="Standard English Estágio 1">
-                                        <h4>Standard English – Estágio 1</h4>
-                                        <p>Base sólida para quem está a iniciar a aprendizagem com foco em vocabulário e comunicação básica.</p>
-                                        <p id="manualPrice1">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 1', 1, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="DashBoard/StandardEnglish2.png" alt="Standard English Estágio 2">
-                                        <h4>Standard English – Estágio 2</h4>
-                                        <p>Reforço prático para a construção de frases, leitura simples e confiança na fala.</p>
-                                        <p id="manualPrice2">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 2', 2, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="DashBoard/StandardEnglish3.png" alt="Standard English Estágio 3">
-                                        <h4>Standard English – Estágio 3</h4>
-                                        <p>Material ideal para consolidar o básico com exercícios progressivos e maior autonomia.</p>
-                                        <p id="manualPrice3">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Standard English – Estágio 3', 3, '5.000 Kz')">Comprar</button>
-                                    </li>
+                        <!-- STANDARD ENGLISH -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/standard cover.png" alt="Standard English" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Standard English</h3>
+                                <p class="category-description">Programa completo com os fundamentos essenciais do inglês. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Standard Vocabulary</li>
+                                    <li>Standard Grammar</li>
+                                    <li>Standard Dialogue</li>
+                                    <li>Standard Practicing</li>
                                 </ul>
-                            </section>
-
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Programa Geral</h3>
-                                    <span>2 manuais disponíveis</span>
+                                <p class="category-price">💰Preço:<strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Standard English - Pacote Completo', '1', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Standard', 'Study')">Estudar</button>
                                 </div>
-                                <ul class="manual-program-list">
-                                    <li>
-                                        <img src="DashBoard/Foundationenglish.jpg" alt="Foundation English">
-                                        <h4>Foundation English</h4>
-                                        <p>Material complementar para aprofundar a base gramatical e fortalecer os primeiros passos.</p>
-                                        <p id="manualPrice4">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Foundation English', 4, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="DashBoard/Intermediate english.jpg" alt="Intermediate English">
-                                        <h4>Intermediate English</h4>
-                                        <p>Conteúdo pensado para quem já domina o básico e quer avançar com mais fluidez.</p>
-                                        <p id="manualPrice5">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Intermediate English', 5, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="DashBoard/StandardEnglish3.png" alt="Aceleração da Fluência / Advanced Stage">
-                                        <h4>Aceleração da Fluência / Advanced Stage</h4>
-                                        <p>Manual voltado para quem quer ganhar autonomia, precisão e confiança numa fase mais avançada.</p>
-                                        <p id="manualPrice12">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Aceleração da Fluência / Advanced Stage', 12, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Programa Profissional</h3>
-                                    <span>Sem manuais disponíveis</span>
-                                </div>
-                                <p class="manual-empty-state">Neste programa ainda não há manuais disponíveis para venda, mas a ACADEMIA continua a apoiar o desenvolvimento profissional com conteúdos de alta qualidade.</p>
-                            </section>
-
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Programa Kids</h3>
-                                    <span>2 manuais disponíveis</span>
-                                </div>
-                                <ul class="manual-program-list">
-                                    <li>
-                                        <img src="DashBoard/Kindergarten presencial.png" alt="Kids English Starter">
-                                        <h4>Kids English Starter</h4>
-                                        <p>Material lúdico para introduzir o inglês desde cedo com atividades e reforço visual.</p>
-                                        <p id="manualPrice6">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Kids English Starter', 6, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="DashBoard/Kindergarten presencial.png" alt="Kids English Practice">
-                                        <h4>Kids English Practice</h4>
-                                        <p>Exercícios simples e divertidos para estimular a leitura, escrita e compreensão oral.</p>
-                                        <p id="manualPrice7">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Kids English Practice', 7, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Programas Flexíveis</h3>
-                                    <span>1 manual disponível</span>
-                                </div>
-                                <ul class="manual-program-list">
-                                    <li>
-                                        <img src="Image/Aulas ao domicilio2.jpg" alt="English for Everyday Life">
-                                        <h4>English for Everyday Life</h4>
-                                        <p>Recurso ideal para aprender inglês prático para rotina, viagens e comunicação diária.</p>
-                                        <p id="manualPrice8">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('English for Everyday Life', 8, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="manual-program-section">
-                                <div class="manual-program-header">
-                                    <h3>Livros SMS</h3>
-                                    <span>3 livros de apoio</span>
-                                </div>
-                                <ul class="manual-program-list">
-                                    <li>
-                                        <img src="ManuaisFT/Listed Lessons.png" alt="Guia S.M.S">
-                                        <h4>Guia S.M.S</h4>
-                                        <p>Guia completo com as principais informações para acompanhar a sua aula com mais clareza.</p>
-                                        <p id="manualPrice9">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Guia S.M.S', 9, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="ManuaisFT/Dialogue and meetings.jpg" alt="Dialogue & Meetings">
-                                        <h4>Dialogue & Meetings</h4>
-                                        <p>Material pensado para fortalecer a comunicação em reuniões, conversas e contextos profissionais.</p>
-                                        <p id="manualPrice10">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Dialogue & Meetings', 10, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                    <li>
-                                        <img src="ManuaisFT/Grammar book.jpg" alt="Grammar Book">
-                                        <h4>Grammar Book</h4>
-                                        <p>Livro de apoio com explicações claras e exercícios práticos para melhorar a gramática inglesa.</p>
-                                        <p id="manualPrice11">Preço: 5.000 Kz</p>
-                                        <button type="button" onclick="openPurchaseForm('Grammar Book', 11, '5.000 Kz')">Comprar</button>
-                                    </li>
-                                </ul>
-                            </section>
+                            </div>
                         </div>
+                        <!-- FOUNDATION ENGLISH -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/Foundation cover.png" alt="Foundation English" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Foundation English</h3>
+                                <p class="category-description">Nível intermediário com conceitos avançados de linguagem. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Foundation Vocabulary</li>
+                                    <li>Foundation Grammar</li>
+                                    <li>Foundation Dialogue</li>
+                                    <li>Foundation Practicing</li>
+                                </ul>
+                                <p class="category-price">💰 Preço: <strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Foundation English - Pacote Completo', '2', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Foundation', 'Study')">Estudar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INTERMEDIATE ENGLISH -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/Verbs Regular and Irregular.jpg" alt="Intermediate English" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Intermediate English</h3>
+                                <p class="category-description">Aprofundamento da linguagem com foco em fluência e expressão. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Intermediate Vocabulary</li>
+                                    <li>Intermediate Grammar</li>
+                                    <li>Intermediate Dialogue</li>
+                                    <li>Intermediate Practicing</li>
+                                </ul>
+                                <p class="category-price">💰 Preço: <strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Intermediate English - Pacote Completo', '3', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Intermediate', 'Study')">Estudar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FLUENCY ACCELERATION -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/Fluency.jpg" alt="Fluency Acceleration" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Aceleração da Fluência</h3>
+                                <p class="category-description">Método revolucionário para falar inglês com naturalidade e confiança. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Fluency Acceleration Vocabulary</li>
+                                    <li>Fluency Acceleration Grammar</li>
+                                    <li>Fluency Acceleration Dialogue</li>
+                                    <li>Fluency Acceleration Practicing</li>
+                                </ul>
+                                <p class="category-price">💰 Preço: <strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Aceleração da Fluência - Pacote Completo', '4', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Fluency Acceleration', 'Study')">Estudar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROGRAMA KIDS (JOY) -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/Listed Lessons.png" alt="Programa Kids Joy" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Programa Kids (Joy)</h3>
+                                <p class="category-description">Aprendizado lúdico e divertido para crianças. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Joy Vocabulary</li>
+                                    <li>Joy Grammar</li>
+                                    <li>Joy Dialogue</li>
+                                    <li>Joy Practicing</li>
+                                </ul>
+                                <p class="category-price">💰 Preço: <strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Programa Kids Joy - Pacote Completo', '5', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Joy', 'Study')">Estudar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- PACOTE AUTODIDATA -->
+                        <div class="manual-category-unified">
+                            <img src="ManuaisFT/Listed Lessons.png" alt="Pacote Autodidata" class="category-image">
+                            <div class="category-content">
+                                <h3 class="manual-category-title">Pacote Autodidata</h3>
+                                <p class="category-description">Aprendizado autônomo e autodirigido para alunos independentes. Este pacote inclui:</p>
+                                <ul class="manual-list">
+                                    <li>Autodidata Vocabulary</li>
+                                    <li>Autodidata Grammar</li>
+                                    <li>Autodidata Dialogue</li>
+                                    <li>Autodidata Practicing</li>
+                                </ul>
+                                <p class="category-price">💰 Preço: <strong>5.000 Kz</strong></p>
+                                <div class="category-buttons">
+                                    <button type="button" onclick="openPurchaseFormWithoutPassword('Pacote Autodidata - Completo', '6', '5.000 Kz')">Comprar</button>
+                                    <button type="button" class="get-now-btn" onclick="openPasswordModal('Autodidata', 'Study')">Estudar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                         <div id="purchase-form" class="purchase-form hidden">
                             <div class="purchase-form-header">
@@ -399,32 +348,32 @@
             <div class="banner-slider" id="bannerSlider">
                 <div class="banner-slide" style="background-image: url('DashBoard/BannerPro.png');">
                     <div>
-                        <h2>Fluência real com ensino de excelência</h2>
-                        <p>Uma jornada de aprendizagem prática, elegante e orientada para resultados duradouros.</p>
+                        <h2>Conquiste fluência com aulas práticas</h2>
+                        <p>Metodologia SMS: conversação, vocabulário e gramática em um único percurso.</p>
                     </div>
                 </div>
                 <div class="banner-slide" style="background-image: url('DashBoard/BannerPro2.png');">
                     <div>
-                        <h2>Acompanhamento premium e atenção individual</h2>
-                        <p>Professores experientes guiam cada aluno com clareza, rigor e motivação.</p>
+                        <h2>Turmas reduzidas e atenção individual</h2>
+                        <p>Professores experientes orientando cada passo do aluno para resultados rápidos.</p>
                     </div>
                 </div>
                 <div class="banner-slide" style="background-image: url('DashBoard/BannerPro3.png');">
                     <div>
-                        <h2>Formação de qualidade em Luanda</h2>
-                        <p>Aulas presenciais e online, pensadas para a rotina moderna e para o crescimento profissional.</p>
+                        <h2>Aulas Online e Presenciais em Luanda</h2>
+                        <p>Flexibilidade para estudar de qualquer lugar com horários adaptados à sua rotina.</p>
                     </div>
                 </div>
                 <div class="banner-slide" style="background-image: url('DashBoard/BannerPro4.png');">
                     <div>
-                        <h2>Recursos estruturados para evoluir com confiança</h2>
-                        <p>Manuais, suporte e ferramentas digitais para um estudo mais completo e seguro.</p>
+                        <h2>Recursos exclusivos para alunos</h2>
+                        <p>Manuais, vídeos e suporte via WhatsApp para manter o estudo ativo todos os dias.</p>
                     </div>
                 </div>
                 <div class="banner-slide" style="background-image: url('DashBoard/BannerPro5.png');">
                     <div>
-                        <h2>Inscrições, manuais e mensalidades online</h2>
-                        <p>Os nossos clientes podem avançar no processo sem sair de casa, com praticidade e confiança.</p>
+                        <h2>Inscrições abertas agora</h2>
+                        <p>Garanta sua vaga e avance no inglês com um plano pedagógico completo.</p>
                     </div>
                 </div>
             </div>
@@ -440,14 +389,14 @@
         <section class="info-highlight-card">
             <div class="info-highlight-copy">
                 <span class="eyebrow eyebrow-soft">Por que escolher a SMS</span>
-                <h2>Uma ACADEMIA de línguas e habilidades em Luanda, com excelência, compromisso e presença real.</h2>
-                <p>Na S.M.S, cada aluno é acompanhado por uma metodologia clara, recursos de qualidade e um ambiente profissional que transforma aprendizagem em progresso concreto.</p>
+                <h2>Aprender inglês com método claro, apoio real e resultados visíveis.</h2>
+                <p>Na S.M.S, cada aluno recebe orientação prática, recursos completos e uma experiência de estudo organizada para crescer com confiança.</p>
             </div>
             <div class="info-highlight-pills">
                 <span>Metodologia prática</span>
                 <span>Professores experientes</span>
                 <span>Aulas online e presenciais</span>
-                <span>Atendimento inteligente</span>
+                <span>Suporte contínuo</span>
             </div>
         </section>
 
@@ -463,113 +412,207 @@
                 <section class="info-section opened">
                     <div class="info-section-body">
                         <div class="info-summary-grid">
+                            <article class="info-card info-location-card">
+                                <div class="info-card-label">📍 Localização & contato</div>
+                                <p>Academia em Luanda, com atendimento personalizado e aulas online ou presenciais.</p>
+                                <div class="location-details">
+                                    <div><strong>Endereço:</strong> Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</div>
+                                    <div><strong>Horário:</strong> Segunda a Sexta, 07:30 - 20:00</div>
+                                    <div><strong>Telefone:</strong> +244 951 474872</div>
+                                    <div><strong>Email:</strong> VendasRhSms@outlook.com</div>
+                                </div>
+                                <div class="map-shell">
+                                    <iframe src="https://maps.google.com/maps?q=Av.+Deolinda+Rodrigues+475+Luanda+Angola&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa da S.M.S"></iframe>
+                                </div>
+                            </article>
                             <article class="info-card">
-                                <h3>📍 Endereço e horário</h3>
-                                <p>Uma ACADEMIA de referência em Luanda, com presença forte, atendimento próximo e um modelo de ensino preparado para a vida profissional.</p>
+                                <h3>🏛️ Sobre nós</h3>
+                                <p>A S.M.S é uma academia de idiomas e habilidades que combina metodologia moderna, apoio personalizado e foco em resultados reais.</p>
                                 <ul>
-                                    <li><strong>Endereço:</strong> Av. Deolinda Rodrigues, nº 475, Rangel, Luanda, Angola</li>
-                                    <li><strong>Horário:</strong> Segunda a Sexta, 07:30 - 20:00</li>
+                                    <li>Academia de especialização em formação de adultos e jovens.</li>
+                                    <li>Equipe de professores qualificados, motivados e bilíngues.</li>
+                                    <li>Aulas adaptadas ao ritmo e objetivos de cada aluno.</li>
+                                    <li>Ambiente acolhedor e suporte contínuo durante o aprendizado.</li>
                                 </ul>
                             </article>
                             <article class="info-card">
-                                <h3>📞 Telefone e email</h3>
-                                <p>Entre em contato para conhecer os nossos programas, esclarecer dúvidas e iniciar o seu processo de matrícula com confiança.</p>
+                                <h3>💳 Pagamentos e comprovante</h3>
+                                <p>As inscrições são confirmadas após o envio do comprovativo de pagamento.</p>
                                 <ul>
-                                    <li><strong>Telefone:</strong> +244 951 474872</li>
-                                    <li><strong>Email:</strong> VendasRhSms@outlook.com</li>
+                                    <li><strong>Banco:</strong> Milénio Atlântico</li>
+                                    <li><strong>Titular:</strong> Estevão André Lizi</li>
+                                    <li><strong>Conta:</strong> 226182555.10001</li>
+                                    <li><strong>IBAN:</strong> 0055.0000.2618.2555.1010.7</li>
+                                    <li><strong>Referência:</strong> SMS-ACADEMIA DE LÍNGUAS-2026</li>
                                 </ul>
                             </article>
-                            <article class="info-card info-map-card">
-                                <h3>🗺️ Localização no Google Maps</h3>
-                                <iframe src="https://www.google.com/maps?q=Av.%20Deolinda%20Rodrigues%20n%C2%BA%20475%2C%20Rangel%2C%20Luanda%2C%20Angola&output=embed" loading="lazy" title="Mapa da localização da S.M.S" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </article>
-                            <article class="info-card">
-                                <h3>🤝 Atendimento e apoio</h3>
-                                <p>Inscrições, compra de manuais e pagamento de mensalidades podem ser organizados de forma prática, segura e totalmente online.</p>
+                            <article class="info-card" id="termos-privacidade">
+                                <h3>🔒 Termos e privacidade</h3>
+                                <p>Seu contato e dados são tratados com responsabilidade e usados apenas para apoiar o processo educativo.</p>
                                 <ul>
-                                    <li>Suporte personalizado para inscrição</li>
-                                    <li>Orientação sobre cursos e objetivos</li>
-                                    <li>Atendimento ágil com foco em resultado</li>
+                                    <li>Política clara de uso e proteção de dados</li>
+                                    <li>Informações objetivas sobre aulas e políticas</li>
+                                    <li>Atendimento transparente para alunos e responsáveis</li>
                                 </ul>
                             </article>
                         </div>
-                    </div>
-                </section>
-                <section class="info-section opened">
-                    <div class="info-section-body">
-                        <div class="section-divider-label">Parceiros</div>
-                        <div class="partner-grid">
-                            <article class="partner-card">
-                                <a class="partner-link" href="https://www.maptss.gov.ao/" target="_blank" rel="noopener" aria-label="Visitar Parceiro estratégico">
-                                    <img src="Image/parceiro5.jpg " alt="Parceiro 1 da SMS">
-                                    <span>Parceiro estratégico</span>
-                                </a>
+                        <div class="info-feature-grid">
+                            <article class="info-card partner-panel">
+                                <h3>🤝 Parceiros estratégicos</h3>
+                                <p>Parceiros que ampliam oportunidades e apoio para os nossos alunos.</p>
+                                <div class="partner-grid">
+                                    <div class="partner-card">
+                                        <a class="partner-link" href="https://horizon-groupindia.com/" target="_blank" rel="noopener noreferrer">
+                                            <img src="Image/parceiro4.jpg" alt="Parceiro Educacional" class="partner-image">
+                                        </a>
+                                        <span>HORIZON-GROUP PVT</span>
+                                        <p>Empresa especializada em soluções de Desminagem emuito mais, globalmente.</p>
+                                    </div>
+                                    <div class="partner-card">
+                                        <a class="partner-link" href="https://www.inefop.gov.ao/" target="_blank" rel="noopener noreferrer">
+                                            <img src="Image/parceiro5.jpg" alt="Parceiro Digital" class="partner-image">
+                                        </a>
+                                        <span>INEFOP-LUANDA</span>
+                                        <p>Rede de apoio e recursos para instituições educacionais em Luanda.</p>
+                                    </div>
+                                    <div class="partner-card">
+                                        <a class="partner-link" href="https://www.governo.gov.ao" target="_blank" rel="noopener noreferrer">
+                                            <img src="Image/parceiro2.jpg" alt="Parceiro Comunitário" class="partner-image">
+                                        </a>
+                                        <span>GOVERNO ANGOLA</span>
+                                        <p>Rede de eventos, workshops e intercâmbios para alunos SMS.</p>
+                                    </div>
+                                </div>
                             </article>
-                            <article class="partner-card">
-                                <a class="partner-link" href="https://governo.gov.ao/" target="_blank" rel="noopener" aria-label="Visitar Rede de apoio">
-                                    <img src="Image/parceiro2.jpg" alt="Parceiro 2 da SMS">
-                                    <span>Rede de apoio</span>
-                                </a>
-                            </article>
-                            <article class="partner-card">
-                                <a class="partner-link" href="https://example.com/parceiro3" target="_blank" rel="noopener" aria-label="Visitar Parceria institucional">
-                                    <img src="Image/Parceiro3.jpg" alt="Parceiro 3 da SMS">
-                                    <span>Parceria institucional</span>
-                                </a>
-                            </article>
-                            <article class="partner-card">
-                                <a class="partner-link" href="https://horizon-groupindia.com" target="_blank" rel="noopener" aria-label="Visitar Parceiro Oficial INDIA">
-                                    <img src="Image/parceiro4.jpg" alt="Parceiro 4 da SMS">
-                                    <span>Parceiro Oficial INDIA</span>
-                                </a>
+                            <article class="info-card testimonial-panel">
+                                <h3>🌟 Depoimentos e impacto</h3>
+                                <p>Alunos reais, experiências reais e resultados visíveis.</p>
+                                <div class="testimonial-grid">
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-avatar">
+                                            <img src="Image/favicon2.jpg" alt="Avatar da aluna Rita">
+                                        </div>
+                                        <p>“A SMS me deu confiança para falar inglês em entrevistas e viagens. A equipe acompanha cada etapa.”</p>
+                                        <div class="rating-stars">★★★★★</div>
+                                        <span>Rita M., estudante</span>
+                                    </div>
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-avatar">
+                                            <img src="Image/favicon2.jpg" alt="Avatar do aluno João">
+                                        </div>
+                                        <p>“Os professores são excelentes e o método é prático. Senti progresso real desde as primeiras semanas.”</p>
+                                        <div class="rating-stars">★★★★★</div>
+                                        <span>João P., profissional</span>
+                                    </div>
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-avatar">
+                                            <img src="Image/favicon2.jpg" alt="Avatar da aluna Ana">
+                                        </div>
+                                        <p>“O ambiente é acolhedor e o suporte personalizado faz toda a diferença no aprendizado.”</p>
+                                        <div class="rating-stars">★★★★★</div>
+                                        <span>Ana L., aluna</span>
+                                    </div>
+                                </div>
                             </article>
                         </div>
-                    </div>
-                </section>
-                <section class="info-section opened">
-                    <div class="info-section-body">
-                        <div class="section-divider-label">Depoimentos</div>
-                        <div class="testimonial-grid">
-                            <article class="testimonial-card">
-                                <div class="rating-stars">★★★★★</div>
-                                <p>“A metodologia da ACADEMIA é muito clara, prática e ajuda mesmo a evoluir com confiança.”</p>
-                                <span>— Ana M.</span>
-                            </article>
-                            <article class="testimonial-card">
-                                <div class="rating-stars">★★★★★</div>
-                                <p>“O acompanhamento foi muito humano, o que fez toda a diferença nos meus resultados.”</p>
-                                <span>— José K.</span>
-                            </article>
-                            <article class="testimonial-card">
-                                <div class="rating-stars">★★★★★</div>
-                                <p>“Superou as expectativas. A organização das aulas e o suporte são excelentes.”</p>
-                                <span>— Carla V.</span>
-                            </article>
-                            <article class="testimonial-card">
-                                <div class="rating-stars">★★★★★</div>
-                                <p>“Senti crescimento real em fala, escuta e confiança para comunicar no dia a dia.”</p>
-                                <span>— Daniel S.</span>
-                            </article>
-                        </div>
-                    </div>
-                </section>
                     </div>
                 </section>
             </div>
         </div>
-
-        <section class="terms-privacy-panel" id="termos-privacidade" hidden>
-            <div class="terms-privacy-header">
-                <div>
-                    <span class="eyebrow eyebrow-soft">Termos e privacidade</span>
-                    <h2>Política e condições do site</h2>
+        <section class="gallery sms-gallery-section" id="sms-gallery" hidden>
+            <div class="sms-gallery-shell">
+                <button class="site-close-button gallery-close" aria-label="Fechar galeria" onclick="closeSmsGallery()">✕</button>
+                <div class="sms-gallery-header">
+                    <span class="eyebrow eyebrow-soft">Galeria institucional</span>
+                    <div class="sms-gallery-tabs" role="tablist" aria-label="Opções da galeria">
+                        <button type="button" class="sms-tab active" data-target="photosDemo" role="tab" aria-selected="true">Fotos</button>
+                        <button type="button" class="sms-tab" data-target="videoDemo" role="tab" aria-selected="false">Vídeos</button>
+                    </div>
                 </div>
-                <button type="button" class="info-system-close-button site-close-button" onclick="closeTermsPanel()" aria-label="Ocultar termos e privacidade">×</button>
-            </div>
-            <div class="terms-privacy-content">
-                <p>O uso deste site implica respeito às políticas de privacidade, proteção de dados e condições de acesso aos serviços e materiais educativos disponibilizados.</p>
-                <p>As informações enviadas por clientes e alunos são tratadas com responsabilidade e apenas para apoiar o processo de inscrição, atendimento, compra de manuais e pagamento de mensalidades.</p>
-                <p>Para consultar a versão completa, acesse a página <a href="Privacidade & termos.html" target="_blank" rel="noopener">Privacidade & Termos</a>.</p>
+                <div class="sms-gallery-viewport" aria-label="Conteúdo da galeria SMS">
+                    <!-- Fotos (demo intercalado em uma única linha) -->
+                    <div id="photosDemo" class="sms-gallery-panel">
+                        <div class="sms-gallery-track">
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/BREVEMEMTE  CURSO DE GESTAO DE PROJETOS.jpg " alt="Aulas da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Brevemente</strong>
+                                <span>O curso de gestão de projetos estará disponível em breve.</span>
+                            </div>
+                             <div class="sms-gallery-card">
+                              <img src="GALERIA DE FOTO/BREVEMEMTE CURSO DE EXCEL AVANÇADO.jpg " alt="Aulas da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Brevemente</strong>
+                                <span>O curso de Excel Avançado estará disponível em breve, só aqui na Academia SMS.</span>
+                            </div>
+                             <div class="sms-gallery-card">
+                              <img src="GALERIA DE FOTO/BREVEMEMTE CURSO DE INFORMATICA.jpg " alt="Aulas da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Brevemente</strong>
+                                <span>O curso de Informática estará disponível em breve, na Academia SMS.</span>
+                            </div>
+                             <div class="sms-gallery-card">
+                              <img src="GALERIA DE FOTO/BREVEMEMTE HIGIENE E SEGURANÇA NO TRABALHO.jpg " alt="Aulas da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Brevemente</strong>
+                                <span>A Academia SMS disponibilizará o curso de Higiene e Segurança no Trabalho em breve.</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                              <img src="GALERIA DE FOTO/BREVEMENTE CURSO DE LOGISTICA INTERNACIONAL.jpg " alt="Aulas da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Brevemente</strong>
+                                <span>A Academia SMS disponibilizará o curso de Logística Internacional muito em breve, fique ligado.</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/A NOSSA EQUIPA (4).jpg" alt="Estudantes da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Sobre nós</strong>
+                                <span>Venha nos visitar</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/NOSSO ESPACO (3).png " alt="Atividades da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">A nossa equipa</strong>
+                                <span>Professores dedicados e treinados</span>
+                            </div>
+                             <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/A NOSSA EQUIPA (2).jpg" alt="Atividades da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">A nossa equipa</strong>
+                                <span>Colaboradores dedicados e profissionais</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/SALA DE AULA (1).jpg" alt="Sala de aula da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">O nosso espaço</strong>
+                                <span>Salas confortáveis e modernas</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/A NOSSA EQUIPA (5).jpg " alt="Sala de aula da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">Mr Steve</strong>
+                                <span>Professor de Inglês Prof. Steve Number 1 na SMS.</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/NOSSO ESPACO.jpg" alt="Sala de aula da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">O nosso espaço</strong>
+                                <span>Localizados na Terra Nova BFA do Volante</span>
+                            </div>
+                            <div class="sms-gallery-card">
+                                <img src="GALERIA DE FOTO/NOSSO ESPACO (1).jpg" alt="Sala de aula da S.M.S" class="sms-gallery-image">
+                                <strong class="sms-gallery-card-title">O nosso espaço</strong>
+                                <span>Logo após a pedonal do cemiterio da Santa Ana</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="videoDemo" class="sms-gallery-panel video-gallery-section" hidden style="display:none;">
+                        <div class="video-gallery-shell">
+                            <div class="video-carousel" aria-label="Carrossel de vídeos">
+                                <button class="video-prev" aria-label="Anterior">‹</button>
+                              
+                                <div class="video-slides">
+                                    <div class="video-slide"><video controls muted playsinline preload="metadata" src="GALERIA DE VIDEOS/1-SMS Academia de Formação.mp4"></video></div>
+                                    <div class="video-slide"><video controls muted playsinline preload="metadata" src="GALERIA DE VIDEOS/3-VID- Oque temos ara o mes de agosto.mp4"></video></div>
+                                    <div class="video-slide"><video controls muted playsinline preload="metadata" src="GALERIA DE VIDEOS/6-VID JOY DUNKIN 1.mp4"></video></div>
+                                    <div class="video-slide"><video controls muted playsinline preload="metadata" src="GALERIA DE VIDEOS/4-VID-Interview with tino.mp4"></video></div>
+                                    <div class="video-slide"><video controls muted playsinline preload="metadata" src="GALERIA DE VIDEOS/FINAL DOS VIDEOS.mp4"></video></div>
+                                </div>
+                                <button class="video-next" aria-label="Próximo">›</button>
+                            </div>
+                            <div class="video-dots" role="tablist" aria-label="Navegação de vídeos"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -577,55 +620,18 @@
             <section class="hero">
                 <div class="hero-inner">
                     <div class="hero-copy">
-                        <span class="eyebrow">ACADEMIA de Línguas e Habilidades com foco em resultados</span>
-                        <h1>Desenvolva competências, confiança e fluência com uma ACADEMIA de referência em Luanda.</h1>
-                        <p>A S.M.S oferece formação de excelência em línguas e habilidades, com métodos modernos, acompanhamento profissional e uma experiência simples, elegante e acessível para cada aluno.</p>
+                        <span class="eyebrow">Academia de Línguas com foco em resultados</span>
+                        <h1>Aprenda inglês com aulas práticas e apoio personalizado.</h1>
+                        <p>A S.M.S ajuda você a dominar inglês para trabalho, viagens e estudos com métodos adaptados ao seu ritmo e objetivos.</p>
                     </div>
                     <div class="hero-card">
                         <h2>Destaques SMS</h2>
                         <ul>
                             <li>Turmas reduzidas e acompanhamento individual</li>
-                            <li>Cursos para diferentes níveis e objetivos profissionais</li>
-                            <li>Inscrição, compra de manuais e pagamento de mensalidades online</li>
-                            <li>Atendimento em Luanda com aulas presenciais e online</li>
+                            <li>Cursos para nível básico, intermediário e profissional</li>
+                            <li>Material digital, propina e a inscrição podem ser pago apartir do site, suporte via WhatsApp</li>
+                            <li>Atendimento em Luanda aulas online e presencial</li>
                         </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section class="gallery sms-gallery-section" id="sms-gallery" hidden>
-                <div class="sms-gallery-shell">
-                    <div class="sms-gallery-header">
-                        <h2 class="section-title">Galeria SMS</h2>
-                        <p class="gallery-intro">Uma visão do ambiente, da metodologia e da identidade da S.M.S.</p>
-                    </div>
-                    <div class="sms-gallery-viewport">
-                        <div class="sms-gallery-track">
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 1.jpg" alt="Modelo 1 da galeria da SMS" class="sms-gallery-image">
-                                <span>Ambiente de aprendizagem</span>
-                            </div>
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 2.jpg" alt="Modelo 2 da galeria da SMS" class="sms-gallery-image">
-                                <span>Atividades com foco em prática</span>
-                            </div>
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 3.jpg" alt="Estudantes da S.M.S" class="sms-gallery-image">
-                                <span>Grupo de alunos em ação</span>
-                            </div>
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 4.jpg" alt="Modelo 4 da galeria da SMS" class="sms-gallery-image">
-                                <span>Proximidade e acompanhamento</span>
-                            </div>
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 5.jpg" alt="Modelo 5 da galeria da SMS" class="sms-gallery-image">
-                                <span>Aprendizagem com impacto real</span>
-                            </div>
-                            <div class="sms-gallery-card">
-                                <img src="Image/Modelo 6.jpg" alt="Modelo 6 da galeria da SMS" class="sms-gallery-image">
-                                <span>Experiência premium da ACADEMIA</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -643,7 +649,7 @@
                             <img src="DashBoard/ProgramaBasico1.png" alt="Programa Básico" class="course-program-image">
                             <div>
                                 <h3>Programa Básico</h3>
-                                <p>Um percurso estruturado para quem pretende construir bases sólidas em inglês e desenvolver confiança desde o início.</p>
+                                <p>Base sólida para quem quer começar do zero e evoluir de forma prática.</p>
                             </div>
                         </div>
                         <div class="products-grid">
@@ -691,7 +697,7 @@
                             <img src="DashBoard/ProgramaGeral.png" alt="Programa Geral" class="course-program-image">
                             <div>
                                 <h3>Programa Geral</h3>
-                                <p>Ideal para quem já possui conhecimentos básicos e deseja avançar com mais fluência, precisão e segurança.</p>
+                                <p>Para quem já tem base e quer ganhar fluência e confiança em comunicação.</p>
                             </div>
                         </div>
                         <div class="products-grid">
@@ -736,7 +742,7 @@
                             <img src="DashBoard/Programaprofissional.png" alt="Programa Profissional" class="course-program-image">
                             <div>
                                 <h3>Programa Profissional</h3>
-                                <p>Uma formação voltada para o mercado, com foco em comunicação profissional, performance e oportunidades globais.</p>
+                                <p>Preparação para contextos de trabalho, negócios e oportunidades internacionais.</p>
                             </div>
                         </div>
                         <div class="products-grid">
@@ -781,7 +787,7 @@
                             <img src="DashBoard/Kindergarten presencial.png" alt="Programa Kids" class="course-program-image">
                             <div>
                                 <h3>Programa Kids</h3>
-                                <p>Uma abordagem acolhedora e estimulante para crianças desenvolverem inglês com naturalidade e confiança.</p>
+                                <p>Ensino lúdico e progressivo para crianças aprenderem inglês com prazer.</p>
                             </div>
                         </div>
                         <div class="products-grid">
@@ -804,7 +810,7 @@
                             <img src="Image/Aulas ao domicilio2.jpg" alt="Programas Flexíveis" class="course-program-image">
                             <div>
                                 <h3>Programas Flexíveis</h3>
-                                <p>Modelos flexíveis para quem precisa de aprendizagem prática, personalizada e compatível com o dia a dia.</p>
+                                <p>Opções adaptadas à rotina, ao domicilio e à aprendizagem autónoma.</p>
                             </div>
                         </div>
                         <div class="products-grid">
@@ -852,7 +858,7 @@
                 <h2 class="migrated-inline-089">📱 Inscrever-se</h2>
                 <button type="button" onclick="closeEnrollmentForm()" aria-label="Fechar formulário" class="migrated-inline-090">×</button>
             </div>
-            <p class="migrated-inline-091">Finalize a sua inscrição, compra de manual ou processo de matrícula com rapidez, segurança e acompanhamento profissional.</p>
+            <p class="migrated-inline-091">Preencha todos os campos abaixo para inscrever-se em seu curso ou entre em contato conosco</p>
             
             <div class="form-group">
                 <label for="courseName">📚 Curso:</label>
@@ -890,12 +896,12 @@
                 <label for="scheduleTime">⏰ Horário Preferido:</label>
                 <select id="scheduleTime" required class="migrated-inline-093">
                     <option value="">Selecione um horário...</option>
-                    <option value="08:00-10:00">08:00 - 10:00</option>
-                    <option value="10:00-12:00">10:00 - 12:00</option>
-                    <option value="12:00-14:00">12:00 - 14:00</option>
-                    <option value="14:00-16:00">14:00 - 16:00</option>
-                    <option value="16:00-18:00">16:00 - 18:00</option>
-                    <option value="18:00-20:00">18:00 - 20:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="18:00">18:00</option>
                     <option value="online">Online</option>
                 </select>
             </div>
@@ -925,14 +931,16 @@
                 <label for="municipality">🏘️ Localização:</label>
                 <select id="municipality" required class="migrated-inline-093">
                     <option value="">Selecione um município...</option>
-                      <option value="Luanda">Online</option>
+                    <option value="Luanda">Online</option>
+                    <option value="Estrangeiro">Estrangeiro</option>
                     <option value="Luanda">Luanda</option>
-                    <option value="Bengo">Rangel</option>
-                    <option value="Benguela">Viana</option>
-                    <option value="Bié">Zango 0,1,2,3</option>
-                    <option value="Cabinda">Cazenga</option>
-                    <option value="Cuando Cubango">Sambizanga</option>
-                    <option value="Cuanza Norte">Ingombota</option>
+                    <option value="Rangel">Rangel</option>
+                    <option value="Bengo">Bengo</option>
+                    <option value="Benguela">Benguela</option>
+                    <option value="Bié">Bié</option>
+                    <option value="Cabinda">Cabinda</option>
+                    <option value="Cuando Cubango">Cuando Cubango</option>
+                    <option value="Cuanza Norte">Cuanza Norte</option>
                     <option value="Cuanza Sul">Cacuaco</option>
                     <option value="Cunene">Icolo & Bengo</option>
                     <option value="Palanca">Palanca</option>
@@ -945,6 +953,10 @@
                     <option value="Camama">Camama</option>
                     <option value="Nova Vida">Nova Vida</option>
                     <option value="Benfica">Benfica</option>
+                    <option value="Viana">Viana</option>
+                    <option value="Cacuaco">Cacuaco</option>
+                    <option value="Kilamba Kiaxi">Kilamba Kiaxi</option>
+                    <option value="Outros">Outros</option>
                 </select>
             </div>
 
@@ -965,7 +977,7 @@
     </section>
     
     <!-- MODAL DE PAGAMENTO DE PROPINAS -->
-    <div id="propina-modal" class="propina-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="propina-modal" class="propina-modal">
         <div class="propina-modal-content">
             <div class="propina-modal-header">
                 <div class="propina-modal-title-row">
@@ -974,7 +986,7 @@
                 </div>
                 <div class="iban-display">
                     <p><strong >IBAN para Pagamento:</strong></p>
-                    <p class="iban-code">AO6.0066.0000.0789.9088.1013.0</p>
+                    <p class="iban-code">0055.0000.2618.2555.1010.7</p>
                     <p class="migrated-inline-100">
                         <strong>⚠️ Instruções:</strong> Efetue o pagamento para o IBAN acima, preencha os dados abaixo e anexe o comprovante antes de clicar em "Eu paguei".
                     </p>
@@ -1130,20 +1142,20 @@
                 <div class="migrated-inline-068">
                     <div>
                         <label class="migrated-inline-069">Titulare da Conta:</label>
-                        <p class="migrated-inline-070">HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED</p>
+                        <p class="migrated-inline-070">Estevão André Lizi</p>
                     </div>
                     <div class="migrated-inline-113">
                         <div>
                             <label class="migrated-inline-069">Banco:</label>
-                            <p class="migrated-inline-070">Banco Yetu.</p>
+                            <p class="migrated-inline-070">Milénio Atlântico</p>
                             <label class="migrated-inline-114">Número da Conta:</label>
-                            <p class="migrated-inline-072">7899088.10001</p>
+                            <p class="migrated-inline-072">226182555.10001</p>
                         </div>
                     </div>
                     <div class="migrated-inline-113">
                         <div>
                             <label class="migrated-inline-069">IBAN:</label>
-                            <p class="migrated-inline-115"><span>AO6.</span>0066.0000.0789.9088.1013.0</p>
+                            <p class="migrated-inline-115"><span></span>0055.0000.2618.2555.1010.7</p>
                             <button type="button" onclick="copyIBAN()" class="migrated-inline-116">Copiar IBAN</button>
                             <label class="migrated-inline-114">Referência:</label>
                             <p class="migrated-inline-072">SMS-ACADEMIA DE LÍNGUAS-2026</p>
@@ -1173,6 +1185,97 @@
             </div>
         </div>
     </section>
+
+    <!-- MODAL DE COMPRA COM COMPROVATIVO (V2) -->
+    <div id="purchaseFormWithPasswordModal" class="purchase-password-modal" style="display: none;">
+        <div class="purchase-password-content">
+            <button class="purchase-password-close" onclick="closePurchaseFormWithPassword()">×</button>
+            
+            <div class="purchase-password-header">
+                <h2 id="purchaseModalTitle">Comprar Manual</h2>
+                <p id="purchaseModalPrice" class="purchase-price">Preço: —</p>
+            </div>
+
+            <div class="purchase-password-body">
+                <p class="purchase-instruction">Preencha seus dados e envie o comprovativo de pagamento.</p>
+
+                <!-- SEÇÃO 1: Dados do Cliente (Editáveis) -->
+                <fieldset class="purchase-fieldset">
+                    <legend>📋 Seus Dados</legend>
+                    
+                    <div class="purchase-field">
+                        <label for="purchaseFormName">👤 Nome Completo:</label>
+                        <input type="text" id="purchaseFormName" placeholder="Ex: João Silva" required>
+                    </div>
+
+                    <div class="purchase-field">
+                        <label for="purchaseFormEmail">📧 Email:</label>
+                        <input type="email" id="purchaseFormEmail" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="purchase-field">
+                        <label for="purchaseFormPhone">📱 Telefone:</label>
+                        <input type="tel" id="purchaseFormPhone" placeholder="+244 951474872" required>
+                    </div>
+                </fieldset>
+
+                <!-- SEÇÃO 1B: Seletor de Curso (Apenas para Standard) -->
+                <fieldset class="purchase-fieldset" id="purchaseCourseSelector" style="display: block;">
+                    <legend>📚 Selecione o Curso</legend>
+                    
+                    <div class="purchase-field">
+                        <label for="purchaseCourseSelect">Qual curso você deseja?</label>
+                        <select id="purchaseCourseSelect" required>
+                            <option value="">-- Selecione --</option>
+                            <option value="Standard 1">Standard 1</option>
+                            <option value="Standard 2">Standard 2</option>
+                            <option value="Standard 3">Standard 3</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <!-- SEÇÃO 2: Comprovativo de Pagamento -->
+                <fieldset class="purchase-fieldset">
+                    <legend>📄 Comprovativo de Pagamento</legend>
+                    
+                    <div class="purchase-field">
+                        <label for="proofFileInput">
+                            📎 Enviar Comprovativo (PDF, JPG, PNG):
+                            <br><small style="color: #666;">Tamanho máximo: 10MB</small>
+                        </label>
+                        <input type="file" 
+                               id="proofFileInput" 
+                               accept=".pdf,.jpg,.jpeg,.png" 
+                               onchange="validateProofUpload(event)" 
+                               required>
+                    </div>
+
+                    <!-- Feedback do Upload -->
+                    <div id="proofFeedback" class="proof-feedback" style="display: none;"></div>
+                </fieldset>
+
+                <!-- SEÇÃO 3: Botão de Download (Aparece após comprovativo válido) -->
+                <div id="downloadButtonContainer" class="purchase-download-container" style="display: none;">
+                    <button type="button" class="purchase-download-btn" onclick="processPurchaseDownload()">
+                        📥 Baixar Meu Manual
+                    </button>
+                    <p class="purchase-note">✓ Academia SMS Será notificada.</p>
+                </div>
+
+                <!-- Mensagem de Sucesso -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <p>✅ Compra confirmada! Seu manual está sendo preparado.</p>
+                </div>
+
+                <!-- Botão de Cancelar -->
+                <button type="button" class="purchase-cancel-btn" onclick="closePurchaseFormWithPassword()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay de fundo -->
+    <div id="purchasePasswordOverlay" class="purchase-password-overlay" style="display: none;" onclick="closePurchaseFormWithPassword()"></div>
+
         </main>
     <!-- FOOTER -->
     <footer id="contato"> 
@@ -1192,7 +1295,7 @@
         <section id="contato-info" class="migrated-inline-125">
             <p><strong>🕐 Horário de Atendimento:</strong> Segunda a Sexta, 07:30 - 18:00</p>
         </section>
-        <p class="migrated-inline-084">&copy; 2026 S.M.S - ACADEMIA de Linguas & Habilidades - Todos os direitos reservados.</p>
+        <p class="migrated-inline-084">&copy; 2026 S.M.S - Academia de Linguas & Habilidades - Todos os direitos reservados.</p>
         <!-- Botão de rolagem/voltar ao topo -->
 <button id="scrollToTopBtn" title="Voltar ao topo" class="migrated-inline-087">up</button>
     </footer>
@@ -1219,62 +1322,7 @@
             }
         }
 
-        function openSmsGallery() {
-            closeAllInteractivePanels(['gallery']);
-            const section = document.getElementById('sms-gallery');
-            if (section) {
-                // create backdrop overlay if missing
-                let overlay = document.getElementById('galleryOverlay');
-                if (!overlay) {
-                    overlay = document.createElement('div');
-                    overlay.id = 'galleryOverlay';
-                    overlay.className = 'site-overlay';
-                    overlay.setAttribute('aria-hidden', 'false');
-                    overlay.addEventListener('click', closeSmsGallery);
-                    document.body.appendChild(overlay);
-                }
-
-                section.hidden = false;
-                section.style.display = 'block';
-                section.classList.add('is-open');
-                section.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('site-overlay-open');
-                document.body.style.overflow = 'hidden';
-                setGalleryButtonLabel(true);
-                // focus first element to improve accessibility
-                setTimeout(() => {
-                    const h = section.querySelector('h2');
-                    if (h) h.focus?.();
-                }, 60);
-            }
-        }
-
-        function closeSmsGallery() {
-            const section = document.getElementById('sms-gallery');
-            if (section) {
-                section.hidden = true;
-                section.style.display = 'none';
-                section.classList.remove('is-open');
-                section.setAttribute('aria-hidden', 'true');
-                setGalleryButtonLabel(false);
-            }
-            // remove backdrop overlay when closing
-            const overlay = document.getElementById('galleryOverlay');
-            if (overlay) overlay.remove();
-            document.body.classList.remove('site-overlay-open');
-            document.body.style.overflow = '';
-        }
-
-        function toggleSmsGallery() {
-            const section = document.getElementById('sms-gallery');
-            if (!section) return;
-            if (section.hidden) {
-                openSmsGallery();
-            } else {
-                closeSmsGallery();
-            }
-        }
-
+        // Gallery open/close functions are defined in Script.js.
         function scrollToContacts() {
             const footer = document.getElementById('contato');
             if (footer) {
@@ -1282,58 +1330,7 @@
             }
         }
 
-        function toggleFaqPanel() {
-            window.open('FAQ.html', '_blank', 'noopener,noreferrer');
-        }
-
         (function(){
-            let currentSlideIndex = 0;
-            let slideInterval = null;
-            const slider = document.getElementById('bannerSlider');
-            const slides = () => document.querySelectorAll('.banner-slide');
-            const dots = () => document.querySelectorAll('.dot');
-
-            function showSlides(index) {
-                const s = slides();
-                const d = dots();
-                if (!s.length || !slider) return;
-                if (index < 0) index = s.length - 1;
-                if (index >= s.length) index = 0;
-                currentSlideIndex = index;
-                const offset = -currentSlideIndex * 100;
-                slider.style.transform = `translateX(${offset}%)`;
-                d.forEach((dot, i) => dot.classList.toggle('active', i === currentSlideIndex));
-            }
-
-            function nextSlide() { showSlides(currentSlideIndex + 1); }
-
-            function startAutoSlide() {
-                stopAutoSlide();
-                slideInterval = setInterval(nextSlide, 6500);
-            }
-
-            function stopAutoSlide() {
-                if (slideInterval) clearInterval(slideInterval);
-                slideInterval = null;
-            }
-
-            // Expose for onclick attributes used in HTML
-            window.currentSlide = function(n){
-                // dots in HTML are 1-based (currentSlide(1)), convert to 0-based
-                const idx = (typeof n === 'number') ? (n - 1) : 0;
-                showSlides(idx);
-                startAutoSlide();
-            };
-
-            // Start
-            showSlides(0);
-            startAutoSlide();
-
-            // Make sure dots (if any) are clickable
-            document.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.addEventListener('click', () => { window.currentSlide(i+1); });
-            });
-
             // Smooth scroll only for in-page anchors
             document.querySelectorAll('nav a[href^="#"]').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1354,11 +1351,17 @@
                     buyMenu.style.display = 'block';
                     buyMenu.style.setProperty('z-index', '110', 'important');
                     buyMenu.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('site-overlay-open');
+                    document.body.style.overflow = 'hidden';
+                    showBackdrop();
                     if (button) button.textContent = 'Fechar';
                 } else {
                     buyMenu.style.display = 'none';
                     buyMenu.setAttribute('aria-hidden', 'true');
                     buyMenu.style.removeProperty('z-index');
+                    document.body.classList.remove('site-overlay-open');
+                    document.body.style.overflow = '';
+                    hideBackdrop();
                     if (button) button.textContent = 'Manuais';
                 }
             };
@@ -1408,90 +1411,30 @@
                 } catch (e) { console.warn('Unable to restore purchase draft', e); }
             }
 
-            window.openPurchaseForm = function(manualTitle, manualId, manualPrice) {
+            window.openPurchaseForm = function(manualTitle, manualId) {
                 closeAllInteractivePanels(['purchase']);
                 const formWrapper = document.getElementById('purchase-form');
-                const selectedTitle = document.getElementById('selectedManualTitle');
-                const selectedPrice = document.getElementById('selectedManualPrice');
-                const purchaseManualId = document.getElementById('purchaseManualId');
-                const purchaseManualPrice = document.getElementById('purchaseManualPrice');
-                const status = document.getElementById('purchaseStatus');
-                if (!formWrapper || !selectedTitle || !selectedPrice || !purchaseManualId) return;
-
-                selectedTitle.textContent = `Comprar ${manualTitle}`;
-                selectedPrice.textContent = `Preço: ${manualPrice || '—'}`;
-                purchaseManualId.value = manualId;
-                if (purchaseManualPrice) purchaseManualPrice.value = manualPrice || '';
-                if (status) status.textContent = '';
-
-                let overlay = document.getElementById('purchaseModalOverlay');
-                if (!overlay) {
-                    overlay = document.createElement('div');
-                    overlay.id = 'purchaseModalOverlay';
-                    overlay.className = 'propina-modal';
-
-                    const content = document.createElement('div');
-                    content.className = 'propina-modal-content purchase-modal-content';
-
-                    const closeBtn = document.createElement('button');
-                    closeBtn.type = 'button';
-                    closeBtn.className = 'propina-modal-close site-close-button';
-                    closeBtn.setAttribute('aria-label', 'Fechar pedido de compra');
-                    closeBtn.innerHTML = '&times;';
-                    closeBtn.addEventListener('click', window.closePurchaseForm);
-
-                    content.appendChild(closeBtn);
-                    overlay.appendChild(content);
-                    document.body.appendChild(overlay);
-                }
-
-                const modalContent = overlay.querySelector('.propina-modal-content');
-                if (modalContent) {
-                    if (formWrapper.parentElement !== modalContent) {
-                        modalContent.appendChild(formWrapper);
-                    }
-                    formWrapper.classList.remove('hidden');
-                    formWrapper.classList.remove('show');
-                    formWrapper.hidden = false;
-                    formWrapper.style.display = 'grid';
-                    formWrapper.style.visibility = 'visible';
-                    formWrapper.style.opacity = '1';
-                    formWrapper.style.removeProperty('display');
-                    formWrapper.style.setProperty('display', 'grid', 'important');
-                    applyScrollableOverlayState(overlay, modalContent);
-                    overlay.style.display = 'flex';
-                    overlay.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
-                    restorePurchaseDraft();
-                    const nameInput = document.getElementById('buyerName');
-                    if (nameInput) nameInput.focus();
-                    setTimeout(() => {
-                        formWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 50);
-                }
+                if (!formWrapper) return;
+                document.getElementById('selectedManualTitle').textContent = `Comprar ${manualTitle}`;
+                document.getElementById('purchaseManualId').value = manualId;
+                formWrapper.classList.remove('hidden');
+                formWrapper.classList.add('show');
+                formWrapper.hidden = false;
+                formWrapper.style.display = 'grid';
+                restorePurchaseDraft();
+                const nameInput = document.getElementById('buyerName');
+                if (nameInput) nameInput.focus();
             };
 
             window.closePurchaseForm = function() {
                 savePurchaseDraft();
                 const formWrapper = document.getElementById('purchase-form');
-                const overlay = document.getElementById('purchaseModalOverlay');
                 if (formWrapper) {
                     formWrapper.classList.add('hidden');
                     formWrapper.classList.remove('show');
                     formWrapper.hidden = true;
-                    formWrapper.style.visibility = 'hidden';
-                    formWrapper.style.opacity = '0';
-                    formWrapper.style.setProperty('display', 'none', 'important');
-                    if (overlay) {
-                        overlay.style.display = 'none';
-                        overlay.setAttribute('aria-hidden', 'true');
-                    }
-                    const buyMenuContent = document.querySelector('.buy-menu-content');
-                    if (buyMenuContent && formWrapper.parentElement !== buyMenuContent) {
-                        buyMenuContent.appendChild(formWrapper);
-                    }
+                    formWrapper.style.display = 'none';
                 }
-                document.body.style.overflow = '';
             };
 
             window.submitPurchaseRequest = function() {
@@ -1499,7 +1442,7 @@
                 const buyerEmail = document.getElementById('buyerEmail').value.trim();
                 const courseType = document.getElementById('courseType').value.trim();
                 const proofFile = document.getElementById('proofFile').files[0];
-                const manualTitle = document.getElementById('selectedManualTitle').textContent.replace(/^(Pedido de compra - |Comprar )/, '').trim();
+                const manualTitle = document.getElementById('selectedManualTitle').textContent.replace('Comprar ', '').trim();
                 const manualPrice = document.getElementById('purchaseManualPrice')?.value || document.getElementById('selectedManualPrice')?.textContent || '—';
 
                 if (!name || !buyerEmail || !courseType || !proofFile) {
@@ -1531,19 +1474,17 @@
                 const email = 'VendasRhSms@outlook.com';
                 const subject = encodeURIComponent(`Pedido de compra - ${manualTitle}`);
                 const body = encodeURIComponent(
-                    `Olá,\n\n` +
-                    `Recebemos o seu pedido de compra do manual ${manualTitle}.\n\n` +
-                    `Detalhes do pedido:\n` +
-                    `Item selecionado: ${manualTitle}\n` +
+                    `Pedido de compra de ${manualTitle}\n` +
                     `Nome: ${name}\n` +
                     `Email: ${buyerEmail}\n` +
                     `Tipo de curso: ${courseType}\n` +
                     `Preço: ${manualPrice}\n` +
                     `Comprovante: ${proofFile.name}\n\n` +
-                    `Assim que o pagamento for validado, enviaremos o material para o seu email. Agradecemos a sua confiança na S.M.S.`
+                    `**Envie o seu comprovante manualmente para acelerar a sua validação.**\n\n` +
+                    `**O seu pedido será validado, assim que confirmarmos o recebimento do Pagamento.** Vamos encaminhar o EBOOK ESCOLHIDO apartir deste mesmo E-mail. PDF manualmente enviado dentro de 24 horas ao cliente. Agradecemos a sua preferência e confiança na S.M.S - Academia de Línguas & Habilidades. Estamos ansiosos para ajudá-lo a alcançar seus objetivos de aprendizagem! Em caso de dúvidas ou para mais informações, não hesite em entrar em contato conosco. Estamos aqui para ajudar!`
                 );
 
-                const whatsappMessage = encodeURIComponent(`Olá! Recebemos o seu pedido de compra do manual ${manualTitle}.\n\nItem selecionado: ${manualTitle}\nNome: ${name}\nEmail: ${buyerEmail}\nTipo de curso: ${courseType}\nPreço: ${manualPrice}`);
+                const whatsappMessage = encodeURIComponent(`Olá! Recebi um pedido de compra de manual.\n\nManual: ${manualTitle}\nNome: ${name}\nEmail: ${buyerEmail}\nTipo de curso: ${courseType}\nPreço: ${manualPrice}\nComprovante: ${proofFile.name}`);
                 window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
                 window.open(`https://wa.me/244951474872?text=${whatsappMessage}`, '_blank');
                 closePurchaseForm();
@@ -1725,14 +1666,17 @@
             const section = document.getElementById('agendamento');
             if (!section) return;
             section.hidden = false;
+            section.removeAttribute('hidden');
             section.classList.add('show');
             section.style.display = 'flex';
+            section.style.setProperty('display', 'flex', 'important');
             section.setAttribute('aria-hidden', 'false');
             document.body.classList.add('site-overlay-open');
             document.body.style.overflow = 'hidden';
+            showBackdrop();
             setTimeout(() => {
                 document.getElementById('scheduleDate')?.focus();
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                section.scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
 
@@ -1773,7 +1717,7 @@
                 return;
             }
 
-            const message = `Olá! Gostaria de solicitar uma avaliação para o curso ${course}.%0A%0A📚 Curso: ${course}%0A💵 Preço: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
+            const message = `Olá! Gostaria de agendar uma aula.%0A%0A📚 Curso: ${course}%0A💵 Preço: ${price}%0A📅 Data: ${date}%0A⏰ Horário: ${time}%0A👤 Nome: ${name}%0A📧 Email: ${email}%0A📱 WhatsApp: ${phone}%0A🏘️ Município: ${municipality}%0A📝 Observações: ${notes}`;
             const whatsappUrl = `https://wa.me/244951474872?text=${message}`;
 
             window.open(whatsappUrl, '_blank');
@@ -1783,79 +1727,37 @@
         function toggleAllInfoSections() {
             const infoSystem = document.querySelector('.info-system');
             const button = document.getElementById('infoToggleAllBtn');
-            if (!infoSystem || !button) return;
+            const infoBackdrop = document.getElementById('infoBackdrop');
+            if (!infoSystem || !button || !infoBackdrop) return;
 
-            const isCollapsed = infoSystem.classList.contains('collapsed');
+            const isCollapsed = infoSystem.classList.toggle('collapsed');
+            infoSystem.classList.toggle('is-open', !isCollapsed);
+            infoSystem.hidden = isCollapsed;
+            infoSystem.style.display = isCollapsed ? 'none' : 'block';
+            infoSystem.setAttribute('aria-hidden', isCollapsed ? 'true' : 'false');
+            button.textContent = isCollapsed ? 'Ver informações' : 'Ocultar informações';
             sectionsCloseAll();
 
-            if (isCollapsed) {
-                closeAllInteractivePanels(['info']);
-                // create overlay backdrop
-                let overlay = document.getElementById('infoOverlay');
-                if (!overlay) {
-                    overlay = document.createElement('div');
-                    overlay.id = 'infoOverlay';
-                    overlay.className = 'site-overlay';
-                    overlay.setAttribute('aria-hidden', 'false');
-                    overlay.addEventListener('click', toggleAllInfoSections);
-                    document.body.appendChild(overlay);
-                }
-
-                infoSystem.classList.remove('collapsed');
-                infoSystem.classList.add('is-open');
-                infoSystem.hidden = false;
-                infoSystem.style.display = 'block';
-                infoSystem.setAttribute('aria-hidden', 'false');
+            if (!isCollapsed) {
+                infoBackdrop.setAttribute('aria-hidden', 'false');
+                infoBackdrop.style.display = 'block';
+                infoBackdrop.style.opacity = '1';
+                infoBackdrop.style.pointerEvents = 'none';
+                infoBackdrop.classList.add('is-open');
                 document.body.classList.add('site-overlay-open');
                 document.body.style.overflow = 'hidden';
-                button.textContent = 'Ocultar informações';
-                // focus first heading and keep content below header
                 setTimeout(() => {
-                    const firstHeading = infoSystem.querySelector('h2');
-                    if (firstHeading) firstHeading.focus?.();
-                }, 60);
+                    infoSystem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 40);
             } else {
-                // remove overlay backdrop
-                const overlay = document.getElementById('infoOverlay');
-                if (overlay) overlay.remove();
-
-                infoSystem.classList.add('collapsed');
-                infoSystem.classList.remove('is-open');
-                infoSystem.hidden = true;
-                infoSystem.style.display = 'none';
-                infoSystem.setAttribute('aria-hidden', 'true');
+                infoBackdrop.setAttribute('aria-hidden', 'true');
+                infoBackdrop.style.display = 'none';
+                infoBackdrop.style.opacity = '0';
+                infoBackdrop.style.pointerEvents = 'none';
+                infoBackdrop.classList.remove('is-open');
                 document.body.classList.remove('site-overlay-open');
                 document.body.style.overflow = '';
-                button.textContent = 'Ver informações';
             }
-        }
-
-        function openTermsPanel() {
-            const termsPanel = document.getElementById('termos-privacidade');
-            const button = document.getElementById('infoToggleAllBtn');
-            if (!termsPanel) return;
-
-            closeAllInteractivePanels(['terms']);
-            termsPanel.hidden = false;
-            termsPanel.style.display = 'block';
-            termsPanel.classList.add('is-open');
-            termsPanel.setAttribute('aria-hidden', 'false');
-            if (button) button.textContent = 'Ver informações';
-            document.body.classList.add('site-overlay-open');
-            document.body.style.overflow = 'hidden';
-            termsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        function closeTermsPanel() {
-            const termsPanel = document.getElementById('termos-privacidade');
-            if (termsPanel) {
-                termsPanel.hidden = true;
-                termsPanel.style.display = 'none';
-                termsPanel.classList.remove('is-open');
-                termsPanel.setAttribute('aria-hidden', 'true');
-            }
-            document.body.classList.remove('site-overlay-open');
-            document.body.style.overflow = '';
         }
 
         function sectionsCloseAll() {
@@ -2127,21 +2029,25 @@
             if (typeof closeProptinaModal === 'function') {
                 closeProptinaModal();
             }
-            const enrollmentSection = document.getElementById('agendamento');
-            const paymentSection = document.getElementById('pagamento');
-            if (enrollmentSection) {
-                enrollmentSection.hidden = true;
-                enrollmentSection.style.display = 'none';
-                enrollmentSection.setAttribute('aria-hidden', 'true');
+
+            const agendamento = document.getElementById('agendamento');
+            const pagamento = document.getElementById('pagamento');
+
+            if (agendamento) {
+                agendamento.hidden = true;
+                agendamento.removeAttribute('hidden');
+                agendamento.style.display = 'none';
+                agendamento.setAttribute('aria-hidden', 'true');
             }
-            if (paymentSection) {
-                paymentSection.hidden = false;
-                paymentSection.style.display = 'flex';
-                paymentSection.classList.add('is-open');
-                paymentSection.setAttribute('aria-hidden', 'false');
+
+            if (pagamento) {
+                pagamento.hidden = false;
+                pagamento.removeAttribute('hidden');
+                pagamento.style.display = 'block';
+                pagamento.style.setProperty('display', 'block', 'important');
+                pagamento.setAttribute('aria-hidden', 'false');
+                pagamento.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            document.body.classList.add('site-overlay-open');
-            document.body.style.overflow = 'hidden';
         }
         
         function buildEnrollmentSummaryText() {
@@ -2150,9 +2056,7 @@
             const selectedVariant = courseVariantSelect?.value ? ` • ${courseVariantSelect.value}` : '';
             const coursePrice = document.getElementById('coursePrice').value;
             const scheduleDate = document.getElementById('scheduleDate').value;
-            // normalize schedule format
-            let scheduleTime = (document.getElementById('scheduleTime').value || '').toString();
-            scheduleTime = scheduleTime.replace(/\s*-\s*/, ' - ');
+            const scheduleTime = document.getElementById('scheduleTime').value;
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
@@ -2162,9 +2066,10 @@
             const proofFile = document.getElementById('proofAttachment').files[0];
             const enrollmentFee = document.getElementById('summary_fee')?.textContent || '5.000 Kz';
             const enrollmentTotal = document.getElementById('summary_total')?.textContent || (coursePrice ? `${coursePrice} + 5.000 Kz` : '5.000 Kz');
-            const proofInfo = proofFile ? `\nComprovante anexado: ${proofFile.name}` : '';
+            const instruction = 'Envie o seu comprovante manualmente para acelerar a sua validação.';
+            const proofInfo = proofFile ? `\nArquivo do comprovante: ${proofFile.name}` : '';
 
-            return `*S.M.S - INSCRIÇÃO RECEBIDA*\n\nOlá,\n\nRecebemos a sua solicitação de inscrição.\n\nDetalhes:\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}${selectedVariant}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}${proofInfo}\n\nAssim que o pagamento for confirmado, daremos continuidade ao processo. Agradecemos a sua confiança na S.M.S - Academia de Línguas & Habilidades.`;
+            return `*S.M.S - INSCRIÇÃO COMPLETA*\n\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n📧 Email: ${email}\n🆔 BI/Passaporte: ${idNumber}\n🏘️ Município: ${municipality}\n📚 Curso: ${courseName}${selectedVariant}\n💵 Preço do curso: ${coursePrice}\n💳 Taxa de inscrição: ${enrollmentFee}\n💰 Total a pagar: ${enrollmentTotal}\n📅 Data: ${scheduleDate}\n⏰ Horário: ${scheduleTime}\n📝 Observações: ${notes}\n\n${instruction}${proofInfo}\n\n📝 *Agradecimentos:* 🎓 Bem-vindo(a) à Saraswati MAA Mind School – S.M.S!\nÉ um grande prazer acompanhá-lo(a) nesta jornada de aprendizado em inglês.`;
         }
 
         function submitAllDataVia(method) {
@@ -2202,25 +2107,25 @@
         }
 
         function hideAllSections() {
-            const section = document.getElementById('agendamento');
-            const paymentSection = document.getElementById('pagamento');
-            if (section) {
-                section.style.display = 'none';
-                section.hidden = true;
-                section.setAttribute('aria-hidden', 'true');
+            const agendamento = document.getElementById('agendamento');
+            const pagamento = document.getElementById('pagamento');
+            const formulario = document.getElementById('formulario-section');
+
+            if (agendamento) {
+                agendamento.hidden = true;
+                agendamento.style.display = 'none';
+                agendamento.setAttribute('aria-hidden', 'true');
             }
-            if (paymentSection) {
-                paymentSection.style.display = 'none';
-                paymentSection.hidden = true;
-                paymentSection.classList.remove('is-open');
-                paymentSection.setAttribute('aria-hidden', 'true');
+            if (pagamento) {
+                pagamento.hidden = true;
+                pagamento.style.display = 'none';
+                pagamento.setAttribute('aria-hidden', 'true');
             }
-            const formSection = document.getElementById('formulario-section');
-            if (formSection) {
-                formSection.style.display = 'none';
+            if (formulario) {
+                formulario.hidden = true;
+                formulario.style.display = 'none';
+                formulario.setAttribute('aria-hidden', 'true');
             }
-            document.body.classList.remove('site-overlay-open');
-            document.body.style.overflow = '';
         }
  // Candidaturas & Formas da Aplicação
         function showApplicationForm(position, method) {
@@ -2292,7 +2197,7 @@
                 alert('Por favor, preencha nome, email e telemóvel para continuar.');
                 return;
             }
-            const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá! Quero submeter a minha candidatura para a vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
+            const whatsappUrl = `https://wa.me/244951474872?text=${encodeURIComponent(`Olá, desejo candidatar-me à vaga de ${position}.\n\nNome: ${name}\nEmail: ${email}\nTelemóvel: ${phone}\n\nMensagem:\n${message}`)}`;
             window.open(whatsappUrl, '_blank');
             saveCareerDraft();
         }
@@ -2309,7 +2214,7 @@
                 return false;
             }
             const subject = encodeURIComponent(`Candidatura: ${position}`);
-            const body = encodeURIComponent(`Olá,%0A%0AGostaria de submeter a minha candidatura para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
+            const body = encodeURIComponent(`Olá,%0A%0AGostaria de candidatar-me para a vaga de **${position}**.%0A%0ANome: ${name}%0AEmail: ${email}%0ATelemóvel: ${phone}%0A%0A**Mensagem:**%0A${message}`);
             window.location.href = `mailto:VendasRhSms@outlook.com?subject=${subject}&body=${body}`;
             saveCareerDraft();
             return false;
@@ -2421,7 +2326,7 @@
             }
 
             function copyIBAN(){
-                const iban = 'AO6.0066.0000.0789.9088.1013.0';
+                const iban = '0055.0000.2618.2555.1010.7';
                 if (navigator.clipboard && navigator.clipboard.writeText){
                     navigator.clipboard.writeText(iban).then(()=> alert('IBAN copiado para a área de transferência.')).catch(()=> alert('Não foi possível copiar o IBAN automaticamente.'));
                 } else {
@@ -2446,7 +2351,7 @@
                 const body = encodeURIComponent(
                     `${messageBody}\n\n`+
                     `📄 Referência: ${enrollment.reference}\n`+
-                    `🏦 Dados Bancários:\nBanco: Banco Yetu.\nTitular: HORIZON ASSIGNMENTES INDIA PRIVATE LIMITED\nIBAN: AO6.0066.0000.0789.9088.1013.0\nNº Conta: 7899088.10001\nNIF: 500188916\n\n`+
+                    `🏦 Dados Bancários:\nBanco: Milénio Atlântico\nTitular: Estevão André Lizi\nIBAN: 0055.0000.2618.2555.1010.7\nNº Conta: 226182555.10001\n\n`+
                     `Por favor, anexe o comprovativo de pagamento e envie este email para confirmação.`
                 );
                 const mailto = `mailto:${centerEmail}?subject=${subject}&body=${body}`;
@@ -2456,12 +2361,59 @@
             function openWhatsAppEnrollment(){
                 const enrollment = JSON.parse(localStorage.getItem('sms_enrollment') || '{}');
                 if (!enrollment || !enrollment.name) { alert('Nenhuma inscrição encontrada.'); return; }
-                const text = encodeURIComponent(`Olá! Efetuei o pagamento referente à minha inscrição.\n\nReferência: ${enrollment.reference}\nNome: ${enrollment.name}\nCurso: ${enrollment.course}\nTotal: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}\nEnvio o comprovativo em anexo.`);
+                const text = encodeURIComponent(`Olá, efetuei o pagamento. Ref: ${enrollment.reference}. Nome: ${enrollment.name}. Curso: ${enrollment.course}. Total: Kz ${Number(enrollment.total).toLocaleString('pt-PT')}. Envio comprovativa em anexo.`);
                 const phone = '244951474872';
                 window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
             }
         </script>
+
+        <!-- Password Modal for Manual Download -->
+        <div id="passwordModal" class="password-modal">
+            <div class="password-modal-content">
+                <div class="password-modal-header">
+                    <h3>📚 Obter Manual</h3>
+                    <p>Preencha os seus dados para abrir o manual.</p>
+                </div>
+                <div id="passwordMessage" class="password-message" style="display: none;"></div>
+                <form class="password-modal-form" onsubmit="return false;">
+                    <div id="standardStageSelection" style="display: none;">
+                        <label for="standardStageSelect">Etapa do Standard English</label>
+                        <select id="standardStageSelect">
+                            <option value="">Selecione a etapa...</option>
+                            <option value="Standard 1">Standard 1</option>
+                            <option value="Standard 2">Standard 2</option>
+                            <option value="Standard 3">Standard 3</option>
+                        </select>
+                    </div>
+                    <div id="manualSelectionGroup">
+                        <label for="manualSelectionSelect">Tipo de Manual</label>
+                        <select id="manualSelectionSelect">
+                            <option value="">Selecione o manual...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="studyLeadName">Nome completo:</label>
+                        <input type="text" id="studyLeadName" placeholder="Ex: João Silva" autocomplete="name" required>
+                    </div>
+                    <div>
+                        <label for="studyLeadClass">Qual é o teu curso?</label>
+                        <input type="text" id="studyLeadClass" placeholder="Ex: English Course" autocomplete="off" required>
+                    </div>
+                    <div>
+                        <label for="studyLeadPhone">Número:</label>
+                        <input type="tel" id="studyLeadPhone" placeholder="Ex: +244 951 474 872" autocomplete="tel" required>
+                    </div>
+                    <div>
+                        <label for="studyLeadLocation">Sua localização:</label>
+                        <input type="text" id="studyLeadLocation" placeholder="Ex: Luanda, Angola" autocomplete="address-level2" required>
+                    </div>
+                </form>
+                <div class="password-modal-buttons">
+                    <button type="button" onclick="verifyAndDownloadManual()">Abrir Manual</button>
+                    <button type="button" onclick="closePasswordModal()">Cancelar</button>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
-
 
